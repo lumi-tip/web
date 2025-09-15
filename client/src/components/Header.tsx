@@ -1,0 +1,95 @@
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { analytics } from '@/lib/analytics';
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSignIn = () => {
+    analytics.ctaClick('sign_in', 'header');
+    console.log('Sign in clicked');
+  };
+
+  const handleTryFree = () => {
+    analytics.ctaClick('try_free', 'header');
+    console.log('Try LearnPack Free clicked');
+  };
+
+  return (
+    <header 
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
+        isScrolled 
+          ? 'bg-background/80 backdrop-blur-md border-border' 
+          : 'bg-background border-transparent'
+      }`}
+      data-testid="header-main"
+    >
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center space-x-8">
+          <h1 className="text-xl font-bold text-foreground" data-testid="text-logo">
+            LearnPack
+          </h1>
+          
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <a 
+              href="#product" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="link-product"
+            >
+              Product
+            </a>
+            <a 
+              href="#pricing" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="link-pricing"
+            >
+              Pricing
+            </a>
+            <a 
+              href="#customers" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="link-customers"
+            >
+              Customers
+            </a>
+            <a 
+              href="#docs" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="link-docs"
+            >
+              Docs
+            </a>
+          </nav>
+        </div>
+
+        {/* CTAs */}
+        <div className="flex items-center space-x-4">
+          <Button 
+            variant="ghost" 
+            onClick={handleSignIn}
+            data-testid="button-signin"
+          >
+            Sign in
+          </Button>
+          <Button 
+            onClick={handleTryFree}
+            data-testid="button-try-free"
+          >
+            Try LearnPack Free
+          </Button>
+        </div>
+      </div>
+    </header>
+  );
+}

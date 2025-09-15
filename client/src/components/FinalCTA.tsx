@@ -1,0 +1,56 @@
+import { Button } from '@/components/ui/button';
+import { analytics } from '@/lib/analytics';
+
+export default function FinalCTA() {
+  const handleStartCreating = () => {
+    analytics.ctaClick('start_creating', 'final_cta');
+    console.log('Start Creating clicked');
+  };
+
+  const handleWatchDemo = () => {
+    analytics.ctaClick('watch_demo', 'final_cta');
+    console.log('Watch Demo clicked');
+  };
+
+  return (
+    <section className="py-24 px-4 bg-primary/5" data-testid="section-final-cta">
+      <div className="container mx-auto">
+        <div className="text-center space-y-8 max-w-4xl mx-auto">
+          <h2 
+            className="text-4xl md:text-5xl font-bold"
+            data-testid="text-final-cta-title"
+          >
+            Create once. Teach anywhere. Learn better.
+          </h2>
+          
+          <p 
+            className="text-xl text-muted-foreground max-w-2xl mx-auto"
+            data-testid="text-final-cta-subtitle"
+          >
+            Join thousands of educators and trainers who are transforming how people learn.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg" 
+              className="px-8"
+              onClick={handleStartCreating}
+              data-testid="button-start-creating"
+            >
+              Start Creating
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-8"
+              onClick={handleWatchDemo}
+              data-testid="button-watch-demo"
+            >
+              Watch Demo
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
