@@ -1,0 +1,165 @@
+Prompt for AI Coding Agent — Build LearnPack Homepage (Stack-Agnostic)
+
+You are building the LearnPack.co homepage. Choose the most appropriate modern web stack (SPA, SSR, SSG—your call). Prioritize fast load, accessibility, clean modern design, and production readiness.
+
+Positioning & Core Messages
+
+H1: “Turn ideas into interactive learning packages in minutes — export anywhere.”
+
+Sub-head (hero): “Type any topic, choose a purpose, and generate a course you can export anywhere.”
+
+Trust line under hero form: “Cut training creation costs by 80% and double completion rates.”
+
+This is a package-first, creator-centric product.
+
+Page Structure (in order)
+
+Header / Nav
+
+Logo (text placeholder “LearnPack”)
+
+Nav: Product, Pricing, Customers, Docs, Sign in
+
+Primary CTA (right): “Try LearnPack Free”
+
+Sticky on scroll with subtle blur.
+
+Hero with Big Input (primary CTA)
+
+H1 + sub-head (above).
+
+Big input block:
+
+Multiline textarea placeholder: “What do you want to teach or learn today?”
+
+Purpose select options: Training, Compliance, Onboarding, Skills, Academic
+
+Primary button: “Create Package”
+
+On submit, call a stub createPackage(topic, purpose):
+
+Simulate ~1.2s latency, then show success toast: “Draft created! Opening editor…”
+
+Log { topic, purpose } and fire analytics event (see “Analytics stubs”).
+
+Right side (desktop): demo video/animation card (autoplay/muted/loop); use a poster fallback.
+
+Value Props (3 cards)
+
+Fast Package Generation — “$600 packages built in hours, not months.”
+
+Export Anywhere — “SCORM, ePub, or LearnPack links with full analytics.”
+
+Engagement That Lasts — “AI tutor, real-time insights, auto-refresh content.”
+
+How It Works (3 steps)
+
+Create — Upload a PDF, video, or idea. AI turns it into an interactive course.
+
+Publish & Export — Share instantly or export to your LMS/book format.
+
+Engage & Track — Learners interact; you see completions, frustration, and ROI.
+
+Secondary CTA: “See ROI Calculator” (anchor to pricing for now).
+
+Proof & ROI (stats band)
+
+80% cost reduction
+
+2× completion rates
+
+1,500+ active users
+
+Small footnote placeholder about methodology.
+
+Use Cases / Customers (3 tiles)
+
+Insurance training (SCORM export)
+
+AI Clinic at MDC (LearnPack-native interactivity)
+
+Bank compliance (hybrid export)
+
+Each tile: short benefit + “See case study” (placeholder link).
+
+Pricing Teaser
+
+Creator Seat — $100/mo — Create, edit, publish, analyze.
+
+Package Generation — $600 / up to 2 hours — Reading, watching, activity time included.
+
+Usage Tracking — Pay as learners interact — Metering for quizzes, tutor, challenges.
+
+CTA: “See pricing details” (link to /pricing, placeholder).
+
+Final CTA
+
+“Create once. Teach anywhere. Learn better.”
+
+Buttons: “Start Creating” (primary), “Watch Demo” (secondary).
+
+Footer
+
+Columns: Product, Solutions, Resources, Company, Legal
+
+Social placeholders, © current year.
+
+Functional Requirements
+
+Analytics stubs: expose window.lpTrack(eventName, payload); no-op fallback if missing. Fire on: hero input focus, purpose change, hero submit, create success.
+
+Form behavior: disable submit when textarea empty; show helper on empty submit; support keyboard (Ctrl/Cmd+Enter submits, Enter inserts newline).
+
+Loading state: button spinner, inputs disabled, aria-busy on form; announce status via aria-live.
+
+Toast system: lightweight, no external dependency required (portal acceptable).
+
+Accessibility & SEO
+
+Landmarks: header, main, footer; labels for all inputs; visible focus states.
+
+WCAG AA contrast.
+
+Metadata: sensible <title> and description reflecting the H1; Open Graph/Twitter tags; favicon.
+
+Optional JSON-LD: SoftwareApplication with name “LearnPack”.
+
+Design Guidance (adapt to your chosen stack)
+
+Default dark theme with high contrast; responsive from 360→1440.
+
+Cards: rounded corners, soft shadows, tasteful hover elevation.
+
+Generous spacing: roomy hero; balanced section paddings.
+
+Accent color for primary CTAs; ensure accessible contrast.
+
+Micro-interactions only (focus rings, hover, button press).
+
+File/Component Suggestions (adapt names to your framework)
+
+Header, Footer, Hero, BigInputForm, ValueProps, HowItWorks, StatsBand, UseCases, PricingTeaser, FinalCTA, Toast, VideoCard
+
+analytics.ts (or util) wrapping lpTrack
+
+createPackage.ts (stub)
+
+Acceptance Criteria
+
+Lighthouse targets ≥95 for Performance, Best Practices, Accessibility, SEO on a mid-range laptop.
+
+Keyboard-only flow works in the hero.
+
+Responsive at 360, 768, 1024, 1440 widths.
+
+No console errors.
+
+All copy above is present verbatim unless noted as placeholder.
+
+Deliverables
+
+A runnable project with clear README (install, run, build).
+
+Clean, production-oriented code with sensible file/component organization.
+
+Placeholder media for the hero video/animation with a static poster fallback.
