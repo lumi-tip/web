@@ -6,7 +6,6 @@ import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { createPackage } from '@/lib/createPackage';
 import { analytics } from '@/lib/analytics';
-import heroBackgroundImg from '@assets/generated_images/Hero_background_pattern_76d7e4e2.png';
 
 const PURPOSE_OPTIONS = [
   { value: 'training', label: 'Training' },
@@ -91,17 +90,21 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroBackgroundImg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden hero-animated-bg"
       data-testid="section-hero"
     >
+      {/* Animated Background */}
+      <div className="absolute inset-0 animated-bg-container">
+        <div className="floating-orb orb-1"></div>
+        <div className="floating-orb orb-2"></div>
+        <div className="floating-orb orb-3"></div>
+        <div className="floating-orb orb-4"></div>
+        <div className="floating-orb orb-5"></div>
+        <div className="gradient-mesh"></div>
+      </div>
+      
       {/* Dark overlay for better text contrast */}
-      <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
       
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8">
