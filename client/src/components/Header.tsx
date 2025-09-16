@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
+import learnpackLogo from '@assets/learnpack-logo-white_1758030654296.png';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,9 +37,12 @@ export default function Header() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-8">
-          <h1 className="text-xl font-bold text-foreground" data-testid="text-logo">
-            LearnPack
-          </h1>
+          <img 
+            src={learnpackLogo} 
+            alt="LearnPack" 
+            className="h-8 w-auto"
+            data-testid="img-logo"
+          />
           
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
