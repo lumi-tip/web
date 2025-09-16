@@ -93,18 +93,36 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden hero-animated-bg"
       data-testid="section-hero"
     >
-      {/* Animated Background */}
+      {/* Vite-inspired Animated Background */}
       <div className="absolute inset-0 animated-bg-container">
-        <div className="floating-orb orb-1"></div>
-        <div className="floating-orb orb-2"></div>
-        <div className="floating-orb orb-3"></div>
-        <div className="floating-orb orb-4"></div>
-        <div className="floating-orb orb-5"></div>
-        <div className="gradient-mesh"></div>
+        {/* Central glowing orb */}
+        <div className="central-orb"></div>
+        
+        {/* Animated connection lines */}
+        <div className="connection-line line-1" style={{ '--rotation': '-45deg' } as React.CSSProperties}></div>
+        <div className="connection-line line-2" style={{ '--rotation': '30deg' } as React.CSSProperties}></div>
+        <div className="connection-line line-3" style={{ '--rotation': '120deg' } as React.CSSProperties}></div>
+        <div className="connection-line line-4" style={{ '--rotation': '-120deg' } as React.CSSProperties}></div>
+        <div className="connection-line line-5" style={{ '--rotation': '60deg' } as React.CSSProperties}></div>
+        <div className="connection-line line-6" style={{ '--rotation': '-90deg' } as React.CSSProperties}></div>
+        
+        {/* Glowing endpoint dots */}
+        <div className="endpoint-dot dot-1"></div>
+        <div className="endpoint-dot dot-2"></div>
+        <div className="endpoint-dot dot-3"></div>
+        <div className="endpoint-dot dot-4"></div>
+        <div className="endpoint-dot dot-5"></div>
+        <div className="endpoint-dot dot-6"></div>
+        
+        {/* Floating particles */}
+        <div className="particle particle-1"></div>
+        <div className="particle particle-2"></div>
+        <div className="particle particle-3"></div>
+        <div className="particle particle-4"></div>
       </div>
       
-      {/* Dark overlay for better text contrast */}
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+      {/* Subtle overlay for better text contrast */}
+      <div className="absolute inset-0 bg-background/20" />
       
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8">
