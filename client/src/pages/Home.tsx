@@ -1,6 +1,8 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import SocialProof from '@/components/SocialProof';
 import ValueProps from '@/components/ValueProps';
+import VideoDemo from '@/components/VideoDemo';
 import HowItWorks from '@/components/HowItWorks';
 import StatsBand from '@/components/StatsBand';
 import UseCases from '@/components/UseCases';
@@ -14,7 +16,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <SocialProof />
         <ValueProps />
+        <VideoDemo />
         <HowItWorks />
         <StatsBand />
         <UseCases />
