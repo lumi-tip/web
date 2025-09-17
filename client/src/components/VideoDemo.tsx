@@ -1,12 +1,9 @@
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { analytics } from '@/lib/analytics';
-import demoPosterImg from '@assets/generated_images/Demo_video_poster_e1e259a2.png';
 
 export default function VideoDemo() {
-  const handlePlayDemo = () => {
+  const handleVideoLoad = () => {
     analytics.ctaClick('watch_demo', 'video_demo');
-    console.log('Demo video play clicked');
   };
 
   return (
@@ -30,25 +27,17 @@ export default function VideoDemo() {
           
           <Card className="hover-elevate overflow-hidden">
             <CardContent className="p-4">
-              <div className="relative">
-                <img
-                  src={demoPosterImg}
-                  alt="LearnPack demo interface"
-                  className="w-full h-auto rounded-md"
-                  data-testid="img-demo-poster"
+              <div className="relative aspect-video rounded-md overflow-hidden">
+                <iframe
+                  src="https://www.youtube.com/embed/dBjKIashs4Y"
+                  title="LearnPack Demo - See how to create interactive learning packages"
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  onLoad={handleVideoLoad}
+                  data-testid="iframe-demo-video"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-md">
-                  <Button 
-                    size="icon" 
-                    className="w-20 h-20 rounded-full bg-primary/90 hover:bg-primary shadow-lg"
-                    data-testid="button-play-demo"
-                    onClick={handlePlayDemo}
-                  >
-                    <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </Button>
-                </div>
               </div>
             </CardContent>
           </Card>
