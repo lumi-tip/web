@@ -1,53 +1,62 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Zap, Download, TrendingUp } from 'lucide-react';
+import { Zap, Bot, Download, TrendingUp } from 'lucide-react';
 
 const valueProps = [
   {
     icon: Zap,
-    title: 'Fast Package Generation',
-    description: '$600 packages built in hours, not months.'
+    title: 'Create interactive courses in seconds',
+    description: 'Cut your content generation costs by +80% with production ready courses under 2 minutes.'
+  },
+  {
+    icon: Bot,
+    title: 'Use our AI agent to refine and maintain content easily',
+    description: 'Intelligent content optimization, automatic updates, and seamless maintenance with AI assistance.'
   },
   {
     icon: Download,
     title: 'Export Anywhere',
-    description: 'SCORM, ePub, or LearnPack links with full analytics.'
+    description: 'SCORM, Zip, ePub, iFrame or LearnPack links with full analytics and experience.'
   },
   {
     icon: TrendingUp,
-    title: 'Engagement That Lasts',
-    description: 'AI tutor, real-time insights, auto-refresh content.'
+    title: 'Double Completion Rates',
+    description: 'AI tutoring, interactive components, hyper-personalized learning.'
   }
 ];
 
 export default function ValueProps() {
   return (
-    <section className="py-24 px-4" data-testid="section-value-props">
+    <section className="py-24 px-4 bg-card/20" data-testid="section-value-props">
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {valueProps.map((prop, index) => {
             const IconComponent = prop.icon;
             return (
               <Card 
                 key={index} 
-                className="hover-elevate"
+                className="hover-elevate bg-card/80 backdrop-blur-sm border-card-border/50"
                 data-testid={`card-value-prop-${index}`}
               >
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
-                    <IconComponent className="w-6 h-6 text-primary" />
+                <CardContent className="p-6 space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <IconComponent className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 
+                        className="font-semibold text-sm leading-tight"
+                        data-testid={`text-value-prop-title-${index}`}
+                      >
+                        {prop.title}
+                      </h3>
+                      <p 
+                        className="text-xs text-muted-foreground leading-relaxed"
+                        data-testid={`text-value-prop-description-${index}`}
+                      >
+                        {prop.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 
-                    className="text-xl font-semibold"
-                    data-testid={`text-value-prop-title-${index}`}
-                  >
-                    {prop.title}
-                  </h3>
-                  <p 
-                    className="text-muted-foreground"
-                    data-testid={`text-value-prop-description-${index}`}
-                  >
-                    {prop.description}
-                  </p>
                 </CardContent>
               </Card>
             );
