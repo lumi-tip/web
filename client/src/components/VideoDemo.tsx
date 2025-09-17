@@ -29,7 +29,7 @@ export default function VideoDemo() {
             <CardContent className="p-4">
               <div className="relative aspect-video rounded-md overflow-hidden">
                 <iframe
-                  src="https://www.youtube.com/embed/dBjKIashs4Y"
+                  src="https://www.youtube.com/embed/dBjKIashs4Y?modestbranding=1&controls=0&showinfo=0&rel=0&iv_load_policy=3"
                   title="LearnPack Demo - See how to create interactive learning packages"
                   className="w-full h-full"
                   frameBorder="0"
