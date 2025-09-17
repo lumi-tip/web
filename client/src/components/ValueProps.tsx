@@ -38,24 +38,22 @@ export default function ValueProps() {
                 data-testid={`card-value-prop-${index}`}
               >
                 <CardContent className="p-6 space-y-4">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <IconComponent className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 
-                        className="font-semibold text-sm leading-tight"
-                        data-testid={`text-value-prop-title-${index}`}
-                      >
-                        {prop.title}
-                      </h3>
-                      <p 
-                        className="text-xs text-muted-foreground leading-relaxed"
-                        data-testid={`text-value-prop-description-${index}`}
-                      >
-                        {prop.description}
-                      </p>
-                    </div>
+                  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                    <IconComponent className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 
+                      className="font-semibold text-sm leading-tight"
+                      data-testid={`text-value-prop-title-${index}`}
+                    >
+                      {prop.title}
+                    </h3>
+                    <p 
+                      className="text-xs text-muted-foreground leading-relaxed"
+                      data-testid={`text-value-prop-description-${index}`}
+                    >
+                      {prop.description}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
