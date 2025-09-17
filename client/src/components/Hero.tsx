@@ -8,11 +8,9 @@ import { createPackage } from '@/lib/createPackage';
 import { analytics } from '@/lib/analytics';
 
 const PURPOSE_OPTIONS = [
-  { value: 'training', label: 'Training' },
-  { value: 'compliance', label: 'Compliance' },
-  { value: 'onboarding', label: 'Onboarding' },
-  { value: 'skills', label: 'Skills' },
-  { value: 'academic', label: 'Academic' },
+  { value: 'skill-building-facilitator', label: 'Build real world skills' },
+  { value: 'exam-homework-prep', label: 'Practice for an exam or homework' },
+  { value: 'certification-prep', label: 'Prepare for a certification' },
 ];
 
 export default function Hero() {
@@ -55,28 +53,26 @@ export default function Hero() {
     analytics.heroSubmit(topic, purpose);
 
     try {
-      const result = await createPackage(topic, purpose);
+      // Create URL with query parameters
+      const params = new URLSearchParams({
+        description: topic.trim(),
+        purpose: purpose,
+        new: 'true'
+      });
       
-      if (result.success) {
-        analytics.createSuccess(topic, purpose);
-        toast({
-          title: "Success!",
-          description: result.message,
-        });
-        
-        // Reset form
-        setTopic('');
-        setPurpose('');
-      } else {
-        throw new Error(result.message);
-      }
+      const redirectUrl = `https://app.learnpack.co/creator?${params.toString()}`;
+      
+      analytics.createSuccess(topic, purpose);
+      
+      // Redirect to external LearnPack app
+      window.location.href = redirectUrl;
+      
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to create package. Please try again.",
         variant: "destructive",
       });
-    } finally {
       setIsLoading(false);
     }
   };
