@@ -22,37 +22,39 @@
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   background: radial-gradient(circle,
-    hsl(var(--primary) / 0.8) 0%,
-    hsl(var(--primary) / 0.4) 30%,
+    hsl(var(--primary) / 0.6) 0%,
+    hsl(var(--primary) / 0.3) 30%,
     hsl(var(--primary) / 0.1) 60%,
     transparent 100%
   );
   border-radius: 50%;
   animation: pulse 4s ease-in-out infinite;
+  z-index: 2;
 }
 
 /* Animated connection lines */
 .connection-line {
   position: absolute;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg,
     transparent 0%,
-    hsl(var(--primary) / 0.6) 20%,
+    hsl(var(--primary) / 0.4) 20%,
     hsl(var(--primary) / 0.8) 50%,
-    hsl(var(--primary) / 0.6) 80%,
+    hsl(var(--primary) / 0.4) 80%,
     transparent 100%
   );
   transform-origin: left center;
   animation: drawLine 6s ease-in-out infinite;
+  z-index: 1;
 }
 
 .line-1 {
   top: 60%;
   left: 50%;
-  width: 300px;
+  width: 500px;
   transform: translate(-50%, -50%) rotate(-45deg);
   animation-delay: 0s;
 }
@@ -60,7 +62,7 @@
 .line-2 {
   top: 60%;
   left: 50%;
-  width: 250px;
+  width: 450px;
   transform: translate(-50%, -50%) rotate(30deg);
   animation-delay: -1s;
 }
@@ -68,7 +70,7 @@
 .line-3 {
   top: 60%;
   left: 50%;
-  width: 200px;
+  width: 400px;
   transform: translate(-50%, -50%) rotate(120deg);
   animation-delay: -2s;
 }
@@ -76,7 +78,7 @@
 .line-4 {
   top: 60%;
   left: 50%;
-  width: 280px;
+  width: 480px;
   transform: translate(-50%, -50%) rotate(-120deg);
   animation-delay: -3s;
 }
@@ -84,7 +86,7 @@
 .line-5 {
   top: 60%;
   left: 50%;
-  width: 220px;
+  width: 420px;
   transform: translate(-50%, -50%) rotate(60deg);
   animation-delay: -4s;
 }
@@ -92,7 +94,7 @@
 .line-6 {
   top: 60%;
   left: 50%;
-  width: 260px;
+  width: 460px;
   transform: translate(-50%, -50%) rotate(-90deg);
   animation-delay: -5s;
 }

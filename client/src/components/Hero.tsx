@@ -131,7 +131,7 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               data-testid="text-hero-title"
             >
-              Turn ideas into interactive learning packages in minutes — export anywhere.
+              Turn ideas into interactive learning packages in minutes
             </h1>
             
             <p 
@@ -144,52 +144,62 @@ export default function Hero() {
 
           {/* Package Creation Form */}
           <form onSubmit={handleSubmit} className="space-y-6" aria-busy={isLoading}>
-            <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-lg p-6 space-y-4 max-w-2xl mx-auto">
-              <Textarea
-                placeholder="What do you want to teach or learn today?"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-                onFocus={handleInputFocus}
-                onKeyDown={handleKeyDown}
-                className="min-h-32 text-base resize-none"
-                disabled={isLoading}
-                data-testid="input-topic"
-              />
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Select 
-                  value={purpose} 
-                  onValueChange={handlePurposeChange}
+            <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-xl p-4 max-w-2xl mx-auto">
+              <div className="flex flex-col gap-3">
+                <Textarea
+                  placeholder="Ask LearnPack to create a learning package about..."
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                  onFocus={handleInputFocus}
+                  onKeyDown={handleKeyDown}
+                  className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 placeholder:text-muted-foreground/70"
                   disabled={isLoading}
-                >
-                  <SelectTrigger className="sm:w-48" data-testid="select-purpose">
-                    <SelectValue placeholder="Select purpose" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {PURPOSE_OPTIONS.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  data-testid="input-topic"
+                />
                 
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  disabled={isLoading || !topic.trim()}
-                  className="flex-1 sm:flex-none"
-                  data-testid="button-create-package"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Creating...
-                    </>
-                  ) : (
-                    'Create Package'
-                  )}
-                </Button>
+                <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                  <div className="flex items-center gap-2">
+                    <Select 
+                      value={purpose} 
+                      onValueChange={handlePurposeChange}
+                      disabled={isLoading}
+                    >
+                      <SelectTrigger className="h-8 w-auto border-0 bg-muted/50 hover:bg-muted text-xs" data-testid="select-purpose">
+                        <SelectValue placeholder="Purpose" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {PURPOSE_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    {purpose && (
+                      <div className="h-8 px-3 bg-primary/10 text-primary rounded-md flex items-center text-xs font-medium">
+                        {PURPOSE_OPTIONS.find(opt => opt.value === purpose)?.label}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    size="sm"
+                    disabled={isLoading || !topic.trim()}
+                    className="h-8 px-4"
+                    data-testid="button-create-package"
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-1 h-3 w-3 animate-spin" />
+                        Creating...
+                      </>
+                    ) : (
+                      'Create Package'
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
             

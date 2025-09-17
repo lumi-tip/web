@@ -42,7 +42,7 @@ export default function SocialProof() {
                 <img
                   src={company.logo}
                   alt={company.alt}
-                  className="h-12 md:h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="h-12 md:h-16 w-auto object-contain filter grayscale invert hover:grayscale-0 hover:invert-0 transition-all duration-300"
                 />
               </div>
             ))}
