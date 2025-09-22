@@ -9,8 +9,8 @@ import {
 import { Globe } from 'lucide-react';
 
 const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Español' },
 ];
 
 export default function LanguageSwitcher() {
@@ -33,7 +33,7 @@ export default function LanguageSwitcher() {
         >
           <Globe className="w-4 h-4" />
           <span className="hidden sm:inline">{currentLanguage.name}</span>
-          <span className="sm:hidden">{currentLanguage.flag}</span>
+          <span className="sm:hidden">{currentLanguage.code.toUpperCase()}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -44,7 +44,7 @@ export default function LanguageSwitcher() {
             className="gap-2 cursor-pointer"
             data-testid={`option-language-${language.code}`}
           >
-            <span>{language.flag}</span>
+            <span className="w-4 text-center font-semibold text-xs">{language.code.toUpperCase()}</span>
             <span>{language.name}</span>
             {language.code === i18n.language && (
               <span className="ml-auto text-xs text-muted-foreground">✓</span>

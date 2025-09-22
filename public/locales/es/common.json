@@ -9,20 +9,27 @@
   },
   "hero": {
     "title": "Convierte ideas en paquetes de aprendizaje interactivos en minutos",
-    "subtitle": "Transforma tu experiencia en experiencias de aprendizaje atractivas e interactivas con creación de cursos impulsada por IA. Construye programas de entrenamiento, certificaciones y contenido educativo integral que se adapte a las necesidades de tus estudiantes.",
-    "inputPlaceholder": "¿Qué quieres enseñar o aprender?",
-    "purposeLabel": "Quiero...",
+    "subtitle": "Escribe cualquier tema, elige un propósito y genera un curso que puedas exportar a cualquier lugar.",
+    "inputPlaceholder": "Pide a LearnPack que cree un paquete de aprendizaje sobre...",
+    "purposeLabel": "Propósito",
     "purposeOptions": {
       "skillBuilding": "Desarrollar habilidades del mundo real",
       "examPrep": "Practicar para un examen o tarea", 
       "certificationPrep": "Prepararme para una certificación"
     },
     "createButton": "Crear Paquete",
-    "creating": "Creando..."
+    "creating": "Creando...",
+    "trustLine": "Reduce los costos de creación de entrenamiento en un 80% y duplica las tasas de finalización.",
+    "errors": {
+      "topicRequired": "Tema requerido",
+      "topicDescription": "Por favor ingresa qué quieres enseñar o aprender",
+      "purposeRequired": "Propósito requerido",
+      "purposeDescription": "Por favor selecciona un propósito para tu paquete",
+      "createFailed": "Error al crear el paquete. Por favor intenta de nuevo."
+    }
   },
   "socialProof": {
-    "title": "Confiado por educadores y organizaciones en todo el mundo",
-    "subtitle": "Únete a miles de creadores construyendo mejores experiencias de aprendizaje"
+    "title": "Confiado por las principales instituciones educativas"
   },
   "valueProps": {
     "title": "¿Por qué LearnPack?",
@@ -204,5 +211,18 @@
     "title": "LearnPack - Convierte Ideas en Paquetes de Aprendizaje Interactivos",
     "description": "Transforma tu experiencia en experiencias de aprendizaje atractivas e interactivas con creación de cursos impulsada por IA. Construye programas de entrenamiento y contenido educativo en minutos.",
     "keywords": "aprendizaje en línea, creación de cursos, educación impulsada por IA, entrenamiento interactivo, sistema de gestión de aprendizaje"
+  },
+  "common": {
+    "error": "Error",
+    "loading": "Cargando...",
+    "success": "Éxito"
+  },
+  "videoDemo": {
+    "title": "Mira LearnPack en Acción",
+    "subtitle": "Observa qué fácil es crear paquetes de aprendizaje interactivos",
+    "iframeTitle": "Demo de LearnPack - Mira cómo crear paquetes de aprendizaje interactivos"
+  },
+  "socialProof": {
+    "title": "Confiado por las principales instituciones educativas"
   }
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import mdcLogo from '@assets/mdc-ce-logo_1758030096307.png';
 import geeksLogo from '@assets/4geeksacademy-logo-old_1758030377841.webp';
 import ucabLogo from '@assets/ucab_1758030385497.png';
@@ -21,6 +22,7 @@ const companies = [
 ];
 
 export default function SocialProof() {
+  const { t } = useTranslation();
   return (
     <section className="py-16 px-4 border-b bg-muted/30" data-testid="section-social-proof">
       <div className="container mx-auto">
@@ -29,7 +31,7 @@ export default function SocialProof() {
             className="text-muted-foreground font-medium"
             data-testid="text-social-proof-title"
           >
-            Trusted by leading educational institutions
+            {t('socialProof.title')}
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
@@ -42,6 +44,10 @@ export default function SocialProof() {
                 <img
                   src={company.logo}
                   alt={company.alt}
+                  width={120}
+                  height={64}
+                  loading="lazy"
+                  decoding="async"
                   className="h-12 md:h-16 w-auto object-contain filter grayscale invert hover:grayscale-0 hover:invert-0 transition-all duration-300"
                 />
               </div>

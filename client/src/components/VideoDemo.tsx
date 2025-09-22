@@ -1,7 +1,9 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { analytics } from '@/lib/analytics';
+import { useTranslation } from 'react-i18next';
 
 export default function VideoDemo() {
+  const { t } = useTranslation();
   const handleVideoLoad = () => {
     analytics.ctaClick('watch_demo', 'video_demo');
   };
@@ -15,13 +17,13 @@ export default function VideoDemo() {
               className="text-3xl md:text-4xl font-bold"
               data-testid="text-video-demo-title"
             >
-              See LearnPack in Action
+              {t('videoDemo.title')}
             </h2>
             <p 
               className="text-xl text-muted-foreground"
               data-testid="text-video-demo-subtitle"
             >
-              Watch how easy it is to create interactive learning packages
+              {t('videoDemo.subtitle')}
             </p>
           </div>
           
@@ -30,9 +32,10 @@ export default function VideoDemo() {
               <div className="relative aspect-video rounded-md overflow-hidden">
                 <iframe
                   src="https://www.youtube.com/embed/dBjKIashs4Y?modestbranding=1&controls=0&showinfo=0&rel=0&iv_load_policy=3"
-                  title="LearnPack Demo - See how to create interactive learning packages"
+                  title={t('videoDemo.iframeTitle')}
                   className="w-full h-full"
                   frameBorder="0"
+                  loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   onLoad={handleVideoLoad}

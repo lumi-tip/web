@@ -1,16 +1,19 @@
+import { Suspense, lazy } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
 import ValueProps from '@/components/ValueProps';
-import VideoDemo from '@/components/VideoDemo';
-import SkillsShowcase from '@/components/SkillsShowcase';
-import HowItWorks from '@/components/HowItWorks';
-import StatsBand from '@/components/StatsBand';
-import UseCases from '@/components/UseCases';
-import CommunitySection from '@/components/CommunitySection';
-import PricingTeaser from '@/components/PricingTeaser';
-import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
+
+// Lazy load below-the-fold components
+const VideoDemo = lazy(() => import('@/components/VideoDemo'));
+const SkillsShowcase = lazy(() => import('@/components/SkillsShowcase'));
+const HowItWorks = lazy(() => import('@/components/HowItWorks'));
+const StatsBand = lazy(() => import('@/components/StatsBand'));
+const UseCases = lazy(() => import('@/components/UseCases'));
+const CommunitySection = lazy(() => import('@/components/CommunitySection'));
+const PricingTeaser = lazy(() => import('@/components/PricingTeaser'));
+const FinalCTA = lazy(() => import('@/components/FinalCTA'));
 
 export default function Home() {
   return (
@@ -20,14 +23,38 @@ export default function Home() {
         <Hero />
         <SocialProof />
         <ValueProps />
-        <VideoDemo />
-        <SkillsShowcase />
-        <HowItWorks />
-        <StatsBand />
-        <UseCases />
-        <CommunitySection />
-        <PricingTeaser />
-        <FinalCTA />
+        {/* Group below-the-fold components under single Suspense to reduce CLS and spinner noise */}
+        <Suspense fallback={
+          <div className="space-y-24 py-24">
+            {/* Video demo skeleton */}
+            <div className="container mx-auto max-w-4xl">
+              <div className="space-y-8">
+                <div className="h-8 bg-muted rounded animate-pulse mx-auto w-80"></div>
+                <div className="aspect-video bg-muted rounded animate-pulse"></div>
+              </div>
+            </div>
+            {/* Content sections skeleton */}
+            {[...Array(7)].map((_, i) => (
+              <div key={i} className="container mx-auto">
+                <div className="h-6 bg-muted rounded animate-pulse mx-auto w-64 mb-4"></div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[...Array(3)].map((_, j) => (
+                    <div key={j} className="h-32 bg-muted rounded animate-pulse"></div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        }>
+          <VideoDemo />
+          <SkillsShowcase />
+          <HowItWorks />
+          <StatsBand />
+          <UseCases />
+          <CommunitySection />
+          <PricingTeaser />
+          <FinalCTA />
+        </Suspense>
       </main>
       <Footer />
     </div>

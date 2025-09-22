@@ -9,20 +9,27 @@
   },
   "hero": {
     "title": "Turn ideas into interactive learning packages in minutes",
-    "subtitle": "Transform your expertise into engaging, interactive learning experiences with AI-powered course creation. Build comprehensive training programs, certifications, and educational content that adapts to your learners' needs.",
-    "inputPlaceholder": "What do you want to teach or learn?",
-    "purposeLabel": "I want to...",
+    "subtitle": "Type any topic, choose a purpose, and generate a course you can export anywhere.",
+    "inputPlaceholder": "Ask LearnPack to create a learning package about...",
+    "purposeLabel": "Purpose",
     "purposeOptions": {
       "skillBuilding": "Build real world skills",
       "examPrep": "Practice for an exam or homework", 
       "certificationPrep": "Prepare for a certification"
     },
     "createButton": "Create Package",
-    "creating": "Creating..."
+    "creating": "Creating...",
+    "trustLine": "Cut training creation costs by 80% and double completion rates.",
+    "errors": {
+      "topicRequired": "Topic required",
+      "topicDescription": "Please enter what you want to teach or learn",
+      "purposeRequired": "Purpose required",
+      "purposeDescription": "Please select a purpose for your package",
+      "createFailed": "Failed to create package. Please try again."
+    }
   },
   "socialProof": {
-    "title": "Trusted by educators and organizations worldwide",
-    "subtitle": "Join thousands of creators building better learning experiences"
+    "title": "Trusted by leading educational institutions"
   },
   "valueProps": {
     "title": "Why LearnPack?",
@@ -204,5 +211,18 @@
     "title": "LearnPack - Turn Ideas Into Interactive Learning Packages",
     "description": "Transform your expertise into engaging, interactive learning experiences with AI-powered course creation. Build training programs and educational content in minutes.",
     "keywords": "online learning, course creation, AI-powered education, interactive training, learning management system"
+  },
+  "common": {
+    "error": "Error",
+    "loading": "Loading...",
+    "success": "Success"
+  },
+  "videoDemo": {
+    "title": "See LearnPack in Action",
+    "subtitle": "Watch how easy it is to create interactive learning packages",
+    "iframeTitle": "LearnPack Demo - See how to create interactive learning packages"
+  },
+  "socialProof": {
+    "title": "Trusted by leading educational institutions"
   }
 }

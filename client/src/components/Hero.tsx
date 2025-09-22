@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -7,17 +8,19 @@ import { useToast } from '@/hooks/use-toast';
 import { createPackage } from '@/lib/createPackage';
 import { analytics } from '@/lib/analytics';
 
-const PURPOSE_OPTIONS = [
-  { value: 'skill-building-facilitator', label: 'Build real world skills' },
-  { value: 'exam-homework-prep', label: 'Practice for an exam or homework' },
-  { value: 'certification-prep', label: 'Prepare for a certification' },
-];
 
 export default function Hero() {
+  const { t } = useTranslation();
   const [topic, setTopic] = useState('');
   const [purpose, setPurpose] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  
+  const PURPOSE_OPTIONS = [
+    { value: 'skill-building-facilitator', label: t('hero.purposeOptions.skillBuilding') },
+    { value: 'exam-homework-prep', label: t('hero.purposeOptions.examPrep') },
+    { value: 'certification-prep', label: t('hero.purposeOptions.certificationPrep') },
+  ];
 
   const handleInputFocus = () => {
     analytics.heroInputFocus();
@@ -33,8 +36,8 @@ export default function Hero() {
     
     if (!topic.trim()) {
       toast({
-        title: "Topic required",
-        description: "Please enter what you want to teach or learn",
+        title: t('hero.errors.topicRequired'),
+        description: t('hero.errors.topicDescription'),
         variant: "destructive",
       });
       return;
@@ -42,8 +45,8 @@ export default function Hero() {
 
     if (!purpose) {
       toast({
-        title: "Purpose required", 
-        description: "Please select a purpose for your package",
+        title: t('hero.errors.purposeRequired'),
+        description: t('hero.errors.purposeDescription'),
         variant: "destructive",
       });
       return;
@@ -69,8 +72,8 @@ export default function Hero() {
       
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to create package. Please try again.",
+        title: t('common.error'),
+        description: t('hero.errors.createFailed'),
         variant: "destructive",
       });
       setIsLoading(false);
@@ -127,14 +130,14 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               data-testid="text-hero-title"
             >
-              Turn ideas into interactive learning packages in minutes
+              {t('hero.title')}
             </h1>
             
             <p 
               className="text-xl text-muted-foreground max-w-2xl mx-auto"
               data-testid="text-hero-subtitle"
             >
-              Type any topic, choose a purpose, and generate a course you can export anywhere.
+              {t('hero.subtitle')}
             </p>
           </div>
 
@@ -143,7 +146,7 @@ export default function Hero() {
             <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-xl p-4 max-w-2xl mx-auto">
               <div className="flex flex-col gap-3">
                 <Textarea
-                  placeholder="Ask LearnPack to create a learning package about..."
+                  placeholder={t('hero.inputPlaceholder')}
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   onFocus={handleInputFocus}
@@ -161,7 +164,7 @@ export default function Hero() {
                       disabled={isLoading}
                     >
                       <SelectTrigger className="h-8 w-auto border-0 bg-muted/50 hover:bg-muted text-xs" data-testid="select-purpose">
-                        <SelectValue placeholder="Purpose" />
+                        <SelectValue placeholder={t('hero.purposeLabel')} />
                       </SelectTrigger>
                       <SelectContent>
                         {PURPOSE_OPTIONS.map((option) => (
@@ -189,10 +192,10 @@ export default function Hero() {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-1 h-3 w-3 animate-spin" />
-                        Creating...
+                        {t('hero.creating')}
                       </>
                     ) : (
-                      'Create Package'
+                      t('hero.createButton')
                     )}
                   </Button>
                 </div>
@@ -200,7 +203,7 @@ export default function Hero() {
             </div>
             
             <p className="text-sm text-muted-foreground text-center" data-testid="text-trust-line">
-              Cut training creation costs by 80% and double completion rates.
+              {t('hero.trustLine')}
             </p>
           </form>
         </div>

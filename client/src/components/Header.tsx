@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-import learnpackLogo from '@assets/learnpack-logo-white_1758030654296.png';
+import learnpackLogo from '@assets/generated_images/LearnPack_logo_design_4a28e889.png';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -40,7 +43,11 @@ export default function Header() {
           <img 
             src={learnpackLogo} 
             alt="LearnPack" 
+            width={132}
+            height={32}
             className="h-8 w-auto"
+            fetchpriority="high"
+            decoding="async"
             data-testid="img-logo"
           />
           
@@ -51,46 +58,47 @@ export default function Header() {
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="link-product"
             >
-              Product
+              {t('nav.product')}
             </a>
             <a 
               href="#pricing" 
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="link-pricing"
             >
-              Pricing
+              {t('nav.pricing')}
             </a>
             <a 
               href="#customers" 
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="link-customers"
             >
-              Customers
+              {t('nav.customers')}
             </a>
             <a 
               href="#docs" 
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="link-docs"
             >
-              Docs
+              {t('nav.docs')}
             </a>
           </nav>
         </div>
 
         {/* CTAs */}
         <div className="flex items-center space-x-4">
+          <LanguageSwitcher />
           <Button 
             variant="ghost" 
             onClick={handleSignIn}
             data-testid="button-signin"
           >
-            Sign in
+            {t('nav.signIn')}
           </Button>
           <Button 
             onClick={handleTryFree}
             data-testid="button-try-free"
           >
-            Try LearnPack Free
+            {t('nav.tryFree')}
           </Button>
         </div>
       </div>
