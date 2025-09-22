@@ -17,7 +17,7 @@ export default function CompanyLogo({ src, alt, name }: CompanyLogoProps) {
         height={64}
         loading="lazy"
         decoding="async"
-        className="h-12 md:h-16 w-auto object-contain filter brightness-0 dark:brightness-100 dark:invert opacity-70 hover:opacity-100 transition-all duration-300 mx-8"
+        className="h-12 md:h-16 w-auto object-contain filter grayscale(100%) brightness(0) dark:invert opacity-70 hover:opacity-100 transition-all duration-300 mx-8"
       />
     </div>
   );
