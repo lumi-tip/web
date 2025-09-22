@@ -40,8 +40,8 @@ const footerSections = [
   {
     title: 'Legal',
     links: [
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Terms of Service', href: '/terms-and-conditions' },
       { name: 'Cookie Policy', href: '#' },
       { name: 'GDPR', href: '#' }
     ]
@@ -49,9 +49,9 @@ const footerSections = [
 ];
 
 const socialLinks = [
-  { name: 'GitHub', icon: Github, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' }
+  { name: 'GitHub', icon: Github, href: 'https://github.com/learnpack' },
+  { name: 'Twitter', icon: Twitter, href: 'https://x.com/learnpack' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/learnpack/' }
 ];
 
 export default function Footer() {

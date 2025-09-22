@@ -17,12 +17,12 @@ export default function Header() {
 
   const handleSignIn = () => {
     analytics.ctaClick('sign_in', 'header');
-    console.log('Sign in clicked');
+    window.location.href = 'https://manage.learnpack.co';
   };
 
   const handleTryFree = () => {
     analytics.ctaClick('try_free', 'header');
-    console.log('Try LearnPack Free clicked');
+    window.location.href = 'https://app.learnpack.co/creator';
   };
 
   return (
