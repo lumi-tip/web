@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import mdcLogo from '@assets/mdc-ce-logo_1758030096307.png';
 import geeksLogo from '@assets/4geeksacademy-logo-old_1758030377841.webp';
 import ucabLogo from '@assets/ucab_1758030385497.png';
+import utecLogo from '@assets/utec logo_1758570957500.webp';
 
 const companies = [
   {
@@ -18,6 +19,11 @@ const companies = [
     name: 'Universidad Católica Andrés Bello',
     logo: ucabLogo,
     alt: 'Universidad Católica Andrés Bello logo'
+  },
+  {
+    name: 'UTEC - Universidad Tecnológica',
+    logo: utecLogo,
+    alt: 'UTEC Universidad Tecnológica logo'
   }
 ];
 
