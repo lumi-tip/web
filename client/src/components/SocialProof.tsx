@@ -35,11 +35,11 @@ export default function SocialProof() {
   const duplicatedLogos = [...companies, ...companies, ...companies];
   
   return (
-    <section className="py-16 border-b bg-muted/30 overflow-hidden" data-testid="section-social-proof">
+    <section className="py-16 border-b bg-background overflow-hidden" data-testid="section-social-proof">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-8">
+        <div className="text-center">
           <p 
-            className="text-muted-foreground font-medium"
+            className="text-muted-foreground font-medium mb-12"
             data-testid="text-social-proof-title"
           >
             {t('socialProof.title')}
@@ -66,8 +66,8 @@ export default function SocialProof() {
         </div>
         
         {/* Fade out edges for smooth effect */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-muted/30 to-transparent pointer-events-none z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-muted/30 to-transparent pointer-events-none z-10"></div>
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10"></div>
       </div>
     </section>
   );

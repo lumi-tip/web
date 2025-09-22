@@ -5,6 +5,12 @@ interface CompanyLogoProps {
 }
 
 export default function CompanyLogo({ src, alt, name }: CompanyLogoProps) {
+  // Special case for UTEC - no invert filter
+  const isUtec = name.includes('UTEC');
+  const filterClasses = isUtec 
+    ? "h-12 md:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 mx-8"
+    : "h-12 md:h-16 w-auto object-contain filter grayscale(100%) brightness(0) dark:invert opacity-70 hover:opacity-100 transition-all duration-300 mx-8";
+    
   return (
     <div 
       className="flex items-center justify-center flex-shrink-0"
@@ -17,7 +23,7 @@ export default function CompanyLogo({ src, alt, name }: CompanyLogoProps) {
         height={64}
         loading="lazy"
         decoding="async"
-        className="h-12 md:h-16 w-auto object-contain filter grayscale(100%) brightness(0) dark:invert opacity-70 hover:opacity-100 transition-all duration-300 mx-8"
+        className={filterClasses}
       />
     </div>
   );
