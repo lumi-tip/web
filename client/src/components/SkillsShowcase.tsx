@@ -37,12 +37,14 @@ export default function SkillsShowcase() {
   const { t } = useTranslation();
   
   // Create multiple rows for a more dense cloud effect
-  const createTagRow = (startIndex: number, delay: number = 0) => {
+  const createTagRow = (startIndex: number, delay: number = 0, reverse: boolean = false) => {
     const rowTags = skillTopics.slice(startIndex, startIndex + 10);
+    const animationClass = reverse ? 'animate-scroll-left-to-right' : 'animate-scroll-right-to-left';
+    
     return (
       <div 
         key={startIndex}
-        className="flex animate-scroll-right-to-left gap-6 mb-4"
+        className={`flex ${animationClass} gap-6 mb-4`}
         style={{ 
           animationDelay: `${delay}s`,
           animationDuration: '120s' // Very slow - 2 minutes per cycle
@@ -62,8 +64,8 @@ export default function SkillsShowcase() {
   };
 
   return (
-    <section className="py-24 px-4 bg-card/20 overflow-hidden" data-testid="section-skills-showcase">
-      <div className="container mx-auto">
+    <section className="py-24 bg-card/20 overflow-hidden" data-testid="section-skills-showcase">
+      <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 
             className="text-3xl md:text-4xl font-bold"
@@ -78,19 +80,19 @@ export default function SkillsShowcase() {
             {t('skills.subtitle')}
           </p>
         </div>
-        
-        {/* Animated Tag Cloud */}
-        <div className="relative">
-          <div className="flex flex-col">
-            {createTagRow(0, 0)}
-            {createTagRow(10, 20)}
-            {createTagRow(20, 40)}
-          </div>
-          
-          {/* Fade out edges for smooth effect */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10"></div>
+      </div>
+      
+      {/* Full Width Animated Tag Cloud */}
+      <div className="relative w-full">
+        <div className="flex flex-col">
+          {createTagRow(0, 0, false)}      {/* Row 1: Right to Left */}
+          {createTagRow(10, 20, true)}     {/* Row 2: Left to Right (opposite) */}
+          {createTagRow(20, 40, false)}    {/* Row 3: Right to Left */}
         </div>
+        
+        {/* Fade out edges for smooth effect */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10"></div>
       </div>
     </section>
   );
