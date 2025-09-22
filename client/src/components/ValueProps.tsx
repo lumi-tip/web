@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Zap, Bot, Download, TrendingUp } from 'lucide-react';
 
@@ -5,60 +6,148 @@ const valueProps = [
   {
     icon: Zap,
     title: 'Create interactive courses in seconds',
-    description: 'Cut your content generation costs by +80% with production ready courses under 2 minutes.'
+    description: 'Cut your content generation costs by +80% with production ready courses under 2 minutes.',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
   },
   {
     icon: Bot,
     title: 'Use our AI agent to refine and maintain content easily',
-    description: 'Intelligent content optimization, automatic updates, and seamless maintenance with AI assistance.'
+    description: 'Intelligent content optimization, automatic updates, and seamless maintenance with AI assistance.',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
   },
   {
     icon: Download,
     title: 'Export Anywhere',
-    description: 'SCORM, Zip, ePub, iFrame or LearnPack links with full analytics and experience.'
+    description: 'SCORM, Zip, ePub, iFrame or LearnPack links with full analytics and experience.',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
   },
   {
     icon: TrendingUp,
     title: 'Double Completion Rates',
-    description: 'AI tutoring, interactive components, hyper-personalized learning.'
+    description: 'AI tutoring, interactive components, hyper-personalized learning.',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4'
   }
 ];
 
 export default function ValueProps() {
+  const [selectedFeature, setSelectedFeature] = useState(0);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+
+  // Auto-switch features every 4 seconds if user is not interacting
+  useEffect(() => {
+    if (!isUserInteracting) {
+      const interval = setInterval(() => {
+        setSelectedFeature((prev) => (prev + 1) % valueProps.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isUserInteracting]);
+
+  // Reset user interaction flag after 8 seconds of no interaction
+  useEffect(() => {
+    if (isUserInteracting) {
+      const timeout = setTimeout(() => {
+        setIsUserInteracting(false);
+      }, 8000);
+      return () => clearTimeout(timeout);
+    }
+  }, [isUserInteracting, selectedFeature]);
+
+  const handleFeatureClick = (index: number) => {
+    setSelectedFeature(index);
+    setIsUserInteracting(true);
+  };
+
   return (
     <section className="py-24 px-4 bg-card/20" data-testid="section-value-props">
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {valueProps.map((prop, index) => {
-            const IconComponent = prop.icon;
-            return (
-              <Card 
-                key={index} 
-                className="hover-elevate bg-card/80 backdrop-blur-sm border-card-border/50"
-                data-testid={`card-value-prop-${index}`}
-              >
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <IconComponent className="w-5 h-5 text-primary" />
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Features Column */}
+          <div className="space-y-4">
+            {valueProps.map((prop, index) => {
+              const IconComponent = prop.icon;
+              const isSelected = selectedFeature === index;
+              
+              return (
+                <Card 
+                  key={index} 
+                  className={`cursor-pointer transition-all duration-500 ${
+                    isSelected 
+                      ? 'bg-primary/5 border-primary/20 shadow-lg' 
+                      : 'hover-elevate bg-card/80 backdrop-blur-sm border-card-border/50 hover:bg-primary/3'
+                  }`}
+                  onClick={() => handleFeatureClick(index)}
+                  data-testid={`card-value-prop-${index}`}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                        isSelected 
+                          ? 'bg-primary/20' 
+                          : 'bg-muted/50'
+                      }`}>
+                        <IconComponent className={`w-6 h-6 transition-colors duration-300 ${
+                          isSelected 
+                            ? 'text-primary' 
+                            : 'text-muted-foreground'
+                        }`} />
+                      </div>
+                      <div className="space-y-2 flex-1">
+                        <h3 
+                          className={`font-semibold text-lg leading-tight transition-colors duration-300 ${
+                            isSelected 
+                              ? 'text-foreground' 
+                              : 'text-muted-foreground'
+                          }`}
+                          data-testid={`text-value-prop-title-${index}`}
+                        >
+                          {prop.title}
+                        </h3>
+                        <p 
+                          className={`text-sm leading-relaxed transition-colors duration-300 ${
+                            isSelected 
+                              ? 'text-muted-foreground' 
+                              : 'text-muted-foreground/70'
+                          }`}
+                          data-testid={`text-value-prop-description-${index}`}
+                        >
+                          {prop.description}
+                        </p>
+                      </div>
                     </div>
-                    <h3 
-                      className="font-semibold text-sm leading-tight"
-                      data-testid={`text-value-prop-title-${index}`}
-                    >
-                      {prop.title}
-                    </h3>
-                  </div>
-                  <p 
-                    className="text-xs text-muted-foreground leading-relaxed"
-                    data-testid={`text-value-prop-description-${index}`}
-                  >
-                    {prop.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Video Column */}
+          <div className="lg:sticky lg:top-24">
+            <div className="bg-card/80 backdrop-blur-sm border border-card-border/50 rounded-xl overflow-hidden">
+              <div className="aspect-video">
+                <video
+                  key={selectedFeature} // Force remount when feature changes
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  data-testid={`video-feature-${selectedFeature}`}
+                >
+                  <source src={valueProps[selectedFeature].videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div className="p-6">
+                <h4 className="font-semibold text-lg mb-2">
+                  {valueProps[selectedFeature].title}
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  {valueProps[selectedFeature].description}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
