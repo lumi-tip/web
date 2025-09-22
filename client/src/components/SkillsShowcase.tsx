@@ -31,25 +31,52 @@ const skillTopics = [
   { name: "Drawing & Art", color: "bg-pink-400" },
   { name: "Database Design", color: "bg-cyan-500" },
   { name: "Meditation", color: "bg-indigo-400" },
+  { name: "French Language", color: "bg-red-300" },
+  { name: "Mobile Development", color: "bg-green-500" },
+  { name: "SEO Optimization", color: "bg-blue-300" },
+  { name: "3D Modeling", color: "bg-purple-300" },
+  { name: "Content Strategy", color: "bg-orange-300" },
+  { name: "Game Development", color: "bg-pink-300" },
+  { name: "Social Media", color: "bg-cyan-300" },
+  { name: "Accounting", color: "bg-yellow-300" },
+  { name: "Architecture", color: "bg-indigo-300" },
+  { name: "Psychology", color: "bg-teal-300" },
+  { name: "Music Production", color: "bg-rose-300" },
+  { name: "E-commerce", color: "bg-violet-300" },
+  { name: "AI & Automation", color: "bg-amber-300" },
+  { name: "Interior Design", color: "bg-sky-300" },
+  { name: "German Language", color: "bg-lime-300" },
+  { name: "Fitness Training", color: "bg-emerald-300" },
+  { name: "Legal Studies", color: "bg-slate-300" },
+  { name: "Marketing Analytics", color: "bg-blue-200" },
+  { name: "Podcast Creation", color: "bg-green-300" },
+  { name: "Fashion Design", color: "bg-pink-200" },
+  { name: "Web Security", color: "bg-gray-500" },
+  { name: "Investment Strategy", color: "bg-yellow-200" },
+  { name: "Voice Acting", color: "bg-purple-200" },
+  { name: "Drone Piloting", color: "bg-orange-200" },
+  { name: "Graphic Design", color: "bg-cyan-200" },
+  { name: "Renewable Energy", color: "bg-green-200" },
 ];
 
 export default function SkillsShowcase() {
   const { t } = useTranslation();
   
   // Create multiple rows for a more dense cloud effect
-  const createTagRow = (startIndex: number, reverse: boolean = false) => {
-    const rowTags = skillTopics.slice(startIndex, startIndex + 10);
+  const createTagRow = (startIndex: number, reverse: boolean = false, delayOffset: number = 0) => {
+    const rowTags = skillTopics.slice(startIndex, startIndex + 18);
     const animationClass = reverse ? 'animate-scroll-left-to-right' : 'animate-scroll-right-to-left';
     
     // Create enough duplicates to fill entire screen width + ensure seamless loop
-    const duplicatedTags = [...rowTags, ...rowTags, ...rowTags, ...rowTags, ...rowTags];
+    const duplicatedTags = [...rowTags, ...rowTags, ...rowTags, ...rowTags];
     
     return (
       <div 
         key={startIndex}
         className={`flex ${animationClass} gap-6 mb-4`}
         style={{ 
-          animationDuration: '120s' // Very slow - 2 minutes per cycle, no delay
+          animationDuration: '120s', // Very slow - 2 minutes per cycle
+          animationDelay: `-${delayOffset}s` // Negative delay to start animation mid-cycle
         }}
       >
         {duplicatedTags.map((topic, index) => (
@@ -87,9 +114,9 @@ export default function SkillsShowcase() {
       {/* Full Width Animated Tag Cloud */}
       <div className="relative w-full">
         <div className="flex flex-col">
-          {createTagRow(0, false)}      {/* Row 1: Right to Left */}
-          {createTagRow(10, true)}      {/* Row 2: Left to Right (opposite) */}
-          {createTagRow(20, false)}     {/* Row 3: Right to Left */}
+          {createTagRow(0, false, 0)}    {/* Row 1: Right to Left, start at beginning */}
+          {createTagRow(18, true, 40)}   {/* Row 2: Left to Right, start 1/3 through */}
+          {createTagRow(36, false, 80)}  {/* Row 3: Right to Left, start 2/3 through */}
         </div>
         
         {/* Fade out edges for smooth effect */}
