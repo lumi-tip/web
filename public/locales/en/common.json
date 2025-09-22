@@ -51,12 +51,6 @@
       "description": "Interactive content keeps learners engaged throughout"
     }
   },
-  "video": {
-    "title": "See LearnPack in Action",
-    "subtitle": "Watch how easy it is to create interactive learning content",
-    "watchDemo": "Watch Demo",
-    "playVideo": "Play video"
-  },
   "skills": {
     "title": "Learn Any Skill",
     "subtitle": "From technical skills to soft skills, LearnPack adapts to your learning goals",

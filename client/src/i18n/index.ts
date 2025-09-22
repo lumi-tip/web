@@ -10,6 +10,8 @@ i18n
   .init({
     fallbackLng: 'en',
     debug: false,
+    defaultNS: 'common',
+    ns: ['common'],
     
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -20,7 +22,8 @@ i18n
     },
     
     detection: {
-      order: ['path', 'localStorage', 'navigator', 'htmlTag'],
+      order: ['querystring', 'path', 'localStorage', 'navigator', 'htmlTag'],
+      lookupQuerystring: 'lang',
       lookupFromPathIndex: 0,
       lookupFromSubdomainIndex: 0,
       caches: ['localStorage'],

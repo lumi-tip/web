@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage - English -->
+  <url>
+    <loc>https://learnpack.co/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnpack.co/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnpack.co/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnpack.co/" />
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Homepage - Spanish -->
+  <url>
+    <loc>https://learnpack.co/?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnpack.co/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnpack.co/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://learnpack.co/" />
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Terms and Conditions - English -->
+  <url>
+    <loc>https://learnpack.co/terms-and-conditions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnpack.co/terms-and-conditions" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnpack.co/terms-and-conditions?lang=es" />
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms and Conditions - Spanish -->
+  <url>
+    <loc>https://learnpack.co/terms-and-conditions?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnpack.co/terms-and-conditions" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnpack.co/terms-and-conditions?lang=es" />
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Privacy Policy - English -->
+  <url>
+    <loc>https://learnpack.co/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnpack.co/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnpack.co/privacy-policy?lang=es" />
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Privacy Policy - Spanish -->
+  <url>
+    <loc>https://learnpack.co/privacy-policy?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://learnpack.co/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://learnpack.co/privacy-policy?lang=es" />
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

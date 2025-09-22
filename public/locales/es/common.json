@@ -51,12 +51,6 @@
       "description": "El contenido interactivo mantiene a los estudiantes comprometidos"
     }
   },
-  "video": {
-    "title": "Ve LearnPack en Acción",
-    "subtitle": "Mira qué fácil es crear contenido de aprendizaje interactivo",
-    "watchDemo": "Ver Demo",
-    "playVideo": "Reproducir video"
-  },
   "skills": {
     "title": "Aprende Cualquier Habilidad",
     "subtitle": "Desde habilidades técnicas hasta habilidades blandas, LearnPack se adapta a tus objetivos de aprendizaje",
