@@ -355,3 +355,17 @@
 .animate-scroll-left-to-right {
   animation: scroll-left-to-right linear infinite;
 }
+
+/* Company Logo Animation */
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-logos {
+  animation: scroll-logos linear infinite;
+}
