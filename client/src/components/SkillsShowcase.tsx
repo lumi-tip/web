@@ -1,111 +1,95 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Code, Briefcase, GraduationCap, Shield, Lightbulb, Rocket, Globe, Users } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const skillCategories = [
-  {
-    icon: Code,
-    title: 'Programming & Development',
-    description: 'From Python basics to advanced React patterns',
-    color: 'from-blue-500 to-cyan-500'
-  },
-  {
-    icon: Briefcase,
-    title: 'Business & Management',
-    description: 'Leadership, strategy, and team building skills',
-    color: 'from-purple-500 to-pink-500'
-  },
-  {
-    icon: GraduationCap,
-    title: 'Academic Subjects',
-    description: 'Math, science, literature, and core curriculum',
-    color: 'from-green-500 to-emerald-500'
-  },
-  {
-    icon: Shield,
-    title: 'Compliance & Safety',
-    description: 'Regulatory training and safety protocols',
-    color: 'from-red-500 to-orange-500'
-  },
-  {
-    icon: Lightbulb,
-    title: 'Creative Skills',
-    description: 'Design, writing, music, and artistic disciplines',
-    color: 'from-yellow-500 to-amber-500'
-  },
-  {
-    icon: Rocket,
-    title: 'Technology & Innovation',
-    description: 'AI, blockchain, cloud computing, and emerging tech',
-    color: 'from-indigo-500 to-blue-500'
-  },
-  {
-    icon: Globe,
-    title: 'Languages & Communication',
-    description: 'Foreign languages and communication skills',
-    color: 'from-teal-500 to-cyan-500'
-  },
-  {
-    icon: Users,
-    title: 'Soft Skills & HR',
-    description: 'Team dynamics, emotional intelligence, conflict resolution',
-    color: 'from-rose-500 to-pink-500'
-  }
+const skillTopics = [
+  { name: "Python Programming", color: "bg-blue-500" },
+  { name: "React Development", color: "bg-cyan-400" },
+  { name: "Machine Learning", color: "bg-purple-500" },
+  { name: "Digital Marketing", color: "bg-pink-500" },
+  { name: "Data Science", color: "bg-emerald-500" },
+  { name: "UI/UX Design", color: "bg-orange-500" },
+  { name: "Leadership Skills", color: "bg-red-500" },
+  { name: "Spanish Language", color: "bg-yellow-500" },
+  { name: "Photography", color: "bg-indigo-500" },
+  { name: "Financial Planning", color: "bg-teal-500" },
+  { name: "Node.js Backend", color: "bg-green-600" },
+  { name: "Public Speaking", color: "bg-rose-500" },
+  { name: "Blockchain Basics", color: "bg-violet-500" },
+  { name: "Guitar Playing", color: "bg-amber-500" },
+  { name: "Project Management", color: "bg-sky-500" },
+  { name: "Japanese Language", color: "bg-lime-500" },
+  { name: "Video Editing", color: "bg-fuchsia-500" },
+  { name: "Excel Mastery", color: "bg-slate-500" },
+  { name: "Creative Writing", color: "bg-emerald-400" },
+  { name: "Cloud Computing", color: "bg-blue-400" },
+  { name: "Sales Techniques", color: "bg-red-400" },
+  { name: "Yoga Practice", color: "bg-green-400" },
+  { name: "Cybersecurity", color: "bg-gray-600" },
+  { name: "Cooking Skills", color: "bg-yellow-400" },
+  { name: "Time Management", color: "bg-purple-400" },
+  { name: "Docker & DevOps", color: "bg-blue-600" },
+  { name: "Negotiation Skills", color: "bg-orange-400" },
+  { name: "Drawing & Art", color: "bg-pink-400" },
+  { name: "Database Design", color: "bg-cyan-500" },
+  { name: "Meditation", color: "bg-indigo-400" },
 ];
 
 export default function SkillsShowcase() {
+  const { t } = useTranslation();
+  
+  // Create multiple rows for a more dense cloud effect
+  const createTagRow = (startIndex: number, delay: number = 0) => {
+    const rowTags = skillTopics.slice(startIndex, startIndex + 10);
+    return (
+      <div 
+        key={startIndex}
+        className="flex animate-scroll-right-to-left gap-6 mb-4"
+        style={{ 
+          animationDelay: `${delay}s`,
+          animationDuration: '120s' // Very slow - 2 minutes per cycle
+        }}
+      >
+        {[...rowTags, ...rowTags, ...rowTags].map((topic, index) => (
+          <div
+            key={`${startIndex}-${index}`}
+            className={`${topic.color} text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap shadow-md hover:scale-105 transition-transform duration-300 flex-shrink-0`}
+            data-testid={`tag-${topic.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+          >
+            {topic.name}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
-    <section className="py-24 px-4 bg-card/20" data-testid="section-skills-showcase">
+    <section className="py-24 px-4 bg-card/20 overflow-hidden" data-testid="section-skills-showcase">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-16">
           <h2 
             className="text-3xl md:text-4xl font-bold"
             data-testid="text-skills-title"
           >
-            Build tutorials on about any skill
+            {t('skills.title')}
           </h2>
           <p 
             className="text-xl text-muted-foreground max-w-2xl mx-auto"
             data-testid="text-skills-subtitle"
           >
-            From technical training to soft skills, create engaging learning packages for any domain
+            {t('skills.subtitle')}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <Card 
-                key={index} 
-                className="hover-elevate group border-card-border/50 bg-card/50 backdrop-blur-sm"
-                data-testid={`card-skill-${index}`}
-              >
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="relative">
-                    <div 
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} p-3 mx-auto group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <IconComponent className="w-full h-full text-white" />
-                    </div>
-                  </div>
-                  
-                  <h3 
-                    className="font-semibold text-sm leading-tight"
-                    data-testid={`text-skill-title-${index}`}
-                  >
-                    {category.title}
-                  </h3>
-                  
-                  <p 
-                    className="text-xs text-muted-foreground leading-relaxed"
-                    data-testid={`text-skill-description-${index}`}
-                  >
-                    {category.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
+        {/* Animated Tag Cloud */}
+        <div className="relative">
+          <div className="flex flex-col">
+            {createTagRow(0, 0)}
+            {createTagRow(10, 20)}
+            {createTagRow(20, 40)}
+          </div>
+          
+          {/* Fade out edges for smooth effect */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
     </section>

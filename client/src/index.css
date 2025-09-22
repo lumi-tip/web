@@ -328,3 +328,17 @@
     inset: -1px;
   }
 }
+
+/* Animated Tag Cloud */
+@keyframes scroll-right-to-left {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-right-to-left {
+  animation: scroll-right-to-left linear infinite;
+}
