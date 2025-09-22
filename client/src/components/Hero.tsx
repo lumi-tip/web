@@ -151,7 +151,7 @@ export default function Hero() {
                   onChange={(e) => setTopic(e.target.value)}
                   onFocus={handleInputFocus}
                   onKeyDown={handleKeyDown}
-                  className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 placeholder:text-muted-foreground/70"
+                  className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 focus:border-0 focus:outline-none focus:ring-0 placeholder:text-muted-foreground/70"
                   disabled={isLoading}
                   data-testid="input-topic"
                 />
