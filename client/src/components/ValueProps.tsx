@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Zap, Bot, Download, TrendingUp } from 'lucide-react';
+import { Zap, Bot, Download, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
 
 const valueProps = [
   {
@@ -32,8 +32,9 @@ const valueProps = [
 export default function ValueProps() {
   const [selectedFeature, setSelectedFeature] = useState(0);
   const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [expandedMobile, setExpandedMobile] = useState<number | null>(null);
 
-  // Auto-switch features every 4 seconds if user is not interacting
+  // Auto-switch features every 4 seconds if user is not interacting (desktop only)
   useEffect(() => {
     if (!isUserInteracting) {
       const interval = setInterval(() => {
@@ -58,10 +59,15 @@ export default function ValueProps() {
     setIsUserInteracting(true);
   };
 
+  const handleMobileToggle = (index: number) => {
+    setExpandedMobile(expandedMobile === index ? null : index);
+  };
+
   return (
     <section className="py-24 px-4 bg-card/20" data-testid="section-value-props">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">
           {/* Features Column */}
           <div className="space-y-4">
             {valueProps.map((prop, index) => {
@@ -121,7 +127,7 @@ export default function ValueProps() {
             })}
           </div>
 
-          {/* Video Column */}
+          {/* Video Column - Desktop Only */}
           <div className="lg:sticky lg:top-24">
             <div className="bg-card/80 backdrop-blur-sm border border-card-border/50 rounded-xl overflow-hidden">
               <div className="aspect-video">
@@ -148,6 +154,81 @@ export default function ValueProps() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Mobile Accordion Layout */}
+        <div className="lg:hidden space-y-3">
+          {valueProps.map((prop, index) => {
+            const IconComponent = prop.icon;
+            const isExpanded = expandedMobile === index;
+            
+            return (
+              <Card 
+                key={index} 
+                className="bg-card/80 backdrop-blur-sm border-card-border/50 overflow-hidden"
+                data-testid={`card-value-prop-mobile-${index}`}
+              >
+                {/* Accordion Header */}
+                <CardContent 
+                  className="p-4 cursor-pointer"
+                  onClick={() => handleMobileToggle(index)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 
+                        className="font-semibold text-base leading-tight"
+                        data-testid={`text-value-prop-mobile-title-${index}`}
+                      >
+                        {prop.title}
+                      </h3>
+                    </div>
+                    <div className="flex-shrink-0">
+                      {isExpanded ? (
+                        <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+
+                {/* Accordion Content */}
+                <div className={`transition-all duration-300 ease-in-out ${
+                  isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                } overflow-hidden`}>
+                  <div className="px-4 pb-4 space-y-4">
+                    <p 
+                      className="text-sm text-muted-foreground leading-relaxed"
+                      data-testid={`text-value-prop-mobile-description-${index}`}
+                    >
+                      {prop.description}
+                    </p>
+                    
+                    {/* Inline Video */}
+                    <div className="bg-muted/30 rounded-lg overflow-hidden">
+                      <div className="aspect-video">
+                        <video
+                          key={`mobile-${index}-${isExpanded}`} // Force remount when expanded
+                          className="w-full h-full object-cover"
+                          autoPlay={isExpanded}
+                          muted
+                          loop
+                          playsInline
+                          data-testid={`video-mobile-feature-${index}`}
+                        >
+                          <source src={prop.videoUrl} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
