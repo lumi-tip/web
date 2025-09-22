@@ -37,24 +37,26 @@ export default function SkillsShowcase() {
   const { t } = useTranslation();
   
   // Create multiple rows for a more dense cloud effect
-  const createTagRow = (startIndex: number, delay: number = 0, reverse: boolean = false) => {
+  const createTagRow = (startIndex: number, reverse: boolean = false) => {
     const rowTags = skillTopics.slice(startIndex, startIndex + 10);
     const animationClass = reverse ? 'animate-scroll-left-to-right' : 'animate-scroll-right-to-left';
+    
+    // Create enough duplicates to fill entire screen width + ensure seamless loop
+    const duplicatedTags = [...rowTags, ...rowTags, ...rowTags, ...rowTags, ...rowTags];
     
     return (
       <div 
         key={startIndex}
         className={`flex ${animationClass} gap-6 mb-4`}
         style={{ 
-          animationDelay: `${delay}s`,
-          animationDuration: '120s' // Very slow - 2 minutes per cycle
+          animationDuration: '120s' // Very slow - 2 minutes per cycle, no delay
         }}
       >
-        {[...rowTags, ...rowTags, ...rowTags].map((topic, index) => (
+        {duplicatedTags.map((topic, index) => (
           <div
             key={`${startIndex}-${index}`}
             className={`${topic.color} text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap shadow-md hover:scale-105 transition-transform duration-300 flex-shrink-0`}
-            data-testid={`tag-${topic.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+            data-testid={`tag-${topic.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${index}`}
           >
             {topic.name}
           </div>
@@ -85,9 +87,9 @@ export default function SkillsShowcase() {
       {/* Full Width Animated Tag Cloud */}
       <div className="relative w-full">
         <div className="flex flex-col">
-          {createTagRow(0, 0, false)}      {/* Row 1: Right to Left */}
-          {createTagRow(10, 20, true)}     {/* Row 2: Left to Right (opposite) */}
-          {createTagRow(20, 40, false)}    {/* Row 3: Right to Left */}
+          {createTagRow(0, false)}      {/* Row 1: Right to Left */}
+          {createTagRow(10, true)}      {/* Row 2: Left to Right (opposite) */}
+          {createTagRow(20, false)}     {/* Row 3: Right to Left */}
         </div>
         
         {/* Fade out edges for smooth effect */}
