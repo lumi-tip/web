@@ -10,7 +10,6 @@ const VideoDemo = lazy(() => import('@/components/VideoDemo'));
 const SkillsShowcase = lazy(() => import('@/components/SkillsShowcase'));
 const HowItWorks = lazy(() => import('@/components/HowItWorks'));
 const StatsBand = lazy(() => import('@/components/StatsBand'));
-const CommunitySection = lazy(() => import('@/components/CommunitySection'));
 const PricingTeaser = lazy(() => import('@/components/PricingTeaser'));
 const FinalCTA = lazy(() => import('@/components/FinalCTA'));
 
@@ -33,7 +32,7 @@ export default function Home() {
               </div>
             </div>
             {/* Content sections skeleton */}
-            {[...Array(6)].map((_, i) => (
+            {[...Array(5)].map((_, i) => (
               <div key={i} className="container mx-auto">
                 <div className="h-6 bg-muted rounded animate-pulse mx-auto w-64 mb-4"></div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -49,7 +48,6 @@ export default function Home() {
           <SkillsShowcase />
           <HowItWorks />
           <StatsBand />
-          <CommunitySection />
           <PricingTeaser />
           <FinalCTA />
         </Suspense>
