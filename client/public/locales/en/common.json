@@ -151,7 +151,10 @@
     },
     "getStarted": "Get Started",
     "contactSales": "Contact Sales",
-    "pricingDetails": "See pricing details"
+    "pricingDetails": "See pricing details",
+    "choosePlan": "Choose this plan",
+    "everythingInLearner": "Everything included in the Learner plan",
+    "everythingInTeacher": "Everything included in the Teacher plan"
   },
   "finalCta": {
     "title": "Ready to Transform Your Teaching?",

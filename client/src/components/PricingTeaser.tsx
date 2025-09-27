@@ -16,30 +16,40 @@ export default function PricingTeaser() {
     console.log('Pricing details clicked');
   };
 
-  const getFeatures = (planKey: string) => {
-    const baseFeatures = [
+  const getBaseFeatures = (planKey: string) => {
+    return [
       t(`pricing.${planKey}.packages`),
       t(`pricing.${planKey}.creators`),
       t(`pricing.${planKey}.seats`)
     ];
-    
-    let additionalFeatures = [
+  };
+
+  const getUniqueFeatures = (planKey: string) => {
+    const learnerFeatures = [
       t('pricing.features.podcast_generation'),
       t('pricing.features.ide_integrations_vscode_cursor_windsurf'),
       t('pricing.features.marketplace_access'),
       t('pricing.features.agentic_ai_edits')
     ];
 
-    // Add export and ebook features for teacher and school plans only
-    if (planKey !== 'learner') {
-      additionalFeatures = [
+    if (planKey === 'learner') {
+      return learnerFeatures;
+    }
+
+    if (planKey === 'teacher') {
+      return [
         t('pricing.features.export_zip_markdown'),
-        t('pricing.features.convert_to_ebook'),
-        ...additionalFeatures
+        t('pricing.features.convert_to_ebook')
       ];
     }
-    
-    return [...baseFeatures, ...additionalFeatures];
+
+    // School plan gets no unique features, just inherits from teacher
+    return [];
+  };
+
+  const handleChoosePlan = (planKey: string) => {
+    analytics.ctaClick(`choose_plan_${planKey}`, 'pricing_teaser');
+    console.log(`Choose plan clicked: ${planKey}`);
   };
 
   return (
@@ -91,14 +101,15 @@ export default function PricingTeaser() {
           </div>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {planKeys.map((planKey, index) => {
-            const features = getFeatures(planKey);
+            const baseFeatures = getBaseFeatures(planKey);
+            const uniqueFeatures = getUniqueFeatures(planKey);
             
             return (
               <Card 
                 key={planKey} 
-                className={`hover-elevate h-full relative ${
+                className={`hover-elevate h-full relative flex flex-col ${
                   planKey === 'teacher' ? 'ring-2 ring-primary/20 shadow-lg' : ''
                 }`}
                 data-testid={`card-pricing-tier-${index}`}
@@ -142,51 +153,87 @@ export default function PricingTeaser() {
                   </div>
                 </CardHeader>
                 
-                <CardContent className="space-y-6">
-                  <ul className="space-y-3">
-                    {features.slice(0, 3).map((feature, featureIndex) => (
-                      <li 
-                        key={featureIndex} 
-                        className="flex items-center gap-3 text-sm font-medium"
-                        data-testid={`text-tier-feature-${index}-${featureIndex}`}
-                      >
-                        <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="pt-4 border-t border-border/50">
-                    <p className="text-xs text-muted-foreground mb-3 font-medium">
-                      All plans include:
-                    </p>
-                    <ul className="space-y-2">
-                      {features.slice(3).map((feature, featureIndex) => (
+                <CardContent className="space-y-6 flex-1 flex flex-col">
+                  {/* Plan-specific features */}
+                  <div className="flex-1">
+                    <ul className="space-y-3">
+                      {baseFeatures.map((feature, featureIndex) => (
                         <li 
-                          key={featureIndex + 3} 
-                          className="flex items-start gap-2 text-xs text-muted-foreground"
-                          data-testid={`text-tier-feature-${index}-${featureIndex + 3}`}
+                          key={featureIndex} 
+                          className="flex items-center gap-3 text-sm font-medium"
+                          data-testid={`text-tier-feature-${index}-${featureIndex}`}
                         >
-                          <Check className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
+                          <Check className="w-4 h-4 text-primary flex-shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
+                    
+                    {/* Hierarchical plan inclusion */}
+                    {planKey === 'teacher' && (
+                      <div className="pt-4 border-t border-border/50 mt-4">
+                        <p className="text-xs text-muted-foreground mb-3 font-medium">
+                          {t('pricing.everythingInLearner')}:
+                        </p>
+                        <ul className="space-y-2">
+                          {uniqueFeatures.map((feature, featureIndex) => (
+                            <li 
+                              key={featureIndex} 
+                              className="flex items-start gap-2 text-xs text-muted-foreground"
+                              data-testid={`text-tier-unique-feature-${index}-${featureIndex}`}
+                            >
+                              <Check className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {planKey === 'school' && (
+                      <div className="pt-4 border-t border-border/50 mt-4">
+                        <p className="text-xs text-muted-foreground mb-3 font-medium">
+                          {t('pricing.everythingInTeacher')}
+                        </p>
+                      </div>
+                    )}
+
+                    {planKey === 'learner' && uniqueFeatures.length > 0 && (
+                      <div className="pt-4 border-t border-border/50 mt-4">
+                        <p className="text-xs text-muted-foreground mb-3 font-medium">
+                          Plus:
+                        </p>
+                        <ul className="space-y-2">
+                          {uniqueFeatures.map((feature, featureIndex) => (
+                            <li 
+                              key={featureIndex} 
+                              className="flex items-start gap-2 text-xs text-muted-foreground"
+                              data-testid={`text-tier-unique-feature-${index}-${featureIndex}`}
+                            >
+                              <Check className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Individual CTA button */}
+                  <div className="pt-4 mt-auto">
+                    <Button 
+                      className="w-full"
+                      variant={planKey === 'teacher' ? 'default' : 'outline'}
+                      onClick={() => handleChoosePlan(planKey)}
+                      data-testid={`button-choose-plan-${planKey}`}
+                    >
+                      {t('pricing.choosePlan')}
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             );
           })}
-        </div>
-        
-        <div className="text-center">
-          <Button 
-            size="lg"
-            onClick={handlePricingDetails}
-            data-testid="button-pricing-details"
-          >
-            {t('pricing.pricingDetails')}
-          </Button>
         </div>
       </div>
     </section>

@@ -151,7 +151,10 @@
     },
     "getStarted": "Comenzar",
     "contactSales": "Contactar Ventas",
-    "pricingDetails": "Ver detalles de precios"
+    "pricingDetails": "Ver detalles de precios",
+    "choosePlan": "Elegir este plan",
+    "everythingInLearner": "Todo lo incluido en el plan Estudiante",
+    "everythingInTeacher": "Todo lo incluido en el plan Docente"
   },
   "finalCta": {
     "title": "¿Listo para Transformar Tu Enseñanza?",
