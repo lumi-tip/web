@@ -53,7 +53,7 @@ export default function PricingTeaser() {
   };
 
   return (
-    <section className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
+    <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-16">
           <h2 

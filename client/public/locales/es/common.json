@@ -1,8 +1,7 @@
 {
   "nav": {
-    "product": "Producto",
+    "features": "Características",
     "pricing": "Precios", 
-    "customers": "Clientes",
     "docs": "Documentos",
     "signIn": "Iniciar sesión",
     "tryFree": "Prueba LearnPack Gratis"

@@ -1,8 +1,7 @@
 {
   "nav": {
-    "product": "Product",
+    "features": "Features",
     "pricing": "Pricing", 
-    "customers": "Customers",
     "docs": "Docs",
     "signIn": "Sign in",
     "tryFree": "Try LearnPack Free"

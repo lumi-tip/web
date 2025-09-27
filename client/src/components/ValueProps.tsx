@@ -64,7 +64,7 @@ export default function ValueProps() {
   };
 
   return (
-    <section className="py-24 px-4 bg-card/20" data-testid="section-value-props">
+    <section id="valueProps" className="py-24 px-4 bg-card/20" data-testid="section-value-props">
       <div className="container mx-auto">
         {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-start">

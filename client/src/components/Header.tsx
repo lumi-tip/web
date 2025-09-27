@@ -46,7 +46,7 @@ export default function Header() {
             width={132}
             height={32}
             className="h-8 w-auto"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
             data-testid="img-logo"
           />
@@ -54,11 +54,11 @@ export default function Header() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <a 
-              href="#product" 
+              href="#valueProps" 
               className="text-muted-foreground hover:text-foreground transition-colors"
-              data-testid="link-product"
+              data-testid="link-features"
             >
-              {t('nav.product')}
+              {t('nav.features')}
             </a>
             <a 
               href="#pricing" 
@@ -68,14 +68,9 @@ export default function Header() {
               {t('nav.pricing')}
             </a>
             <a 
-              href="#customers" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              data-testid="link-customers"
-            >
-              {t('nav.customers')}
-            </a>
-            <a 
-              href="#docs" 
+              href="https://4geeks.com/docs/learnpack" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="link-docs"
             >
