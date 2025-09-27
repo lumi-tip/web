@@ -23,15 +23,21 @@ export default function PricingTeaser() {
       t(`pricing.${planKey}.seats`)
     ];
     
-    const additionalFeatures = [
-      t('pricing.features.export_zip_markdown'),
-      t('pricing.features.convert_to_ebook'),
+    let additionalFeatures = [
       t('pricing.features.podcast_generation'),
       t('pricing.features.ide_integrations_vscode_cursor_windsurf'),
-      t('pricing.features.course_gallery_access'),
       t('pricing.features.marketplace_access'),
       t('pricing.features.agentic_ai_edits')
     ];
+
+    // Add export and ebook features for teacher and school plans only
+    if (planKey !== 'learner') {
+      additionalFeatures = [
+        t('pricing.features.export_zip_markdown'),
+        t('pricing.features.convert_to_ebook'),
+        ...additionalFeatures
+      ];
+    }
     
     return [...baseFeatures, ...additionalFeatures];
   };
