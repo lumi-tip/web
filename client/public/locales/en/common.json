@@ -106,45 +106,53 @@
     "subtitle": "Connect with thousands of creators and learners worldwide"
   },
   "pricing": {
-    "title": "Simple, Transparent Pricing",
-    "subtitle": "Choose the plan that fits your needs",
-    "free": {
-      "title": "Free",
-      "price": "$0",
-      "period": "/month",
-      "description": "Perfect for trying out LearnPack",
-      "features": [
-        "3 learning packages",
-        "Basic AI assistance",
-        "Community support"
-      ]
+    "title": "Transparent Pricing",
+    "subtitle": "Choose the components you need. Scale as you grow.",
+    "learner": {
+      "title": "Learner Plan",
+      "price": "$55",
+      "period": "/mo",
+      "annualPrice": "$528",
+      "annualPeriod": "/year",
+      "description": "Perfect for individual learners or small pilots. Includes 5 interactive packages, 1 creator, and 1 learner seat. Get started with AI-powered learning at an affordable price.",
+      "packages": "5 packages included",
+      "creators": "1 creator",
+      "seats": "1 learner seat"
     },
-    "pro": {
-      "title": "Pro",
-      "price": "$19",
-      "period": "/month", 
-      "description": "For serious creators and small teams",
-      "features": [
-        "Unlimited packages",
-        "Advanced AI features",
-        "Priority support",
-        "Custom branding"
-      ]
+    "teacher": {
+      "title": "Teacher Plan",
+      "price": "$110",
+      "period": "/mo",
+      "annualPrice": "$1,060",
+      "annualPeriod": "/year",
+      "description": "Designed for small classrooms or teams. Includes 10 interactive packages, 1 creator, and 10 learner seats. Empower your group with engaging AI-driven courses.",
+      "packages": "10 packages included",
+      "creators": "1 creator",
+      "seats": "10 learner seats"
     },
-    "enterprise": {
-      "title": "Enterprise",
-      "price": "Custom",
-      "period": "",
-      "description": "For organizations with specific needs",
-      "features": [
-        "Custom integrations",
-        "Dedicated support",
-        "Advanced analytics",
-        "SSO & compliance"
-      ]
+    "school": {
+      "title": "School Plan",
+      "price": "$267",
+      "period": "/mo",
+      "annualPrice": "$2,560",
+      "annualPeriod": "/year",
+      "description": "Best for schools or larger organizations. Includes 25 interactive packages, 2 creators, and 25 learner seats. Scale AI-powered education across your institution.",
+      "packages": "25 packages included",
+      "creators": "2 creators",
+      "seats": "25 learner seats"
+    },
+    "features": {
+      "export_zip_markdown": "Export and download packages as a zip file with markdown",
+      "convert_to_ebook": "Convert your courses into an eBook for offline learning",
+      "podcast_generation": "Create podcasts automatically from your lessons",
+      "ide_integrations_vscode_cursor_windsurf": "Integrations with VSCode, Cursor, and Windsurf plugin",
+      "course_gallery_access": "Access the LearnPack course gallery",
+      "marketplace_access": "Access the LearnPack marketplace to share and discover courses",
+      "agentic_ai_edits": "Easy and agentic course edits with AI-powered tools"
     },
     "getStarted": "Get Started",
-    "contactSales": "Contact Sales"
+    "contactSales": "Contact Sales",
+    "pricingDetails": "See pricing details"
   },
   "finalCta": {
     "title": "Ready to Transform Your Teaching?",
