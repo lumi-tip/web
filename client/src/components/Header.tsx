@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-import learnpackLogo from '@assets/generated_images/LearnPack_logo_design_4a28e889.png';
+import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
+import learnpackLogoLight from '@assets/logo-small-learnpack-light_1759003192973.png';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,25 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Detect dark mode
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+
+    // Initial check
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const handleSignIn = () => {
@@ -41,7 +62,7 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center space-x-8">
           <img 
-            src={learnpackLogo} 
+            src={isDarkMode ? learnpackLogoDark : learnpackLogoLight} 
             alt="LearnPack" 
             width={132}
             height={32}
