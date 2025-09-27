@@ -9,7 +9,7 @@ export default function VideoDemo() {
   };
 
   return (
-    <section className="py-24 px-4" data-testid="section-video-demo">
+    <section id="videoDemo" className="py-24 px-4" data-testid="section-video-demo">
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">

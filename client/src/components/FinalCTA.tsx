@@ -9,7 +9,14 @@ export default function FinalCTA() {
 
   const handleWatchDemo = () => {
     analytics.ctaClick('watch_demo', 'final_cta');
-    console.log('Watch Demo clicked');
+    // Scroll to video demo section
+    const videoSection = document.getElementById('videoDemo');
+    if (videoSection) {
+      videoSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   return (

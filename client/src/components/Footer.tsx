@@ -4,37 +4,10 @@ const footerSections = [
   {
     title: 'Product',
     links: [
-      { name: 'Features', href: '#' },
-      { name: 'Pricing', href: '#' },
+      { name: 'Features', href: '#valueProps' },
+      { name: 'Pricing', href: '#pricing' },
       { name: 'Integrations', href: '#' },
       { name: 'API', href: '#' }
-    ]
-  },
-  {
-    title: 'Solutions', 
-    links: [
-      { name: 'Corporate Training', href: '#' },
-      { name: 'Education', href: '#' },
-      { name: 'Compliance', href: '#' },
-      { name: 'Onboarding', href: '#' }
-    ]
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'Documentation', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Case Studies', href: '#' },
-      { name: 'Support', href: '#' }
-    ]
-  },
-  {
-    title: 'Company',
-    links: [
-      { name: 'About', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Press', href: '#' },
-      { name: 'Contact', href: '#' }
     ]
   },
   {
@@ -60,7 +33,7 @@ export default function Footer() {
   return (
     <footer className="bg-muted/30 border-t" data-testid="footer-main">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
+        <div className="grid grid-cols-2 gap-8 mb-8">
           {footerSections.map((section, index) => (
             <div key={index} className="space-y-4">
               <h3 
