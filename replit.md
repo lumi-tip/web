@@ -75,6 +75,29 @@ Preferred communication style: Simple, everyday language.
   - Redirects to: `{PLATFORM}/login?next={url_encoded_base64_path}`
   - Platform should: URL-decode → Base64-decode → Parse checkout path
 
+### URL Redirect System
+- **Configuration File**: `client/public/redirects.yml` - YAML-based redirect rules
+- **Implementation**: Automatic redirect handling on route changes via `RedirectHandler` component
+- **Features**:
+  - YAML configuration for easy redirect management
+  - Query string parameter preservation (all params automatically carried over)
+  - Support for both relative paths (`/pricing`) and absolute URLs (`https://example.com`)
+  - Path normalization with trailing slash handling
+  - SPA-friendly internal navigation (no page reload for relative redirects)
+  - Full page navigation for external/absolute URLs
+- **Configuration Format**:
+  ```yaml
+  redirects:
+    - from: /old-path
+      to: /new-path
+    - from: /external-link
+      to: https://example.com/page
+  ```
+- **Query String Handling**: 
+  - Relative redirects append query params: `/old?x=1` → `/new?x=1`
+  - Absolute redirects merge params (destination params take precedence)
+- **Files**: `client/src/lib/redirects.ts`, `client/src/components/RedirectHandler.tsx`
+
 ### Development Workflow
 - **Build System**: Vite for frontend bundling, esbuild for backend compilation
 - **Type Safety**: Strict TypeScript configuration with path aliases and shared types
