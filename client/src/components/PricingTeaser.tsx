@@ -113,8 +113,21 @@ export default function PricingTeaser() {
 
   const handleChoosePlan = (planSlug: string) => {
     analytics.ctaClick(`choose_plan_${planSlug}`, 'pricing_teaser');
-    // TODO: Navigate to checkout or plan selection
-    window.open('https://app.learnpack.co/creator', '_blank');
+    
+    // Find the plan details
+    const plan = plans.find(p => p.slug === planSlug);
+    if (!plan) return;
+    
+    // Construct checkout path with plan details
+    const frequency = isAnnual ? 'annual' : 'monthly';
+    const checkoutPath = `/plan-checkout?plan=${planSlug}&name=${encodeURIComponent(plan.title)}&frequency=${frequency}`;
+    
+    // Base64 encode the checkout path and URL-encode it for safe query string usage
+    const encodedPath = encodeURIComponent(btoa(checkoutPath));
+    
+    // Redirect to login with next parameter
+    const platformUrl = import.meta.env.VITE_LEARNPACK_PLATFORM || 'https://app.learnpack.co';
+    window.location.href = `${platformUrl}/login?next=${encodedPath}`;
   };
 
   function formatPrice(price: number, currency: string = 'USD'): string {

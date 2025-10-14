@@ -4,7 +4,8 @@ import { analytics } from '@/lib/analytics';
 export default function FinalCTA() {
   const handleStartCreating = () => {
     analytics.ctaClick('start_creating', 'final_cta');
-    console.log('Start Creating clicked');
+    const platformUrl = import.meta.env.VITE_LEARNPACK_PLATFORM || 'https://app.learnpack.co';
+    window.location.href = `${platformUrl}/signup`;
   };
 
   const handleWatchDemo = () => {

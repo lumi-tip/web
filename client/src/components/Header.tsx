@@ -43,12 +43,14 @@ export default function Header() {
 
   const handleSignIn = () => {
     analytics.ctaClick('sign_in', 'header');
-    window.location.href = 'https://manage.learnpack.co';
+    const platformUrl = import.meta.env.VITE_LEARNPACK_PLATFORM || 'https://app.learnpack.co';
+    window.location.href = `${platformUrl}/login`;
   };
 
   const handleTryFree = () => {
     analytics.ctaClick('try_free', 'header');
-    window.location.href = 'https://app.learnpack.co/creator';
+    const platformUrl = import.meta.env.VITE_LEARNPACK_PLATFORM || 'https://app.learnpack.co';
+    window.location.href = `${platformUrl}/signup`;
   };
 
   return (
