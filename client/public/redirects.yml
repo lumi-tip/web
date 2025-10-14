@@ -1,0 +1,14 @@
+# Redirects Configuration
+# Define URL redirects with "from" and "to" paths
+# Both paths can be relative or absolute
+# All query string parameters are automatically preserved
+
+redirects:
+  - from: /my-tutorials
+    to: https://learn.learnpack.com
+  
+  - from: /docs
+    to: https://docs.learnpack.co/
+  
+  - from: /old-pricing
+    to: /pricing
