@@ -145,13 +145,11 @@ export async function fetchServiceItems(
 
 /**
  * Fetch available coupons for a plan
- * Note: The actual endpoint might vary - this is a placeholder
  */
 export async function fetchCoupons(planSlug: string, language: string = 'en'): Promise<Coupon[]> {
   try {
-    // TODO: Replace with actual coupon endpoint when available
     const response = await fetch(
-      `${BREATHCODE_API_BASE}/v1/payments/plan/${planSlug}/coupon`,
+      `${BREATHCODE_API_BASE}/v2/payments/coupon?plan=${planSlug}`,
       {
         headers: getHeaders(language),
       }
