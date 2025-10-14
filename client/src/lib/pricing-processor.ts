@@ -187,8 +187,7 @@ export async function processPlans(
   apiPlans: Plan[],
   serviceItemsByPlan: Record<string, ServiceItem[]>,
   couponsByPlan: Record<string, Coupon[]>,
-  language: string = 'en',
-  currentPlanSlug: string | null = null
+  language: string = 'en'
 ): Promise<ProcessedPlan[]> {
   const config = await loadPlanFeatures(language);
   const processedPlans: ProcessedPlan[] = [];
@@ -251,7 +250,7 @@ export async function processPlans(
       discountedMonthly: monthlyDiscount?.discounted || null,
       discountedAnnual: annualDiscount?.discounted || null,
       discountPercentage: monthlyDiscount?.percentage || null,
-      isCurrentPlan: plan.slug === currentPlanSlug,
+      isCurrentPlan: false,
       isMostPopular,
     });
 
@@ -261,20 +260,3 @@ export async function processPlans(
   return processedPlans;
 }
 
-/**
- * Find user's current plan slug from subscriptions
- */
-export function findCurrentPlanSlug(
-  subscriptions: any[],
-  academySlug: string = 'learnpack'
-): string | null {
-  const learnpackSub = subscriptions.find(
-    sub => sub.academy?.slug === academySlug
-  );
-
-  if (learnpackSub && learnpackSub.plans && learnpackSub.plans.length > 0) {
-    return learnpackSub.plans[0].slug;
-  }
-
-  return null;
-}

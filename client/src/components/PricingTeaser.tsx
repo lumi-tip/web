@@ -28,13 +28,11 @@ import { useTranslation } from 'react-i18next';
 import { analytics } from '@/lib/analytics';
 import { 
   fetchPlans, 
-  fetchSubscriptions, 
   fetchServiceItems, 
   fetchCoupons 
 } from '@/lib/breathcode-api';
 import { 
-  processPlans, 
-  findCurrentPlanSlug,
+  processPlans,
   type ProcessedPlan 
 } from '@/lib/pricing-processor';
 
@@ -74,19 +72,13 @@ export default function PricingTeaser() {
       const countryCode = language === 'es' ? 'ES' : 'US';
 
       // Fetch base data
-      const [apiPlans, subscriptions] = await Promise.all([
-        fetchPlans(language),
-        fetchSubscriptions(language),
-      ]);
+      const apiPlans = await fetchPlans(language);
 
       if (apiPlans.length === 0) {
         setError('No pricing plans available at this time.');
         setLoading(false);
         return;
       }
-
-      // Find current plan
-      const currentPlanSlug = findCurrentPlanSlug(subscriptions);
 
       // Fetch service items and coupons for each plan
       const serviceItemsByPlan: Record<string, any[]> = {};
@@ -108,8 +100,7 @@ export default function PricingTeaser() {
         apiPlans,
         serviceItemsByPlan,
         couponsByPlan,
-        language,
-        currentPlanSlug
+        language
       );
 
       setPlans(processed);

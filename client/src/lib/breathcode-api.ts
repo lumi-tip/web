@@ -42,14 +42,6 @@ export interface Plan {
   }>;
 }
 
-export interface Subscription {
-  academy: { slug: string };
-  plans: Array<{ slug: string }>;
-  status: string;
-  valid_until: string;
-  next_payment_at: string;
-}
-
 export interface ServiceItem {
   service: {
     slug: string;
@@ -102,31 +94,6 @@ export async function fetchPlans(language: string = 'en'): Promise<Plan[]> {
       });
   } catch (error) {
     console.error('Error fetching plans:', error);
-    return [];
-  }
-}
-
-/**
- * Fetch user's active subscriptions
- */
-export async function fetchSubscriptions(language: string = 'en'): Promise<Subscription[]> {
-  try {
-    const response = await fetch(
-      `${BREATHCODE_API_BASE}/v1/payments/me/subscription?status=ACTIVE,FREE_TRIAL,FULLY_PAID`,
-      {
-        headers: getHeaders(language),
-      }
-    );
-
-    if (!response.ok) {
-      // User might not be logged in - this is okay
-      return [];
-    }
-
-    const data = await response.json();
-    return data.subscriptions || [];
-  } catch (error) {
-    console.error('Error fetching subscriptions:', error);
     return [];
   }
 }
