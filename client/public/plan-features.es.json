@@ -1,0 +1,111 @@
+{
+  "plans": {
+    "learnpack-learner": {
+      "description": "Perfecto para estudiantes individuales explorando cursos interactivos",
+      "included": "Comienza con:",
+      "features": [
+        {
+          "slug": "ai-course-generation",
+          "icon": "BookOpen",
+          "title": "Crea {how_many} cursos mensuales usando IA",
+          "buy_more": "{how_many} cursos incluidos, ${unit_price} por cursos adicionales",
+          "description": "Genera cursos interactivos listos para producción en menos de 2 minutos usando IA. Reduce los costos de generación de contenido en +80%."
+        },
+        {
+          "slug": "logic-auto-grading",
+          "icon": "Code2",
+          "title": "Calificación automática instantánea",
+          "description": "Métodos de calificación deterministas para retroalimentación precisa e instantánea en ejercicios de código y cuestionarios."
+        },
+        {
+          "slug": "podcast-generation",
+          "icon": "Mic",
+          "title": "Podcasts generados por IA desde cursos",
+          "description": "Transforma tus cursos en podcasts de audio atractivos automáticamente con generación de voz por IA."
+        },
+        {
+          "slug": "ide-integrations",
+          "icon": "Terminal",
+          "title": "Integraciones IDE (VSCode, Cursor, Windsurf)",
+          "description": "Integración perfecta con entornos de desarrollo populares para una experiencia de aprendizaje fluida."
+        },
+        {
+          "slug": "marketplace-access",
+          "icon": "Store",
+          "title": "Acceso a la galería de cursos LearnPack",
+          "description": "Explora y usa miles de cursos interactivos preconstruidos de la comunidad marketplace."
+        },
+        {
+          "slug": "agentic-ai-edits",
+          "icon": "Bot",
+          "title": "Agente IA para refinar y mantener contenido",
+          "description": "Optimización inteligente de contenido, actualizaciones automáticas y mantenimiento sin problemas con asistencia de IA."
+        }
+      ]
+    },
+    "learnpack-teacher": {
+      "description": "Ideal para educadores y creadores de contenido con una audiencia",
+      "included": "Todo en LearnPack Learner, más:",
+      "features": [
+        "ai-course-generation",
+        "logic-auto-grading",
+        "podcast-generation",
+        "ide-integrations",
+        "marketplace-access",
+        "agentic-ai-edits",
+        {
+          "slug": "learner-seats",
+          "icon": "Users",
+          "title": "Agrega {how_many} asientos de estudiante",
+          "buy_more": "${unit_price} por asiento adicional/mes",
+          "description": "Invita estudiantes o miembros del equipo a acceder a tus cursos con cuentas dedicadas de aprendizaje."
+        },
+        {
+          "slug": "export-download",
+          "icon": "Download",
+          "title": "Exportar/Descargar cursos",
+          "description": "Descarga cursos como archivos ZIP con Markdown, listos para distribución o uso sin conexión."
+        },
+        {
+          "slug": "convert-ebook",
+          "icon": "BookText",
+          "title": "Convertir a eBook",
+          "description": "Transforma cursos interactivos en formato ePub para leer en cualquier dispositivo o plataforma."
+        }
+      ]
+    },
+    "learnpack-academy": {
+      "description": "Solución empresarial para escuelas y organizaciones",
+      "included": "Todo en LearnPack Teacher, más:",
+      "features": [
+        "ai-course-generation",
+        "logic-auto-grading",
+        "podcast-generation",
+        "ide-integrations",
+        "marketplace-access",
+        "agentic-ai-edits",
+        "learner-seats",
+        "export-download",
+        "convert-ebook",
+        {
+          "slug": "white-label",
+          "icon": "Palette",
+          "title": "Marca blanca personalizada",
+          "description": "Personaliza la plataforma con tu propia marca, logo y colores para una experiencia sin fisuras."
+        },
+        {
+          "slug": "sso",
+          "icon": "ShieldCheck",
+          "title": "SSO y seguridad avanzada",
+          "description": "Integración de inicio de sesión único de nivel empresarial y funciones de seguridad mejoradas para tu organización."
+        },
+        {
+          "slug": "dedicated-support",
+          "icon": "Headphones",
+          "title": "Soporte dedicado",
+          "description": "Soporte al cliente prioritario con un gerente de cuenta dedicado y tiempos de respuesta más rápidos."
+        }
+      ]
+    }
+  }
+}

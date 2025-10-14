@@ -1,0 +1,111 @@
+{
+  "plans": {
+    "learnpack-learner": {
+      "description": "Perfect for individual learners exploring interactive courses",
+      "included": "Get started with:",
+      "features": [
+        {
+          "slug": "ai-course-generation",
+          "icon": "BookOpen",
+          "title": "Create {how_many} monthly courses using AI",
+          "buy_more": "{how_many} courses included, ${unit_price} for additional courses",
+          "description": "Generate production-ready interactive courses in under 2 minutes using AI. Cut content generation costs by +80%."
+        },
+        {
+          "slug": "logic-auto-grading",
+          "icon": "Code2",
+          "title": "Auto-grade assessments instantly",
+          "description": "Deterministic grading methods for accurate, instant feedback on coding exercises and quizzes."
+        },
+        {
+          "slug": "podcast-generation",
+          "icon": "Mic",
+          "title": "AI-generated podcasts from courses",
+          "description": "Transform your courses into engaging audio podcasts automatically with AI voice generation."
+        },
+        {
+          "slug": "ide-integrations",
+          "icon": "Terminal",
+          "title": "IDE integrations (VSCode, Cursor, Windsurf)",
+          "description": "Seamlessly integrate with popular development environments for a smooth learning experience."
+        },
+        {
+          "slug": "marketplace-access",
+          "icon": "Store",
+          "title": "Access LearnPack course gallery",
+          "description": "Browse and use thousands of pre-built interactive courses from the community marketplace."
+        },
+        {
+          "slug": "agentic-ai-edits",
+          "icon": "Bot",
+          "title": "AI agent to refine and maintain content",
+          "description": "Intelligent content optimization, automatic updates, and seamless maintenance with AI assistance."
+        }
+      ]
+    },
+    "learnpack-teacher": {
+      "description": "Ideal for educators and content creators with an audience",
+      "included": "Everything in LearnPack Learner, plus:",
+      "features": [
+        "ai-course-generation",
+        "logic-auto-grading",
+        "podcast-generation",
+        "ide-integrations",
+        "marketplace-access",
+        "agentic-ai-edits",
+        {
+          "slug": "learner-seats",
+          "icon": "Users",
+          "title": "Add {how_many} learner seats",
+          "buy_more": "${unit_price} per additional seat/month",
+          "description": "Invite students or team members to access your courses with dedicated learner accounts."
+        },
+        {
+          "slug": "export-download",
+          "icon": "Download",
+          "title": "Export/Download courses",
+          "description": "Download courses as ZIP files with Markdown, ready for distribution or offline use."
+        },
+        {
+          "slug": "convert-ebook",
+          "icon": "BookText",
+          "title": "Convert to eBook",
+          "description": "Transform interactive courses into ePub format for reading on any device or platform."
+        }
+      ]
+    },
+    "learnpack-academy": {
+      "description": "Enterprise solution for schools and organizations",
+      "included": "Everything in LearnPack Teacher, plus:",
+      "features": [
+        "ai-course-generation",
+        "logic-auto-grading",
+        "podcast-generation",
+        "ide-integrations",
+        "marketplace-access",
+        "agentic-ai-edits",
+        "learner-seats",
+        "export-download",
+        "convert-ebook",
+        {
+          "slug": "white-label",
+          "icon": "Palette",
+          "title": "White-label branding",
+          "description": "Customize the platform with your own branding, logo, and colors for a seamless experience."
+        },
+        {
+          "slug": "sso",
+          "icon": "ShieldCheck",
+          "title": "SSO & advanced security",
+          "description": "Enterprise-grade single sign-on integration and enhanced security features for your organization."
+        },
+        {
+          "slug": "dedicated-support",
+          "icon": "Headphones",
+          "title": "Dedicated support",
+          "description": "Priority customer support with a dedicated account manager and faster response times."
+        }
+      ]
+    }
+  }
+}
