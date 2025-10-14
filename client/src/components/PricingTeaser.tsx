@@ -1,56 +1,198 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check } from 'lucide-react';
-import { analytics } from '@/lib/analytics';
+import { Badge } from '@/components/ui/badge';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { 
+  Check, 
+  Info, 
+  Flame,
+  BookOpen,
+  Code2,
+  Mic,
+  Terminal,
+  Store,
+  Bot,
+  Users,
+  Download,
+  BookText,
+  Palette,
+  ShieldCheck,
+  Headphones,
+  Loader2,
+  AlertTriangle
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { analytics } from '@/lib/analytics';
+import { 
+  fetchPlans, 
+  fetchSubscriptions, 
+  fetchServiceItems, 
+  fetchCoupons 
+} from '@/lib/breathcode-api';
+import { 
+  processPlans, 
+  findCurrentPlanSlug,
+  type ProcessedPlan 
+} from '@/lib/pricing-processor';
 
-const planKeys = ['learner', 'teacher', 'school'] as const;
+// Icon mapping
+const iconMap: Record<string, any> = {
+  BookOpen,
+  Code2,
+  Mic,
+  Terminal,
+  Store,
+  Bot,
+  Users,
+  Download,
+  BookText,
+  Palette,
+  ShieldCheck,
+  Headphones,
+};
 
 export default function PricingTeaser() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isAnnual, setIsAnnual] = useState(false);
+  const [plans, setPlans] = useState<ProcessedPlan[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handlePricingDetails = () => {
-    analytics.ctaClick('pricing_details', 'pricing_teaser');
-    console.log('Pricing details clicked');
-  };
+  useEffect(() => {
+    loadPricingData();
+  }, [i18n.language]);
 
-  const getBaseFeatures = (planKey: string) => {
-    return [
-      t(`pricing.${planKey}.packages`),
-      t(`pricing.${planKey}.creators`),
-      t(`pricing.${planKey}.seats`)
-    ];
-  };
+  async function loadPricingData() {
+    setLoading(true);
+    setError(null);
 
-  const getUniqueFeatures = (planKey: string) => {
-    const learnerFeatures = [
-      t('pricing.features.podcast_generation'),
-      t('pricing.features.ide_integrations_vscode_cursor_windsurf'),
-      t('pricing.features.marketplace_access'),
-      t('pricing.features.agentic_ai_edits')
-    ];
+    try {
+      const language = i18n.language === 'es' ? 'es' : 'en';
+      const countryCode = language === 'es' ? 'ES' : 'US';
 
-    if (planKey === 'learner') {
-      return learnerFeatures;
+      // Fetch base data
+      const [apiPlans, subscriptions] = await Promise.all([
+        fetchPlans(language),
+        fetchSubscriptions(language),
+      ]);
+
+      if (apiPlans.length === 0) {
+        setError('No pricing plans available at this time.');
+        setLoading(false);
+        return;
+      }
+
+      // Find current plan
+      const currentPlanSlug = findCurrentPlanSlug(subscriptions);
+
+      // Fetch service items and coupons for each plan
+      const serviceItemsByPlan: Record<string, any[]> = {};
+      const couponsByPlan: Record<string, any[]> = {};
+
+      await Promise.all(
+        apiPlans.map(async (plan) => {
+          const [serviceItems, coupons] = await Promise.all([
+            fetchServiceItems(plan.slug, language, countryCode),
+            fetchCoupons(plan.slug),
+          ]);
+          serviceItemsByPlan[plan.slug] = serviceItems;
+          couponsByPlan[plan.slug] = coupons;
+        })
+      );
+
+      // Process and merge data
+      const processed = await processPlans(
+        apiPlans,
+        serviceItemsByPlan,
+        couponsByPlan,
+        language,
+        currentPlanSlug
+      );
+
+      setPlans(processed);
+    } catch (err) {
+      console.error('Error loading pricing data:', err);
+      setError('Failed to load pricing information. Please try again later.');
+    } finally {
+      setLoading(false);
     }
+  }
 
-    if (planKey === 'teacher') {
-      return [
-        t('pricing.features.export_zip_markdown'),
-        t('pricing.features.convert_to_ebook')
-      ];
-    }
-
-    // School plan gets no unique features, just inherits from teacher
-    return [];
+  const handleChoosePlan = (planSlug: string) => {
+    analytics.ctaClick(`choose_plan_${planSlug}`, 'pricing_teaser');
+    // TODO: Navigate to checkout or plan selection
+    window.open('https://app.learnpack.co/creator', '_blank');
   };
 
-  const handleChoosePlan = (planKey: string) => {
-    analytics.ctaClick(`choose_plan_${planKey}`, 'pricing_teaser');
-    console.log(`Choose plan clicked: ${planKey}`);
-  };
+  function formatPrice(price: number, currency: string = 'USD'): string {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(price);
+  }
+
+  function renderFeatureIcon(iconName: string) {
+    const IconComponent = iconMap[iconName] || Info;
+    return <IconComponent className="w-4 h-4 text-primary flex-shrink-0" />;
+  }
+
+  if (loading) {
+    return (
+      <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
+        <div className="container mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold">{t('pricing.title')}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              {t('pricing.subtitle')}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="h-full">
+                <CardHeader>
+                  <Skeleton className="h-6 w-32 mb-4" />
+                  <Skeleton className="h-10 w-24 mb-2" />
+                  <Skeleton className="h-4 w-full" />
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {[1, 2, 3, 4].map((j) => (
+                      <Skeleton key={j} className="h-4 w-full" />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
+        <div className="container mx-auto max-w-2xl">
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+          <div className="mt-4 text-center">
+            <Button onClick={loadPricingData} variant="outline">
+              <Loader2 className="w-4 h-4 mr-2" />
+              Retry
+            </Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
@@ -100,25 +242,39 @@ export default function PricingTeaser() {
             </button>
           </div>
         </div>
-        
+
+        {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {planKeys.map((planKey, index) => {
-            const baseFeatures = getBaseFeatures(planKey);
-            const uniqueFeatures = getUniqueFeatures(planKey);
-            
+          {plans.map((plan, index) => {
+            const basePrice = isAnnual ? plan.annualPrice / 12 : plan.monthlyPrice;
+            const discountedPrice = isAnnual 
+              ? (plan.discountedAnnual ? plan.discountedAnnual / 12 : null)
+              : plan.discountedMonthly;
+            const showDiscount = discountedPrice !== null && plan.coupon;
+
             return (
               <Card 
-                key={planKey} 
+                key={plan.slug} 
                 className={`hover-elevate h-full relative flex flex-col ${
-                  planKey === 'teacher' ? 'ring-2 ring-primary/20 shadow-lg' : ''
+                  plan.isMostPopular ? 'ring-2 ring-primary/20 shadow-lg' : ''
                 }`}
                 data-testid={`card-pricing-tier-${index}`}
               >
-                {planKey === 'teacher' && (
+                {/* Popular Badge */}
+                {plan.isMostPopular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
+                    <Badge className="bg-primary text-primary-foreground px-3 py-1">
                       Most Popular
-                    </span>
+                    </Badge>
+                  </div>
+                )}
+
+                {/* Current Plan Badge */}
+                {plan.isCurrentPlan && (
+                  <div className="absolute -top-3 right-4">
+                    <Badge variant="secondary" className="px-3 py-1">
+                      Current Plan
+                    </Badge>
                   </div>
                 )}
                 
@@ -127,107 +283,115 @@ export default function PricingTeaser() {
                     className="text-xl"
                     data-testid={`text-tier-name-${index}`}
                   >
-                    {t(`pricing.${planKey}.title`)}
+                    {plan.title}
                   </CardTitle>
                   <div className="space-y-2">
+                    <div className="flex items-baseline gap-2">
+                      {showDiscount && (
+                        <div className="flex items-center gap-2">
+                          <Flame className="w-4 h-4 text-orange-500" />
+                          <span className="text-lg text-muted-foreground line-through">
+                            {formatPrice(basePrice, plan.currency)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
                     <div className="flex items-baseline">
                       <span 
-                        className="text-4xl font-bold"
+                        className={`text-4xl font-bold ${showDiscount ? 'text-primary' : ''}`}
                         data-testid={`text-tier-price-${index}`}
                       >
-                        {isAnnual ? t(`pricing.${planKey}.annualPrice`) : t(`pricing.${planKey}.price`)}
+                        {formatPrice(showDiscount ? discountedPrice! : basePrice, plan.currency)}
                       </span>
                       <span 
                         className="text-muted-foreground ml-1"
                         data-testid={`text-tier-period-${index}`}
                       >
-                        {isAnnual ? t(`pricing.${planKey}.annualPeriod`) : t(`pricing.${planKey}.period`)}
+                        /month
                       </span>
                     </div>
+                    {showDiscount && plan.discountPercentage && (
+                      <Badge variant="outline" className="text-orange-500 border-orange-500">
+                        Save {plan.discountPercentage}%
+                      </Badge>
+                    )}
+                    {isAnnual && (
+                      <p className="text-xs text-muted-foreground">
+                        Billed annually
+                      </p>
+                    )}
                     <p 
-                      className="text-sm text-muted-foreground leading-relaxed"
+                      className="text-sm text-muted-foreground leading-relaxed mt-2"
                       data-testid={`text-tier-description-${index}`}
                     >
-                      {t(`pricing.${planKey}.description`)}
+                      {plan.description}
                     </p>
                   </div>
                 </CardHeader>
                 
                 <CardContent className="space-y-6 flex-1 flex flex-col">
-                  {/* Plan-specific features */}
                   <div className="flex-1">
+                    <p className="text-xs text-muted-foreground mb-3 font-medium">
+                      {plan.included}
+                    </p>
                     <ul className="space-y-3">
-                      {baseFeatures.map((feature, featureIndex) => (
+                      {plan.features.map((feature, featureIndex) => (
                         <li 
-                          key={featureIndex} 
-                          className="flex items-center gap-3 text-sm font-medium"
+                          key={feature.slug} 
+                          className="flex items-start gap-3 text-sm"
                           data-testid={`text-tier-feature-${index}-${featureIndex}`}
                         >
-                          <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                          {feature}
+                          {renderFeatureIcon(feature.icon)}
+                          <div className="flex-1 flex items-start gap-2">
+                            <span className="flex-1">{feature.title}</span>
+                            {(feature.description || feature.buyMore) && (
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <button 
+                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    data-testid={`button-feature-info-${index}-${featureIndex}`}
+                                  >
+                                    <Info className="w-4 h-4" />
+                                  </button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-80" align="end">
+                                  <div className="space-y-2">
+                                    <h4 className="font-semibold text-sm">{feature.title}</h4>
+                                    {feature.description && (
+                                      <p className="text-sm text-muted-foreground">
+                                        {feature.description}
+                                      </p>
+                                    )}
+                                    {feature.buyMore && (
+                                      <div className="pt-2 border-t">
+                                        <p className="text-xs text-muted-foreground font-medium">
+                                          Buy more:
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                          {feature.buyMore}
+                                        </p>
+                                      </div>
+                                    )}
+                                  </div>
+                                </PopoverContent>
+                              </Popover>
+                            )}
+                          </div>
                         </li>
                       ))}
                     </ul>
-                    
-                    {/* Hierarchical plan inclusion */}
-                    {planKey === 'teacher' && (
-                      <div className="pt-4 border-t border-border/50 mt-4">
-                        <p className="text-xs text-muted-foreground mb-3 font-medium">
-                          {t('pricing.everythingInLearner')}:
-                        </p>
-                        <ul className="space-y-2">
-                          {uniqueFeatures.map((feature, featureIndex) => (
-                            <li 
-                              key={featureIndex} 
-                              className="flex items-start gap-2 text-xs text-muted-foreground"
-                              data-testid={`text-tier-unique-feature-${index}-${featureIndex}`}
-                            >
-                              <Check className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {planKey === 'school' && (
-                      <div className="pt-4 border-t border-border/50 mt-4">
-                        <p className="text-xs text-muted-foreground mb-3 font-medium">
-                          {t('pricing.everythingInTeacher')}
-                        </p>
-                      </div>
-                    )}
-
-                    {planKey === 'learner' && uniqueFeatures.length > 0 && (
-                      <div className="pt-4 border-t border-border/50 mt-4">
-                        <p className="text-xs text-muted-foreground mb-3 font-medium">
-                          Plus:
-                        </p>
-                        <ul className="space-y-2">
-                          {uniqueFeatures.map((feature, featureIndex) => (
-                            <li 
-                              key={featureIndex} 
-                              className="flex items-start gap-2 text-xs text-muted-foreground"
-                              data-testid={`text-tier-unique-feature-${index}-${featureIndex}`}
-                            >
-                              <Check className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                   </div>
 
-                  {/* Individual CTA button */}
+                  {/* CTA Button */}
                   <div className="pt-4 mt-auto">
                     <Button 
                       className="w-full"
-                      variant={planKey === 'teacher' ? 'default' : 'outline'}
-                      onClick={() => handleChoosePlan(planKey)}
-                      data-testid={`button-choose-plan-${planKey}`}
+                      variant={plan.isMostPopular ? 'default' : 'outline'}
+                      onClick={() => handleChoosePlan(plan.slug)}
+                      disabled={plan.isCurrentPlan}
+                      data-testid={`button-choose-plan-${plan.slug}`}
                     >
-                      {t('pricing.choosePlan')}
+                      {plan.isCurrentPlan ? 'Current Plan' : 'Choose Plan'}
                     </Button>
                   </div>
                 </CardContent>
