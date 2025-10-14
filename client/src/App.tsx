@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
+import RedirectHandler from "@/components/RedirectHandler";
 
 // Lazy load legal and pricing pages
 const Pricing = lazy(() => import("@/pages/Pricing"));
@@ -41,10 +42,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
-          <Toaster />
-          <Router />
-        </Suspense>
+        <RedirectHandler>
+          <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+            <Toaster />
+            <Router />
+          </Suspense>
+        </RedirectHandler>
       </TooltipProvider>
     </QueryClientProvider>
   );

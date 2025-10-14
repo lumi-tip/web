@@ -4,11 +4,13 @@
 # All query string parameters are automatically preserved
 
 redirects:
+  # Example absolute redirect (update with your actual URL)
   - from: /my-tutorials
-    to: https://learn.learnpack.com
+    to: https://4geeks.com/interactive-coding-tutorials
   
-  - from: /docs
-    to: https://docs.learnpack.co/
-  
+  # Relative redirects
   - from: /old-pricing
     to: /pricing
+  
+  - from: /legacy-terms
+    to: /terms-and-conditions
