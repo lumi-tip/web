@@ -103,7 +103,7 @@ export default function Header() {
               {t('nav.pricing')}
             </Link>
             <a 
-              href="https://4geeks.com/docs/learnpack" 
+              href="https://docs.learnpack.co/" 
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"

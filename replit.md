@@ -67,6 +67,7 @@ Preferred communication style: Simple, everyday language.
   - Try Free (Header): `{PLATFORM}/signup`
   - Start Creating (Final CTA): `{PLATFORM}/signup`
   - Hero Form Submit: `{PLATFORM}/creator?description={topic}&purpose={purpose}&new=true`
+  - Docs (Header): `https://docs.learnpack.co/`
 - **Plan Checkout Flow**:
   - When user selects a plan, constructs checkout path: `/plan-checkout?plan={slug}&name={encoded_title}&frequency={monthly|annual}`
   - Base64 encodes the checkout path
