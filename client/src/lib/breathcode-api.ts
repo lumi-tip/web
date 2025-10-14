@@ -1,12 +1,15 @@
 /**
  * BreathCode API Integration for Pricing Tables
- * Academy ID: 54 (LearnPack)
  * 
- * Requires VITE_BREATHCODE_API_TOKEN environment variable
+ * Required environment variables:
+ * - VITE_BREATHCODE_API_TOKEN: Authentication token for BreathCode API
+ * - VITE_BREATHCODE_ACADEMY_ID: Academy ID (defaults to 54 for LearnPack)
  */
 
 const BREATHCODE_API_BASE = 'https://breathecode.herokuapp.com';
-const LEARNPACK_ACADEMY_ID = 54;
+const LEARNPACK_ACADEMY_ID = import.meta.env.VITE_BREATHCODE_ACADEMY_ID 
+  ? parseInt(import.meta.env.VITE_BREATHCODE_ACADEMY_ID, 10)
+  : 54;
 const API_TOKEN = import.meta.env.VITE_BREATHCODE_API_TOKEN;
 
 /**
@@ -71,27 +74,39 @@ export interface Coupon {
  */
 export async function fetchPlans(language: string = 'en'): Promise<Plan[]> {
   try {
-    const response = await fetch(
-      `${BREATHCODE_API_BASE}/v1/payments/academy/plan?academy=${LEARNPACK_ACADEMY_ID}`,
-      {
-        headers: getHeaders(language),
-      }
-    );
+    const url = `${BREATHCODE_API_BASE}/v1/payments/academy/plan?academy=${LEARNPACK_ACADEMY_ID}`;
+    const headers = getHeaders(language);
+    
+    console.log('Fetching plans from:', url);
+    console.log('API Token present:', !!API_TOKEN);
+    console.log('Academy ID:', LEARNPACK_ACADEMY_ID);
+    
+    const response = await fetch(url, { headers });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch plans: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('API Error Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      });
+      throw new Error(`Failed to fetch plans: ${response.status} ${response.statusText}`);
     }
 
     const plans: Plan[] = await response.json();
+    console.log(`Fetched ${plans.length} plans from API`);
     
     // Filter only active plans and sort by monthly price
-    return plans
+    const activePlans = plans
       .filter(plan => plan.status === 'ACTIVE')
       .sort((a, b) => {
         const priceA = a.price_per_month || 0;
         const priceB = b.price_per_month || 0;
         return priceA - priceB;
       });
+    
+    console.log(`${activePlans.length} active plans after filtering`);
+    return activePlans;
   } catch (error) {
     console.error('Error fetching plans:', error);
     return [];
