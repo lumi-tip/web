@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
 import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
@@ -8,6 +9,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const { t } = useTranslation();
+  const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -67,27 +69,37 @@ export default function Header() {
             width={132}
             height={32}
             className="h-8 w-auto"
-            fetchPriority="high"
+            loading="eager"
             decoding="async"
             data-testid="img-logo"
           />
           
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <a 
-              href="#valueProps" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              data-testid="link-features"
-            >
-              {t('nav.features')}
-            </a>
-            <a 
-              href="#pricing" 
+            {location === '/' ? (
+              <a 
+                href="#valueProps" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="link-features"
+              >
+                {t('nav.features')}
+              </a>
+            ) : (
+              <Link 
+                href="/#valueProps" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="link-features"
+              >
+                {t('nav.features')}
+              </Link>
+            )}
+            <Link 
+              href="/pricing" 
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="link-pricing"
             >
               {t('nav.pricing')}
-            </a>
+            </Link>
             <a 
               href="https://4geeks.com/docs/learnpack" 
               target="_blank"

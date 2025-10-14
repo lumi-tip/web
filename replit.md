@@ -14,7 +14,11 @@ Preferred communication style: Simple, everyday language.
 - **Framework**: React with TypeScript using Vite as the build tool
 - **Styling**: Tailwind CSS with a custom design system featuring dark theme as default
 - **UI Components**: Radix UI primitives with shadcn/ui component library for consistent, accessible interfaces
-- **Routing**: Wouter for lightweight client-side routing
+- **Routing**: Wouter for lightweight client-side routing with the following pages:
+  - `/` - Homepage with hero, social proof, value props, video demo, skills showcase, how it works, stats, and final CTA
+  - `/pricing` - Dedicated pricing page with BreathCode API-powered pricing tables
+  - `/terms-and-conditions` - Terms and conditions legal page
+  - `/privacy-policy` - Privacy policy legal page
 - **State Management**: TanStack Query for server state management and caching
 - **Forms**: React Hook Form with Zod validation for type-safe form handling
 
@@ -40,6 +44,14 @@ Preferred communication style: Simple, everyday language.
 - **Static Content**: Markdown files served statically for legal pages (terms, privacy policy)
 - **Asset Handling**: Organized asset management with dedicated attached_assets directory
 - **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
+
+### Pricing System
+- **API Integration**: Full BreathCode API integration for dynamic pricing tables
+- **Data Processing**: Template variable replacement system for localized content ({how_many}, {unit_price}, {service_title})
+- **Feature Inheritance**: Tiered plan system (Learner → Teacher → School) with automatic feature inheritance
+- **Coupon Support**: Auto-applied coupons with strikethrough pricing and discount badges
+- **Bilingual Support**: JSON configuration files (plan-features.en.json, plan-features.es.json) for English and Spanish locales
+- **Graceful Degradation**: Features requiring missing service data are automatically skipped to prevent malformed text
 
 ### Development Workflow
 - **Build System**: Vite for frontend bundling, esbuild for backend compilation

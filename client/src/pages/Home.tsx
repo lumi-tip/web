@@ -10,7 +10,6 @@ const VideoDemo = lazy(() => import('@/components/VideoDemo'));
 const SkillsShowcase = lazy(() => import('@/components/SkillsShowcase'));
 const HowItWorks = lazy(() => import('@/components/HowItWorks'));
 const StatsBand = lazy(() => import('@/components/StatsBand'));
-const PricingTeaser = lazy(() => import('@/components/PricingTeaser'));
 const FinalCTA = lazy(() => import('@/components/FinalCTA'));
 
 export default function Home() {
@@ -48,7 +47,6 @@ export default function Home() {
           <SkillsShowcase />
           <HowItWorks />
           <StatsBand />
-          <PricingTeaser />
           <FinalCTA />
         </Suspense>
       </main>
