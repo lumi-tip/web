@@ -60,6 +60,20 @@ Preferred communication style: Simple, everyday language.
 - **Graceful Degradation**: Features requiring missing service data are automatically skipped to prevent malformed text
 - **UI/UX**: Monthly/Annual billing toggle, responsive 3-column grid, "Most Popular" badge on middle tier
 
+### Authentication & Redirect Flow
+- **Platform URL Configuration**: All authentication and signup flows use `VITE_LEARNPACK_PLATFORM` environment variable (defaults to https://app.learnpack.co)
+- **Login/Signup Redirects**:
+  - Sign In (Header): `{PLATFORM}/login`
+  - Try Free (Header): `{PLATFORM}/signup`
+  - Start Creating (Final CTA): `{PLATFORM}/signup`
+  - Hero Form Submit: `{PLATFORM}/creator?description={topic}&purpose={purpose}&new=true`
+- **Plan Checkout Flow**:
+  - When user selects a plan, constructs checkout path: `/plan-checkout?plan={slug}&name={encoded_title}&frequency={monthly|annual}`
+  - Base64 encodes the checkout path
+  - URL-encodes the base64 string for safe query parameter usage
+  - Redirects to: `{PLATFORM}/login?next={url_encoded_base64_path}`
+  - Platform should: URL-decode → Base64-decode → Parse checkout path
+
 ### Development Workflow
 - **Build System**: Vite for frontend bundling, esbuild for backend compilation
 - **Type Safety**: Strict TypeScript configuration with path aliases and shared types
