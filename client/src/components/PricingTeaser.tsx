@@ -6,7 +6,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
-  Check, 
   Info, 
   Flame,
   BookOpen,
@@ -134,7 +133,7 @@ export default function PricingTeaser() {
 
   if (loading) {
     return (
-      <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
+      <section id="pricing" className="pb-24 px-4 bg-muted/50" data-testid="section-pricing">
         <div className="container mx-auto">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold">{t('pricing.title')}</h2>
@@ -168,7 +167,7 @@ export default function PricingTeaser() {
 
   if (error) {
     return (
-      <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
+      <section id="pricing" className="pb-24 px-4 bg-muted/50" data-testid="section-pricing">
         <div className="container mx-auto max-w-2xl">
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
@@ -186,7 +185,7 @@ export default function PricingTeaser() {
   }
 
   return (
-    <section id="pricing" className="py-24 px-4 bg-muted/50" data-testid="section-pricing">
+    <section id="pricing" className="pb-24 px-4 bg-muted/50" data-testid="section-pricing">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-16">
           <h2 

@@ -46,12 +46,19 @@ Preferred communication style: Simple, everyday language.
 - **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
 
 ### Pricing System
-- **API Integration**: Full BreathCode API integration for dynamic pricing tables
+- **API Integration**: Full BreathCode API integration for dynamic pricing tables at `/pricing` (public page, no authentication required)
+- **Authentication**: Token-based authentication via `VITE_BREATHCODE_API_TOKEN` environment variable
+- **Academy Configuration**: Configurable via `VITE_BREATHCODE_ACADEMY_ID` environment variable (defaults to 54)
+- **API Endpoints**:
+  - Plans: `GET /v1/payments/academy/plan?academy={ACADEMY_ID}`
+  - Service Items: `GET /v2/payments/serviceitem?plan={PLAN_SLUG}&country_code={COUNTRY}`
+  - Coupons: `GET /v2/payments/coupon?plan={PLAN_SLUG}`
 - **Data Processing**: Template variable replacement system for localized content ({how_many}, {unit_price}, {service_title})
-- **Feature Inheritance**: Tiered plan system (Learner → Teacher → School) with automatic feature inheritance
+- **Feature Inheritance**: Tiered plan system (Learner → Teacher → School) with automatic feature inheritance from cheaper plans
 - **Coupon Support**: Auto-applied coupons with strikethrough pricing and discount badges
 - **Bilingual Support**: JSON configuration files (plan-features.en.json, plan-features.es.json) for English and Spanish locales
 - **Graceful Degradation**: Features requiring missing service data are automatically skipped to prevent malformed text
+- **UI/UX**: Monthly/Annual billing toggle, responsive 3-column grid, "Most Popular" badge on middle tier
 
 ### Development Workflow
 - **Build System**: Vite for frontend bundling, esbuild for backend compilation
