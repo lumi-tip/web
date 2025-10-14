@@ -1,10 +1,29 @@
 /**
  * BreathCode API Integration for Pricing Tables
  * Academy ID: 54 (LearnPack)
+ * 
+ * Requires VITE_BREATHCODE_API_TOKEN environment variable
  */
 
 const BREATHCODE_API_BASE = 'https://breathecode.herokuapp.com';
 const LEARNPACK_ACADEMY_ID = 54;
+const API_TOKEN = import.meta.env.VITE_BREATHCODE_API_TOKEN;
+
+/**
+ * Get common headers for BreathCode API requests
+ */
+function getHeaders(language: string = 'en'): HeadersInit {
+  const headers: HeadersInit = {
+    'Accept-Language': language,
+    'Content-Type': 'application/json',
+  };
+  
+  if (API_TOKEN) {
+    headers['Authorization'] = `Token ${API_TOKEN}`;
+  }
+  
+  return headers;
+}
 
 export interface Plan {
   id: number;
@@ -63,10 +82,7 @@ export async function fetchPlans(language: string = 'en'): Promise<Plan[]> {
     const response = await fetch(
       `${BREATHCODE_API_BASE}/v1/payments/academy/plan?academy=${LEARNPACK_ACADEMY_ID}`,
       {
-        headers: {
-          'Accept-Language': language,
-          'Content-Type': 'application/json',
-        },
+        headers: getHeaders(language),
       }
     );
 
@@ -98,10 +114,7 @@ export async function fetchSubscriptions(language: string = 'en'): Promise<Subsc
     const response = await fetch(
       `${BREATHCODE_API_BASE}/v1/payments/me/subscription?status=ACTIVE,FREE_TRIAL,FULLY_PAID`,
       {
-        headers: {
-          'Accept-Language': language,
-          'Content-Type': 'application/json',
-        },
+        headers: getHeaders(language),
       }
     );
 
@@ -130,10 +143,7 @@ export async function fetchServiceItems(
     const response = await fetch(
       `${BREATHCODE_API_BASE}/v2/payments/serviceitem?plan=${planSlug}&country_code=${countryCode}`,
       {
-        headers: {
-          'Accept-Language': language,
-          'Content-Type': 'application/json',
-        },
+        headers: getHeaders(language),
       }
     );
 
@@ -155,15 +165,13 @@ export async function fetchServiceItems(
  * Fetch available coupons for a plan
  * Note: The actual endpoint might vary - this is a placeholder
  */
-export async function fetchCoupons(planSlug: string): Promise<Coupon[]> {
+export async function fetchCoupons(planSlug: string, language: string = 'en'): Promise<Coupon[]> {
   try {
     // TODO: Replace with actual coupon endpoint when available
     const response = await fetch(
       `${BREATHCODE_API_BASE}/v1/payments/plan/${planSlug}/coupon`,
       {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getHeaders(language),
       }
     );
 
