@@ -61,12 +61,14 @@ Preferred communication style: Simple, everyday language.
 - **UI/UX**: Monthly/Annual billing toggle, responsive 3-column grid, "Most Popular" badge on middle tier
 
 ### Authentication & Redirect Flow
-- **Platform URL Configuration**: All authentication and signup flows use `VITE_LEARNPACK_PLATFORM` environment variable (defaults to https://app.learnpack.co)
+- **Platform URL Configuration**: 
+  - Authentication/signup flows use `VITE_LEARNPACK_PLATFORM` environment variable (defaults to https://app.learnpack.co)
+  - Creator flows use `VITE_LEARNPACK_CREATOR` environment variable (defaults to https://app.learnpack.co)
 - **Login/Signup Redirects**:
   - Sign In (Header): `{PLATFORM}/login`
   - Try Free (Header): `{PLATFORM}/signup`
   - Start Creating (Final CTA): `{PLATFORM}/signup`
-  - Hero Form Submit: `{PLATFORM}/creator?description={topic}&purpose={purpose}&new=true`
+  - Hero Form Submit: `{CREATOR}/creator?description={topic}&purpose={purpose}&new=true`
   - Docs (Header): `https://docs.learnpack.co/`
 - **Plan Checkout Flow**:
   - When user selects a plan, constructs checkout path: `/plan-checkout?plan={slug}&name={encoded_title}&frequency={monthly|annual}`

@@ -74,8 +74,8 @@ export default function Hero() {
         new: "true",
       });
 
-      const platformUrl = import.meta.env.VITE_LEARNPACK_PLATFORM || 'https://app.learnpack.co';
-      const redirectUrl = `${platformUrl}/creator?${params.toString()}`;
+      const creatorUrl = import.meta.env.VITE_LEARNPACK_CREATOR || 'https://app.learnpack.co';
+      const redirectUrl = `${creatorUrl}/creator?${params.toString()}`;
 
       analytics.createSuccess(topic, purpose);
 
