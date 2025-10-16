@@ -17,6 +17,7 @@ Preferred communication style: Simple, everyday language.
 - **Routing**: Wouter for lightweight client-side routing with the following pages:
   - `/` - Homepage with hero, social proof, value props, video demo, skills showcase, how it works, stats, and final CTA
   - `/pricing` - Dedicated pricing page with BreathCode API-powered pricing tables
+  - `/our-mission` - Company mission statement page
   - `/terms-and-conditions` - Terms and conditions legal page
   - `/privacy-policy` - Privacy policy legal page
 - **State Management**: TanStack Query for server state management and caching
