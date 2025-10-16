@@ -7,7 +7,7 @@ export default function OurMission() {
       <Header />
       
       {/* Hero Section with Animated Background */}
-      <section className="relative min-h-[60vh] flex items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-[30vh] flex items-center justify-center px-4 overflow-hidden">
         {/* Vite-inspired Animated Background */}
         <div className="absolute inset-0 animated-bg-container opacity-30">
           <div className="central-orb"></div>
@@ -26,21 +26,18 @@ export default function OurMission() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto max-w-6xl text-center space-y-8">
+        <div className="relative z-10 container mx-auto max-w-6xl text-center">
           <h1 
-            className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent animate-gradient"
+            className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent animate-gradient"
             data-testid="heading-our-mission"
           >
             Our Mission
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-            Democratizing education publishing through AI-powered innovation
-          </p>
         </div>
       </section>
 
       {/* Mission Statements - Clean Transitions */}
-      <section className="container mx-auto px-4 py-24 max-w-6xl">
+      <section className="container mx-auto px-4 pb-12 max-w-6xl">
         <div className="space-y-16 md:space-y-24">
           {/* Statement 1 */}
           <div 
