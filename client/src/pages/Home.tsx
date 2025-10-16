@@ -19,7 +19,8 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
-        <ValueProps />
+        {/* Temporarily commented out - videos not ready yet */}
+        {/* <ValueProps /> */}
         {/* Group below-the-fold components under single Suspense to reduce CLS and spinner noise */}
         <Suspense fallback={
           <div className="space-y-24 py-24">
