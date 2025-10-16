@@ -39,73 +39,52 @@ export default function OurMission() {
         </div>
       </section>
 
-      {/* Mission Statements */}
-      <section className="container mx-auto px-4 py-24 max-w-7xl">
-        <div className="space-y-24">
-          {/* Statement 1 - The Problem */}
-          <div className="relative group" data-testid="text-mission-statement-1">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-            <div className="relative bg-card/50 backdrop-blur-sm border border-card-border rounded-2xl p-8 md:p-12 hover-elevate">
-              <div className="flex flex-wrap items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-3xl md:text-4xl font-bold">
-                  1
-                </div>
-                <div className="flex-1 pt-2">
-                  <p className="text-xl md:text-3xl leading-relaxed font-medium">
-                    Learning starts with a book, syllabus, or certification. <span className="text-primary font-bold">Whoever controls that asset, controls the class, credentials, learning experience, and economics.</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+      {/* Mission Statements - Clean Transitions */}
+      <section className="container mx-auto px-4 py-24 max-w-6xl">
+        <div className="space-y-16 md:space-y-24">
+          {/* Statement 1 */}
+          <div 
+            className="opacity-0 translate-y-8 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]"
+            data-testid="text-mission-statement-1"
+          >
+            <p className="text-2xl md:text-4xl leading-relaxed font-light text-center max-w-5xl mx-auto">
+              Learning starts with a book, syllabus, or certification. <span className="font-semibold text-foreground">Whoever controls that asset, controls the class, credentials, learning experience, and economics.</span>
+            </p>
           </div>
 
-          {/* Statement 2 - The Solution */}
-          <div className="relative group" data-testid="text-mission-statement-2">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-primary/10 to-purple-500/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-            <div className="relative bg-card/50 backdrop-blur-sm border border-card-border rounded-2xl p-8 md:p-12 hover-elevate">
-              <div className="flex flex-wrap items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-purple-600 to-primary flex items-center justify-center text-3xl md:text-4xl font-bold">
-                  2
-                </div>
-                <div className="flex-1 pt-2">
-                  <p className="text-xl md:text-3xl leading-relaxed font-medium">
-                    LearnPack <span className="text-primary font-bold">decentralizes this power</span>, cutting creation costs/time up to <span className="text-primary font-bold">80%</span>, democratizing publishing in the educational world. Empowering teachers, experts, and corporations to create, distribute, monetize training.
-                  </p>
-                </div>
-              </div>
-            </div>
+          {/* Statement 2 */}
+          <div 
+            className="opacity-0 translate-y-8 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]"
+            data-testid="text-mission-statement-2"
+          >
+            <p className="text-2xl md:text-4xl leading-relaxed font-light text-center max-w-5xl mx-auto">
+              LearnPack <span className="font-semibold text-primary">decentralizes this power</span>, cutting creation costs/time up to <span className="font-semibold text-primary">80%</span>, democratizing publishing in the educational world. <span className="font-semibold text-foreground">Empowering teachers, experts, and corporations to create, distribute, monetize training.</span>
+            </p>
           </div>
 
-          {/* Statement 3 - The Technology */}
-          <div className="relative group" data-testid="text-mission-statement-3">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
-            <div className="relative bg-card/50 backdrop-blur-sm border border-card-border rounded-2xl p-8 md:p-12 hover-elevate">
-              <div className="flex flex-wrap items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-3xl md:text-4xl font-bold">
-                  3
-                </div>
-                <div className="flex-1 pt-2">
-                  <p className="text-xl md:text-3xl leading-relaxed font-medium">
-                    Our <span className="text-primary font-bold">AI agent</span> lets creators transform any PDF, video, or document into production-ready courses or augmented books published <span className="text-primary font-bold">in minutes</span>.
-                  </p>
-                </div>
-              </div>
-            </div>
+          {/* Statement 3 */}
+          <div 
+            className="opacity-0 translate-y-8 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards]"
+            data-testid="text-mission-statement-3"
+          >
+            <p className="text-2xl md:text-4xl leading-relaxed font-light text-center max-w-5xl mx-auto">
+              Our <span className="font-semibold text-primary">AI agent</span> lets creators transform any PDF, video, or document into production-ready courses or augmented books published <span className="font-semibold text-primary">in minutes</span>.
+            </p>
           </div>
         </div>
 
         {/* Call to Action */}
-        <div className="mt-24 text-center">
-          <div className="inline-flex flex-col items-center gap-6 p-12 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-3xl border border-primary/30">
-            <h2 className="text-3xl md:text-4xl font-bold">
+        <div className="mt-32 text-center opacity-0 translate-y-8 animate-[fadeInUp_0.8s_ease-out_0.8s_forwards]">
+          <div className="inline-flex flex-col items-center gap-8">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
               Ready to Transform Education?
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl">
               Join thousands of educators, trainers, and experts democratizing learning content creation.
             </p>
             <a
               href={`${import.meta.env.VITE_LEARNPACK_CREATOR || 'https://app.learnpack.co'}/signup`}
-              className="inline-flex items-center justify-center h-12 px-8 bg-primary text-primary-foreground font-semibold rounded-lg hover-elevate active-elevate-2 transition-all"
+              className="inline-flex items-center justify-center h-14 px-10 bg-primary text-primary-foreground font-semibold rounded-lg hover-elevate active-elevate-2 transition-all text-lg"
               data-testid="button-get-started"
             >
               Get Started Free
