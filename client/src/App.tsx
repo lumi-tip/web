@@ -14,6 +14,7 @@ const Pricing = lazy(() => import("@/pages/Pricing"));
 const TermsAndConditions = lazy(() => import("@/pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const OurMission = lazy(() => import("@/pages/OurMission"));
+const ThumbnailPage = lazy(() => import("@/pages/ThumbnailPage"));
 
 function Router() {
   return (
@@ -37,6 +38,11 @@ function Router() {
       <Route path="/our-mission">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <OurMission />
+        </Suspense>
+      </Route>
+      <Route path="/thumbnail">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <ThumbnailPage />
         </Suspense>
       </Route>
       {/* Fallback to 404 */}
