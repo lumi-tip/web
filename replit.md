@@ -45,6 +45,7 @@ Preferred communication style: Simple, everyday language.
 - **Static Content**: Markdown files served statically for legal pages (terms, privacy policy)
 - **Asset Handling**: Organized asset management with dedicated attached_assets directory
 - **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
+- **Documentation**: README.md (project overview) and CONTRIBUTE.md (translation contribution guide) for GitHub repository
 
 ### Pricing System
 - **API Integration**: Full BreathCode API integration for dynamic pricing tables at `/pricing` (public page, no authentication required)
