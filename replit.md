@@ -95,6 +95,30 @@ Preferred communication style: Simple, everyday language.
   - Redirects to: `{PLATFORM}/login?next={url_encoded_base64_path}`
   - Platform should: URL-decode → Base64-decode → Parse checkout path
 
+### Admin Authentication System
+- **Authentication Provider**: BreathCode API-based authentication for admin access
+- **Access Control**: Users must have "webmaster" capability from LearnPack academy (academy_id: 54)
+- **Token Storage**: API tokens stored in localStorage (note: vulnerable to XSS, future migration to HttpOnly cookies recommended)
+- **Backend Routes** (`server/auth.ts`):
+  - `POST /api/auth/login` - Proxies login to BreathCode API, returns user and token
+  - `GET /api/auth/me` - Proxies user profile request with auth token
+  - `POST /api/auth/logout` - Proxies logout (handles 204 No Content responses)
+  - All endpoints include defensive JSON parsing to handle malformed or empty responses
+- **Frontend Components**:
+  - `AuthContext` - Manages authentication state, token persistence, and webmaster capability checking
+  - `ProtectedRoute` - Route guard that redirects unauthenticated users to login and shows access denied for non-webmaster users
+  - `Login` - Email/password login form with error handling and toast notifications
+- **Admin Routes** (all protected):
+  - `/login` - Admin login page
+  - `/admin` - Dashboard with system stats
+  - `/admin/content` - Content management (placeholder)
+  - `/admin/settings` - System settings (placeholder)
+- **Admin Layout**: Consistent layout with navigation header, user info, and logout functionality
+- **Security Considerations**: 
+  - Authorization header sent with all authenticated requests
+  - Permission check verifies academy membership and webmaster capability
+  - Graceful handling of authentication errors and unauthorized access attempts
+
 ### URL Redirect System
 - **Configuration File**: `client/public/redirects.yml` - YAML-based redirect rules
 - **Implementation**: Automatic redirect handling on route changes via `RedirectHandler` component
