@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
 import ValueProps from '@/components/ValueProps';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 // Lazy load below-the-fold components
 const VideoDemo = lazy(() => import('@/components/VideoDemo'));
@@ -15,6 +16,7 @@ const FinalCTA = lazy(() => import('@/components/FinalCTA'));
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO namespace="home" />
       <Header />
       <main>
         <Hero />
