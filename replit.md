@@ -44,8 +44,24 @@ Preferred communication style: Simple, everyday language.
 ### Content Management
 - **Static Content**: Markdown files served statically for legal pages (terms, privacy policy)
 - **Asset Handling**: Organized asset management with dedicated attached_assets directory
-- **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
 - **Documentation**: README.md (project overview) and CONTRIBUTE.md (translation contribution guide) for GitHub repository
+
+### SEO & Meta Tag Management
+- **Dynamic Head Management**: react-helmet-async for per-page, per-language meta tag rendering
+- **SEO Component**: Centralized `client/src/components/SEO.tsx` handles all meta tags with i18n integration
+- **Meta Tag Coverage**:
+  - Primary: `<title>`, `<meta name="description">`, `<meta name="keywords">`
+  - Open Graph: og:type, og:title, og:description, og:site_name, og:locale, og:locale:alternate
+  - Twitter Cards: twitter:card, twitter:title, twitter:description, twitter:creator
+  - Additional: robots, language (dynamic), canonical URL (client-side via useEffect)
+- **Localized SEO**: Each page has language-specific meta tags in translation files (meta.title, meta.ogTitle, etc.)
+- **Multilingual Support**: 
+  - og:locale tags (en_US / es_ES) with og:locale:alternate for alternate language
+  - Language meta tag dynamically updates based on i18n.language
+  - Helmet key prop forces re-render on language switch for proper OG tag updates
+- **JSON-LD Schema**: Static structured data for Organization in index.html
+- **No Duplicates**: Removed legacy static OG tags from index.html; all managed by react-helmet-async
+- **SSR-Safe**: Canonical URLs set via useEffect to avoid window references during potential SSR
 
 ### Pricing System
 - **API Integration**: Full BreathCode API integration for dynamic pricing tables at `/pricing` (public page, no authentication required)
@@ -103,14 +119,19 @@ Preferred communication style: Simple, everyday language.
 - **Files**: `client/src/lib/redirects.ts`, `client/src/components/RedirectHandler.tsx`
 
 ### Internationalization & Translation System
-- **Framework**: react-i18next with i18next-http-backend for dynamic loading
+- **Framework**: react-i18next with i18next-http-backend for dynamic loading and lazy namespace loading
 - **Supported Languages**: English (en) and Spanish (es) with English as fallback
 - **Language Detection**: Automatic detection via query params (`?lang=es`), localStorage, browser settings, or HTML tag
-- **Translation Files Structure**:
-  - General translations: `client/public/locales/{lang}/common.json`
-  - Pricing features: `client/public/plan-features.{lang}.json`
+- **Translation Files Structure** (Organized by page for maintainability):
+  - **Shared UI**: `client/public/locales/{lang}/common.json` (nav, footer, common strings)
+  - **Homepage**: `client/public/locales/{lang}/home.json` (hero, social proof, value props, skills, how it works, stats, final CTA, video demo, + SEO meta)
+  - **Pricing Page**: `client/public/locales/{lang}/pricing.json` (pricing content + SEO meta)
+  - **Mission Page**: `client/public/locales/{lang}/mission.json` (mission content + SEO meta)
+  - **Legal Pages**: `client/public/locales/{lang}/legal.json` (terms & privacy SEO meta)
+  - **Pricing Features**: `client/public/plan-features.{lang}.json` (dynamic pricing features)
+- **Namespace System**: Multiple namespaces (common, home, pricing, mission, legal) loaded on-demand per page
 - **Dynamic Variables**: Template variable system supports `{how_many}`, `{unit_price}`, `{{year}}` replacements
-- **Contribution Guide**: `CONTRIBUTE.md` provides detailed instructions for translating content via GitHub PRs
+- **Contribution Guide**: `CONTRIBUTE.md` provides detailed instructions for translating content via GitHub PRs with updated file structure
 - **Testing**: Language can be forced via `?lang=XX` query parameter for testing
 - **Files**: `client/src/i18n/index.ts`, `client/public/locales/`, `CONTRIBUTE.md`
 
