@@ -158,17 +158,43 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
 };
 
 // Custom admin middleware - only allows @4geeks.com and @learnpack.co email domains
+// First ensures user is authenticated, then checks email domain
 export const isAdmin: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
 
-  if (!req.isAuthenticated() || !user.claims?.email) {
+  // First check if authenticated
+  if (!req.isAuthenticated() || !user?.expires_at) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  const email = user.claims.email.toLowerCase();
+  // Check token expiry and refresh if needed (same as isAuthenticated)
+  const now = Math.floor(Date.now() / 1000);
+  if (now > user.expires_at) {
+    const refreshToken = user.refresh_token;
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    try {
+      const config = await getOidcConfig();
+      const tokenResponse = await client.refreshTokenGrant(config, refreshToken);
+      updateUserSession(user, tokenResponse);
+    } catch (error) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+  }
+
+  // Now check email domain
+  const email = user.claims?.email;
+  if (!email) {
+    return res.status(403).json({ 
+      message: "Forbidden - Email required for admin access" 
+    });
+  }
+
   const allowedDomains = ['@4geeks.com', '@learnpack.co'];
-  
-  const isAllowedDomain = allowedDomains.some(domain => email.endsWith(domain));
+  const emailLower = email.toLowerCase();
+  const isAllowedDomain = allowedDomains.some(domain => emailLower.endsWith(domain));
   
   if (!isAllowedDomain) {
     return res.status(403).json({ 
