@@ -1,5 +1,6 @@
 import { useLocation } from 'wouter';
 import { useTranslation } from 'react-i18next';
+import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
 
 export default function ThumbnailPage() {
   const [location] = useLocation();
@@ -96,12 +97,11 @@ export default function ThumbnailPage() {
       <div className="relative z-10 h-full flex flex-col justify-between p-16">
         {/* Header with Logo */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-2xl">L</span>
-            </div>
-            <span className="text-white text-3xl font-bold">LearnPack</span>
-          </div>
+          <img 
+            src={learnpackLogoDark} 
+            alt="LearnPack" 
+            className="h-12 w-auto"
+          />
         </div>
 
         {/* Main Content */}
