@@ -19,10 +19,6 @@ localPort = 33591
 externalPort = 3000
 
 [[ports]]
-localPort = 39241
-externalPort = 5173
-
-[[ports]]
 localPort = 42673
 externalPort = 3003
 
@@ -67,4 +63,4 @@ args = "npm run dev"
 waitForPort = 5000
 
 [agent]
-integrations = ["javascript_google_analytics:1.0.0"]
+integrations = ["javascript_google_analytics:1.0.0", "javascript_log_in_with_replit:1.0.0"]
