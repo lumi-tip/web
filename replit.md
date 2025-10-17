@@ -101,6 +101,18 @@ Preferred communication style: Simple, everyday language.
   - Absolute redirects merge params (destination params take precedence)
 - **Files**: `client/src/lib/redirects.ts`, `client/src/components/RedirectHandler.tsx`
 
+### Internationalization & Translation System
+- **Framework**: react-i18next with i18next-http-backend for dynamic loading
+- **Supported Languages**: English (en) and Spanish (es) with English as fallback
+- **Language Detection**: Automatic detection via query params (`?lang=es`), localStorage, browser settings, or HTML tag
+- **Translation Files Structure**:
+  - General translations: `client/public/locales/{lang}/common.json`
+  - Pricing features: `client/public/plan-features.{lang}.json`
+- **Dynamic Variables**: Template variable system supports `{how_many}`, `{unit_price}`, `{{year}}` replacements
+- **Contribution Guide**: `CONTRIBUTE.md` provides detailed instructions for translating content via GitHub PRs
+- **Testing**: Language can be forced via `?lang=XX` query parameter for testing
+- **Files**: `client/src/i18n/index.ts`, `client/public/locales/`, `CONTRIBUTE.md`
+
 ### Development Workflow
 - **Build System**: Vite for frontend bundling, esbuild for backend compilation
 - **Type Safety**: Strict TypeScript configuration with path aliases and shared types
