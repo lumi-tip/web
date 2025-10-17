@@ -60,7 +60,7 @@ const skillTopics = [
 ];
 
 export default function SkillsShowcase() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   
   // Create multiple rows for a more dense cloud effect
   const createTagRow = (startIndex: number, reverse: boolean = false, delayOffset: number = 0) => {

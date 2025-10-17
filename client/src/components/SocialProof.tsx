@@ -29,7 +29,7 @@ const companies = [
 ];
 
 export default function SocialProof() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   
   // Create duplicated logos for seamless scrolling
   const duplicatedLogos = [...companies, ...companies, ...companies];

@@ -15,7 +15,7 @@ import { createPackage } from "@/lib/createPackage";
 import { analytics } from "@/lib/analytics";
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   const [topic, setTopic] = useState("");
   const [purpose, setPurpose] = useState("");
   const [isLoading, setIsLoading] = useState(false);
