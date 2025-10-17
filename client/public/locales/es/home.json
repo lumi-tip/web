@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "LearnPack - Convierte Ideas en Paquetes de Aprendizaje Interactivos",
+    "description": "Transforma tu experiencia en experiencias de aprendizaje atractivas e interactivas con creación de cursos impulsada por IA. Construye programas de entrenamiento y contenido educativo en minutos.",
+    "keywords": "aprendizaje en línea, creación de cursos, educación impulsada por IA, entrenamiento interactivo, sistema de gestión de aprendizaje",
+    "ogTitle": "LearnPack - Convierte Ideas en Paquetes de Aprendizaje Interactivos",
+    "ogDescription": "Transforma tu experiencia en experiencias de aprendizaje atractivas e interactivas con creación de cursos impulsada por IA. Construye programas de entrenamiento y contenido educativo en minutos.",
+    "twitterTitle": "LearnPack - Convierte Ideas en Paquetes de Aprendizaje Interactivos",
+    "twitterDescription": "Transforma tu experiencia en experiencias de aprendizaje atractivas e interactivas con creación de cursos impulsada por IA. Construye programas de entrenamiento y contenido educativo en minutos."
+  },
+  "hero": {
+    "title": "Convierte ideas en paquetes de aprendizaje interactivos en minutos",
+    "subtitle": "Escribe cualquier tema, elige un propósito y genera un curso que puedas exportar a cualquier lugar.",
+    "inputPlaceholder": "Pide a LearnPack que cree un paquete de aprendizaje sobre...",
+    "purposeLabel": "Propósito",
+    "purposeOptions": {
+      "skillBuilding": "Desarrollar habilidades del mundo real",
+      "examPrep": "Practicar para un examen o tarea", 
+      "certificationPrep": "Prepararme para una certificación"
+    },
+    "createButton": "Crear Paquete",
+    "creating": "Creando...",
+    "trustLine": "Reduce los costos de creación de entrenamiento en un 80% y duplica las tasas de finalización.",
+    "errors": {
+      "topicRequired": "Tema requerido",
+      "topicDescription": "Por favor ingresa qué quieres enseñar o aprender",
+      "purposeRequired": "Propósito requerido",
+      "purposeDescription": "Por favor selecciona un propósito para tu paquete",
+      "createFailed": "Error al crear el paquete. Por favor intenta de nuevo."
+    }
+  },
+  "socialProof": {
+    "title": "Confiado por las principales instituciones educativas"
+  },
+  "valueProps": {
+    "title": "¿Por qué LearnPack?",
+    "subtitle": "Todo lo que necesitas para crear experiencias de aprendizaje atractivas",
+    "speed": {
+      "title": "Creación Súper Rápida",
+      "description": "Crea paquetes de aprendizaje integrales en minutos, no meses"
+    },
+    "ai": {
+      "title": "Asistente Impulsado por IA",
+      "description": "Generación inteligente de contenido y rutas de aprendizaje adaptativas"
+    },
+    "export": {
+      "title": "Exporta a Cualquier Lugar",
+      "description": "Compatible con todas las principales plataformas LMS y formatos"
+    },
+    "completion": {
+      "title": "Tasas de Finalización Más Altas",
+      "description": "El contenido interactivo mantiene a los estudiantes comprometidos"
+    }
+  },
+  "skills": {
+    "title": "Crea tutoriales sobre casi cualquier habilidad",
+    "subtitle": "Desde entrenamiento técnico hasta habilidades blandas, crea paquetes de aprendizaje atractivos para cualquier dominio",
+    "programming": "Programación",
+    "design": "Diseño", 
+    "marketing": "Marketing",
+    "business": "Negocios",
+    "language": "Idioma",
+    "certification": "Certificación"
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "subtitle": "Tres pasos simples para crear contenido de aprendizaje atractivo",
+    "step1": {
+      "title": "Describe Tu Idea",
+      "description": "Dinos qué quieres enseñar o aprender"
+    },
+    "step2": {
+      "title": "La IA Construye la Estructura", 
+      "description": "Nuestra IA crea una ruta de aprendizaje integral"
+    },
+    "step3": {
+      "title": "Personaliza y Comparte",
+      "description": "Refina tu contenido y compártelo con los estudiantes"
+    },
+    "roiCalculator": "Calculadora de ROI",
+    "learnMore": "Aprende Más"
+  },
+  "stats": {
+    "creators": "10,000+ Creadores",
+    "learners": "500K+ Estudiantes",
+    "completion": "94% Tasa de Finalización",
+    "saved": "500+ Horas Ahorradas"
+  },
+  "useCases": {
+    "title": "Perfecto Para Cada Caso de Uso",
+    "subtitle": "Ya sea que entrenes empleados, enseñes estudiantes o compartas conocimiento",
+    "corporate": {
+      "title": "Entrenamiento Corporativo",
+      "description": "Escala tus programas de entrenamiento con contenido interactivo que los empleados realmente completan"
+    },
+    "education": {
+      "title": "Contenido Educativo",
+      "description": "Crea cursos atractivos que se adapten a diferentes estilos y ritmos de aprendizaje"
+    },
+    "certification": {
+      "title": "Preparación para Certificación",
+      "description": "Construye cursos de preparación integrales con exámenes de práctica y aprendizaje adaptativo"
+    }
+  },
+  "community": {
+    "title": "Únete a Nuestra Comunidad de Aprendizaje",
+    "subtitle": "Conecta con miles de creadores y estudiantes en todo el mundo"
+  },
+  "finalCta": {
+    "title": "¿Listo para Transformar Tu Enseñanza?",
+    "subtitle": "Únete a miles de educadores creando mejores experiencias de aprendizaje con LearnPack",
+    "button": "Comienza a Crear Hoy"
+  },
+  "videoDemo": {
+    "title": "Mira LearnPack en Acción",
+    "subtitle": "Observa qué fácil es crear paquetes de aprendizaje interactivos",
+    "iframeTitle": "Demo de LearnPack - Mira cómo crear paquetes de aprendizaje interactivos"
+  }
+}
