@@ -11,33 +11,12 @@ export default function AdminPage() {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const { isAdmin, email, isLoading: adminLoading, error } = useAdmin();
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!authLoading && !isAuthenticated) {
-      toast({
-        title: "Authentication Required",
-        description: "Please log in with your 4Geeks or LearnPack Google account",
-        variant: "destructive",
-      });
-      setTimeout(() => {
-        window.location.href = "/api/login";
-      }, 500);
-    }
-  }, [isAuthenticated, authLoading, toast]);
-
-  // Show error if forbidden (not admin)
-  useEffect(() => {
-    if (error && !adminLoading) {
-      toast({
-        title: "Access Denied",
-        description: "Admin access restricted to @4geeks.com and @learnpack.co email addresses",
-        variant: "destructive",
-      });
-    }
-  }, [error, adminLoading, toast]);
-
   const handleLogout = () => {
     window.location.href = "/api/logout";
+  };
+
+  const handleLogin = () => {
+    window.location.href = "/api/login";
   };
 
   if (authLoading || adminLoading) {
@@ -48,6 +27,37 @@ export default function AdminPage() {
     );
   }
 
+  // Not authenticated - show login prompt
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="max-w-md w-full">
+          <CardHeader>
+            <div className="flex items-center gap-2 mb-2">
+              <Shield className="h-6 w-6 text-primary" />
+              <CardTitle data-testid="text-admin-error-heading">Authentication Required</CardTitle>
+            </div>
+            <CardDescription>
+              This admin panel is restricted to @4geeks.com or @learnpack.co email addresses.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Please sign in with your authorized Google account to access the admin panel.
+              </p>
+              <Button onClick={handleLogin} className="w-full" data-testid="button-admin-login">
+                <Shield className="mr-2 h-4 w-4" />
+                Sign in with Google
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Authenticated but forbidden (wrong email domain)
   if (error) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -55,7 +65,7 @@ export default function AdminPage() {
           <CardHeader>
             <div className="flex items-center gap-2 text-destructive mb-2">
               <AlertCircle className="h-6 w-6" />
-              <CardTitle>Access Denied</CardTitle>
+              <CardTitle data-testid="text-admin-denied-heading">Access Denied</CardTitle>
             </div>
             <CardDescription>
               Admin access is restricted to team members with @4geeks.com or @learnpack.co email addresses.
@@ -67,11 +77,11 @@ export default function AdminPage() {
                 You are currently logged in as: <span className="font-medium text-foreground">{email || user?.email}</span>
               </p>
               <div className="flex gap-2">
-                <Button variant="outline" onClick={handleLogout} className="flex-1">
+                <Button variant="outline" onClick={handleLogout} className="flex-1" data-testid="button-admin-logout">
                   <LogOut className="mr-2 h-4 w-4" />
                   Log Out
                 </Button>
-                <Button onClick={() => window.location.href = "/"} className="flex-1">
+                <Button onClick={() => window.location.href = "/"} className="flex-1" data-testid="button-admin-home">
                   Go Home
                 </Button>
               </div>
@@ -82,6 +92,7 @@ export default function AdminPage() {
     );
   }
 
+  // Admin access granted
   if (!isAdmin) {
     return null;
   }

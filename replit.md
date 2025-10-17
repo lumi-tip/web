@@ -95,6 +95,42 @@ Preferred communication style: Simple, everyday language.
   - Redirects to: `{PLATFORM}/login?next={url_encoded_base64_path}`
   - Platform should: URL-decode → Base64-decode → Parse checkout path
 
+### Admin Authentication System
+- **Authentication Provider**: Replit Auth with Google OAuth integration
+- **Database**: PostgreSQL with Drizzle ORM for user and session storage
+- **Session Management**: Express sessions with PostgreSQL session store
+- **Access Control**: Domain-restricted admin access
+  - Allowed domains: @4geeks.com and @learnpack.co
+  - Unauthenticated users receive 401 (Unauthorized)
+  - Authenticated non-admin users receive 403 (Forbidden)
+  - Admin users receive 200 (OK) with full dashboard access
+- **Admin Routes**:
+  - `/admin` - Admin dashboard page (protected route)
+  - `/api/admin/check` - GET endpoint to verify admin status
+  - `/api/auth/user` - GET endpoint to retrieve authenticated user info
+  - `/api/login` - GET endpoint to initiate Google OAuth flow
+  - `/api/logout` - GET endpoint to terminate session
+- **Authentication Flow**:
+  1. User visits `/admin` page
+  2. Frontend checks authentication status via `/api/admin/check`
+  3. If unauthenticated: Shows login prompt with "Sign in with Google" button
+  4. If authenticated but non-admin: Shows "Access Denied" with user email and logout/home options
+  5. If authenticated admin: Shows full admin dashboard with user info
+- **Database Schema**:
+  - `users` table: Stores authenticated user profiles (id, email, first_name, last_name, profile_url, timestamps)
+  - `sessions` table: PostgreSQL session store managed by connect-pg-simple
+- **Security Features**:
+  - Token refresh logic to maintain active sessions
+  - Email domain validation in middleware
+  - Proper HTTP status codes for different auth states
+  - Session-based authentication with secure cookies
+- **UI States**:
+  - Loading: Spinner while checking authentication
+  - Unauthenticated: Login card with domain requirements
+  - Forbidden: Access denied card with user email display
+  - Authorized: Full admin dashboard with user information
+- **Files**: `server/replitAuth.ts`, `server/db.ts`, `server/storage.ts`, `shared/schema.ts`, `client/src/pages/AdminPage.tsx`, `client/src/hooks/useAuth.ts`, `client/src/hooks/useAdmin.ts`
+
 ### URL Redirect System
 - **Configuration File**: `client/public/redirects.yml` - YAML-based redirect rules
 - **Implementation**: Automatic redirect handling on route changes via `RedirectHandler` component
