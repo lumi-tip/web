@@ -24,7 +24,17 @@ router.post('/login', async (req, res) => {
       body: JSON.stringify({ email, password })
     });
 
-    const data = await response.json();
+    // Try to parse JSON response, handle malformed responses
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      // If response has no body or is malformed
+      return res.status(response.status).json({ 
+        detail: 'Invalid response from authentication server',
+        status_code: response.status 
+      });
+    }
 
     if (!response.ok) {
       return res.status(response.status).json(data);
@@ -58,7 +68,17 @@ router.get('/me', async (req, res) => {
       }
     });
 
-    const data = await response.json();
+    // Try to parse JSON response, handle malformed responses
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      // If response has no body or is malformed
+      return res.status(response.status).json({ 
+        detail: 'Invalid response from authentication server',
+        status_code: response.status 
+      });
+    }
 
     if (!response.ok) {
       return res.status(response.status).json(data);
@@ -93,7 +113,25 @@ router.post('/logout', async (req, res) => {
       }
     });
 
-    const data = await response.json();
+    // Handle 204 No Content response (successful logout with no body)
+    if (response.status === 204) {
+      return res.status(204).send();
+    }
+
+    // For other responses, try to parse JSON if present
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      // If response has no body or is malformed, return generic response
+      if (!response.ok) {
+        return res.status(response.status).json({ 
+          detail: 'Logout failed',
+          status_code: response.status 
+        });
+      }
+      return res.status(200).json({ message: 'Logged out successfully' });
+    }
 
     if (!response.ok) {
       return res.status(response.status).json(data);
