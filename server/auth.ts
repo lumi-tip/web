@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-const BREATHCODE_API_BASE = 'https://api.breatheco.de';
+const BREATHCODE_API_BASE = process.env.BREATHCODE_HOST || 'https://api.breatheco.de';
 
 // Login endpoint - proxies to BreathCode API
 router.post('/login', async (req, res) => {

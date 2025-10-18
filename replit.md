@@ -99,6 +99,8 @@ Preferred communication style: Simple, everyday language.
 - **Authentication Provider**: BreathCode API-based authentication for admin access
 - **Access Control**: Users must have "webmaster" capability from LearnPack academy (academy_id: 54)
 - **Token Storage**: API tokens stored in localStorage (note: vulnerable to XSS, future migration to HttpOnly cookies recommended)
+- **API Configuration**: 
+  - Base URL configured via `BREATHCODE_HOST` environment variable (defaults to https://api.breatheco.de)
 - **Backend Routes** (`server/auth.ts`):
   - `POST /api/auth/login` - Proxies login to BreathCode API, returns user and token
   - `GET /api/auth/me` - Proxies user profile request with auth token
