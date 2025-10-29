@@ -12,18 +12,40 @@ import NotFound from "@/pages/not-found";
 import RedirectHandler from "@/components/RedirectHandler";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
-// Lazy load legal and pricing pages
+// Lazy load pages
 const Pricing = lazy(() => import("@/pages/Pricing"));
 const TermsAndConditions = lazy(() => import("@/pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const OurMission = lazy(() => import("@/pages/OurMission"));
 const ThumbnailPage = lazy(() => import("@/pages/ThumbnailPage"));
 
+// Product pages
+const PlatformOverview = lazy(() => import("@/pages/PlatformOverview"));
+const AIContentAssistant = lazy(() => import("@/pages/AIContentAssistant"));
+const TrainingCenters = lazy(() => import("@/pages/TrainingCenters"));
+const Results = lazy(() => import("@/pages/Results"));
+const Contact = lazy(() => import("@/pages/Contact"));
+
+// Feature pages
+const Automation = lazy(() => import("@/pages/features/Automation"));
+const Hyperpersonalization = lazy(() => import("@/pages/features/Hyperpersonalization"));
+const AdaptiveIntelligence = lazy(() => import("@/pages/features/AdaptiveIntelligence"));
+const AnalyticsCompliance = lazy(() => import("@/pages/features/AnalyticsCompliance"));
+
+// Use case pages
+const SoftwareTraining = lazy(() => import("@/pages/usecases/SoftwareTraining"));
+const RoleBased = lazy(() => import("@/pages/usecases/RoleBased"));
+const ComplianceUseCase = lazy(() => import("@/pages/usecases/Compliance"));
+
+// About pages
+const LearnPackVsBootcamp = lazy(() => import("@/pages/LearnPackVsBootcamp"));
+const Blog = lazy(() => import("@/pages/Blog"));
+
 // Lazy load admin pages
 const AdminLayout = lazy(() => import("@/pages/admin/AdminLayout"));
 const Dashboard = lazy(() => import("@/pages/admin/Dashboard"));
-const Content = lazy(() => import("@/pages/admin/Content"));
-const Settings = lazy(() => import("@/pages/admin/Settings"));
+const AdminContent = lazy(() => import("@/pages/admin/Content"));
+const AdminSettings = lazy(() => import("@/pages/admin/Settings"));
 
 function Router() {
   return (
@@ -55,6 +77,84 @@ function Router() {
         </Suspense>
       </Route>
       
+      {/* Product Pages */}
+      <Route path="/platform-overview">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <PlatformOverview />
+        </Suspense>
+      </Route>
+      <Route path="/ai-content-assistant">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <AIContentAssistant />
+        </Suspense>
+      </Route>
+      <Route path="/training-centers">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <TrainingCenters />
+        </Suspense>
+      </Route>
+      <Route path="/results">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Results />
+        </Suspense>
+      </Route>
+      <Route path="/contact">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Contact />
+        </Suspense>
+      </Route>
+
+      {/* Feature Pages */}
+      <Route path="/features/automation">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Automation />
+        </Suspense>
+      </Route>
+      <Route path="/features/hyperpersonalization">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Hyperpersonalization />
+        </Suspense>
+      </Route>
+      <Route path="/features/adaptive-intelligence">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <AdaptiveIntelligence />
+        </Suspense>
+      </Route>
+      <Route path="/features/analytics-compliance">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <AnalyticsCompliance />
+        </Suspense>
+      </Route>
+
+      {/* Use Case Pages */}
+      <Route path="/use-cases/software-training">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <SoftwareTraining />
+        </Suspense>
+      </Route>
+      <Route path="/use-cases/role-based">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <RoleBased />
+        </Suspense>
+      </Route>
+      <Route path="/use-cases/compliance">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <ComplianceUseCase />
+        </Suspense>
+      </Route>
+
+      {/* About Pages */}
+      <Route path="/learnpack-vs-bootcamp">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <LearnPackVsBootcamp />
+        </Suspense>
+      </Route>
+      <Route path="/blog">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Blog />
+        </Suspense>
+      </Route>
+      
       {/* Login */}
       <Route path="/login" component={Login} />
       
@@ -72,7 +172,7 @@ function Router() {
         <ProtectedRoute>
           <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
             <AdminLayout>
-              <Content />
+              <AdminContent />
             </AdminLayout>
           </Suspense>
         </ProtectedRoute>
@@ -81,7 +181,7 @@ function Router() {
         <ProtectedRoute>
           <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
             <AdminLayout>
-              <Settings />
+              <AdminSettings />
             </AdminLayout>
           </Suspense>
         </ProtectedRoute>

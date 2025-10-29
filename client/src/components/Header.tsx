@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
+import { ChevronDown, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, BookOpen, MessageSquare, Mail } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
 import learnpackLogoLight from '@assets/logo-small-learnpack-light_1759003192973.png';
@@ -12,6 +13,7 @@ export default function Header() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,10 +30,8 @@ export default function Header() {
       setIsDarkMode(document.documentElement.classList.contains('dark'));
     };
 
-    // Initial check
     checkTheme();
 
-    // Watch for theme changes
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
@@ -39,6 +39,19 @@ export default function Header() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('[data-dropdown]')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
   const handleSignIn = () => {
@@ -53,6 +66,14 @@ export default function Header() {
     window.location.href = `${platformUrl}/signup`;
   };
 
+  const toggleDropdown = (name: string) => {
+    setActiveDropdown(activeDropdown === name ? null : name);
+  };
+
+  const closeDropdown = () => {
+    setActiveDropdown(null);
+  };
+
   return (
     <header 
       className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
@@ -65,52 +86,223 @@ export default function Header() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-8">
-          <img 
-            src={isDarkMode ? learnpackLogoDark : learnpackLogoLight} 
-            alt="LearnPack" 
-            width={132}
-            height={32}
-            className="h-8 w-auto"
-            loading="eager"
-            decoding="async"
-            data-testid="img-logo"
-          />
+          <Link href="/">
+            <img 
+              src={isDarkMode ? learnpackLogoDark : learnpackLogoLight} 
+              alt="LearnPack" 
+              width={132}
+              height={32}
+              className="h-8 w-auto cursor-pointer"
+              loading="eager"
+              decoding="async"
+              data-testid="img-logo"
+            />
+          </Link>
           
           {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {location === '/' ? (
-              <a 
-                href="#valueProps" 
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                data-testid="link-features"
+          <nav className="hidden lg:flex items-center space-x-1">
+            {/* Product Dropdown */}
+            <div className="relative" data-dropdown="product">
+              <button
+                onClick={() => toggleDropdown('product')}
+                className="flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
+                data-testid="button-product-menu"
               >
-                {t('nav.features')}
-              </a>
-            ) : (
-              <Link 
-                href="/#valueProps" 
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                data-testid="link-features"
-              >
-                {t('nav.features')}
-              </Link>
-            )}
+                Product
+                <ChevronDown className={`h-4 w-4 transition-transform ${activeDropdown === 'product' ? 'rotate-180' : ''}`} />
+              </button>
+
+              {activeDropdown === 'product' && (
+                <div className="absolute top-full left-0 mt-2 w-[520px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
+                  <div className="p-6 space-y-6">
+                    {/* Platform Overview */}
+                    <Link href="/platform-overview" onClick={closeDropdown}>
+                      <div className="p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-platform-overview">
+                        <div className="font-medium text-foreground">Platform Overview</div>
+                        <div className="text-sm text-muted-foreground mt-1">See how LearnPack transforms training</div>
+                      </div>
+                    </Link>
+
+                    {/* Features Section */}
+                    <div>
+                      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-3">Features</div>
+                      <div className="space-y-1">
+                        <Link href="/features/automation" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-automation">
+                            <Settings className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">End-to-End Automation</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">Turn any document into a course</div>
+                            </div>
+                          </div>
+                        </Link>
+
+                        <Link href="/features/hyperpersonalization" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-personalization">
+                            <Brain className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">Hyperpersonalized Learning</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">AI adapts each learner's content</div>
+                            </div>
+                          </div>
+                        </Link>
+
+                        <Link href="/features/adaptive-intelligence" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-intelligence">
+                            <BarChart3 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">Adaptive Course Intelligence</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">Real-time data & insights</div>
+                            </div>
+                          </div>
+                        </Link>
+
+                        <Link href="/features/analytics-compliance" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-analytics">
+                            <FileCheck2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">Analytics & Compliance</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">Measure results & export SCORM</div>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Use Cases Section */}
+                    <div>
+                      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-3">Use Cases</div>
+                      <div className="space-y-1">
+                        <Link href="/use-cases/software-training" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-usecase-software">
+                            <Laptop className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">Software & Tool Training</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">Train teams on internal tools</div>
+                            </div>
+                          </div>
+                        </Link>
+
+                        <Link href="/use-cases/role-based" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-usecase-role">
+                            <Users className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">Role-Based Development</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">Upskill by job function</div>
+                            </div>
+                          </div>
+                        </Link>
+
+                        <Link href="/use-cases/compliance" onClick={closeDropdown}>
+                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-usecase-compliance">
+                            <CheckSquare className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground">Compliance & Certification</div>
+                              <div className="text-sm text-muted-foreground mt-0.5">Automate audits & renewals</div>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* AI Content Assistant */}
+            <Link 
+              href="/ai-content-assistant" 
+              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
+              data-testid="link-ai-assistant"
+            >
+              AI Content Assistant
+            </Link>
+
+            {/* Training Centers */}
+            <Link 
+              href="/training-centers" 
+              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
+              data-testid="link-training-centers"
+            >
+              Training Centers
+            </Link>
+
+            {/* Pricing */}
             <Link 
               href="/pricing" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
               data-testid="link-pricing"
             >
-              {t('nav.pricing')}
+              Pricing
             </Link>
+
+            {/* Results */}
+            <Link 
+              href="/results" 
+              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
+              data-testid="link-results"
+            >
+              Results
+            </Link>
+
+            {/* Docs */}
             <a 
               href="https://docs.learnpack.co/" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
               data-testid="link-docs"
             >
-              {t('nav.docs')}
+              Docs
             </a>
+
+            {/* About Dropdown */}
+            <div className="relative" data-dropdown="about">
+              <button
+                onClick={() => toggleDropdown('about')}
+                className="flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
+                data-testid="button-about-menu"
+              >
+                About
+                <ChevronDown className={`h-4 w-4 transition-transform ${activeDropdown === 'about' ? 'rotate-180' : ''}`} />
+              </button>
+
+              {activeDropdown === 'about' && (
+                <div className="absolute top-full right-0 mt-2 w-[340px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
+                  <div className="p-4 space-y-1">
+                    <Link href="/learnpack-vs-bootcamp" onClick={closeDropdown}>
+                      <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-comparison">
+                        <TrendingUp className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground">LearnPack vs Bootcamp</div>
+                          <div className="text-sm text-muted-foreground mt-0.5">See how we compare</div>
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link href="/blog" onClick={closeDropdown}>
+                      <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-blog">
+                        <BookOpen className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground">Blog / Insights</div>
+                          <div className="text-sm text-muted-foreground mt-0.5">Latest updates & resources</div>
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link href="/contact" onClick={closeDropdown}>
+                      <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-contact">
+                        <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground">Contact</div>
+                          <div className="text-sm text-muted-foreground mt-0.5">Get in touch with our team</div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
         </div>
 
@@ -119,12 +311,15 @@ export default function Header() {
           <LanguageSwitcher />
           <Button 
             variant="ghost" 
+            size="sm"
             onClick={handleSignIn}
             data-testid="button-signin"
+            className="hidden sm:inline-flex"
           >
             {t('nav.signIn')}
           </Button>
           <Button 
+            size="sm"
             onClick={handleTryFree}
             data-testid="button-try-free"
           >
