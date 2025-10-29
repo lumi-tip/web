@@ -1,8 +1,8 @@
-# replit.md
+# LearnPack replit.md
 
 ## Overview
 
-LearnPack is a modern educational technology platform that enables users to create interactive learning packages in minutes. The application allows users to transform ideas into structured learning experiences that can be exported to various formats (SCORM, ePub, iFrame, etc.). Built as a full-stack web application with a focus on AI-powered content generation, the platform targets educators, trainers, and organizations looking to streamline their learning content creation process.
+LearnPack is an educational technology platform designed to help users create interactive learning packages rapidly. It supports the transformation of ideas into structured learning experiences, exportable to formats like SCORM, ePub, and iFrame. This full-stack web application leverages AI for content generation, targeting educators, trainers, and organizations aiming to streamline content creation.
 
 ## User Preferences
 
@@ -10,188 +10,43 @@ Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
-### Frontend Architecture
-- **Framework**: React with TypeScript using Vite as the build tool
-- **Styling**: Tailwind CSS with a custom design system featuring dark theme as default
-- **UI Components**: Radix UI primitives with shadcn/ui component library for consistent, accessible interfaces
-- **Routing**: Wouter for lightweight client-side routing with the following pages:
-  - `/` - Homepage with hero, social proof, value props, video demo, skills showcase, how it works, stats, and final CTA
-  - `/pricing` - Dedicated pricing page with BreathCode API-powered pricing tables
-  - `/our-mission` - Company mission statement page
-  - `/terms-and-conditions` - Terms and conditions legal page
-  - `/privacy-policy` - Privacy policy legal page
-- **State Management**: TanStack Query for server state management and caching
-- **Forms**: React Hook Form with Zod validation for type-safe form handling
+### Frontend
+- **Framework**: React with TypeScript (Vite).
+- **Styling**: Tailwind CSS, custom design system, dark theme default.
+- **UI Components**: Radix UI primitives with shadcn/ui.
+- **Routing**: Wouter for client-side routing, Supabase-inspired multi-level navigation.
+- **State Management**: TanStack Query for server state.
+- **Forms**: React Hook Form with Zod validation.
+- **SEO**: `react-helmet-async` for dynamic meta tags, localized SEO, and JSON-LD schema.
+- **Internationalization**: `react-i18next` for English and Spanish, dynamic loading, and namespace management.
+- **Redirects**: YAML-based configuration for automatic URL redirects with query parameter preservation.
 
-### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **Language**: TypeScript with ES modules
-- **API Design**: RESTful API with `/api` prefix routing
-- **Development**: Hot reload with Vite integration and custom error handling middleware
-
-### Database Layer
-- **ORM**: Drizzle ORM for type-safe database operations
-- **Schema**: Centralized schema definition with Zod validation integration
-- **Migrations**: Drizzle Kit for database migrations and schema management
-- **Storage Interface**: Abstracted storage layer with in-memory implementation for development
+### Backend
+- **Runtime**: Node.js with Express.js.
+- **Language**: TypeScript with ES modules.
+- **API**: RESTful API, `/api` prefix.
+- **Database ORM**: Drizzle ORM for type-safe operations, Drizzle Kit for migrations.
+- **Authentication**: BreathCode API-based for admin access, token storage in localStorage (to be migrated to HttpOnly cookies).
+- **Session Management**: Express sessions with PostgreSQL store.
 
 ### Design System
-- **Color Palette**: Dark theme primary with deep charcoal background and vibrant purple accents
-- **Typography**: Inter for UI elements, JetBrains Mono for code/technical content
-- **Component System**: Glass-morphism effects, hover states, and consistent spacing using Tailwind primitives
-- **Layout**: Container-based responsive design with 7xl max-width (1280px)
+- **Color Palette**: Dark theme with charcoal background and purple accents.
+- **Typography**: Inter (UI), JetBrains Mono (code).
+- **Components**: Glass-morphism effects, consistent spacing.
+- **Layout**: Container-based responsive design (7xl max-width).
 
-### Content Management
-- **Static Content**: Markdown files served statically for legal pages (terms, privacy policy)
-- **Asset Handling**: Organized asset management with dedicated attached_assets directory
-- **Documentation**: README.md (project overview) and CONTRIBUTE.md (translation contribution guide) for GitHub repository
-
-### SEO & Meta Tag Management
-- **Dynamic Head Management**: react-helmet-async for per-page, per-language meta tag rendering
-- **SEO Component**: Centralized `client/src/components/SEO.tsx` handles all meta tags with i18n integration
-- **Meta Tag Coverage**:
-  - Primary: `<title>`, `<meta name="description">`, `<meta name="keywords">`
-  - Open Graph: og:type, og:title, og:description, og:site_name, og:locale, og:locale:alternate
-  - Twitter Cards: twitter:card, twitter:title, twitter:description, twitter:creator
-  - Additional: robots, language (dynamic), canonical URL (client-side via useEffect)
-- **Localized SEO**: Each page has language-specific meta tags in translation files (meta.title, meta.ogTitle, etc.)
-- **Multilingual Support**: 
-  - og:locale tags (en_US / es_ES) with og:locale:alternate for alternate language
-  - Language meta tag dynamically updates based on i18n.language
-  - Helmet key prop forces re-render on language switch for proper OG tag updates
-- **JSON-LD Schema**: Static structured data for Organization in index.html
-- **No Duplicates**: Removed legacy static OG tags from index.html; all managed by react-helmet-async
-- **SSR-Safe**: Canonical URLs set via useEffect to avoid window references during potential SSR
-
-### Pricing System
-- **API Integration**: Full BreathCode API integration for dynamic pricing tables at `/pricing` (public page, no authentication required)
-- **Authentication**: Token-based authentication via `VITE_BREATHCODE_API_TOKEN` environment variable
-- **Academy Configuration**: Configurable via `VITE_BREATHCODE_ACADEMY_ID` environment variable (defaults to 54)
-- **API Endpoints**:
-  - Plans: `GET /v1/payments/academy/plan?academy={ACADEMY_ID}`
-  - Service Items: `GET /v2/payments/serviceitem?plan={PLAN_SLUG}&country_code={COUNTRY}`
-  - Coupons: `GET /v2/payments/coupon?plan={PLAN_SLUG}`
-- **Data Processing**: Template variable replacement system for localized content ({how_many}, {unit_price}, {service_title})
-- **Feature Inheritance**: Tiered plan system (Learner → Teacher → School) with automatic feature inheritance from cheaper plans
-- **Coupon Support**: Auto-applied coupons with strikethrough pricing and discount badges
-- **Bilingual Support**: JSON configuration files (plan-features.en.json, plan-features.es.json) for English and Spanish locales
-- **Graceful Degradation**: Features requiring missing service data are automatically skipped to prevent malformed text
-- **UI/UX**: Monthly/Annual billing toggle, responsive 3-column grid, "Most Popular" badge on middle tier
-
-### Authentication & Redirect Flow
-- **Platform URL Configuration**: 
-  - Authentication/signup flows use `VITE_LEARNPACK_PLATFORM` environment variable (defaults to https://app.learnpack.co)
-  - Creator flows use `VITE_LEARNPACK_CREATOR` environment variable (defaults to https://app.learnpack.co)
-- **Login/Signup Redirects**:
-  - Sign In (Header): `{PLATFORM}/login`
-  - Try Free (Header): `{PLATFORM}/signup`
-  - Start Creating (Final CTA): `{PLATFORM}/signup`
-  - Hero Form Submit: `{CREATOR}/creator?description={topic}&purpose={purpose}&new=true`
-  - Docs (Header): `https://docs.learnpack.co/`
-- **Plan Checkout Flow**:
-  - When user selects a plan, constructs checkout path: `/plan-checkout?plan={slug}&name={encoded_title}&frequency={monthly|annual}`
-  - Base64 encodes the checkout path
-  - URL-encodes the base64 string for safe query parameter usage
-  - Redirects to: `{PLATFORM}/login?next={url_encoded_base64_path}`
-  - Platform should: URL-decode → Base64-decode → Parse checkout path
-
-### Admin Authentication System
-- **Authentication Provider**: BreathCode API-based authentication for admin access
-- **Access Control**: Users must have "webmaster" capability from LearnPack academy (academy_id: 54)
-- **Token Storage**: API tokens stored in localStorage (note: vulnerable to XSS, future migration to HttpOnly cookies recommended)
-- **API Configuration**: 
-  - Base URL configured via `BREATHCODE_HOST` environment variable (defaults to https://api.breatheco.de)
-- **Backend Routes** (`server/auth.ts`):
-  - `POST /api/auth/login` - Proxies login to BreathCode API, returns user and token
-  - `GET /api/auth/me` - Proxies user profile request with auth token
-  - `POST /api/auth/logout` - Proxies logout (handles 204 No Content responses)
-  - All endpoints include defensive JSON parsing to handle malformed or empty responses
-- **Frontend Components**:
-  - `AuthContext` - Manages authentication state, token persistence, and webmaster capability checking
-  - `ProtectedRoute` - Route guard that redirects unauthenticated users to login and shows access denied for non-webmaster users
-  - `Login` - Email/password login form with error handling and toast notifications
-- **Admin Routes** (all protected):
-  - `/login` - Admin login page
-  - `/admin` - Dashboard with system stats
-  - `/admin/content` - Content management (placeholder)
-  - `/admin/settings` - System settings (placeholder)
-- **Admin Layout**: Consistent layout with navigation header, user info, and logout functionality
-- **Security Considerations**: 
-  - Authorization header sent with all authenticated requests
-  - Permission check verifies academy membership and webmaster capability
-  - Graceful handling of authentication errors and unauthorized access attempts
-
-### URL Redirect System
-- **Configuration File**: `client/public/redirects.yml` - YAML-based redirect rules
-- **Implementation**: Automatic redirect handling on route changes via `RedirectHandler` component
-- **Features**:
-  - YAML configuration for easy redirect management
-  - Query string parameter preservation (all params automatically carried over)
-  - Support for both relative paths (`/pricing`) and absolute URLs (`https://example.com`)
-  - Path normalization with trailing slash handling
-  - SPA-friendly internal navigation (no page reload for relative redirects)
-  - Full page navigation for external/absolute URLs
-- **Configuration Format**:
-  ```yaml
-  redirects:
-    - from: /old-path
-      to: /new-path
-    - from: /external-link
-      to: https://example.com/page
-  ```
-- **Query String Handling**: 
-  - Relative redirects append query params: `/old?x=1` → `/new?x=1`
-  - Absolute redirects merge params (destination params take precedence)
-- **Files**: `client/src/lib/redirects.ts`, `client/src/components/RedirectHandler.tsx`
-
-### Internationalization & Translation System
-- **Framework**: react-i18next with i18next-http-backend for dynamic loading and lazy namespace loading
-- **Supported Languages**: English (en) and Spanish (es) with English as fallback
-- **Language Detection**: Automatic detection via query params (`?lang=es`), localStorage, browser settings, or HTML tag
-- **Translation Files Structure** (Organized by page for maintainability):
-  - **Shared UI**: `client/public/locales/{lang}/common.json` (nav, footer, common strings)
-  - **Homepage**: `client/public/locales/{lang}/home.json` (hero, social proof, value props, skills, how it works, stats, final CTA, video demo, + SEO meta)
-  - **Pricing Page**: `client/public/locales/{lang}/pricing.json` (pricing content + SEO meta)
-  - **Mission Page**: `client/public/locales/{lang}/mission.json` (mission content + SEO meta)
-  - **Legal Pages**: `client/public/locales/{lang}/legal.json` (terms & privacy SEO meta)
-  - **Pricing Features**: `client/public/plan-features.{lang}.json` (dynamic pricing features)
-- **Namespace System**: Multiple namespaces (common, home, pricing, mission, legal) loaded on-demand per page
-- **Dynamic Variables**: Template variable system supports `{how_many}`, `{unit_price}`, `{{year}}` replacements
-- **Contribution Guide**: `CONTRIBUTE.md` provides detailed instructions for translating content via GitHub PRs with updated file structure
-- **Testing**: Language can be forced via `?lang=XX` query parameter for testing
-- **Files**: `client/src/i18n/index.ts`, `client/public/locales/`, `CONTRIBUTE.md`
-
-### Development Workflow
-- **Build System**: Vite for frontend bundling, esbuild for backend compilation
-- **Type Safety**: Strict TypeScript configuration with path aliases and shared types
-- **Error Handling**: Custom error overlay for development with comprehensive logging
+### Feature Specifications
+- **Navigation**: Multi-level header with dropdowns (Product, About), direct links.
+- **Pricing System**: Full BreathCode API integration for dynamic pricing, tiered plans, coupon support, and bilingual configuration.
+- **Authentication & Redirect Flow**: Configurable platform URLs for login/signup, creator flows, and plan checkout redirects with Base64 encoding.
+- **Admin System**: Protected routes, `AuthContext`, `ProtectedRoute`, and `Login` components for admin access control with "webmaster" capability.
 
 ## External Dependencies
 
-### UI and Styling
-- **Radix UI**: Comprehensive set of accessible, unstyled UI primitives
-- **Tailwind CSS**: Utility-first CSS framework with custom configuration
-- **Lucide React**: Icon library for consistent iconography
-- **Google Fonts**: Inter and JetBrains Mono via CDN
-
-### Development Tools
-- **Drizzle Kit**: Database schema management and migrations
-- **TanStack Query**: Server state management and caching
-- **React Hook Form**: Form management with validation
-- **Wouter**: Lightweight routing solution
-
-### Database
-- **PostgreSQL**: Primary database (configured via Drizzle but may need Postgres setup)
-- **Neon Database**: Serverless PostgreSQL connection driver
-
-### Analytics and Tracking
-- **Custom Analytics**: Built-in event tracking system with stub implementations for development
-- **Global Tracking**: Window-based analytics integration ready for production analytics services
-
-### Build and Deployment
-- **Vite**: Frontend build system with plugin ecosystem
-- **esbuild**: Backend compilation for production builds
-- **PostCSS**: CSS processing with Autoprefixer
-
-### Session Management
-- **connect-pg-simple**: PostgreSQL session store for Express sessions
+- **UI and Styling**: Radix UI, Tailwind CSS, Lucide React, Google Fonts.
+- **Development Tools**: Drizzle Kit, TanStack Query, React Hook Form, Wouter.
+- **Database**: PostgreSQL, Neon Database.
+- **API Integration**: BreathCode API (for pricing and authentication).
+- **Internationalization**: `react-i18next`, `i18next-http-backend`.
+- **Build Tools**: Vite, esbuild, PostCSS.
+- **Session Store**: `connect-pg-simple`.

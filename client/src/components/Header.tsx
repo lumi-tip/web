@@ -116,54 +116,69 @@ export default function Header() {
                 <div className="absolute top-full left-0 mt-2 w-[520px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
                   <div className="p-6 space-y-6">
                     {/* Platform Overview */}
-                    <Link href="/platform-overview" onClick={closeDropdown}>
-                      <div className="p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-platform-overview">
-                        <div className="font-medium text-foreground">Platform Overview</div>
-                        <div className="text-sm text-muted-foreground mt-1">See how LearnPack transforms training</div>
-                      </div>
+                    <Link 
+                      href="/platform-overview"
+                      className="block p-3 rounded-md hover-elevate cursor-pointer"
+                      data-testid="link-platform-overview"
+                      onClick={closeDropdown}
+                    >
+                      <div className="font-medium text-foreground">Platform Overview</div>
+                      <div className="text-sm text-muted-foreground mt-1">See how LearnPack transforms training</div>
                     </Link>
 
                     {/* Features Section */}
                     <div>
                       <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-3">Features</div>
                       <div className="space-y-1">
-                        <Link href="/features/automation" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-automation">
-                            <Settings className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">End-to-End Automation</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">Turn any document into a course</div>
-                            </div>
+                        <Link 
+                          href="/features/automation"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-feature-automation"
+                          onClick={closeDropdown}
+                        >
+                          <Settings className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">End-to-End Automation</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">Turn any document into a course</div>
                           </div>
                         </Link>
 
-                        <Link href="/features/hyperpersonalization" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-personalization">
-                            <Brain className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">Hyperpersonalized Learning</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">AI adapts each learner's content</div>
-                            </div>
+                        <Link 
+                          href="/features/hyperpersonalization"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-feature-personalization"
+                          onClick={closeDropdown}
+                        >
+                          <Brain className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">Hyperpersonalized Learning</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">AI adapts each learner's content</div>
                           </div>
                         </Link>
 
-                        <Link href="/features/adaptive-intelligence" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-intelligence">
-                            <BarChart3 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">Adaptive Course Intelligence</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">Real-time data & insights</div>
-                            </div>
+                        <Link 
+                          href="/features/adaptive-intelligence"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-feature-intelligence"
+                          onClick={closeDropdown}
+                        >
+                          <BarChart3 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">Adaptive Course Intelligence</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">Real-time data & insights</div>
                           </div>
                         </Link>
 
-                        <Link href="/features/analytics-compliance" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-feature-analytics">
-                            <FileCheck2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">Analytics & Compliance</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">Measure results & export SCORM</div>
-                            </div>
+                        <Link 
+                          href="/features/analytics-compliance"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-feature-analytics"
+                          onClick={closeDropdown}
+                        >
+                          <FileCheck2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">Analytics & Compliance</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">Measure results & export SCORM</div>
                           </div>
                         </Link>
                       </div>
@@ -173,33 +188,42 @@ export default function Header() {
                     <div>
                       <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-3">Use Cases</div>
                       <div className="space-y-1">
-                        <Link href="/use-cases/software-training" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-usecase-software">
-                            <Laptop className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">Software & Tool Training</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">Train teams on internal tools</div>
-                            </div>
+                        <Link 
+                          href="/use-cases/software-training"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-usecase-software"
+                          onClick={closeDropdown}
+                        >
+                          <Laptop className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">Software & Tool Training</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">Train teams on internal tools</div>
                           </div>
                         </Link>
 
-                        <Link href="/use-cases/role-based" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-usecase-role">
-                            <Users className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">Role-Based Development</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">Upskill by job function</div>
-                            </div>
+                        <Link 
+                          href="/use-cases/role-based"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-usecase-role"
+                          onClick={closeDropdown}
+                        >
+                          <Users className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">Role-Based Development</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">Upskill by job function</div>
                           </div>
                         </Link>
 
-                        <Link href="/use-cases/compliance" onClick={closeDropdown}>
-                          <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-usecase-compliance">
-                            <CheckSquare className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground">Compliance & Certification</div>
-                              <div className="text-sm text-muted-foreground mt-0.5">Automate audits & renewals</div>
-                            </div>
+                        <Link 
+                          href="/use-cases/compliance"
+                          className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-usecase-compliance"
+                          onClick={closeDropdown}
+                        >
+                          <CheckSquare className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-foreground">Compliance & Certification</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">Automate audits & renewals</div>
                           </div>
                         </Link>
                       </div>
@@ -270,33 +294,42 @@ export default function Header() {
               {activeDropdown === 'about' && (
                 <div className="absolute top-full right-0 mt-2 w-[340px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
                   <div className="p-4 space-y-1">
-                    <Link href="/learnpack-vs-bootcamp" onClick={closeDropdown}>
-                      <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-comparison">
-                        <TrendingUp className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground">LearnPack vs Bootcamp</div>
-                          <div className="text-sm text-muted-foreground mt-0.5">See how we compare</div>
-                        </div>
+                    <Link 
+                      href="/learnpack-vs-bootcamp"
+                      className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                      data-testid="link-comparison"
+                      onClick={closeDropdown}
+                    >
+                      <TrendingUp className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-foreground">LearnPack vs Bootcamp</div>
+                        <div className="text-sm text-muted-foreground mt-0.5">See how we compare</div>
                       </div>
                     </Link>
 
-                    <Link href="/blog" onClick={closeDropdown}>
-                      <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-blog">
-                        <BookOpen className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground">Blog / Insights</div>
-                          <div className="text-sm text-muted-foreground mt-0.5">Latest updates & resources</div>
-                        </div>
+                    <Link 
+                      href="/blog"
+                      className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                      data-testid="link-blog"
+                      onClick={closeDropdown}
+                    >
+                      <BookOpen className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-foreground">Blog / Insights</div>
+                        <div className="text-sm text-muted-foreground mt-0.5">Latest updates & resources</div>
                       </div>
                     </Link>
 
-                    <Link href="/contact" onClick={closeDropdown}>
-                      <div className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer" data-testid="link-contact">
-                        <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground">Contact</div>
-                          <div className="text-sm text-muted-foreground mt-0.5">Get in touch with our team</div>
-                        </div>
+                    <Link 
+                      href="/contact"
+                      className="flex gap-3 p-3 rounded-md hover-elevate cursor-pointer"
+                      data-testid="link-contact"
+                      onClick={closeDropdown}
+                    >
+                      <Mail className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-foreground">Contact</div>
+                        <div className="text-sm text-muted-foreground mt-0.5">Get in touch with our team</div>
                       </div>
                     </Link>
                   </div>
