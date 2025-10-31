@@ -40,6 +40,8 @@ const ComplianceUseCase = lazy(() => import("@/pages/usecases/Compliance"));
 // About pages
 const LearnPackVsBootcamp = lazy(() => import("@/pages/LearnPackVsBootcamp"));
 const Blog = lazy(() => import("@/pages/Blog"));
+const Vision = lazy(() => import("@/pages/Vision"));
+const Timeline = lazy(() => import("@/pages/Timeline"));
 
 // Lazy load admin pages
 const AdminLayout = lazy(() => import("@/pages/admin/AdminLayout"));
@@ -152,6 +154,16 @@ function Router() {
       <Route path="/blog">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <Blog />
+        </Suspense>
+      </Route>
+      <Route path="/vision">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Vision />
+        </Suspense>
+      </Route>
+      <Route path="/timeline">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Timeline />
         </Suspense>
       </Route>
       

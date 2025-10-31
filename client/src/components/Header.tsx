@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, BookOpen, MessageSquare, Mail } from 'lucide-react';
+import { ChevronDown, ChevronRight, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, BookOpen, MessageSquare, Mail, Building2, Target, Clock } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
 import learnpackLogoLight from '@assets/logo-small-learnpack-light_1759003192973.png';
@@ -14,6 +14,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,8 +124,12 @@ export default function Header() {
               </button>
 
               {activeDropdown === 'product' && (
-                <div className="absolute top-full left-0 mt-2 w-[600px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
-                  <div className="p-4">
+                <>
+                  {/* Invisible hover bridge to prevent gap */}
+                  <div className="absolute top-full left-0 w-full h-2 bg-transparent" />
+                  
+                  <div className="absolute top-full left-0 mt-2 w-[600px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
+                    <div className="p-4">
                     {/* Platform Overview - Destacado arriba */}
                     <Link 
                       href="/platform-overview"
@@ -241,18 +246,36 @@ export default function Header() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-border my-2"></div>
+
+                    {/* LearnPack vs Competition - moved from About */}
+                    <Link 
+                      href="/learnpack-vs-bootcamp"
+                      className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                      data-testid="link-comparison"
+                      onClick={closeDropdown}
+                    >
+                      <TrendingUp className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-foreground text-sm">LearnPack vs Competition</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">See how we compare</div>
+                      </div>
+                    </Link>
+                    </div>
                   </div>
-                </div>
+                </>
               )}
             </div>
 
-            {/* AI Content Assistant */}
+            {/* Instructional Designer */}
             <Link 
               href="/ai-content-assistant" 
               className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
               data-testid="link-ai-assistant"
             >
-              AI Content Assistant
+              Instructional Designer
             </Link>
 
             {/* Training Centers */}
@@ -298,7 +321,10 @@ export default function Header() {
               className="relative" 
               data-dropdown="about"
               onMouseEnter={() => openDropdown('about')}
-              onMouseLeave={closeDropdown}
+              onMouseLeave={() => {
+                closeDropdown();
+                setActiveSubmenu(null);
+              }}
             >
               <button
                 onClick={() => toggleDropdown('about')}
@@ -311,48 +337,108 @@ export default function Header() {
               </button>
 
               {activeDropdown === 'about' && (
-                <div className="absolute top-full right-0 mt-2 w-[280px] bg-card border border-border rounded-lg shadow-lg overflow-hidden">
-                  <div className="p-3 space-y-0.5">
-                    <Link 
-                      href="/learnpack-vs-bootcamp"
-                      className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                      data-testid="link-comparison"
-                      onClick={closeDropdown}
-                    >
-                      <TrendingUp className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium text-foreground text-sm">LearnPack vs Bootcamp</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">See how we compare</div>
-                      </div>
-                    </Link>
+                <>
+                  {/* Invisible hover bridge */}
+                  <div className="absolute top-full left-0 w-full h-2 bg-transparent" />
+                  
+                  <div className="absolute top-full right-0 mt-2 w-[280px] bg-card border border-border rounded-lg shadow-lg overflow-visible">
+                    <div className="p-3 space-y-0.5">
+                      {/* Company submenu */}
+                      <div 
+                        className="relative"
+                        onMouseEnter={() => setActiveSubmenu('company')}
+                        onMouseLeave={() => setActiveSubmenu(null)}
+                      >
+                        <div className="flex items-center justify-between gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                          data-testid="link-company-menu"
+                        >
+                          <div className="flex gap-2.5 flex-1">
+                            <Building2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground text-sm">Company</div>
+                              <div className="text-xs text-muted-foreground mt-0.5">Learn about our story</div>
+                            </div>
+                          </div>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                        </div>
 
-                    <Link 
-                      href="/blog"
-                      className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                      data-testid="link-blog"
-                      onClick={closeDropdown}
-                    >
-                      <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium text-foreground text-sm">Blog / Insights</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Latest updates & resources</div>
-                      </div>
-                    </Link>
+                        {/* Company Submenu */}
+                        {activeSubmenu === 'company' && (
+                          <div className="absolute left-full top-0 ml-1 w-[240px] bg-card border border-border rounded-lg shadow-lg">
+                            <div className="p-2 space-y-0.5">
+                              <Link 
+                                href="/our-mission"
+                                className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                                data-testid="link-mission"
+                                onClick={closeDropdown}
+                              >
+                                <Target className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-medium text-foreground text-sm">Mission</div>
+                                  <div className="text-xs text-muted-foreground mt-0.5">Our purpose and goals</div>
+                                </div>
+                              </Link>
 
-                    <Link 
-                      href="/contact"
-                      className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                      data-testid="link-contact"
-                      onClick={closeDropdown}
-                    >
-                      <Mail className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium text-foreground text-sm">Contact</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Get in touch with our team</div>
+                              <Link 
+                                href="/vision"
+                                className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                                data-testid="link-vision"
+                                onClick={closeDropdown}
+                              >
+                                <Building2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-medium text-foreground text-sm">Vision</div>
+                                  <div className="text-xs text-muted-foreground mt-0.5">Where we're headed</div>
+                                </div>
+                              </Link>
+
+                              <Link 
+                                href="/timeline"
+                                className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                                data-testid="link-timeline"
+                                onClick={closeDropdown}
+                              >
+                                <Clock className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-medium text-foreground text-sm">Timeline</div>
+                                  <div className="text-xs text-muted-foreground mt-0.5">Our journey so far</div>
+                                </div>
+                              </Link>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </Link>
+
+                      {/* Blog / Insights */}
+                      <Link 
+                        href="/blog"
+                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                        data-testid="link-blog"
+                        onClick={closeDropdown}
+                      >
+                        <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground text-sm">Blog / Insights</div>
+                          <div className="text-xs text-muted-foreground mt-0.5">Latest updates & resources</div>
+                        </div>
+                      </Link>
+
+                      {/* Contact */}
+                      <Link 
+                        href="/contact"
+                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                        data-testid="link-contact"
+                        onClick={closeDropdown}
+                      >
+                        <Mail className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground text-sm">Contact</div>
+                          <div className="text-xs text-muted-foreground mt-0.5">Get in touch with our team</div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </>
               )}
             </div>
           </nav>
