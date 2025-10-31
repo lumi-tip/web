@@ -377,8 +377,12 @@ export default function Header() {
                         onMouseEnter={() => setActiveSubmenu('company')}
                         onMouseLeave={() => setActiveSubmenu(null)}
                       >
-                        <div className="flex items-center justify-between gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                        <button
+                          type="button"
+                          className="flex items-center justify-between gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer w-full text-left"
                           data-testid="link-company-menu"
+                          onClick={() => setActiveSubmenu(activeSubmenu === 'company' ? null : 'company')}
+                          onFocus={() => setActiveSubmenu('company')}
                         >
                           <div className="flex gap-2.5 flex-1">
                             <Building2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
@@ -388,11 +392,11 @@ export default function Header() {
                             </div>
                           </div>
                           <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                        </div>
+                        </button>
 
                         {/* Company Submenu */}
                         {activeSubmenu === 'company' && (
-                          <div className="absolute right-full top-0 mr-1 w-[240px] bg-card border border-border rounded-lg shadow-lg">
+                          <div className="absolute top-0 w-[240px] bg-card border border-border rounded-lg shadow-lg" style={{ right: 'calc(100% + 8px)' }}>
                             <div className="p-2 space-y-0.5">
                               <Link 
                                 href="/our-mission"
