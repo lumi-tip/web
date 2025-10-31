@@ -243,26 +243,26 @@ export default function Header() {
                               <div className="text-xs text-muted-foreground mt-0.5">Automate audits & renewals</div>
                             </div>
                           </Link>
+
+                          {/* Divider */}
+                          <div className="border-t border-border my-2"></div>
+
+                          {/* LearnPack vs Competition - in Use Cases column */}
+                          <Link 
+                            href="/learnpack-vs-bootcamp"
+                            className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                            data-testid="link-comparison"
+                            onClick={closeDropdown}
+                          >
+                            <TrendingUp className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-foreground text-sm">LearnPack vs Competition</div>
+                              <div className="text-xs text-muted-foreground mt-0.5">See how we compare</div>
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </div>
-
-                    {/* Divider */}
-                    <div className="border-t border-border my-2"></div>
-
-                    {/* LearnPack vs Competition - moved from About */}
-                    <Link 
-                      href="/learnpack-vs-bootcamp"
-                      className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                      data-testid="link-comparison"
-                      onClick={closeDropdown}
-                    >
-                      <TrendingUp className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium text-foreground text-sm">LearnPack vs Competition</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">See how we compare</div>
-                      </div>
-                    </Link>
                     </div>
                   </div>
                 </>
@@ -343,6 +343,34 @@ export default function Header() {
                   
                   <div className="absolute top-full right-0 mt-2 w-[280px] bg-card border border-border rounded-lg shadow-lg overflow-visible">
                     <div className="p-3 space-y-0.5">
+                      {/* Blog / Insights */}
+                      <Link 
+                        href="/blog"
+                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                        data-testid="link-blog"
+                        onClick={closeDropdown}
+                      >
+                        <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground text-sm">Blog / Insights</div>
+                          <div className="text-xs text-muted-foreground mt-0.5">Latest updates & resources</div>
+                        </div>
+                      </Link>
+
+                      {/* Contact */}
+                      <Link 
+                        href="/contact"
+                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                        data-testid="link-contact"
+                        onClick={closeDropdown}
+                      >
+                        <Mail className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground text-sm">Contact</div>
+                          <div className="text-xs text-muted-foreground mt-0.5">Get in touch with our team</div>
+                        </div>
+                      </Link>
+
                       {/* Company submenu */}
                       <div 
                         className="relative"
@@ -364,7 +392,7 @@ export default function Header() {
 
                         {/* Company Submenu */}
                         {activeSubmenu === 'company' && (
-                          <div className="absolute left-full top-0 ml-1 w-[240px] bg-card border border-border rounded-lg shadow-lg">
+                          <div className="absolute right-full top-0 mr-1 w-[240px] bg-card border border-border rounded-lg shadow-lg">
                             <div className="p-2 space-y-0.5">
                               <Link 
                                 href="/our-mission"
@@ -408,34 +436,6 @@ export default function Header() {
                           </div>
                         )}
                       </div>
-
-                      {/* Blog / Insights */}
-                      <Link 
-                        href="/blog"
-                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                        data-testid="link-blog"
-                        onClick={closeDropdown}
-                      >
-                        <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground text-sm">Blog / Insights</div>
-                          <div className="text-xs text-muted-foreground mt-0.5">Latest updates & resources</div>
-                        </div>
-                      </Link>
-
-                      {/* Contact */}
-                      <Link 
-                        href="/contact"
-                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                        data-testid="link-contact"
-                        onClick={closeDropdown}
-                      >
-                        <Mail className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground text-sm">Contact</div>
-                          <div className="text-xs text-muted-foreground mt-0.5">Get in touch with our team</div>
-                        </div>
-                      </Link>
                     </div>
                   </div>
                 </>
