@@ -37,6 +37,10 @@ Preferred communication style: Simple, everyday language.
 
 ### Feature Specifications
 - **Navigation**: Multi-level header with dropdowns (Product, About), direct links.
+  - **Product Dropdown**: 2-column layout with Features (left) and Use Cases (right), Platform Overview at top, "LearnPack vs Competition" at bottom with separator
+  - **About Dropdown**: Single column with nested Company submenu (Mission, Vision, Timeline), Blog/Insights, and Contact
+  - **Hover Bridges**: Invisible divs between buttons and dropdowns prevent gap issues during mouse movement
+  - **Accessibility**: Full keyboard navigation (Tab + Enter/Space), touch support for mobile
 - **Pricing System**: Full BreathCode API integration for dynamic pricing, tiered plans, coupon support, and bilingual configuration.
 - **Authentication & Redirect Flow**: Configurable platform URLs for login/signup, creator flows, and plan checkout redirects with Base64 encoding.
 - **Admin System**: Protected routes, `AuthContext`, `ProtectedRoute`, and `Login` components for admin access control with "webmaster" capability.
