@@ -159,7 +159,7 @@ export default function Hero() {
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-6">
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug"
                 data-testid="text-hero-title"
               >
                 {t("hero.title")}
@@ -253,9 +253,21 @@ export default function Hero() {
             </form>
           </div>
 
-          {/* Right Column: Placeholder for future content */}
-          <div className="hidden lg:block" data-testid="hero-right-column">
-            {/* Empty placeholder - ready for future content */}
+          {/* Right Column: Video */}
+          <div className="mt-8 lg:mt-0" data-testid="hero-right-column">
+            <div className="relative rounded-xl overflow-hidden shadow-[0_0_40px_rgba(99,102,241,0.35)]">
+              {/* 16:9 Aspect Ratio Container */}
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/dBjKIashs4Y"
+                  title="LearnPack Demo Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
