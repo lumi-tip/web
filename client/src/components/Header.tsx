@@ -243,9 +243,9 @@ export default function Header() {
                             </div>
                           </Link>
 
-                          {/* Elegant divider to separate comparison from use cases */}
+                          {/* Prominent divider to separate comparison from use cases */}
                           <div className="relative my-3">
-                            <div className="border-t border-border/60"></div>
+                            <div className="border-t-2 border-border"></div>
                           </div>
 
                           {/* LearnPack vs Competition - positioned here for visual balance */}
