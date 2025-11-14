@@ -37,10 +37,15 @@ Preferred communication style: Simple, everyday language.
 
 ### Feature Specifications
 - **Navigation**: Multi-level header with dropdowns (Product, About), direct links.
-  - **Product Dropdown**: 2-column layout with Features (left) and Use Cases (right), Platform Overview at top, "LearnPack vs Competition" at bottom with elegant divider (border-border/60, my-3 spacing) for visual separation
+  - **Product Dropdown**: 2-column layout with Features (left) and Use Cases (right), Platform Overview at top, "LearnPack vs Competition" at bottom with prominent divider (border-t-2 border-border, my-3 spacing) for visual separation
   - **About Dropdown**: Simplified single-column list with Blog/Insights, Contact, and Company (direct link to /our-mission)
   - **Hover Bridges**: Invisible divs between buttons and dropdowns prevent gap issues during mouse movement
   - **Accessibility**: Full keyboard navigation (Tab + Enter/Space), touch support for mobile
+- **Hero Section**: 2-column layout on desktop, single-column stack on mobile.
+  - **Left Column**: H1 (text-3xl md:text-4xl lg:text-5xl, leading-snug), subtitle, and course creation form - left-aligned on desktop, centered on mobile
+  - **Right Column**: YouTube demo video embed (https://youtu.be/dBjKIashs4Y) with 16:9 aspect ratio, rounded corners, and blue glow shadow effect
+  - **Responsive Behavior**: Desktop shows side-by-side layout; mobile stacks video below content
+  - **Animated Background**: Vite-inspired animated background with glowing orbs, connection lines, and particles
 - **Pricing System**: Full BreathCode API integration for dynamic pricing, tiered plans, coupon support, and bilingual configuration.
 - **Authentication & Redirect Flow**: Configurable platform URLs for login/signup, creator flows, and plan checkout redirects with Base64 encoding.
 - **Admin System**: Protected routes, `AuthContext`, `ProtectedRoute`, and `Login` components for admin access control with "webmaster" capability.
