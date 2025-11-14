@@ -153,101 +153,110 @@ export default function Hero() {
       <div className="absolute inset-0 bg-background/20" />
 
       <div className="container mx-auto relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="space-y-6">
-            <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-              data-testid="text-hero-title"
-            >
-              {t("hero.title")}
-            </h1>
+        {/* 2-column grid on desktop, single column on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Content (left-aligned on desktop, centered on mobile) */}
+          <div className="space-y-8 text-center lg:text-left">
+            <div className="space-y-6">
+              <h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                data-testid="text-hero-title"
+              >
+                {t("hero.title")}
+              </h1>
 
-            <p
-              className="text-xl text-muted-foreground max-w-2xl mx-auto"
-              data-testid="text-hero-subtitle"
-            >
-              {t("hero.subtitle")}
-            </p>
-          </div>
-
-          {/* Package Creation Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            aria-busy={isLoading}
-          >
-            <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-xl p-4 max-w-2xl mx-auto">
-              <div className="flex flex-col gap-3">
-                <Textarea
-                  placeholder={t("hero.inputPlaceholder")}
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                  onFocus={handleInputFocus}
-                  onKeyDown={handleKeyDown}
-                  className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 focus:border-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none placeholder:text-muted-foreground/70 !focus-visible:ring-0 !focus:ring-0 !focus:border-0"
-                  disabled={isLoading}
-                  data-testid="input-topic"
-                />
-
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                  <div className="flex items-center gap-2">
-                    <Select
-                      value={purpose}
-                      onValueChange={handlePurposeChange}
-                      disabled={isLoading}
-                    >
-                      <SelectTrigger
-                        className="h-8 w-auto border-0 bg-muted/50 hover:bg-muted text-xs"
-                        data-testid="select-purpose"
-                      >
-                        <SelectValue placeholder={t("hero.purposeLabel")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {PURPOSE_OPTIONS.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-
-                    {purpose && (
-                      <div className="h-8 px-3 bg-primary/10 text-primary rounded-md flex items-center text-xs font-medium">
-                        {
-                          PURPOSE_OPTIONS.find((opt) => opt.value === purpose)
-                            ?.label
-                        }
-                      </div>
-                    )}
-                  </div>
-
-                  <Button
-                    type="submit"
-                    size="sm"
-                    disabled={isLoading || !topic.trim()}
-                    className="h-8 px-4"
-                    data-testid="button-create-package"
-                  >
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="mr-1 h-3 w-3 animate-spin" />
-                        {t("hero.creating")}
-                      </>
-                    ) : (
-                      t("hero.createButton")
-                    )}
-                  </Button>
-                </div>
-              </div>
+              <p
+                className="text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
+                data-testid="text-hero-subtitle"
+              >
+                {t("hero.subtitle")}
+              </p>
             </div>
 
-            <p
-              className="text-sm text-muted-foreground text-center"
-              data-testid="text-trust-line"
+            {/* Package Creation Form */}
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+              aria-busy={isLoading}
             >
-              {t("hero.trustLine")}
-            </p>
-          </form>
+              <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-xl p-4 max-w-2xl mx-auto lg:mx-0">
+                <div className="flex flex-col gap-3">
+                  <Textarea
+                    placeholder={t("hero.inputPlaceholder")}
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    onFocus={handleInputFocus}
+                    onKeyDown={handleKeyDown}
+                    className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 focus:border-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none placeholder:text-muted-foreground/70 !focus-visible:ring-0 !focus:ring-0 !focus:border-0"
+                    disabled={isLoading}
+                    data-testid="input-topic"
+                  />
+
+                  <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                    <div className="flex items-center gap-2">
+                      <Select
+                        value={purpose}
+                        onValueChange={handlePurposeChange}
+                        disabled={isLoading}
+                      >
+                        <SelectTrigger
+                          className="h-8 w-auto border-0 bg-muted/50 hover:bg-muted text-xs"
+                          data-testid="select-purpose"
+                        >
+                          <SelectValue placeholder={t("hero.purposeLabel")} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {PURPOSE_OPTIONS.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
+                      {purpose && (
+                        <div className="h-8 px-3 bg-primary/10 text-primary rounded-md flex items-center text-xs font-medium">
+                          {
+                            PURPOSE_OPTIONS.find((opt) => opt.value === purpose)
+                              ?.label
+                          }
+                        </div>
+                      )}
+                    </div>
+
+                    <Button
+                      type="submit"
+                      size="sm"
+                      disabled={isLoading || !topic.trim()}
+                      className="h-8 px-4"
+                      data-testid="button-create-package"
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="mr-1 h-3 w-3 animate-spin" />
+                          {t("hero.creating")}
+                        </>
+                      ) : (
+                        t("hero.createButton")
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <p
+                className="text-sm text-muted-foreground text-center lg:text-left"
+                data-testid="text-trust-line"
+              >
+                {t("hero.trustLine")}
+              </p>
+            </form>
+          </div>
+
+          {/* Right Column: Placeholder for future content */}
+          <div className="hidden lg:block" data-testid="hero-right-column">
+            {/* Empty placeholder - ready for future content */}
+          </div>
         </div>
       </div>
     </section>
