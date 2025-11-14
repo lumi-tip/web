@@ -154,7 +154,7 @@ export default function Hero() {
 
       <div className="container mx-auto relative z-10">
         {/* 2-column grid on desktop, single column on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-center">
           {/* Left Column: Content (left-aligned on desktop, centered on mobile) */}
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-6">
@@ -179,7 +179,7 @@ export default function Hero() {
               className="space-y-6"
               aria-busy={isLoading}
             >
-              <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-xl p-4 max-w-2xl mx-auto lg:mx-0">
+              <div className="bg-card/90 backdrop-blur-sm border border-card-border rounded-xl p-4 max-w-2xl mx-auto lg:mx-0 shadow-md transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12),0_0_20px_rgba(99,102,241,0.25)] hover:-translate-y-1">
                 <div className="flex flex-col gap-3">
                   <Textarea
                     placeholder={t("hero.inputPlaceholder")}
