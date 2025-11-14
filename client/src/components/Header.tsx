@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, ChevronRight, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, BookOpen, MessageSquare, Mail, Building2, Target, Clock } from 'lucide-react';
+import { ChevronDown, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, BookOpen, Mail, Building2 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
 import learnpackLogoLight from '@assets/logo-small-learnpack-light_1759003192973.png';
@@ -14,7 +14,6 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -244,10 +243,12 @@ export default function Header() {
                             </div>
                           </Link>
 
-                          {/* Divider */}
-                          <div className="border-t border-border my-2"></div>
+                          {/* Elegant divider to separate comparison from use cases */}
+                          <div className="relative my-3">
+                            <div className="border-t border-border/60"></div>
+                          </div>
 
-                          {/* LearnPack vs Competition - in Use Cases column */}
+                          {/* LearnPack vs Competition - positioned here for visual balance */}
                           <Link 
                             href="/learnpack-vs-bootcamp"
                             className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
@@ -321,10 +322,7 @@ export default function Header() {
               className="relative" 
               data-dropdown="about"
               onMouseEnter={() => openDropdown('about')}
-              onMouseLeave={() => {
-                closeDropdown();
-                setActiveSubmenu(null);
-              }}
+              onMouseLeave={closeDropdown}
             >
               <button
                 onClick={() => toggleDropdown('about')}
@@ -371,75 +369,19 @@ export default function Header() {
                         </div>
                       </Link>
 
-                      {/* Company submenu */}
-                      <div 
-                        className="relative"
-                        onMouseEnter={() => setActiveSubmenu('company')}
-                        onMouseLeave={() => setActiveSubmenu(null)}
+                      {/* Company */}
+                      <Link 
+                        href="/our-mission"
+                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
+                        data-testid="link-company"
+                        onClick={closeDropdown}
                       >
-                        <button
-                          type="button"
-                          className="flex items-center justify-between gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer w-full text-left"
-                          data-testid="link-company-menu"
-                          onClick={() => setActiveSubmenu(activeSubmenu === 'company' ? null : 'company')}
-                          onFocus={() => setActiveSubmenu('company')}
-                        >
-                          <div className="flex gap-2.5 flex-1">
-                            <Building2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-foreground text-sm">Company</div>
-                              <div className="text-xs text-muted-foreground mt-0.5">Learn about our story</div>
-                            </div>
-                          </div>
-                          <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                        </button>
-
-                        {/* Company Submenu */}
-                        {activeSubmenu === 'company' && (
-                          <div className="absolute top-0 w-[240px] bg-card border border-border rounded-lg shadow-lg" style={{ right: 'calc(100% + 8px)' }}>
-                            <div className="p-2 space-y-0.5">
-                              <Link 
-                                href="/our-mission"
-                                className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                                data-testid="link-mission"
-                                onClick={closeDropdown}
-                              >
-                                <Target className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                <div className="flex-1 min-w-0">
-                                  <div className="font-medium text-foreground text-sm">Mission</div>
-                                  <div className="text-xs text-muted-foreground mt-0.5">Our purpose and goals</div>
-                                </div>
-                              </Link>
-
-                              <Link 
-                                href="/vision"
-                                className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                                data-testid="link-vision"
-                                onClick={closeDropdown}
-                              >
-                                <Building2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                <div className="flex-1 min-w-0">
-                                  <div className="font-medium text-foreground text-sm">Vision</div>
-                                  <div className="text-xs text-muted-foreground mt-0.5">Where we're headed</div>
-                                </div>
-                              </Link>
-
-                              <Link 
-                                href="/timeline"
-                                className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                                data-testid="link-timeline"
-                                onClick={closeDropdown}
-                              >
-                                <Clock className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                                <div className="flex-1 min-w-0">
-                                  <div className="font-medium text-foreground text-sm">Timeline</div>
-                                  <div className="text-xs text-muted-foreground mt-0.5">Our journey so far</div>
-                                </div>
-                              </Link>
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                        <Building2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-foreground text-sm">Company</div>
+                          <div className="text-xs text-muted-foreground mt-0.5">Learn about our story</div>
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </>
