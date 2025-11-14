@@ -154,7 +154,7 @@ export default function Hero() {
 
       <div className="container mx-auto relative z-10">
         {/* 2-column grid on desktop, single column on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
           {/* Left Column: Content (left-aligned on desktop, centered on mobile) */}
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-6">
@@ -187,7 +187,7 @@ export default function Hero() {
                     onChange={(e) => setTopic(e.target.value)}
                     onFocus={handleInputFocus}
                     onKeyDown={handleKeyDown}
-                    className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 focus:border-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none placeholder:text-muted-foreground/70 !focus-visible:ring-0 !focus:ring-0 !focus:border-0"
+                    className="min-h-[60px] text-base resize-none border-0 bg-transparent p-0 focus-visible:ring-0 focus:border-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none placeholder:text-muted-foreground/70 !focus-visible:ring-0 !focus:ring-0 !focus:border-0 transition-shadow duration-200 hover:shadow-sm"
                     disabled={isLoading}
                     data-testid="input-topic"
                   />
@@ -200,7 +200,7 @@ export default function Hero() {
                         disabled={isLoading}
                       >
                         <SelectTrigger
-                          className="h-8 w-auto border-0 bg-muted/50 hover:bg-muted text-xs"
+                          className="h-8 w-auto border-0 bg-muted/50 hover:bg-muted text-xs rounded-md transition-shadow duration-200 hover:shadow-md"
                           data-testid="select-purpose"
                         >
                           <SelectValue placeholder={t("hero.purposeLabel")} />
