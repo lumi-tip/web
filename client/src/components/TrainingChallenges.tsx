@@ -28,11 +28,12 @@ const CoinsIllustration = () => (
   </svg>
 );
 
-const WrenchIllustration = () => (
+const RefreshIllustration = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full text-primary opacity-35">
-    <path d="M 25 75 L 70 30 M 30 80 L 75 35" stroke="currentColor" strokeWidth="2" fill="none" />
-    <rect x="65" y="25" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.5" transform="rotate(45 71 31)" />
-    <rect x="20" y="70" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.5" transform="rotate(45 26 76)" />
+    <path d="M 50 20 A 30 30 0 1 1 30 35" fill="none" stroke="currentColor" strokeWidth="2" />
+    <path d="M 50 20 L 45 15 M 50 20 L 55 15" stroke="currentColor" strokeWidth="2" fill="none" />
+    <path d="M 50 80 A 30 30 0 1 1 70 65" fill="none" stroke="currentColor" strokeWidth="2" />
+    <path d="M 50 80 L 45 85 M 50 80 L 55 85" stroke="currentColor" strokeWidth="2" fill="none" />
   </svg>
 );
 
@@ -43,13 +44,17 @@ const GlobeIllustration = () => (
     <ellipse cx="50" cy="50" rx="35" ry="25" fill="none" stroke="currentColor" strokeWidth="1" />
     <line x1="50" y1="15" x2="50" y2="85" stroke="currentColor" strokeWidth="1" />
     <line x1="15" y1="50" x2="85" y2="50" stroke="currentColor" strokeWidth="1" />
+    <path d="M 30 30 Q 35 35 30 40 Q 25 45 30 50" fill="none" stroke="currentColor" strokeWidth="1" />
+    <path d="M 65 35 Q 70 32 75 35 Q 78 40 75 45" fill="none" stroke="currentColor" strokeWidth="1" />
+    <path d="M 45 60 Q 50 65 55 60 Q 60 55 65 60" fill="none" stroke="currentColor" strokeWidth="1" />
   </svg>
 );
 
 const PuzzleIllustration = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full text-primary opacity-35">
-    <path d="M 25 30 L 40 30 L 40 25 L 45 25 L 45 35 L 40 35 L 40 45 L 25 45 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M 55 55 L 70 55 L 70 50 L 75 50 L 75 60 L 70 60 L 70 70 L 55 70 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M 20 35 L 35 35 L 35 30 L 40 30 L 40 40 L 35 40 L 35 50 L 20 50 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M 50 35 L 65 35 L 65 30 L 70 30 L 70 40 L 65 40 L 65 50 L 60 50 L 60 45 L 50 45 L 50 40 L 55 40 L 55 35 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M 35 55 L 50 55 L 50 60 L 55 60 L 55 50 L 50 50 L 50 45 L 45 45 L 45 50 L 40 50 L 40 55 L 35 55 L 35 70 L 50 70 L 50 65 L 55 65 L 55 75 L 50 75 L 50 70 L 35 70 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 );
 
@@ -81,7 +86,7 @@ export default function TrainingChallenges() {
     {
       title: t('trainingChallenges.cards.hardToUpdate.title'),
       text: t('trainingChallenges.cards.hardToUpdate.text'),
-      illustration: WrenchIllustration,
+      illustration: RefreshIllustration,
     },
     {
       title: t('trainingChallenges.cards.noScalability.title'),
