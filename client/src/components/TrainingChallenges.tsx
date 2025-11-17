@@ -85,23 +85,18 @@ export default function TrainingChallenges() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {challenges.map((challenge, index) => {
-            const Icon = challenge.icon;
-            return (
+          {challenges.map((challenge, index) => (
               <Card 
                 key={index} 
                 className="bg-card border-card-border shadow-[0_0_8px_rgba(59,130,246,0.12)] hover:animate-[cardGlowShimmer_2s_ease-in-out_infinite] min-h-80"
                 data-testid={`card-challenge-${index + 1}`}
               >
                 <CardContent className="p-8 h-full flex items-start">
-                  <div className="w-1/2 space-y-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold" data-testid={`text-challenge-title-${index + 1}`}>
+                  <div className="w-1/2 space-y-3">
+                    <h3 className="text-xl font-semibold text-left" data-testid={`text-challenge-title-${index + 1}`}>
                       {challenge.title}
                     </h3>
-                    <p className="text-muted-foreground" data-testid={`text-challenge-text-${index + 1}`}>
+                    <p className="text-muted-foreground text-left" data-testid={`text-challenge-text-${index + 1}`}>
                       {challenge.text}
                     </p>
                   </div>
@@ -110,8 +105,7 @@ export default function TrainingChallenges() {
                   </div>
                 </CardContent>
               </Card>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>
