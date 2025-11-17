@@ -385,11 +385,11 @@
 /* Star Float Animation for TrainingChallenges Background */
 @keyframes starFloat {
   0%, 100% {
-    opacity: 0.05;
+    opacity: 0.2;
     transform: translate(0, 0);
   }
   50% {
-    opacity: 0.25;
+    opacity: 0.5;
     transform: translate(10px, -10px);
   }
 }

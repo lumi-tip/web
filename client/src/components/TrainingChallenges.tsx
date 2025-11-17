@@ -62,7 +62,6 @@ export default function TrainingChallenges() {
             style={{
               left: star.left,
               top: star.top,
-              opacity: 0.15,
               animation: `starFloat ${star.duration} ease-in-out ${star.delay} infinite`,
             }}
           />
@@ -91,7 +90,7 @@ export default function TrainingChallenges() {
             return (
               <Card 
                 key={index} 
-                className="bg-card border-card-border"
+                className="bg-card border-card-border transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
                 data-testid={`card-challenge-${index + 1}`}
               >
                 <CardContent className="p-6 space-y-4">
