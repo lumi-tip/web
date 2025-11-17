@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, DollarSign, Wrench, Globe, Puzzle, TrendingDown } from "lucide-react";
@@ -38,9 +39,37 @@ export default function TrainingChallenges() {
     },
   ];
 
+  // Memoize scattered star positions to prevent repositioning on re-renders
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 30 }, (_, i) => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 8}s`,
+        duration: `${4 + Math.random() * 4}s`,
+      })),
+    []
+  );
+
   return (
-    <section className="py-24 px-4" data-testid="section-training-challenges">
-      <div className="container mx-auto">
+    <section className="relative py-24 px-4 overflow-hidden bg-background" data-testid="section-training-challenges">
+      {/* Animated star background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-primary"
+            style={{
+              left: star.left,
+              top: star.top,
+              opacity: 0.15,
+              animation: `starFloat ${star.duration} ease-in-out ${star.delay} infinite`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto relative z-10">
         <div className="text-center space-y-4 mb-12">
           <h2 
             className="text-3xl md:text-4xl font-bold"
