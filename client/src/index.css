@@ -405,3 +405,19 @@
     transform: translate(8px, -8px);
   }
 }
+
+/* Gentle Card Glow Shimmer Animation */
+@keyframes cardGlowShimmer {
+  0%, 100% {
+    box-shadow: 
+      0 0 8px rgba(59, 130, 246, 0.12),
+      0 0 16px rgba(59, 130, 246, 0.08),
+      0 0 24px rgba(59, 130, 246, 0.04);
+  }
+  50% {
+    box-shadow: 
+      0 0 12px rgba(59, 130, 246, 0.25),
+      0 0 24px rgba(59, 130, 246, 0.15),
+      0 0 36px rgba(59, 130, 246, 0.08);
+  }
+}

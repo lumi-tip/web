@@ -90,7 +90,7 @@ export default function TrainingChallenges() {
             return (
               <Card 
                 key={index} 
-                className="bg-card border-card-border shadow-[0_0_8px_rgba(59,130,246,0.12)] transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                className="bg-card border-card-border shadow-[0_0_8px_rgba(59,130,246,0.12)] hover:animate-[cardGlowShimmer_2s_ease-in-out_infinite]"
                 data-testid={`card-challenge-${index + 1}`}
               >
                 <CardContent className="p-6 space-y-4">
