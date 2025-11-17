@@ -32,6 +32,36 @@
   "socialProof": {
     "title": "Trusted by leading educational institutions"
   },
+  "trainingChallenges": {
+    "title": "Why corporate training still fails.",
+    "subtitle": "The biggest challenges companies face when creating and maintaining training programs",
+    "cards": {
+      "slowDeployment": {
+        "title": "Slow deployment",
+        "text": "Courses take months to launch."
+      },
+      "highCost": {
+        "title": "High production cost",
+        "text": "$10k–$50k per course (ATD)."
+      },
+      "hardToUpdate": {
+        "title": "Hard to update",
+        "text": "Every small change requires time and budget."
+      },
+      "noScalability": {
+        "title": "No scalability",
+        "text": "Limited to one language or department."
+      },
+      "fragmentedTools": {
+        "title": "Fragmented tools",
+        "text": "Training is spread across multiple disconnected systems."
+      },
+      "lowEngagement": {
+        "title": "Low engagement",
+        "text": "Only 20–30% completion rates (LinkedIn Learning)."
+      }
+    }
+  },
   "valueProps": {
     "title": "Why LearnPack?",
     "subtitle": "Everything you need to create engaging learning experiences",

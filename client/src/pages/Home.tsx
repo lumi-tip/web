@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
+import TrainingChallenges from '@/components/TrainingChallenges';
 import ValueProps from '@/components/ValueProps';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -20,6 +21,7 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
+        <TrainingChallenges />
         {/* Temporarily commented out - videos not ready yet */}
         {/* <ValueProps /> */}
         {/* Group below-the-fold components under single Suspense to reduce CLS and spinner noise */}

@@ -32,6 +32,36 @@
   "socialProof": {
     "title": "Confiado por las principales instituciones educativas"
   },
+  "trainingChallenges": {
+    "title": "Por qué la capacitación corporativa sigue fallando.",
+    "subtitle": "Los mayores desafíos que enfrentan las empresas al crear y mantener programas de entrenamiento",
+    "cards": {
+      "slowDeployment": {
+        "title": "Implementación lenta",
+        "text": "Los cursos tardan meses en lanzarse."
+      },
+      "highCost": {
+        "title": "Alto costo de producción",
+        "text": "$10k–$50k por curso (ATD)."
+      },
+      "hardToUpdate": {
+        "title": "Difícil de actualizar",
+        "text": "Cada pequeño cambio requiere tiempo y presupuesto."
+      },
+      "noScalability": {
+        "title": "Sin escalabilidad",
+        "text": "Limitado a un idioma o departamento."
+      },
+      "fragmentedTools": {
+        "title": "Herramientas fragmentadas",
+        "text": "La capacitación está dispersa en múltiples sistemas desconectados."
+      },
+      "lowEngagement": {
+        "title": "Bajo compromiso",
+        "text": "Solo 20–30% de tasas de finalización (LinkedIn Learning)."
+      }
+    }
+  },
   "valueProps": {
     "title": "¿Por qué LearnPack?",
     "subtitle": "Todo lo que necesitas para crear experiencias de aprendizaje atractivas",
