@@ -36,9 +36,10 @@ export default function SocialProof() {
   const duplicatedLogos = [...companies, ...companies, ...companies];
   
   // Memoize scattered star positions to prevent repositioning on re-renders
+  // Fewer, smaller, lighter stars for carousel section
   const stars = useMemo(
     () =>
-      Array.from({ length: 30 }, (_, i) => ({
+      Array.from({ length: 15 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         delay: `${Math.random() * 8}s`,
@@ -49,16 +50,16 @@ export default function SocialProof() {
   
   return (
     <section className="relative py-16 bg-background overflow-hidden" data-testid="section-social-proof">
-      {/* Animated star background */}
+      {/* Animated star background - lighter and more subtle */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((star, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-primary"
+            className="absolute w-0.5 h-0.5 rounded-full bg-primary"
             style={{
               left: star.left,
               top: star.top,
-              animation: `starFloat ${star.duration} ease-in-out ${star.delay} infinite`,
+              animation: `starFloatLight ${star.duration} ease-in-out ${star.delay} infinite`,
             }}
           />
         ))}

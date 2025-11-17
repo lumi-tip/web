@@ -393,3 +393,15 @@
     transform: translate(10px, -10px);
   }
 }
+
+/* Lighter Star Float Animation for Carousel Section */
+@keyframes starFloatLight {
+  0%, 100% {
+    opacity: 0.1;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(8px, -8px);
+  }
+}
