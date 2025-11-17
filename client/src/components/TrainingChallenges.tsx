@@ -90,19 +90,24 @@ export default function TrainingChallenges() {
             return (
               <Card 
                 key={index} 
-                className="bg-card border-card-border shadow-[0_0_8px_rgba(59,130,246,0.12)] hover:animate-[cardGlowShimmer_2s_ease-in-out_infinite]"
+                className="bg-card border-card-border shadow-[0_0_8px_rgba(59,130,246,0.12)] hover:animate-[cardGlowShimmer_2s_ease-in-out_infinite] min-h-80"
                 data-testid={`card-challenge-${index + 1}`}
               >
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
+                <CardContent className="p-8 h-full flex items-start">
+                  <div className="w-1/2 space-y-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold" data-testid={`text-challenge-title-${index + 1}`}>
+                      {challenge.title}
+                    </h3>
+                    <p className="text-muted-foreground" data-testid={`text-challenge-text-${index + 1}`}>
+                      {challenge.text}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold" data-testid={`text-challenge-title-${index + 1}`}>
-                    {challenge.title}
-                  </h3>
-                  <p className="text-muted-foreground" data-testid={`text-challenge-text-${index + 1}`}>
-                    {challenge.text}
-                  </p>
+                  <div className="w-1/2" aria-hidden="true">
+                    {/* Reserved space for future illustrations */}
+                  </div>
                 </CardContent>
               </Card>
             );
