@@ -1,10 +1,37 @@
-import { useMemo } from "react";
+import { useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, DollarSign, Wrench, Globe, Puzzle, TrendingDown } from "lucide-react";
+import { gsap } from "gsap";
+
+const SPOTLIGHT_RADIUS = 300;
+
+const calculateSpotlightValues = (radius: number) => ({
+  proximity: radius * 0.5,
+  fadeDistance: radius * 0.75
+});
+
+const updateCardGlowProperties = (
+  card: HTMLElement,
+  mouseX: number,
+  mouseY: number,
+  glow: number,
+  radius: number
+) => {
+  const rect = card.getBoundingClientRect();
+  const relativeX = ((mouseX - rect.left) / rect.width) * 100;
+  const relativeY = ((mouseY - rect.top) / rect.height) * 100;
+
+  card.style.setProperty('--glow-x', `${relativeX}%`);
+  card.style.setProperty('--glow-y', `${relativeY}%`);
+  card.style.setProperty('--glow-intensity', glow.toString());
+  card.style.setProperty('--glow-radius', `${radius}px`);
+};
 
 export default function TrainingChallenges() {
   const { t } = useTranslation('home');
+  const gridRef = useRef<HTMLDivElement>(null);
+  const spotlightRef = useRef<HTMLDivElement | null>(null);
 
   const challenges = [
     {
@@ -51,6 +78,115 @@ export default function TrainingChallenges() {
     []
   );
 
+  // Setup spotlight effect
+  useEffect(() => {
+    if (!gridRef.current) return;
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Create spotlight element
+    const spotlight = document.createElement('div');
+    spotlight.className = 'global-spotlight';
+    document.body.appendChild(spotlight);
+    spotlightRef.current = spotlight;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!spotlightRef.current || !gridRef.current) return;
+
+      const section = gridRef.current.closest('section');
+      const rect = section?.getBoundingClientRect();
+      const mouseInside = rect && 
+        e.clientX >= rect.left && 
+        e.clientX <= rect.right && 
+        e.clientY >= rect.top && 
+        e.clientY <= rect.bottom;
+
+      const cards = gridRef.current.querySelectorAll('.border-glow-card');
+
+      if (!mouseInside) {
+        gsap.to(spotlightRef.current, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+        cards.forEach(card => {
+          (card as HTMLElement).style.setProperty('--glow-intensity', '0');
+        });
+        return;
+      }
+
+      const { proximity, fadeDistance } = calculateSpotlightValues(SPOTLIGHT_RADIUS);
+      let minDistance = Infinity;
+
+      cards.forEach(card => {
+        const cardElement = card as HTMLElement;
+        const cardRect = cardElement.getBoundingClientRect();
+        const centerX = cardRect.left + cardRect.width / 2;
+        const centerY = cardRect.top + cardRect.height / 2;
+        const distance = Math.hypot(e.clientX - centerX, e.clientY - centerY) - 
+          Math.max(cardRect.width, cardRect.height) / 2;
+        const effectiveDistance = Math.max(0, distance);
+
+        minDistance = Math.min(minDistance, effectiveDistance);
+
+        let glowIntensity = 0;
+        if (effectiveDistance <= proximity) {
+          glowIntensity = 1;
+        } else if (effectiveDistance <= fadeDistance) {
+          glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity);
+        }
+
+        updateCardGlowProperties(cardElement, e.clientX, e.clientY, glowIntensity, SPOTLIGHT_RADIUS);
+      });
+
+      gsap.to(spotlightRef.current, {
+        left: e.clientX,
+        top: e.clientY,
+        duration: 0.1,
+        ease: 'power2.out'
+      });
+
+      const targetOpacity = minDistance <= proximity
+        ? 0.8
+        : minDistance <= fadeDistance
+          ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.8
+          : 0;
+
+      gsap.to(spotlightRef.current, {
+        opacity: targetOpacity,
+        duration: targetOpacity > 0 ? 0.2 : 0.5,
+        ease: 'power2.out'
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gridRef.current?.querySelectorAll('.border-glow-card').forEach(card => {
+        (card as HTMLElement).style.setProperty('--glow-intensity', '0');
+      });
+      if (spotlightRef.current) {
+        gsap.to(spotlightRef.current, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (spotlightRef.current) {
+        spotlightRef.current.remove();
+        spotlightRef.current = null;
+      }
+    };
+  }, []);
+
   return (
     <section className="relative py-24 px-4 overflow-hidden bg-background" data-testid="section-training-challenges">
       {/* Animated star background */}
@@ -84,13 +220,13 @@ export default function TrainingChallenges() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {challenges.map((challenge, index) => {
             const Icon = challenge.icon;
             return (
               <Card 
                 key={index} 
-                className="bg-card border-card-border shadow-[0_0_8px_rgba(59,130,246,0.12)] hover:animate-[cardGlowShimmer_2s_ease-in-out_infinite]"
+                className="bg-card border-card-border border-glow-card shadow-[0_0_8px_rgba(59,130,246,0.12)]"
                 data-testid={`card-challenge-${index + 1}`}
               >
                 <CardContent className="p-6 space-y-4">
