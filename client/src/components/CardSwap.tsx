@@ -165,9 +165,6 @@ const CardSwap = ({
     intervalRef.current = window.setInterval(swap, delay);
 
     if (pauseOnHover) {
-      const node = container.current;
-      if (!node) return;
-      
       const pause = () => {
         tlRef.current?.pause();
         if (intervalRef.current) clearInterval(intervalRef.current);
@@ -176,11 +173,21 @@ const CardSwap = ({
         tlRef.current?.play();
         intervalRef.current = window.setInterval(swap, delay);
       };
-      node.addEventListener('mouseenter', pause);
-      node.addEventListener('mouseleave', resume);
+      
+      refs.forEach(el => {
+        if (el) {
+          el.addEventListener('mouseenter', pause);
+          el.addEventListener('mouseleave', resume);
+        }
+      });
+      
       return () => {
-        node.removeEventListener('mouseenter', pause);
-        node.removeEventListener('mouseleave', resume);
+        refs.forEach(el => {
+          if (el) {
+            el.removeEventListener('mouseenter', pause);
+            el.removeEventListener('mouseleave', resume);
+          }
+        });
         if (intervalRef.current) clearInterval(intervalRef.current);
       };
     }
