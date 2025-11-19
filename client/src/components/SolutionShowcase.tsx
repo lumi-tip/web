@@ -1,9 +1,21 @@
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Zap, TrendingDown, RefreshCw, Maximize2, FileCheck, Heart } from "lucide-react";
 import CardSwap, { Card } from "./CardSwap";
 
 export default function SolutionShowcase() {
   const { t } = useTranslation('home');
+
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 40 }, (_, i) => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 8}s`,
+        duration: `${4 + Math.random() * 4}s`,
+      })),
+    []
+  );
 
   const solutions = [
     {
@@ -39,9 +51,24 @@ export default function SolutionShowcase() {
   ];
 
   return (
-    <section className="relative py-24 px-4 bg-background overflow-hidden" data-testid="section-solution-showcase">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+    <section className="relative pt-12 pb-24 px-4 bg-background overflow-hidden" data-testid="section-solution-showcase">
+      {/* Animated star background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-primary"
+            style={{
+              left: star.left,
+              top: star.top,
+              animation: `starFloat ${star.duration} ease-in-out ${star.delay} infinite`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[750px]">
           <div className="space-y-6 text-left lg:pr-12">
             <h2 
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
@@ -58,14 +85,14 @@ export default function SolutionShowcase() {
           </div>
 
           <div 
-            className="relative h-[600px]"
+            className="relative h-[750px]"
             data-testid="container-card-stack"
           >
             <CardSwap
-              width={500}
-              height={400}
-              cardDistance={60}
-              verticalDistance={70}
+              width={580}
+              height={380}
+              cardDistance={46}
+              verticalDistance={55}
               delay={5000}
               pauseOnHover={true}
               easing="elastic"
@@ -74,8 +101,8 @@ export default function SolutionShowcase() {
                 const Icon = item.icon;
                 return (
                   <Card key={index} data-testid={`card-solution-${index + 1}`}>
-                    <div className="p-8 h-full flex flex-col justify-start items-start text-left">
-                      <div className="flex items-center gap-3 mb-4">
+                    <div className="py-8 h-full flex flex-col justify-start items-start text-left">
+                      <div className="flex items-center gap-3 mb-4 px-8">
                         <Icon className="w-5 h-5 text-cyan-400 flex-shrink-0" aria-hidden="true" />
                         <h3 
                           className="text-base font-semibold text-cyan-400 tracking-wide"
@@ -86,7 +113,7 @@ export default function SolutionShowcase() {
                       </div>
                       <div className="w-full h-px bg-white/20 mb-4" />
                       <p 
-                        className="text-base text-white/80 leading-relaxed"
+                        className="text-base text-white/80 leading-relaxed px-8"
                         data-testid={`text-solution-text-${index + 1}`}
                       >
                         {item.solution}

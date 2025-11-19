@@ -188,7 +188,7 @@ export default function TrainingChallenges() {
   }, []);
 
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-background" data-testid="section-training-challenges">
+    <section className="relative pt-24 pb-16 px-4 overflow-hidden bg-background" data-testid="section-training-challenges">
       {/* Animated star background */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((star, i) => (
