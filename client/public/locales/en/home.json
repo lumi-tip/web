@@ -62,6 +62,36 @@
       }
     }
   },
+  "solutionShowcase": {
+    "title": "One platform that turns corporate learning into a living system.",
+    "subtitle": "Build. Adapt. Scale. Measure. Everything powered by AI.",
+    "cards": {
+      "deployment": {
+        "need": "Speed of deployment",
+        "solution": "Generate full courses from any document in minutes."
+      },
+      "cost": {
+        "need": "Cost & efficiency",
+        "solution": "Up to 80% cheaper than traditional authoring."
+      },
+      "adaptability": {
+        "need": "Adaptability",
+        "solution": "Chat with Rigobot to refine or update content instantly."
+      },
+      "scalability": {
+        "need": "Scalability",
+        "solution": "Multi-language, multi-role, multi-location ready."
+      },
+      "compliance": {
+        "need": "Compliance & analytics",
+        "solution": "Real-time insights, SCORM export, full visibility."
+      },
+      "engagement": {
+        "need": "Engagement",
+        "solution": "Rigobot tutor reduces learner dropout by 50%."
+      }
+    }
+  },
   "valueProps": {
     "title": "Why LearnPack?",
     "subtitle": "Everything you need to create engaging learning experiences",

@@ -69,8 +69,7 @@ export default function SolutionShowcase() {
         </div>
 
         <div 
-          className="relative mx-auto max-w-2xl"
-          style={{ height: '500px' }}
+          className="relative mx-auto max-w-2xl h-[clamp(400px,50vh,600px)]"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           data-testid="container-card-stack"
@@ -80,27 +79,31 @@ export default function SolutionShowcase() {
               const position = (index - activeIndex + solutions.length) % solutions.length;
               
               return (
-                <Card
+                <div
                   key={index}
                   className={`card-stack-item card-stack-position-${position}`}
                   data-position={position}
-                  data-testid={`card-solution-${index + 1}`}
                 >
-                  <CardContent className="p-8 space-y-4">
-                    <h3 
-                      className="text-sm font-semibold text-primary uppercase tracking-wide"
-                      data-testid={`text-solution-need-${index + 1}`}
-                    >
-                      {item.need}
-                    </h3>
-                    <p 
-                      className="text-xl font-medium text-foreground"
-                      data-testid={`text-solution-text-${index + 1}`}
-                    >
-                      {item.solution}
-                    </p>
-                  </CardContent>
-                </Card>
+                  <Card
+                    className="w-full h-full"
+                    data-testid={`card-solution-${index + 1}`}
+                  >
+                    <CardContent className="p-8 space-y-4">
+                      <h3 
+                        className="text-sm font-semibold text-primary uppercase tracking-wide"
+                        data-testid={`text-solution-need-${index + 1}`}
+                      >
+                        {item.need}
+                      </h3>
+                      <p 
+                        className="text-xl font-medium text-foreground"
+                        data-testid={`text-solution-text-${index + 1}`}
+                      >
+                        {item.solution}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
               );
             })}
           </div>

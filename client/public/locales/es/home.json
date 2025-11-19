@@ -62,6 +62,36 @@
       }
     }
   },
+  "solutionShowcase": {
+    "title": "Una plataforma que convierte el aprendizaje corporativo en un sistema vivo.",
+    "subtitle": "Construye. Adapta. Escala. Mide. Todo impulsado por IA.",
+    "cards": {
+      "deployment": {
+        "need": "Velocidad de implementación",
+        "solution": "Genera cursos completos desde cualquier documento en minutos."
+      },
+      "cost": {
+        "need": "Costo y eficiencia",
+        "solution": "Hasta un 80% más económico que la creación tradicional."
+      },
+      "adaptability": {
+        "need": "Adaptabilidad",
+        "solution": "Chatea con Rigobot para refinar o actualizar contenido al instante."
+      },
+      "scalability": {
+        "need": "Escalabilidad",
+        "solution": "Listo para múltiples idiomas, roles y ubicaciones."
+      },
+      "compliance": {
+        "need": "Cumplimiento y analítica",
+        "solution": "Información en tiempo real, exportación SCORM, visibilidad completa."
+      },
+      "engagement": {
+        "need": "Compromiso",
+        "solution": "El tutor Rigobot reduce el abandono de estudiantes en un 50%."
+      }
+    }
+  },
   "valueProps": {
     "title": "¿Por qué LearnPack?",
     "subtitle": "Todo lo que necesitas para crear experiencias de aprendizaje atractivas",
