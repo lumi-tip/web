@@ -74,10 +74,11 @@ const CardSwap = ({
         };
 
   const childArr = useMemo(() => Children.toArray(children), [children]);
-  const refs = useMemo(
-    () => childArr.map(() => React.createRef<HTMLDivElement>()),
-    [childArr.length]
-  );
+  const refsArray = useRef<(HTMLDivElement | null)[]>([]);
+  
+  if (refsArray.current.length !== childArr.length) {
+    refsArray.current = Array(childArr.length).fill(null);
+  }
 
   const order = useRef(Array.from({ length: childArr.length }, (_, i) => i));
   const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -85,16 +86,25 @@ const CardSwap = ({
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const refs = refsArray.current;
     const total = refs.length;
-    refs.forEach((r, i) => {
-      if (r.current) placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
+    
+    const allRefsPopulated = refs.every(r => r !== null);
+    if (!allRefsPopulated) {
+      return;
+    }
+    
+    refs.forEach((el, i) => {
+      if (el) {
+        placeNow(el, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
+      }
     });
 
     const swap = () => {
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
-      const elFront = refs[front].current;
+      const elFront = refs[front];
       if (!elFront) return;
 
       const tl = gsap.timeline();
@@ -108,7 +118,7 @@ const CardSwap = ({
 
       tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
       rest.forEach((idx, i) => {
-        const el = refs[idx].current;
+        const el = refs[idx];
         if (!el) return;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, 'promote');
@@ -177,13 +187,15 @@ const CardSwap = ({
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, config, refs]);
+  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, config, childArr.length]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement(child)
       ? cloneElement(child as React.ReactElement<any>, {
           key: i,
-          ref: refs[i],
+          ref: (el: HTMLDivElement | null) => {
+            refsArray.current[i] = el;
+          },
           style: { width, height, ...(child.props.style ?? {}) },
           onClick: (e: React.MouseEvent) => {
             child.props.onClick?.(e);
