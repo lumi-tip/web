@@ -35,7 +35,7 @@ const placeNow = (el: HTMLElement, slot: ReturnType<typeof makeSlot>, skew: numb
     y: slot.y,
     z: slot.z,
     xPercent: -50,
-    yPercent: -50,
+    yPercent: 0,
     skewY: skew,
     transformOrigin: 'center center',
     zIndex: slot.zIndex,
@@ -161,7 +161,7 @@ const CardSwap = ({
       });
     };
 
-    swap();
+    // Delay the initial swap so cards stay in their top-aligned positions initially
     intervalRef.current = window.setInterval(swap, delay);
 
     if (pauseOnHover) {

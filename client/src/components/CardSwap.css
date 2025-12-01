@@ -1,18 +1,18 @@
 .card-swap-container {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
   width: 100%;
   max-width: 580px;
-  transform: translate(0%, 20%);
-  transform-origin: bottom right;
+  transform: translate(0%, 0%);
+  transform-origin: top right;
   perspective: 900px;
   overflow: visible;
 }
 
 .card {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.8);
@@ -37,18 +37,18 @@
 
 @media (max-width: 1024px) {
   .card-swap-container {
-    transform: scale(0.7) translate(0%, 15%);
+    transform: scale(0.7) translate(0%, 0%);
   }
 }
 
 @media (max-width: 768px) {
   .card-swap-container {
-    transform: scale(0.6) translate(0%, 18%);
+    transform: scale(0.6) translate(0%, 0%);
   }
 }
 
 @media (max-width: 480px) {
   .card-swap-container {
-    transform: scale(0.45) translate(0%, 20%);
+    transform: scale(0.45) translate(0%, 0%);
   }
 }

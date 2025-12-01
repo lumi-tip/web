@@ -68,7 +68,7 @@ export default function SolutionShowcase() {
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[750px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start min-h-[750px]">
           <div className="space-y-6 text-left lg:pr-12">
             <h2 
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
@@ -76,15 +76,9 @@ export default function SolutionShowcase() {
             >
               {t('solutionShowcase.title')}
             </h2>
-            <p 
-              className="text-lg md:text-xl text-muted-foreground"
-              data-testid="text-solution-subtitle"
-            >
-              {t('solutionShowcase.subtitle')}
-            </p>
-            <div className="space-y-4 pt-4" data-testid="container-value-proposition">
+            <div className="space-y-4" data-testid="container-value-proposition">
               <p 
-                className="text-xl md:text-2xl font-semibold text-primary"
+                className="text-base md:text-lg font-semibold text-primary leading-relaxed"
                 data-testid="text-solution-headline"
               >
                 {t('solutionShowcase.headline')}
