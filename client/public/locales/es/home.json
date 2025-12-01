@@ -175,5 +175,21 @@
     "title": "Mira LearnPack en Acción",
     "subtitle": "Observa qué fácil es crear paquetes de aprendizaje interactivos",
     "iframeTitle": "Demo de LearnPack - Mira cómo crear paquetes de aprendizaje interactivos"
+  },
+  "howItWorksNew": {
+    "title": "Cómo Funciona",
+    "subtitle": "De cualquier archivo o idea a un curso completamente interactivo — en minutos.",
+    "step1": {
+      "title": "Describe tu objetivo de capacitación",
+      "text": "Especifica la duración, el tema, los tópicos clave, y opcionalmente sube cualquier material existente que quieras que LearnPack use."
+    },
+    "step2": {
+      "title": "Deja que la IA construya tu curso",
+      "text": "LearnPack genera instantáneamente lecciones, cuestionarios, desafíos y evaluaciones, todo listo para producción e interactivo."
+    },
+    "step3": {
+      "title": "Refina con Rigobot",
+      "text": "Chatea con Rigobot para agregar ejemplos, visuales, ejercicios, traducciones o ajustes de último momento antes de publicar."
+    }
   }
 }

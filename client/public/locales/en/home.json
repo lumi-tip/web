@@ -175,5 +175,21 @@
     "title": "See LearnPack in Action",
     "subtitle": "Watch how easy it is to create interactive learning packages",
     "iframeTitle": "LearnPack Demo - See how to create interactive learning packages"
+  },
+  "howItWorksNew": {
+    "title": "How it Works",
+    "subtitle": "From any file or idea to a fully interactive course — in minutes.",
+    "step1": {
+      "title": "Describe your training goal",
+      "text": "Specify length, subject, key topics, and optionally upload any existing material you want LearnPack to use."
+    },
+    "step2": {
+      "title": "Let AI build your course",
+      "text": "LearnPack instantly generates lessons, quizzes, challenges, and assessments, all production-ready and interactive."
+    },
+    "step3": {
+      "title": "Refine with Rigobot",
+      "text": "Chat with Rigobot to add examples, visuals, exercises, translations, or last-mile adjustments before publishing."
+    }
   }
 }

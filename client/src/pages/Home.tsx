@@ -4,13 +4,13 @@ import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
 import TrainingChallenges from '@/components/TrainingChallenges';
 import SolutionShowcase from '@/components/SolutionShowcase';
+import HowItWorksSection from '@/components/HowItWorksSection';
 import ValueProps from '@/components/ValueProps';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
 // Lazy load below-the-fold components
 const SkillsShowcase = lazy(() => import('@/components/SkillsShowcase'));
-const HowItWorks = lazy(() => import('@/components/HowItWorks'));
 const StatsBand = lazy(() => import('@/components/StatsBand'));
 const FinalCTA = lazy(() => import('@/components/FinalCTA'));
 
@@ -24,6 +24,7 @@ export default function Home() {
         <SocialProof />
         <TrainingChallenges />
         <SolutionShowcase />
+        <HowItWorksSection />
         {/* Temporarily commented out - videos not ready yet */}
         {/* <ValueProps /> */}
         {/* Group below-the-fold components under single Suspense to reduce CLS and spinner noise */}
@@ -43,7 +44,6 @@ export default function Home() {
           </div>
         }>
           <SkillsShowcase />
-          <HowItWorks />
           <StatsBand />
           <FinalCTA />
         </Suspense>
