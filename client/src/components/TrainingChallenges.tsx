@@ -226,7 +226,8 @@ export default function TrainingChallenges() {
             return (
               <Card 
                 key={index} 
-                className="bg-card border-card-border border-glow-card shadow-[0_0_8px_rgba(59,130,246,0.12)]"
+                className="border-glow-card border-white/20 shadow-[0_0_8px_rgba(59,130,246,0.12)]"
+                style={{ backgroundColor: 'rgba(10,20,60,0.5)' }}
                 data-testid={`card-challenge-${index + 1}`}
               >
                 <CardContent className="p-6 space-y-4">
