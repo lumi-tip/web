@@ -37,32 +37,6 @@ export default function HowItWorksSection() {
             {t('howItWorksNew.step3.text')}
           </Step>
         </Stepper>
-
-        <div className="how-it-works-summary" data-testid="how-it-works-summary">
-          <ol>
-            <li>
-              <h3>Describe your training goal</h3>
-              <p>
-                Answer four guided questions about topic, purpose, audience, and duration.
-                LearnPack uses these to understand exactly what you want to teach.
-              </p>
-            </li>
-            <li>
-              <h3>Let AI build your course</h3>
-              <p>
-                LearnPack instantly generates lessons, quizzes, challenges, and assessments — 
-                all production-ready and interactive.
-              </p>
-            </li>
-            <li>
-              <h3>Refine with Rigobot</h3>
-              <p>
-                Chat with Rigobot to add examples, visuals, exercises, translations, or 
-                last-mile adjustments before publishing.
-              </p>
-            </li>
-          </ol>
-        </div>
       </div>
     </section>
   );
