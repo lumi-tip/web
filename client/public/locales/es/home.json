@@ -65,6 +65,8 @@
   "solutionShowcase": {
     "title": "La Solución LearnPack",
     "subtitle": "Construye. Adapta. Escala. Mide. Todo impulsado por IA.",
+    "headline": "LearnPack convierte la capacitación corporativa en un sistema vivo.",
+    "body": "Las organizaciones necesitan una implementación más rápida, costos más bajos, actualizaciones más fáciles, escala multilingüe, visibilidad en tiempo real y mayor compromiso. LearnPack resuelve cada una de esas necesidades con cursos generados por IA, refinamiento instantáneo de contenido, cumplimiento listo para SCORM, analíticas proactivas y un tutor integrado que reduce el abandono de estudiantes en un 50%.",
     "cards": {
       "deployment": {
         "need": "Velocidad de implementación",

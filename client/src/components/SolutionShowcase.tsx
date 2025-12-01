@@ -82,6 +82,20 @@ export default function SolutionShowcase() {
             >
               {t('solutionShowcase.subtitle')}
             </p>
+            <div className="space-y-4 pt-4" data-testid="container-value-proposition">
+              <p 
+                className="text-xl md:text-2xl font-semibold text-primary"
+                data-testid="text-solution-headline"
+              >
+                {t('solutionShowcase.headline')}
+              </p>
+              <p 
+                className="text-base md:text-lg text-muted-foreground leading-relaxed"
+                data-testid="text-solution-body"
+              >
+                {t('solutionShowcase.body')}
+              </p>
+            </div>
           </div>
 
           <div 

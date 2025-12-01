@@ -65,6 +65,8 @@
   "solutionShowcase": {
     "title": "The LearnPack Solution",
     "subtitle": "Build. Adapt. Scale. Measure. Everything powered by AI.",
+    "headline": "LearnPack turns corporate training into a living system.",
+    "body": "Organizations need faster deployment, lower costs, easier updates, multilingual scale, real-time visibility, and higher engagement. LearnPack solves every one of those needs with AI-generated courses, instant content refinement, SCORM-ready compliance, proactive analytics, and a built-in tutor that reduces learner dropout by 50%.",
     "cards": {
       "deployment": {
         "need": "Speed of deployment",
