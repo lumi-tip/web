@@ -113,7 +113,7 @@ export default function SolutionShowcase() {
                       </div>
                       <div className="w-full h-px bg-white/20 mb-4" />
                       <p 
-                        className="text-base text-white/80 leading-relaxed px-8"
+                        className="text-base text-white leading-relaxed px-8"
                         data-testid={`text-solution-text-${index + 1}`}
                       >
                         {item.solution}
