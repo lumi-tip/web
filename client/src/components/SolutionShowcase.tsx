@@ -51,7 +51,7 @@ export default function SolutionShowcase() {
   ];
 
   return (
-    <section className="relative pt-12 pb-24 px-4 bg-background overflow-hidden" data-testid="section-solution-showcase">
+    <section className="relative pt-12 pb-12 px-4 bg-background overflow-hidden" data-testid="section-solution-showcase">
       {/* Animated star background */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((star, i) => (

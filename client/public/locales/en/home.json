@@ -179,7 +179,7 @@
   },
   "howItWorksNew": {
     "title": "How it Works",
-    "subtitle": "From any file or idea to a fully interactive course — in minutes.",
+    "subtitle": "From any file or idea to a fully interactive course, in minutes.",
     "step1": {
       "title": "Describe your training goal",
       "text": "Specify length, subject, key topics, and optionally upload any existing material you want LearnPack to use."
@@ -195,7 +195,7 @@
   },
   "features": {
     "title": "Features & Capabilities",
-    "subtitle": "Everything you need to create, adapt, and deliver training — powered by AI.",
+    "subtitle": "Everything you need to create, adapt, and deliver training, powered by AI.",
     "items": {
       "aiCourseGeneration": {
         "title": "AI Course Generation",
