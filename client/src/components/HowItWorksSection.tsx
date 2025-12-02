@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Stepper, Step } from "./Stepper";
 import "./HowItWorksSection.css";
@@ -5,12 +6,43 @@ import "./HowItWorksSection.css";
 export default function HowItWorksSection() {
   const { t } = useTranslation('home');
 
+  // Generate delicate background stars
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 10}s`,
+        duration: `${6 + Math.random() * 6}s`,
+        size: Math.random() > 0.7 ? 2 : 1,
+      })),
+    []
+  );
+
   return (
     <section 
       className="how-it-works-section" 
       aria-labelledby="how-it-works-title"
       data-testid="section-how-it-works"
     >
+      {/* Delicate background stars */}
+      <div className="how-it-works-stars" aria-hidden="true">
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            className="how-it-works-star"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDelay: star.delay,
+              animationDuration: star.duration,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Soft ambient glow spots */}
       <div className="how-it-works-glow how-it-works-glow--top-left" aria-hidden="true" />
       <div className="how-it-works-glow how-it-works-glow--center-right" aria-hidden="true" />

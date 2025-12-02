@@ -37,6 +37,33 @@
   background: radial-gradient(circle, hsl(var(--primary) / 0.04) 0%, transparent 70%);
 }
 
+/* Delicate background stars */
+.how-it-works-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.how-it-works-star {
+  position: absolute;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  opacity: 0;
+  animation: starTwinkle ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
 .how-it-works-inner {
   max-width: 800px;
   margin: 0 auto;
