@@ -49,13 +49,13 @@ export default function SocialProof() {
   );
   
   return (
-    <section className="relative py-16 bg-background overflow-hidden" data-testid="section-social-proof">
-      {/* Animated star background - lighter and more subtle */}
+    <section className="social-proof-section relative py-16 overflow-hidden" data-testid="section-social-proof">
+      {/* Animated star background - continuous with hero */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((star, i) => (
           <div
             key={i}
-            className="absolute w-0.5 h-0.5 rounded-full bg-primary"
+            className="absolute w-0.5 h-0.5 rounded-full bg-primary opacity-100"
             style={{
               left: star.left,
               top: star.top,
@@ -68,7 +68,7 @@ export default function SocialProof() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center">
           <p 
-            className="text-muted-foreground font-medium mb-12"
+            className="text-muted-foreground font-medium mb-12 opacity-100"
             data-testid="text-social-proof-title"
           >
             {t('socialProof.title')}
@@ -76,12 +76,12 @@ export default function SocialProof() {
         </div>
       </div>
       
-      {/* Animated Logo Carousel */}
-      <div className="relative w-full">
+      {/* Animated Logo Carousel - visible immediately */}
+      <div className="relative w-full opacity-100">
         <div 
-          className="flex animate-scroll-logos gap-0"
+          className="flex animate-scroll-logos gap-0 opacity-100"
           style={{ 
-            animationDuration: '60s' // Slower than skill tags - 1 minute per cycle
+            animationDuration: '60s'
           }}
         >
           {duplicatedLogos.map((company, index) => (
@@ -94,9 +94,9 @@ export default function SocialProof() {
           ))}
         </div>
         
-        {/* Fade out edges for smooth effect */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10"></div>
+        {/* Fade out edges - using same gradient colors as hero background */}
+        <div className="social-proof-fade-left absolute inset-y-0 left-0 w-32 pointer-events-none z-10"></div>
+        <div className="social-proof-fade-right absolute inset-y-0 right-0 w-32 pointer-events-none z-10"></div>
       </div>
     </section>
   );

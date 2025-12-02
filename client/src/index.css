@@ -488,3 +488,25 @@
   width: 100%;
 }
 
+/* Social Proof Section - Seamless background with Hero */
+.social-proof-section {
+  background: radial-gradient(ellipse at center,
+    hsl(220 47% 15%) 0%,
+    hsl(222 47% 11%) 50%,
+    hsl(224 47% 8%) 100%
+  );
+  border: none;
+  border-top: none;
+  margin-top: 0;
+  padding-top: 4rem;
+}
+
+/* Fade edges that match the seamless background */
+.social-proof-fade-left {
+  background: linear-gradient(to right, hsl(222 47% 11%) 0%, transparent 100%);
+}
+
+.social-proof-fade-right {
+  background: linear-gradient(to left, hsl(222 47% 11%) 0%, transparent 100%);
+}
+

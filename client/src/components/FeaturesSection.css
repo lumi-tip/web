@@ -5,7 +5,7 @@
   overflow: hidden;
 }
 
-/* Delicate background stars */
+/* Delicate background stars - more visible */
 .features-stars {
   position: absolute;
   inset: 0;
@@ -23,16 +23,16 @@
 
 @keyframes featuresStarTwinkle {
   0%, 100% {
-    opacity: 0;
+    opacity: 0.1;
     transform: scale(0.8);
   }
   50% {
-    opacity: 0.3;
+    opacity: 0.45;
     transform: scale(1);
   }
 }
 
-/* Soft ambient glow spots */
+/* Soft ambient glow spots - enhanced */
 .features-glow {
   position: absolute;
   border-radius: 50%;
@@ -43,17 +43,70 @@
 .features-glow--top-right {
   top: -10%;
   right: -5%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, hsl(var(--primary) / 0.04) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%);
 }
 
 .features-glow--bottom-left {
   bottom: -15%;
   left: -5%;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, hsl(200 80% 60% / 0.03) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, hsl(200 80% 60% / 0.06) 0%, transparent 70%);
+}
+
+/* Central radial gradient for depth */
+.features-center-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    hsl(var(--primary) / 0.05) 0%,
+    hsl(var(--primary) / 0.02) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+}
+
+/* Subtle diagonal light lines for depth */
+.features-light-line {
+  position: absolute;
+  width: 400px;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0.08;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(var(--primary) / 0.5) 30%,
+    hsl(var(--primary) / 0.8) 50%,
+    hsl(var(--primary) / 0.5) 70%,
+    transparent 100%
+  );
+}
+
+.features-light-line--1 {
+  top: 20%;
+  left: 5%;
+  transform: rotate(-15deg);
+}
+
+.features-light-line--2 {
+  top: 60%;
+  right: 10%;
+  transform: rotate(20deg);
+}
+
+.features-light-line--3 {
+  bottom: 25%;
+  left: 15%;
+  transform: rotate(-25deg);
+  width: 300px;
 }
 
 .features-inner {

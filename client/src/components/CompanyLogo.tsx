@@ -7,9 +7,10 @@ interface CompanyLogoProps {
 export default function CompanyLogo({ src, alt, name }: CompanyLogoProps) {
   // Special case for UTEC - no invert filter
   const isUtec = name.includes('UTEC');
+  // Full opacity on load, subtle brightness boost on hover
   const filterClasses = isUtec 
-    ? "h-12 md:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 mx-8"
-    : "h-12 md:h-16 w-auto object-contain filter grayscale(100%) brightness(0) dark:invert opacity-70 hover:opacity-100 transition-all duration-300 mx-8";
+    ? "h-12 md:h-16 w-auto object-contain opacity-100 hover:brightness-110 transition-all duration-300 mx-8"
+    : "h-12 md:h-16 w-auto object-contain filter grayscale(100%) brightness(0) dark:invert opacity-100 hover:brightness-110 transition-all duration-300 mx-8";
     
   return (
     <div 

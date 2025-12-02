@@ -48,6 +48,9 @@ export default function HowItWorksSection() {
       <div className="how-it-works-glow how-it-works-glow--top-left" aria-hidden="true" />
       <div className="how-it-works-glow how-it-works-glow--center-right" aria-hidden="true" />
       <div className="how-it-works-glow how-it-works-glow--bottom-left" aria-hidden="true" />
+      
+      {/* Soft circular glow behind timeline */}
+      <div className="how-it-works-timeline-glow" aria-hidden="true" />
 
       <div className="how-it-works-inner content-container">
         <h2 

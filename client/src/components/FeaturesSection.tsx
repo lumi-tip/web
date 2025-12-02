@@ -55,6 +55,14 @@ export default function FeaturesSection() {
       {/* Soft ambient glow spots */}
       <div className="features-glow features-glow--top-right" aria-hidden="true" />
       <div className="features-glow features-glow--bottom-left" aria-hidden="true" />
+      
+      {/* Central radial glow for depth */}
+      <div className="features-center-glow" aria-hidden="true" />
+      
+      {/* Subtle diagonal light lines */}
+      <div className="features-light-line features-light-line--1" aria-hidden="true" />
+      <div className="features-light-line features-light-line--2" aria-hidden="true" />
+      <div className="features-light-line features-light-line--3" aria-hidden="true" />
 
       <div className="features-inner content-container">
         <h2 
