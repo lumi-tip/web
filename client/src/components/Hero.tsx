@@ -13,6 +13,7 @@ import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { createPackage } from "@/lib/createPackage";
 import { analytics } from "@/lib/analytics";
+import ShinyText from "./ShinyText";
 
 export default function Hero() {
   const { t } = useTranslation('home');
@@ -166,10 +167,10 @@ export default function Hero() {
               </h1>
 
               <p
-                className="text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
+                className="text-xl max-w-2xl mx-auto lg:mx-0"
                 data-testid="text-hero-subtitle"
               >
-                {t("hero.subtitle")}
+                <ShinyText text={t("hero.subtitle")} speed={4} />
               </p>
             </div>
 

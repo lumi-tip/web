@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Stepper, Step } from "./Stepper";
+import ShinyText from "./ShinyText";
 import "./HowItWorksSection.css";
 
 export default function HowItWorksSection() {
@@ -60,7 +61,7 @@ export default function HowItWorksSection() {
           className="how-it-works-subtitle"
           data-testid="text-how-it-works-subtitle"
         >
-          {t('howItWorksNew.subtitle')}
+          <ShinyText text={t('howItWorksNew.subtitle')} speed={4} />
         </p>
 
         <Stepper>
