@@ -11,6 +11,11 @@ export default function HowItWorksSection() {
       aria-labelledby="how-it-works-title"
       data-testid="section-how-it-works"
     >
+      {/* Soft ambient glow spots */}
+      <div className="how-it-works-glow how-it-works-glow--top-left" aria-hidden="true" />
+      <div className="how-it-works-glow how-it-works-glow--center-right" aria-hidden="true" />
+      <div className="how-it-works-glow how-it-works-glow--bottom-left" aria-hidden="true" />
+
       <div className="how-it-works-inner">
         <h2 
           id="how-it-works-title" 
