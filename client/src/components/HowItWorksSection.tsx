@@ -49,7 +49,7 @@ export default function HowItWorksSection() {
       <div className="how-it-works-glow how-it-works-glow--center-right" aria-hidden="true" />
       <div className="how-it-works-glow how-it-works-glow--bottom-left" aria-hidden="true" />
 
-      <div className="how-it-works-inner">
+      <div className="how-it-works-inner content-container">
         <h2 
           id="how-it-works-title" 
           className="how-it-works-title"

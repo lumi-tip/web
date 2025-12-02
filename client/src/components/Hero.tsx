@@ -101,7 +101,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden hero-animated-bg"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden hero-animated-bg"
       data-testid="section-hero"
     >
       {/* Vite-inspired Animated Background */}
@@ -153,7 +153,7 @@ export default function Hero() {
       {/* Subtle overlay for better text contrast */}
       <div className="absolute inset-0 bg-background/20" />
 
-      <div className="container mx-auto relative z-10">
+      <div className="content-container relative z-10">
         {/* 2-column grid on desktop, single column on mobile */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
           {/* Left Column: Content (left-aligned on desktop, centered on mobile) */}

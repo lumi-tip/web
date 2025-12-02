@@ -51,7 +51,7 @@ export default function SolutionShowcase() {
   ];
 
   return (
-    <section className="relative pt-12 pb-12 px-4 bg-background overflow-hidden" data-testid="section-solution-showcase">
+    <section className="relative pt-12 pb-12 bg-background overflow-hidden" data-testid="section-solution-showcase">
       {/* Animated star background */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((star, i) => (
@@ -67,7 +67,7 @@ export default function SolutionShowcase() {
         ))}
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="content-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start min-h-[750px]">
           <div className="space-y-6 text-left lg:pr-12">
             <h2 

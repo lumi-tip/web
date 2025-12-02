@@ -188,7 +188,7 @@ export default function TrainingChallenges() {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-16 px-4 overflow-hidden bg-background" data-testid="section-training-challenges">
+    <section className="relative pt-24 pb-16 overflow-hidden bg-background" data-testid="section-training-challenges">
       {/* Animated star background */}
       <div className="absolute inset-0 pointer-events-none">
         {stars.map((star, i) => (
@@ -204,7 +204,7 @@ export default function TrainingChallenges() {
         ))}
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="content-container relative z-10">
         <div className="text-center space-y-4 mb-12">
           <h2 
             className="text-3xl md:text-4xl font-bold"
@@ -220,7 +220,7 @@ export default function TrainingChallenges() {
           </p>
         </div>
 
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {challenges.map((challenge, index) => {
             const Icon = challenge.icon;
             return (

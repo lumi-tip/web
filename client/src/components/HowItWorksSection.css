@@ -1,6 +1,6 @@
 .how-it-works-section {
   position: relative;
-  padding: 4rem 1rem;
+  padding: 4rem 0;
   background: hsl(var(--background));
   overflow: hidden;
 }
@@ -65,9 +65,9 @@
 }
 
 .how-it-works-inner {
-  max-width: 800px;
-  margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .how-it-works-title {

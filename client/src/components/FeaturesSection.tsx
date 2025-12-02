@@ -56,7 +56,7 @@ export default function FeaturesSection() {
       <div className="features-glow features-glow--top-right" aria-hidden="true" />
       <div className="features-glow features-glow--bottom-left" aria-hidden="true" />
 
-      <div className="features-inner">
+      <div className="features-inner content-container">
         <h2 
           id="features-title" 
           className="features-title"
