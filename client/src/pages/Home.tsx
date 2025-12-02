@@ -5,6 +5,7 @@ import SocialProof from '@/components/SocialProof';
 import TrainingChallenges from '@/components/TrainingChallenges';
 import SolutionShowcase from '@/components/SolutionShowcase';
 import HowItWorksSection from '@/components/HowItWorksSection';
+import FeaturesSection from '@/components/FeaturesSection';
 import ValueProps from '@/components/ValueProps';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -25,6 +26,7 @@ export default function Home() {
         <TrainingChallenges />
         <SolutionShowcase />
         <HowItWorksSection />
+        <FeaturesSection />
         {/* Temporarily commented out - videos not ready yet */}
         {/* <ValueProps /> */}
         {/* Group below-the-fold components under single Suspense to reduce CLS and spinner noise */}

@@ -192,5 +192,35 @@
       "title": "Refina con Rigobot",
       "text": "Chatea con Rigobot para agregar ejemplos, visuales, ejercicios, traducciones o ajustes de último momento antes de publicar."
     }
+  },
+  "features": {
+    "title": "Características y Capacidades",
+    "subtitle": "Todo lo que necesitas para crear, adaptar y entregar capacitación — impulsado por IA.",
+    "items": {
+      "aiCourseGeneration": {
+        "title": "Generación de Cursos con IA",
+        "description": "Convierte cualquier documento, video o idea en un curso completamente interactivo en minutos."
+      },
+      "aiTutor": {
+        "title": "Tutor IA",
+        "description": "Proporciona a los estudiantes ayuda contextual en tiempo real, reduciendo el abandono en un 50%."
+      },
+      "scormExport": {
+        "title": "Exportación SCORM y LMS",
+        "description": "Implementa capacitación en cualquier lugar e intégrala con tu LMS existente."
+      },
+      "analytics": {
+        "title": "Analíticas en Tiempo Real",
+        "description": "Rastrea progreso, compromiso, frustración y resultados de aprendizaje con datos."
+      },
+      "translations": {
+        "title": "Traducciones Instantáneas",
+        "description": "Localiza cursos instantáneamente para equipos globales o multilingües."
+      },
+      "aiEditing": {
+        "title": "Edición con IA",
+        "description": "Edita cualquier módulo al instante a través del chat, sin necesidad de desarrolladores o diseñadores."
+      }
+    }
   }
 }

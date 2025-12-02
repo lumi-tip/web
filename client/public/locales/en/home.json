@@ -192,5 +192,35 @@
       "title": "Refine with Rigobot",
       "text": "Chat with Rigobot to add examples, visuals, exercises, translations, or last-mile adjustments before publishing."
     }
+  },
+  "features": {
+    "title": "Features & Capabilities",
+    "subtitle": "Everything you need to create, adapt, and deliver training — powered by AI.",
+    "items": {
+      "aiCourseGeneration": {
+        "title": "AI Course Generation",
+        "description": "Turn any document, video, or idea into a fully interactive course in minutes."
+      },
+      "aiTutor": {
+        "title": "AI Tutor",
+        "description": "Provide learners with real-time, contextual help, reducing dropout by 50%."
+      },
+      "scormExport": {
+        "title": "SCORM & LMS Export",
+        "description": "Deploy training anywhere and integrate seamlessly with your existing LMS."
+      },
+      "analytics": {
+        "title": "Real-Time Analytics",
+        "description": "Track progress, engagement, frustration, and learning outcomes with data."
+      },
+      "translations": {
+        "title": "Instant Translations",
+        "description": "Localize courses instantly for global or multilingual teams."
+      },
+      "aiEditing": {
+        "title": "AI Editing",
+        "description": "Edit any module instantly through chat, no developers or designers needed."
+      }
+    }
   }
 }
