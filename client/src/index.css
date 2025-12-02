@@ -478,3 +478,13 @@
   will-change: transform, opacity;
 }
 
+/* Content Container - Consistent 1200px max-width, centered with 24px horizontal padding */
+.content-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 100%;
+}
+
