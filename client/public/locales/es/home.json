@@ -222,5 +222,13 @@
         "description": "Edita cualquier módulo al instante a través del chat, sin necesidad de desarrolladores o diseñadores."
       }
     }
+  },
+  "impactMetrics": {
+    "title": "Métricas de Impacto",
+    "subtitle": "Resultados reales de implementaciones reales.",
+    "reduction": "Reducción en costos de creación de contenido.",
+    "completion": "Aumento en tasas de finalización de estudiantes.",
+    "dropout": "Reducción en abandono de estudiantes con el Tutor IA.",
+    "activeUsers": "Usuarios activos creando y entregando capacitación."
   }
 }

@@ -222,5 +222,13 @@
         "description": "Edit any module instantly through chat, no developers or designers needed."
       }
     }
+  },
+  "impactMetrics": {
+    "title": "Impact Metrics",
+    "subtitle": "Real results from real deployments.",
+    "reduction": "Reduction in content creation costs.",
+    "completion": "Increase in learner completion rates.",
+    "dropout": "Reduction in learner dropout with the AI Tutor.",
+    "activeUsers": "Active users building and delivering training."
   }
 }
