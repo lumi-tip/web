@@ -356,13 +356,13 @@
   animation: scroll-left-to-right linear infinite;
 }
 
-/* Company Logo Animation */
+/* Company Logo Animation - starts with logos visible and inset from edge, seamless loop */
 @keyframes scroll-logos {
   0% {
-    transform: translateX(100vw);
+    transform: translateX(5%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-28.33%);
   }
 }
 
@@ -488,25 +488,20 @@
   width: 100%;
 }
 
-/* Social Proof Section - Seamless background with Hero */
+/* Social Proof Section - Transparent so hero background shows through seamlessly */
 .social-proof-section {
-  background: radial-gradient(ellipse at center,
-    hsl(220 47% 15%) 0%,
-    hsl(222 47% 11%) 50%,
-    hsl(224 47% 8%) 100%
-  );
+  background: transparent;
   border: none;
-  border-top: none;
   margin-top: 0;
   padding-top: 4rem;
 }
 
-/* Fade edges that match the seamless background */
+/* Fade edges with dark gradient that blends into page background */
 .social-proof-fade-left {
-  background: linear-gradient(to right, hsl(222 47% 11%) 0%, transparent 100%);
+  background: linear-gradient(to right, hsl(224 47% 8%) 0%, transparent 100%);
 }
 
 .social-proof-fade-right {
-  background: linear-gradient(to left, hsl(222 47% 11%) 0%, transparent 100%);
+  background: linear-gradient(to left, hsl(224 47% 8%) 0%, transparent 100%);
 }
 

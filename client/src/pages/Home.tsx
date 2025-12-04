@@ -21,8 +21,11 @@ export default function Home() {
       <SEO namespace="home" />
       <Header />
       <main>
-        <Hero />
-        <SocialProof />
+        {/* Hero and SocialProof share the same background for seamless continuity */}
+        <div className="hero-animated-bg">
+          <Hero />
+          <SocialProof />
+        </div>
         <TrainingChallenges />
         <SolutionShowcase />
         <HowItWorksSection />
