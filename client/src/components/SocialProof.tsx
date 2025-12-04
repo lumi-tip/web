@@ -81,7 +81,7 @@ export default function SocialProof() {
         <div 
           className="flex animate-scroll-logos gap-0 opacity-100"
           style={{ 
-            animationDuration: '60s'
+            animationDuration: '10s'
           }}
         >
           {duplicatedLogos.map((company, index) => (
