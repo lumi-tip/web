@@ -1,54 +1,47 @@
-import { useTranslation } from 'react-i18next';
-
 const metrics = [
   {
     value: '80%',
-    labelKey: 'impactMetrics.reduction',
+    label: 'Lower content creation cost.',
   },
   {
     value: '2×',
-    labelKey: 'impactMetrics.completion',
+    label: 'Higher learner completion rates.',
   },
   {
     value: '50%',
-    labelKey: 'impactMetrics.dropout',
+    label: 'Less learner dropout with the AI Tutor.',
   },
   {
     value: '1500+',
-    labelKey: 'impactMetrics.activeUsers',
+    label: 'Active users building and delivering training.',
   },
 ];
 
 export default function ImpactMetrics() {
-  const { t } = useTranslation();
-
   return (
     <section 
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-24 md:py-32"
       data-testid="section-impact-metrics"
     >
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-16 md:mb-20">
           <h2 
             className="text-3xl md:text-4xl font-bold text-foreground mb-4"
             data-testid="text-impact-metrics-title"
           >
-            {t('impactMetrics.title')}
+            Impact Metrics
           </h2>
           <p 
             className="text-muted-foreground text-lg"
             data-testid="text-impact-metrics-subtitle"
           >
-            {t('impactMetrics.subtitle')}
+            Real results from real deployments.
           </p>
         </div>
 
         {/* Metrics grid - 4 columns on desktop, 2x2 on tablet, stacked on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 max-w-5xl mx-auto">
           {metrics.map((metric, index) => (
             <div 
               key={index}
@@ -62,10 +55,10 @@ export default function ImpactMetrics() {
                 {metric.value}
               </div>
               <p 
-                className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-[200px] mx-auto"
+                className="text-muted-foreground text-sm md:text-base leading-relaxed"
                 data-testid={`metric-label-${index}`}
               >
-                {t(metric.labelKey)}
+                {metric.label}
               </p>
             </div>
           ))}
