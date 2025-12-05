@@ -36,15 +36,15 @@ export default function SocialProof() {
   const duplicatedLogos = [...companies, ...companies, ...companies];
   
   // Memoize scattered star positions to prevent repositioning on re-renders
-  // Fewer, smaller, lighter stars for carousel section
+  // Moderate density with lighter stars for carousel section
   const stars = useMemo(
     () =>
-      Array.from({ length: 20 }, (_, i) => ({
+      Array.from({ length: 30 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         delay: `${Math.random() * 12}s`,
         duration: `${5 + Math.random() * 7}s`,
-        size: Math.random() > 0.8 ? 1.5 : 1,
+        size: Math.random() > 0.8 ? 2 : Math.random() > 0.5 ? 1.5 : 1,
       })),
     []
   );

@@ -67,14 +67,15 @@ export default function TrainingChallenges() {
   ];
 
   // Memoize scattered star positions to prevent repositioning on re-renders
+  // Increased density for richer visual presence
   const stars = useMemo(
     () =>
-      Array.from({ length: 35 }, (_, i) => ({
+      Array.from({ length: 50 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         delay: `${Math.random() * 12}s`,
         duration: `${5 + Math.random() * 7}s`,
-        size: Math.random() > 0.7 ? 2 : 1,
+        size: Math.random() > 0.7 ? 2.5 : Math.random() > 0.4 ? 1.5 : 1,
       })),
     []
   );
