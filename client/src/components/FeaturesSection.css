@@ -5,6 +5,31 @@
   overflow: hidden;
 }
 
+/* Smooth section transition overlays */
+.features-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.features-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Delicate background stars - more visible */
 .features-stars {
   position: absolute;
@@ -18,18 +43,7 @@
   border-radius: 50%;
   background: hsl(var(--primary));
   opacity: 0;
-  animation: featuresStarTwinkle ease-in-out infinite;
-}
-
-@keyframes featuresStarTwinkle {
-  0%, 100% {
-    opacity: 0.1;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
+  animation: starTwinkleUnified ease-in-out infinite;
 }
 
 /* Soft ambient glow spots - enhanced */

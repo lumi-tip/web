@@ -5,6 +5,31 @@
   overflow: hidden;
 }
 
+/* Smooth section transition overlays */
+.how-it-works-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.how-it-works-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Soft circular glow behind timeline - centered */
 .how-it-works-timeline-glow {
   position: absolute;
@@ -69,18 +94,7 @@
   border-radius: 50%;
   background: hsl(var(--primary));
   opacity: 0;
-  animation: starTwinkle ease-in-out infinite;
-}
-
-@keyframes starTwinkle {
-  0%, 100% {
-    opacity: 0.1;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
+  animation: starTwinkleUnified ease-in-out infinite;
 }
 
 .how-it-works-inner {

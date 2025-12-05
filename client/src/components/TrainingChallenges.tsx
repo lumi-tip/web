@@ -69,11 +69,12 @@ export default function TrainingChallenges() {
   // Memoize scattered star positions to prevent repositioning on re-renders
   const stars = useMemo(
     () =>
-      Array.from({ length: 30 }, (_, i) => ({
+      Array.from({ length: 35 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 8}s`,
-        duration: `${4 + Math.random() * 4}s`,
+        delay: `${Math.random() * 12}s`,
+        duration: `${5 + Math.random() * 7}s`,
+        size: Math.random() > 0.7 ? 2 : 1,
       })),
     []
   );
@@ -189,20 +190,32 @@ export default function TrainingChallenges() {
 
   return (
     <section className="relative pt-24 pb-16 overflow-hidden bg-background" data-testid="section-training-challenges">
-      {/* Animated star background */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Smooth top transition gradient */}
+      <div className="section-transition-top" aria-hidden="true" />
+      
+      {/* Ambient glow for visual continuity */}
+      <div className="section-ambient-glow section-ambient-glow--primary absolute top-1/4 left-1/4 w-[500px] h-[500px]" aria-hidden="true" />
+      <div className="section-ambient-glow section-ambient-glow--accent absolute bottom-1/4 right-1/4 w-[400px] h-[400px]" aria-hidden="true" />
+      
+      {/* Animated star background - elegant twinkle effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {stars.map((star, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-primary"
+            className="absolute rounded-full bg-primary"
             style={{
               left: star.left,
               top: star.top,
-              animation: `starFloat ${star.duration} ease-in-out ${star.delay} infinite`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animation: `starTwinkleUnified ${star.duration} ease-in-out ${star.delay} infinite`,
             }}
           />
         ))}
       </div>
+      
+      {/* Smooth bottom transition gradient */}
+      <div className="section-transition-bottom" aria-hidden="true" />
 
       <div className="content-container relative z-10">
         <div className="text-center space-y-4 mb-12">

@@ -39,27 +39,30 @@ export default function SocialProof() {
   // Fewer, smaller, lighter stars for carousel section
   const stars = useMemo(
     () =>
-      Array.from({ length: 15 }, (_, i) => ({
+      Array.from({ length: 20 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 8}s`,
-        duration: `${4 + Math.random() * 4}s`,
+        delay: `${Math.random() * 12}s`,
+        duration: `${5 + Math.random() * 7}s`,
+        size: Math.random() > 0.8 ? 1.5 : 1,
       })),
     []
   );
   
   return (
     <section className="social-proof-section relative py-16 overflow-hidden" data-testid="section-social-proof">
-      {/* Animated star background - continuous with hero */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Animated star background - elegant twinkle effect, lighter for carousel section */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {stars.map((star, i) => (
           <div
             key={i}
-            className="absolute w-0.5 h-0.5 rounded-full bg-primary opacity-100"
+            className="absolute rounded-full bg-primary"
             style={{
               left: star.left,
               top: star.top,
-              animation: `starFloatLight ${star.duration} ease-in-out ${star.delay} infinite`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animation: `starTwinkleLight ${star.duration} ease-in-out ${star.delay} infinite`,
             }}
           />
         ))}

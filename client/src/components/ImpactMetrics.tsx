@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 const metrics = [
   {
     value: '80%',
@@ -18,12 +20,51 @@ const metrics = [
 ];
 
 export default function ImpactMetrics() {
+  // Generate delicate background stars - higher density
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 35 }, (_, i) => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 12}s`,
+        duration: `${5 + Math.random() * 7}s`,
+        size: Math.random() > 0.7 ? 2 : 1,
+      })),
+    []
+  );
+
   return (
     <section 
-      className="relative py-24 md:py-32"
+      className="relative py-24 md:py-32 bg-background overflow-hidden"
       data-testid="section-impact-metrics"
     >
-      <div className="container mx-auto px-6">
+      {/* Smooth top transition gradient */}
+      <div className="section-transition-top" aria-hidden="true" />
+      
+      {/* Ambient glow for visual continuity */}
+      <div className="section-ambient-glow section-ambient-glow--primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px]" aria-hidden="true" />
+      
+      {/* Animated star background - elegant twinkle effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-primary"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animation: `starTwinkleUnified ${star.duration} ease-in-out ${star.delay} infinite`,
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Smooth bottom transition gradient */}
+      <div className="section-transition-bottom" aria-hidden="true" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16 md:mb-20">
           <h2 

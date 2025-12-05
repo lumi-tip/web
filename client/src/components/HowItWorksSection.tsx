@@ -7,14 +7,14 @@ import "./HowItWorksSection.css";
 export default function HowItWorksSection() {
   const { t } = useTranslation('home');
 
-  // Generate delicate background stars
+  // Generate delicate background stars - higher density
   const stars = useMemo(
     () =>
-      Array.from({ length: 20 }, (_, i) => ({
+      Array.from({ length: 35 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 10}s`,
-        duration: `${6 + Math.random() * 6}s`,
+        delay: `${Math.random() * 12}s`,
+        duration: `${5 + Math.random() * 7}s`,
         size: Math.random() > 0.7 ? 2 : 1,
       })),
     []

@@ -382,27 +382,50 @@
   }
 }
 
-/* Star Float Animation for TrainingChallenges Background */
-@keyframes starFloat {
+/* Unified Star Twinkle Animation - elegant appearing/disappearing */
+@keyframes starTwinkleUnified {
   0%, 100% {
-    opacity: 0.2;
-    transform: translate(0, 0);
+    opacity: 0;
+    transform: scale(0.6);
   }
   50% {
-    opacity: 0.5;
-    transform: translate(10px, -10px);
+    opacity: 0.6;
+    transform: scale(1);
   }
 }
 
-/* Lighter Star Float Animation for Carousel Section */
+/* Lighter version for social proof section */
+@keyframes starTwinkleLight {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+}
+
+/* Legacy animations for backwards compatibility */
+@keyframes starFloat {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
 @keyframes starFloatLight {
   0%, 100% {
-    opacity: 0.1;
-    transform: translate(0, 0);
+    opacity: 0;
+    transform: scale(0.5);
   }
   50% {
     opacity: 0.3;
-    transform: translate(8px, -8px);
+    transform: scale(1);
   }
 }
 
@@ -503,5 +526,45 @@
 
 .social-proof-fade-right {
   background: linear-gradient(to left, hsl(224 47% 8%) 0%, transparent 100%);
+}
+
+/* Section Transition Overlays - Creates smooth background blending between sections */
+.section-transition-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-transition-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ambient glow that spans across sections for visual continuity */
+.section-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0.5;
+}
+
+.section-ambient-glow--primary {
+  background: radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%);
+}
+
+.section-ambient-glow--accent {
+  background: radial-gradient(circle, hsl(200 80% 60% / 0.06) 0%, transparent 70%);
 }
 
