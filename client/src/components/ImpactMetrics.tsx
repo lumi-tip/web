@@ -35,7 +35,7 @@ export default function ImpactMetrics() {
 
   return (
     <section 
-      className="relative py-32 md:py-40 lg:py-48 bg-background overflow-hidden"
+      className="relative py-20 md:py-24 lg:py-28 bg-background overflow-hidden"
       data-testid="section-impact-metrics"
     >
       {/* Smooth top transition gradient */}
@@ -79,22 +79,22 @@ export default function ImpactMetrics() {
       {/* Smooth bottom transition gradient */}
       <div className="section-transition-bottom" aria-hidden="true" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="content-container relative z-10">
         {/* Subtle divider line above title */}
-        <div className="flex justify-center mb-10" aria-hidden="true">
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="flex justify-center mb-8" aria-hidden="true">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
         </div>
         
         {/* Section header */}
-        <div className="text-center mb-20 md:mb-24">
+        <div className="text-center mb-12 md:mb-16">
           <h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4"
             data-testid="text-impact-metrics-title"
           >
             Impact Metrics
           </h2>
           <p 
-            className="text-muted-foreground text-lg md:text-xl"
+            className="text-muted-foreground text-base md:text-lg"
             data-testid="text-impact-metrics-subtitle"
           >
             Real results from real deployments.
@@ -102,26 +102,26 @@ export default function ImpactMetrics() {
         </div>
 
         {/* Metrics grid - 4 columns on desktop, stacked on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-12 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
           {metrics.map((metric, index) => (
             <div 
               key={index}
-              className="text-center group"
+              className="text-center"
               data-testid={`metric-item-${index}`}
             >
-              {/* Large dominant number */}
+              {/* Elegant number - refined size */}
               <div 
-                className="text-6xl sm:text-7xl md:text-7xl lg:text-8xl font-bold text-primary mb-5 md:mb-6 tracking-tight"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold text-primary mb-3 tracking-tight"
                 style={{
-                  textShadow: '0 0 40px rgba(59, 130, 246, 0.3)',
+                  textShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
                 }}
                 data-testid={`metric-value-${index}`}
               >
                 {metric.value}
               </div>
-              {/* Smaller, lighter label with good spacing */}
+              {/* Smaller, lighter label */}
               <p 
-                className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-[200px] mx-auto"
+                className="text-muted-foreground text-sm leading-relaxed max-w-[180px] mx-auto"
                 data-testid={`metric-label-${index}`}
               >
                 {metric.label}
@@ -131,8 +131,8 @@ export default function ImpactMetrics() {
         </div>
         
         {/* Subtle bottom divider */}
-        <div className="flex justify-center mt-20 md:mt-24" aria-hidden="true">
-          <div className="w-48 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="flex justify-center mt-14 md:mt-16" aria-hidden="true">
+          <div className="w-32 h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent" />
         </div>
       </div>
     </section>
