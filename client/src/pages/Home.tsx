@@ -6,6 +6,7 @@ import SolutionShowcase from '@/components/SolutionShowcase';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import ImpactMetrics from '@/components/ImpactMetrics';
+import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
@@ -25,6 +26,7 @@ export default function Home() {
         <HowItWorksSection />
         <FeaturesSection />
         <ImpactMetrics />
+        <FAQSection />
       </main>
       <Footer />
     </div>

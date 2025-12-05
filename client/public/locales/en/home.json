@@ -230,5 +230,35 @@
     "completion": "Increase in learner completion rates.",
     "dropout": "Reduction in learner dropout with the AI Tutor.",
     "activeUsers": "Active users building and delivering training."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Clear answers for teams and creators.",
+    "items": {
+      "whatIsLearnpack": {
+        "question": "What is LearnPack and who is it for?",
+        "answer": "LearnPack is an AI-powered platform that turns any document or idea into an interactive training package. It is used by organizations to train employees, customers, partners, and by individual creators who want to build courses fast without technical skills."
+      },
+      "aiDifference": {
+        "question": "What's the difference between the AI Tutor and the AI Editing Agent?",
+        "answer": "LearnPack includes two different AI systems:<br/><br/><strong>Rigobot (AI Tutor):</strong> Helps learners by answering questions, guiding them step-by-step, and reducing dropout by up to 50%.<br/><br/><strong>AI Editing Agent:</strong> Helps creators improve content, rewrite lessons, simplify explanations, add quizzes, translate modules, and update courses instantly through chat."
+      },
+      "lmsIntegration": {
+        "question": "Can LearnPack integrate with our LMS or export SCORM?",
+        "answer": "Yes. LearnPack exports SCORM 1.2 and 2004 packages and embeds into most LMS platforms including Moodle, Canvas, TalentLMS, LearnWorlds, and others."
+      },
+      "timeCost": {
+        "question": "How does LearnPack reduce time and cost for training teams?",
+        "answer": "AI generates lessons, quizzes, assessments, translations, and updates in minutes; reducing creation costs by 80% and doubling learner completion rates."
+      },
+      "trainingTypes": {
+        "question": "Can LearnPack be used for any type of training?",
+        "answer": "Yes. You can build training for technical skills, software onboarding, compliance, soft skills, customer education, or any custom topic. LearnPack adapts to both enterprise teams and solo creators."
+      },
+      "dataSecurity": {
+        "question": "Is my data secure and private?",
+        "answer": "Yes. LearnPack follows strict security standards. Your content is private and not used to train external AI models."
+      }
+    }
   }
 }

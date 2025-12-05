@@ -230,5 +230,35 @@
     "completion": "Aumento en tasas de finalización de estudiantes.",
     "dropout": "Reducción en abandono de estudiantes con el Tutor IA.",
     "activeUsers": "Usuarios activos creando y entregando capacitación."
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Respuestas claras para equipos y creadores.",
+    "items": {
+      "whatIsLearnpack": {
+        "question": "¿Qué es LearnPack y para quién es?",
+        "answer": "LearnPack es una plataforma impulsada por IA que convierte cualquier documento o idea en un paquete de capacitación interactivo. Es utilizada por organizaciones para capacitar empleados, clientes, socios, y por creadores individuales que quieren crear cursos rápidamente sin habilidades técnicas."
+      },
+      "aiDifference": {
+        "question": "¿Cuál es la diferencia entre el Tutor IA y el Agente de Edición IA?",
+        "answer": "LearnPack incluye dos sistemas de IA diferentes:<br/><br/><strong>Rigobot (Tutor IA):</strong> Ayuda a los estudiantes respondiendo preguntas, guiándolos paso a paso y reduciendo el abandono hasta en un 50%.<br/><br/><strong>Agente de Edición IA:</strong> Ayuda a los creadores a mejorar el contenido, reescribir lecciones, simplificar explicaciones, agregar cuestionarios, traducir módulos y actualizar cursos instantáneamente a través del chat."
+      },
+      "lmsIntegration": {
+        "question": "¿LearnPack puede integrarse con nuestro LMS o exportar SCORM?",
+        "answer": "Sí. LearnPack exporta paquetes SCORM 1.2 y 2004 y se integra con la mayoría de las plataformas LMS incluyendo Moodle, Canvas, TalentLMS, LearnWorlds y otras."
+      },
+      "timeCost": {
+        "question": "¿Cómo reduce LearnPack el tiempo y costo para equipos de capacitación?",
+        "answer": "La IA genera lecciones, cuestionarios, evaluaciones, traducciones y actualizaciones en minutos; reduciendo los costos de creación en un 80% y duplicando las tasas de finalización de los estudiantes."
+      },
+      "trainingTypes": {
+        "question": "¿Se puede usar LearnPack para cualquier tipo de capacitación?",
+        "answer": "Sí. Puedes crear capacitación para habilidades técnicas, onboarding de software, cumplimiento, habilidades blandas, educación al cliente o cualquier tema personalizado. LearnPack se adapta tanto a equipos empresariales como a creadores individuales."
+      },
+      "dataSecurity": {
+        "question": "¿Mis datos están seguros y son privados?",
+        "answer": "Sí. LearnPack sigue estrictos estándares de seguridad. Tu contenido es privado y no se utiliza para entrenar modelos de IA externos."
+      }
+    }
   }
 }
