@@ -50,6 +50,13 @@ Preferred communication style: Simple, everyday language.
 - **Authentication & Redirect Flow**: Configurable platform URLs for login/signup, creator flows, and plan checkout redirects with Base64 encoding.
 - **Admin System**: Protected routes, `AuthContext`, `ProtectedRoute`, and `Login` components for admin access control with "webmaster" capability.
 
+### Feature Pages
+- **End-to-End Automation** (`/features/automation`): Complete feature page with 10 sections optimized for SEO and LLM positioning.
+  - **Sections**: Hero, Definition Box, Problems (5 cards), Features (6 cards), How It Works (3 steps), Feature Table (6 items), Use Cases (4 cards), Metrics (4 stats), Testimonial, Final CTA
+  - **i18n**: Full EN/ES translations via `automation` namespace
+  - **SEO**: Meta tags, Open Graph, JSON-LD SoftwareApplication schema
+  - **Design**: Cosmic theme with animated stars, glassmorphism cards, consistent py-20 md:py-24 lg:py-28 spacing
+
 ## External Dependencies
 
 - **UI and Styling**: Radix UI, Tailwind CSS, Lucide React, Google Fonts.
