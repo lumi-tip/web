@@ -50,7 +50,7 @@ export default function SocialProof() {
   );
   
   return (
-    <section className="social-proof-section relative py-16 overflow-hidden" data-testid="section-social-proof">
+    <section className="social-proof-section relative py-20 md:py-24 lg:py-28 overflow-hidden" data-testid="section-social-proof">
       {/* Animated star background - elegant twinkle effect, lighter for carousel section */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {stars.map((star, i) => (
@@ -68,10 +68,10 @@ export default function SocialProof() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="content-container relative z-10">
         <div className="text-center">
           <p 
-            className="text-muted-foreground font-medium mb-12 opacity-100"
+            className="text-muted-foreground font-medium mb-12"
             data-testid="text-social-proof-title"
           >
             {t('socialProof.title')}

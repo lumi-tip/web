@@ -5,6 +5,18 @@
   overflow: hidden;
 }
 
+@media (min-width: 768px) {
+  .features-section {
+    padding: 6rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-section {
+    padding: 7rem 0;
+  }
+}
+
 /* Smooth section transition overlays */
 .features-section::before {
   content: '';
@@ -130,10 +142,16 @@
 }
 
 .features-title {
-  font-size: 2.25rem;
+  font-size: 1.875rem;
   font-weight: 700;
   color: hsl(var(--foreground));
   margin: 0 0 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .features-title {
+    font-size: 2.25rem;
+  }
 }
 
 .features-subtitle {
@@ -199,14 +217,6 @@
 }
 
 @media (max-width: 600px) {
-  .features-section {
-    padding: 4rem 1rem;
-  }
-
-  .features-title {
-    font-size: 1.75rem;
-  }
-
   .features-subtitle {
     font-size: 1rem;
     margin-bottom: 3rem;

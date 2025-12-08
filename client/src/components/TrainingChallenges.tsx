@@ -190,13 +190,12 @@ export default function TrainingChallenges() {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-16 overflow-hidden bg-background" data-testid="section-training-challenges">
+    <section className="relative py-20 md:py-24 lg:py-28 overflow-hidden bg-background" data-testid="section-training-challenges">
       {/* Smooth top transition gradient */}
       <div className="section-transition-top" aria-hidden="true" />
       
-      {/* Ambient glow for visual continuity */}
-      <div className="section-ambient-glow section-ambient-glow--primary absolute top-1/4 left-1/4 w-[500px] h-[500px]" aria-hidden="true" />
-      <div className="section-ambient-glow section-ambient-glow--accent absolute bottom-1/4 right-1/4 w-[400px] h-[400px]" aria-hidden="true" />
+      {/* Single ambient glow - simplified */}
+      <div className="section-ambient-glow section-ambient-glow--primary absolute top-1/4 left-1/4 w-[400px] h-[400px]" aria-hidden="true" />
       
       {/* Animated star background - elegant twinkle effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

@@ -53,13 +53,12 @@ export default function SolutionShowcase() {
   ];
 
   return (
-    <section className="relative pt-12 pb-12 bg-background overflow-hidden" data-testid="section-solution-showcase">
+    <section className="relative py-20 md:py-24 lg:py-28 bg-background overflow-hidden" data-testid="section-solution-showcase">
       {/* Smooth top transition gradient */}
       <div className="section-transition-top" aria-hidden="true" />
       
-      {/* Ambient glow for visual continuity */}
-      <div className="section-ambient-glow section-ambient-glow--primary absolute top-1/3 right-1/4 w-[450px] h-[450px]" aria-hidden="true" />
-      <div className="section-ambient-glow section-ambient-glow--accent absolute bottom-1/3 left-1/4 w-[350px] h-[350px]" aria-hidden="true" />
+      {/* Single ambient glow - simplified */}
+      <div className="section-ambient-glow section-ambient-glow--primary absolute top-1/3 right-1/4 w-[400px] h-[400px]" aria-hidden="true" />
       
       {/* Animated star background - elegant twinkle effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -85,7 +84,7 @@ export default function SolutionShowcase() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start min-h-[750px]">
           <div className="space-y-6 text-left lg:pr-12">
             <h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+              className="text-3xl md:text-4xl font-bold leading-tight"
               data-testid="text-solution-title"
             >
               {t('solutionShowcase.title')}

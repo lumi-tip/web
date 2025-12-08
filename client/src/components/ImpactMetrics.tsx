@@ -41,20 +41,11 @@ export default function ImpactMetrics() {
       {/* Smooth top transition gradient */}
       <div className="section-transition-top" aria-hidden="true" />
       
-      {/* Soft blue radial gradient - centered, low opacity for cosmic feel */}
+      {/* Single unified radial gradient - simplified for cleaner look */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 40%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
-      
-      {/* Secondary accent glow */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 60%)',
         }}
         aria-hidden="true"
       />
@@ -88,7 +79,7 @@ export default function ImpactMetrics() {
         {/* Section header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4"
+            className="text-3xl md:text-4xl font-bold text-foreground mb-4"
             data-testid="text-impact-metrics-title"
           >
             Impact Metrics
@@ -109,11 +100,11 @@ export default function ImpactMetrics() {
               className="text-center"
               data-testid={`metric-item-${index}`}
             >
-              {/* Elegant number - refined size */}
+              {/* Bold commanding number */}
               <div 
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold text-primary mb-3 tracking-tight"
+                className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold text-primary mb-3 tracking-tight"
                 style={{
-                  textShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+                  textShadow: '0 0 40px rgba(59, 130, 246, 0.3)',
                 }}
                 data-testid={`metric-value-${index}`}
               >

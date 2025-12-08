@@ -66,12 +66,12 @@ export default function FAQSection() {
       {/* Smooth top transition gradient */}
       <div className="section-transition-top" aria-hidden="true" />
 
-      {/* Soft blue radial gradient - centered behind title */}
+      {/* Soft blue radial gradient - simplified */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.06) 0%, rgba(59, 130, 246, 0.02) 40%, transparent 70%)',
+            'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 60%)',
         }}
         aria-hidden="true"
       />
@@ -101,7 +101,7 @@ export default function FAQSection() {
         <div className="text-center mb-12 md:mb-16">
           <h2
             id="faq-title"
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4"
+            className="text-3xl md:text-4xl font-bold text-foreground mb-4"
             data-testid="text-faq-title"
           >
             {t('faq.title')}
