@@ -14,7 +14,6 @@ import {
   BarChart3, 
   Bot,
   DollarSign,
-  Clock,
   Eye,
   TrendingDown,
   HeadphonesIcon,
@@ -26,8 +25,7 @@ import {
   Code,
   Shield,
   Quote,
-  ArrowRight,
-  CheckCircle2
+  ArrowRight
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 
@@ -68,9 +66,7 @@ export default function Automation() {
     { key: 'generation', icon: Zap },
     { key: 'editing', icon: RefreshCw },
     { key: 'translations', icon: Languages },
-    { key: 'publishing', icon: Share2 },
-    { key: 'analytics', icon: BarChart3 },
-    { key: 'tutoring', icon: Bot }
+    { key: 'analytics', icon: BarChart3 }
   ];
 
   const howItWorksSteps = [
@@ -83,7 +79,6 @@ export default function Automation() {
     { key: 'courseGen', icon: Zap },
     { key: 'blockEdit', icon: MessageSquare },
     { key: 'tutor', icon: Bot },
-    { key: 'analytics', icon: BarChart3 },
     { key: 'scorm', icon: Share2 },
     { key: 'multilingual', icon: Languages }
   ];
@@ -290,11 +285,11 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2">
               {featureItems.map(({ key, icon: Icon }) => (
                 <Card 
                   key={key}
-                  className="p-6 bg-card/30 backdrop-blur-sm border-border/50 hover-elevate transition-all duration-300"
+                  className="p-6 bg-card/30 backdrop-blur-sm border-border/40 hover-elevate transition-all duration-300"
                   data-testid={`card-feature-${key}`}
                 >
                   <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit mb-4">
@@ -343,11 +338,11 @@ export default function Automation() {
                 >
                   {/* Connector line */}
                   {index < howItWorksSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-[2px] bg-gradient-to-r from-primary/50 to-primary/10" />
+                    <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-[1px] bg-gradient-to-r from-primary/30 to-transparent" />
                   )}
                   
-                  <Card className="p-6 bg-card/30 backdrop-blur-sm border-border/50 text-center relative z-10">
-                    <div className="text-4xl font-bold text-primary/20 mb-4">{number}</div>
+                  <Card className="p-6 bg-card/20 backdrop-blur-sm border-border/30 text-center relative z-10">
+                    <div className="text-4xl font-bold text-primary/15 mb-4">{number}</div>
                     <div className="p-4 rounded-full bg-primary/10 text-primary w-fit mx-auto mb-4">
                       <Icon className="h-8 w-8" />
                     </div>
@@ -394,7 +389,7 @@ export default function Automation() {
               {featureTableItems.map(({ key, icon: Icon }) => (
                 <div 
                   key={key}
-                  className="flex items-start gap-4 p-4 rounded-lg bg-card/20 border border-border/30"
+                  className="flex items-start gap-4 p-5 rounded-lg bg-card/15 border border-border/20"
                   data-testid={`feature-table-item-${key}`}
                 >
                   <div className="p-2 rounded-md bg-primary/10 text-primary flex-shrink-0">
