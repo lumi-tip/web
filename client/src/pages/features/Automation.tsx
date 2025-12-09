@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,10 +11,6 @@ import {
   Share2, 
   BarChart3, 
   Bot,
-  DollarSign,
-  Eye,
-  TrendingDown,
-  HeadphonesIcon,
   FileText,
   MessageSquare,
   Rocket,
@@ -24,12 +19,20 @@ import {
   Code,
   Shield,
   Quote,
-  ArrowRight
+  ArrowRight,
+  Play,
+  Layers,
+  Copy,
+  UserCheck,
+  HelpCircle,
+  ChevronDown
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
+import { useState } from 'react';
 
 export default function Automation() {
   const { t, i18n } = useTranslation('automation');
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleTryClick = () => {
     analytics.ctaClick('try_learnpack', 'automation_page');
@@ -38,27 +41,21 @@ export default function Automation() {
   };
 
   const handleDemoClick = () => {
+    analytics.ctaClick('watch_demo', 'automation_page');
+    window.open('https://youtu.be/dBjKIashs4Y', '_blank');
+  };
+
+  const handleBookDemoClick = () => {
     analytics.ctaClick('book_demo', 'automation_page');
     window.location.href = '/contact';
   };
 
-  const stars = useMemo(() => {
-    return Array.from({ length: 40 }, (_, i) => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 4}s`,
-      animationDuration: `${2 + Math.random() * 3}s`,
-      size: Math.random() > 0.7 ? '2px' : Math.random() > 0.4 ? '1.5px' : '1px',
-      opacity: 0.3 + Math.random() * 0.4
-    }));
-  }, []);
-
   const problemItems = [
-    { key: 'expensive', icon: DollarSign },
-    { key: 'updates', icon: RefreshCw },
-    { key: 'visibility', icon: Eye },
-    { key: 'completion', icon: TrendingDown },
-    { key: 'support', icon: HeadphonesIcon }
+    { key: 'scratch', icon: Layers },
+    { key: 'rebuild', icon: RefreshCw },
+    { key: 'copypaste', icon: Copy },
+    { key: 'chasing', icon: UserCheck },
+    { key: 'questions', icon: HelpCircle }
   ];
 
   const featureItems = [
@@ -75,11 +72,10 @@ export default function Automation() {
   ];
 
   const featureTableItems = [
-    { key: 'courseGen', icon: Zap },
-    { key: 'blockEdit', icon: MessageSquare },
-    { key: 'tutor', icon: Bot },
-    { key: 'scorm', icon: Share2 },
-    { key: 'multilingual', icon: Languages }
+    { key: 'structure', automated: true },
+    { key: 'translations', automated: true },
+    { key: 'scorm', automated: true },
+    { key: 'support', automated: true }
   ];
 
   const useCaseItems = [
@@ -90,10 +86,16 @@ export default function Automation() {
   ];
 
   const metricItems = [
-    { key: 'cost', color: 'text-green-400' },
-    { key: 'completion', color: 'text-blue-400' },
-    { key: 'speed', color: 'text-purple-400' },
-    { key: 'dropout', color: 'text-orange-400' }
+    { key: 'cost', value: '80%', color: 'text-emerald-400' },
+    { key: 'completion', value: '2x', color: 'text-blue-400' },
+    { key: 'speed', value: '<1hr', color: 'text-violet-400' },
+    { key: 'dropout', value: '50%', color: 'text-amber-400' }
+  ];
+
+  const faqItems = [
+    { key: 'authoring' },
+    { key: 'knowledge' },
+    { key: 'export' }
   ];
 
   const jsonLd = {
@@ -138,35 +140,16 @@ export default function Automation() {
       <Header />
 
       <main>
-        {/* Hero Section */}
+        {/* Hero Section - Clean, Corporate, No Stars */}
         <section 
-          className="relative min-h-[70vh] flex items-center overflow-hidden py-20 md:py-24 lg:py-28"
+          className="relative min-h-[60vh] flex items-center py-20 md:py-28 lg:py-32"
           data-testid="section-automation-hero"
         >
-          {/* Animated star background */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {stars.map((star, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-white animate-pulse"
-                style={{
-                  left: star.left,
-                  top: star.top,
-                  width: star.size,
-                  height: star.size,
-                  opacity: star.opacity,
-                  animationDelay: star.animationDelay,
-                  animationDuration: star.animationDuration,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Gradient background */}
+          {/* Subtle gradient background */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 70%)'
+              background: 'linear-gradient(180deg, rgba(56, 189, 248, 0.03) 0%, transparent 50%)'
             }}
           />
 
@@ -178,7 +161,7 @@ export default function Automation() {
               >
                 {t('hero.title')}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
                 {t('hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -196,6 +179,7 @@ export default function Automation() {
                   onClick={handleDemoClick}
                   data-testid="button-hero-demo"
                 >
+                  <Play className="mr-2 h-4 w-4" />
                   {t('hero.ctaDemo')}
                 </Button>
               </div>
@@ -203,30 +187,21 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Definition Box */}
-        <section className="py-20 md:py-24 lg:py-28 relative" data-testid="section-definition">
+        {/* Definition - Elegant centered text without box */}
+        <section className="py-16 md:py-20" data-testid="section-definition">
           <div className="content-container">
-            <Card className="max-w-4xl mx-auto p-8 md:p-10 bg-card/50 backdrop-blur-sm border-primary/20">
-              <p className="text-lg md:text-xl text-center leading-relaxed text-foreground/90">
-                {t('definition.text')}
-              </p>
-            </Card>
+            <p className="text-lg md:text-xl text-center leading-relaxed text-muted-foreground max-w-4xl mx-auto">
+              {t('definition.text')}
+            </p>
           </div>
         </section>
 
-        {/* Problems Section */}
+        {/* What you stop doing manually - 3 column list layout */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28"
           data-testid="section-problems"
         >
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 60% 40% at 30% 50%, rgba(239, 68, 68, 0.05) 0%, transparent 70%)'
-            }}
-          />
-          
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-problems">
                 {t('problems.title')}
@@ -236,45 +211,34 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 md:gap-10 md:grid-cols-3 max-w-5xl mx-auto">
               {problemItems.map(({ key, icon: Icon }) => (
-                <Card 
+                <div 
                   key={key}
-                  className="p-6 bg-card/30 backdrop-blur-sm border-border/50 hover-elevate transition-all duration-300"
-                  data-testid={`card-problem-${key}`}
+                  className="flex flex-col items-center text-center md:items-start md:text-left"
+                  data-testid={`item-problem-${key}`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-red-500/10 text-red-400 flex-shrink-0">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2 text-foreground">
-                        {t(`problems.items.${key}.title`)}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {t(`problems.items.${key}.description`)}
-                      </p>
-                    </div>
+                  <div className="p-2 rounded-lg text-primary/70 mb-3">
+                    <Icon className="h-6 w-6" strokeWidth={1.5} />
                   </div>
-                </Card>
+                  <h3 className="font-semibold mb-2 text-foreground">
+                    {t(`problems.items.${key}.title`)}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {t(`problems.items.${key}.description`)}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Features Section - Icon + text strip without cards */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
           data-testid="section-features"
         >
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 70% 50% at 70% 50%, rgba(56, 189, 248, 0.06) 0%, transparent 70%)'
-            }}
-          />
-
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-features">
                 {t('features.title')}
@@ -284,41 +248,36 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-8 md:gap-10 md:grid-cols-2 max-w-4xl mx-auto">
               {featureItems.map(({ key, icon: Icon }) => (
-                <Card 
+                <div 
                   key={key}
-                  className="p-6 bg-card/30 backdrop-blur-sm border-border/40 hover-elevate transition-all duration-300"
-                  data-testid={`card-feature-${key}`}
+                  className="flex items-start gap-4"
+                  data-testid={`item-feature-${key}`}
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit mb-4">
-                    <Icon className="h-6 w-6" />
+                  <div className="p-2 rounded-lg text-primary flex-shrink-0">
+                    <Icon className="h-5 w-5" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">
-                    {t(`features.items.${key}.title`)}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t(`features.items.${key}.description`)}
-                  </p>
-                </Card>
+                  <div>
+                    <h3 className="font-semibold mb-1">
+                      {t(`features.items.${key}.title`)}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {t(`features.items.${key}.description`)}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* How It Works Section */}
+        {/* How It Works - Horizontal timeline with round numbers */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
           data-testid="section-how-it-works"
         >
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 70%)'
-            }}
-          />
-
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-how-it-works">
                 {t('howItWorks.title')}
@@ -328,30 +287,31 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between max-w-5xl mx-auto gap-8 md:gap-4">
               {howItWorksSteps.map(({ key, icon: Icon, number }, index) => (
                 <div 
                   key={key}
-                  className="relative"
+                  className="flex-1 relative flex flex-col items-center text-center"
                   data-testid={`step-${key}`}
                 >
                   {/* Connector line */}
                   {index < howItWorksSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-[1px] bg-gradient-to-r from-primary/30 to-transparent" />
+                    <div className="hidden md:block absolute top-6 left-[60%] w-full h-[1px] bg-border/40" />
                   )}
                   
-                  <Card className="p-6 bg-card/20 backdrop-blur-sm border-border/30 text-center relative z-10">
-                    <div className="text-4xl font-bold text-primary/15 mb-4">{number}</div>
-                    <div className="p-4 rounded-full bg-primary/10 text-primary w-fit mx-auto mb-4">
-                      <Icon className="h-8 w-8" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      {t(`howItWorks.steps.${key}.title`)}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t(`howItWorks.steps.${key}.description`)}
-                    </p>
-                  </Card>
+                  {/* Round number */}
+                  <div className="w-12 h-12 rounded-full border border-primary/30 bg-primary/5 flex items-center justify-center mb-4 relative z-10">
+                    <span className="text-sm font-semibold text-primary">{number}</span>
+                  </div>
+                  
+                  <Icon className="h-5 w-5 text-muted-foreground mb-3" strokeWidth={1.5} />
+                  
+                  <h3 className="font-semibold mb-2 text-sm">
+                    {t(`howItWorks.steps.${key}.title`)}
+                  </h3>
+                  <p className="text-xs text-muted-foreground max-w-[200px]">
+                    {t(`howItWorks.steps.${key}.description`)}
+                  </p>
                 </div>
               ))}
             </div>
@@ -359,22 +319,23 @@ export default function Automation() {
             <div className="text-center mt-12">
               <Button 
                 size="lg"
-                onClick={handleTryClick}
+                variant="outline"
+                onClick={handleDemoClick}
                 data-testid="button-how-it-works-cta"
               >
+                <Play className="mr-2 h-4 w-4" />
                 {t('howItWorks.cta')}
-                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Feature Table Section */}
+        {/* Automates vs Control - Clean 2-column table */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
           data-testid="section-feature-table"
         >
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-feature-table">
                 {t('featureTable.title')}
@@ -384,43 +345,40 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 max-w-4xl mx-auto">
-              {featureTableItems.map(({ key, icon: Icon }) => (
-                <div 
-                  key={key}
-                  className="flex items-start gap-4 p-5 rounded-lg bg-card/15 border border-border/20"
-                  data-testid={`feature-table-item-${key}`}
-                >
-                  <div className="p-2 rounded-md bg-primary/10 text-primary flex-shrink-0">
-                    <Icon className="h-5 w-5" />
+            <div className="max-w-3xl mx-auto">
+              {/* Table header */}
+              <div className="grid grid-cols-2 gap-4 mb-6 pb-4 border-b border-border/30">
+                <div className="text-sm font-semibold text-primary">{t('featureTable.columnAutomated')}</div>
+                <div className="text-sm font-semibold text-muted-foreground">{t('featureTable.columnControl')}</div>
+              </div>
+              
+              {/* Table rows */}
+              <div className="space-y-6">
+                {featureTableItems.map(({ key }) => (
+                  <div 
+                    key={key}
+                    className="grid grid-cols-2 gap-4"
+                    data-testid={`table-row-${key}`}
+                  >
+                    <div>
+                      <h4 className="font-medium text-sm mb-1">{t(`featureTable.items.${key}.automated`)}</h4>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">{t(`featureTable.items.${key}.control`)}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-medium mb-1">
-                      {t(`featureTable.items.${key}.title`)}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t(`featureTable.items.${key}.description`)}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Use Cases Section */}
+        {/* Use Cases - Minimal icon circles */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
           data-testid="section-use-cases"
         >
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 60% 40% at 30% 60%, rgba(34, 197, 94, 0.05) 0%, transparent 70%)'
-            }}
-          />
-
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-use-cases">
                 {t('useCases.title')}
@@ -430,41 +388,34 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
               {useCaseItems.map(({ key, icon: Icon }) => (
-                <Card 
+                <div 
                   key={key}
-                  className="p-6 bg-card/30 backdrop-blur-sm border-border/50 text-center hover-elevate transition-all duration-300"
-                  data-testid={`card-use-case-${key}`}
+                  className="text-center"
+                  data-testid={`item-use-case-${key}`}
                 >
-                  <div className="p-4 rounded-full bg-green-500/10 text-green-400 w-fit mx-auto mb-4">
-                    <Icon className="h-8 w-8" />
+                  <div className="w-12 h-12 rounded-full border border-border/40 flex items-center justify-center mx-auto mb-4">
+                    <Icon className="h-5 w-5 text-muted-foreground" strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-semibold mb-2">
+                  <h3 className="font-semibold mb-2 text-sm">
                     {t(`useCases.items.${key}.title`)}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     {t(`useCases.items.${key}.description`)}
                   </p>
-                </Card>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Metrics Section */}
+        {/* Metrics - Large numbers without boxes */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
           data-testid="section-metrics"
         >
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(56, 189, 248, 0.06) 0%, transparent 70%)'
-            }}
-          />
-
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-metrics">
                 {t('metrics.title')}
@@ -474,66 +425,93 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
-              {metricItems.map(({ key, color }) => (
-                <Card 
+            <div className="grid gap-8 md:grid-cols-4 max-w-4xl mx-auto text-center">
+              {metricItems.map(({ key, value, color }) => (
+                <div 
                   key={key}
-                  className="p-6 bg-card/30 backdrop-blur-sm border-border/50 text-center"
-                  data-testid={`card-metric-${key}`}
+                  data-testid={`metric-${key}`}
                 >
                   <div className={`text-4xl md:text-5xl font-bold mb-2 ${color}`}>
-                    {t(`metrics.items.${key}.value`)}
+                    {value}
                   </div>
                   <p className="text-sm text-muted-foreground">
                     {t(`metrics.items.${key}.label`)}
                   </p>
-                </Card>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Testimonial Section */}
+        {/* Testimonial - Cleaner, less padding */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-16 md:py-20 border-t border-border/20"
           data-testid="section-testimonial"
         >
-          <div className="content-container relative z-10">
-            <Card className="max-w-3xl mx-auto p-8 md:p-12 bg-card/30 backdrop-blur-sm border-primary/20 text-center">
-              <Quote className="h-10 w-10 text-primary/30 mx-auto mb-6" />
-              <blockquote className="text-xl md:text-2xl font-medium mb-6 leading-relaxed">
+          <div className="content-container">
+            <div className="max-w-2xl mx-auto text-center">
+              <Quote className="h-8 w-8 text-primary/20 mx-auto mb-4" />
+              <blockquote className="text-lg md:text-xl font-medium mb-4 leading-relaxed">
                 "{t('testimonial.quote')}"
               </blockquote>
-              <div className="text-muted-foreground">
+              <div className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">{t('testimonial.author')}</span>
-                <span className="mx-2">•</span>
+                <span className="mx-2">·</span>
                 <span>{t('testimonial.company')}</span>
               </div>
-              <Button 
-                variant="ghost" 
-                className="mt-6 text-primary hover:text-primary"
-                onClick={() => {
-                  analytics.ctaClick('testimonial_case_studies', 'automation_page');
-                  window.location.href = '/results';
-                }}
-                data-testid="button-testimonial-cta"
-              >
-                {t('testimonial.cta')}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section 
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
+          data-testid="section-faq"
+        >
+          <div className="content-container">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-faq">
+                {t('faq.title')}
+              </h2>
+            </div>
+
+            <div className="max-w-2xl mx-auto space-y-4">
+              {faqItems.map(({ key }, index) => (
+                <div 
+                  key={key}
+                  className="border-b border-border/30 pb-4"
+                  data-testid={`faq-item-${key}`}
+                >
+                  <button
+                    className="w-full flex items-center justify-between text-left py-2 group"
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    data-testid={`faq-button-${key}`}
+                  >
+                    <span className="font-medium pr-4">{t(`faq.items.${key}.question`)}</span>
+                    <ChevronDown 
+                      className={`h-4 w-4 text-muted-foreground flex-shrink-0 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} 
+                    />
+                  </button>
+                  {openFaq === index && (
+                    <p className="text-sm text-muted-foreground pt-2 pb-2 leading-relaxed">
+                      {t(`faq.items.${key}.answer`)}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Final CTA Section */}
         <section 
-          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
+          className="py-20 md:py-24 lg:py-28 border-t border-border/20"
           data-testid="section-final-cta"
         >
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 70%)'
+              background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 70%)'
             }}
           />
 
@@ -556,7 +534,7 @@ export default function Automation() {
               <Button 
                 size="lg" 
                 variant="outline"
-                onClick={handleDemoClick}
+                onClick={handleBookDemoClick}
                 data-testid="button-final-demo"
               >
                 {t('finalCta.ctaDemo')}
