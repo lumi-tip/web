@@ -3,16 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { 
   Zap, 
   RefreshCw, 
   Languages, 
-  Share2, 
   BarChart3, 
   Bot,
   FileText,
-  MessageSquare,
   Rocket,
   Users,
   Package,
