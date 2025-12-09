@@ -69,10 +69,11 @@ export default function Automation() {
   ];
 
   const featureTableItems = [
-    { key: 'structure', automated: true },
-    { key: 'translations', automated: true },
-    { key: 'scorm', automated: true },
-    { key: 'support', automated: true }
+    { key: 'structure' },
+    { key: 'wording' },
+    { key: 'support' },
+    { key: 'scorm' },
+    { key: 'localization' }
   ];
 
   const useCaseItems = [
@@ -90,9 +91,9 @@ export default function Automation() {
   ];
 
   const faqItems = [
-    { key: 'authoring' },
-    { key: 'knowledge' },
-    { key: 'export' }
+    { key: 'formats' },
+    { key: 'lms' },
+    { key: 'update' }
   ];
 
   const jsonLd = {
@@ -440,7 +441,7 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Testimonial - Cleaner, less padding */}
+        {/* Testimonial - Cleaner, with case study CTA */}
         <section 
           className="py-16 md:py-20 border-t border-border/20"
           data-testid="section-testimonial"
@@ -451,11 +452,20 @@ export default function Automation() {
               <blockquote className="text-lg md:text-xl font-medium mb-4 leading-relaxed">
                 "{t('testimonial.quote')}"
               </blockquote>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-muted-foreground mb-6">
                 <span className="font-semibold text-foreground">{t('testimonial.author')}</span>
                 <span className="mx-2">·</span>
                 <span>{t('testimonial.company')}</span>
               </div>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => window.location.href = '/case-studies'}
+                data-testid="button-testimonial-case-study"
+              >
+                {t('testimonial.cta')}
+                <ArrowRight className="ml-2 h-3 w-3" />
+              </Button>
             </div>
           </div>
         </section>

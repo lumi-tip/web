@@ -43,135 +43,140 @@
   },
   "features": {
     "title": "Automation across the training lifecycle",
-    "subtitle": "From the first draft to ongoing updates and learner support.",
+    "subtitle": "From the first version of a course to ongoing updates and learner support.",
     "items": {
       "generation": {
         "title": "Course generation",
-        "description": "Turn PDFs, videos, and SOPs into interactive courses with lessons, quizzes, and challenges in minutes."
+        "description": "Turn PDFs, videos, and SOPs into structured interactive courses in minutes."
       },
       "editing": {
         "title": "Continuous iteration",
-        "description": "Use AI to rewrite, simplify, or expand any block of content without opening a design tool."
+        "description": "Use AI to rewrite, simplify, or expand content block by block."
       },
       "translations": {
         "title": "Instant translations",
-        "description": "Translate an entire course into any language and adapt wording for each audience."
+        "description": "Translate the full course into any language instantly."
       },
       "analytics": {
         "title": "Analytics and alerts",
-        "description": "See who is learning, where they struggle, and which modules need improvement in real time."
+        "description": "Track learner progress and see where users struggle in real time."
       }
     }
   },
   "howItWorks": {
-    "title": "How it works",
-    "subtitle": "Three steps. Everything else is handled by LearnPack.",
+    "title": "How end to end automation works",
+    "subtitle": "Three simple steps. Everything else is handled by LearnPack.",
     "steps": {
       "step1": {
-        "title": "Input your content",
-        "description": "Upload documents, videos, or SOPs, or answer guided questions."
+        "title": "Input your content or idea",
+        "description": "Upload documents or answer four guided questions about topic, audience and goals."
       },
       "step2": {
         "title": "AI builds the course",
-        "description": "LearnPack generates lessons, quizzes, and activities."
+        "description": "LearnPack generates lessons, quizzes and activities automatically."
       },
       "step3": {
-        "title": "AI maintains it",
-        "description": "Update content, add examples, or translate without starting over."
+        "title": "AI maintains it over time",
+        "description": "Rigobot helps refine content, adjust examples and add new material without rebuilding."
       }
     },
     "cta": "Watch the sixty second demo"
   },
   "featureTable": {
-    "title": "Automation where it saves time",
-    "subtitle": "Human control where it matters.",
+    "title": "What LearnPack automates vs what you control",
+    "subtitle": "Automation where it saves time. Human control where it matters.",
     "columnAutomated": "Automated",
     "columnControl": "You control",
     "items": {
       "structure": {
         "automated": "Course structure",
-        "control": "Final adjustments"
+        "control": "LearnPack proposes lessons and assessments. You approve or tweak."
       },
-      "translations": {
-        "automated": "Translations",
-        "control": "Tone and accuracy"
-      },
-      "scorm": {
-        "automated": "SCORM packaging",
-        "control": "Compliance notes"
+      "wording": {
+        "automated": "Content wording",
+        "control": "AI suggests text. Humans keep accuracy and tone."
       },
       "support": {
         "automated": "Learner support",
-        "control": "Escalations"
+        "control": "Rigobot answers questions and guides learners contextually."
+      },
+      "scorm": {
+        "automated": "SCORM and LMS delivery",
+        "control": "Packages export in one click."
+      },
+      "localization": {
+        "automated": "Localization",
+        "control": "You adjust terminology and compliance notes."
       }
     }
   },
   "useCases": {
-    "title": "Where automation shines",
-    "subtitle": "The same engine adapts to different training needs.",
+    "title": "Where end to end automation shines",
+    "subtitle": "The same engine adapts to many training needs.",
     "items": {
       "employee": {
         "title": "Employee onboarding",
-        "description": "Launch consistent onboarding paths across locations."
+        "description": "Launch consistent onboarding across locations without rebuilding material."
       },
       "product": {
-        "title": "Product training",
-        "description": "Keep product modules up to date as features change."
+        "title": "Product and sales training",
+        "description": "Keep modules updated as products evolve."
       },
       "technical": {
-        "title": "Technical training",
-        "description": "Turn documentation into interactive labs and challenges."
+        "title": "Technical and tools training",
+        "description": "Turn documentation into interactive content that updates with each release."
       },
       "compliance": {
-        "title": "Compliance",
-        "description": "Update policies once and reflect them everywhere."
+        "title": "Compliance and policies",
+        "description": "Update a policy once and reflect changes across every course."
       }
     }
   },
   "metrics": {
-    "title": "Measured impact",
+    "title": "Measured impact of automation",
     "subtitle": "Based on deployments with training centers and corporate teams.",
     "items": {
       "cost": {
-        "label": "lower production cost"
+        "label": "lower course production cost"
       },
       "completion": {
-        "label": "higher completion"
+        "label": "higher completion rates"
       },
       "speed": {
-        "label": "to launch a course"
+        "label": "to publish a new course"
       },
       "dropout": {
-        "label": "dropout reduction"
+        "label": "learner dropout reduction with Rigobot"
       }
     }
   },
   "testimonial": {
     "quote": "LearnPack cut our course creation time from weeks to hours without losing quality.",
     "author": "HR Director",
-    "company": "Grovear"
+    "company": "Grovear",
+    "cta": "See the full case study"
   },
   "faq": {
     "title": "Frequently asked questions",
     "items": {
-      "authoring": {
-        "question": "How is LearnPack different from classic authoring tools like Articulate or Captivate?",
-        "answer": "LearnPack generates and maintains training automatically. There is no need to design slides or rebuild content every time something changes."
+      "formats": {
+        "question": "What formats can I upload?",
+        "answer": "You can start from PDFs, videos, Word files, slide decks or simply describe your idea."
       },
-      "knowledge": {
-        "question": "Do I need instructional design knowledge to use LearnPack?",
-        "answer": "No. The system creates structure, activities, and assessments automatically. You only validate and refine the content."
+      "lms": {
+        "question": "Does it work with our LMS?",
+        "answer": "Yes. You can export SCORM or embed the course directly with an iframe."
       },
-      "export": {
-        "question": "Can we export training to our existing LMS?",
-        "answer": "Yes. You can export SCORM instantly or embed modules with a single link."
+      "update": {
+        "question": "How often can I update a course?",
+        "answer": "As often as you want. Rigobot helps refine or rewrite content instantly."
       }
     }
   },
   "finalCta": {
-    "title": "Ready to automate your training?",
-    "subtitle": "Generate your first AI powered course and let LearnPack handle the rest.",
+    "title": "Ready to automate your training lifecycle?",
+    "subtitle": "Generate your first AI powered course and let LearnPack handle the heavy lifting.",
     "ctaTry": "Start for free",
-    "ctaDemo": "Book a live demo"
+    "ctaDemo": "Book a demo"
   }
 }
