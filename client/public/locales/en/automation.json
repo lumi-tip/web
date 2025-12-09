@@ -1,14 +1,14 @@
 {
   "meta": {
-    "title": "End-to-End Training Automation | LearnPack",
-    "description": "Create training that updates itself. Turn any document or idea into interactive courses with built-in automation for updates, analytics, and learner support.",
+    "title": "AI Powered Training Automation | LearnPack",
+    "description": "Create training at scale with AI powered automation. Turn any document or idea into interactive training in minutes with built-in AI tutor support.",
     "keywords": "training automation, AI course creation, corporate training, SCORM export, LMS integration, employee training, AI tutor, automated learning",
-    "ogTitle": "Create Training That Updates Itself | LearnPack",
-    "ogDescription": "Turn any document or idea into interactive courses with built-in automation for updates, analytics, and learner support."
+    "ogTitle": "Create Training at Scale with AI | LearnPack",
+    "ogDescription": "Turn any document or idea into interactive training in minutes. LearnPack builds structure, creates activities, and Rigobot keeps learners supported."
   },
   "hero": {
-    "title": "Create training that updates itself",
-    "subtitle": "Turn any document or idea into an interactive course with built in automation for updates, analytics, and learner support. Launch content ten times faster while keeping everything aligned.",
+    "title": "Create training at scale with AI powered automation",
+    "subtitle": "Turn any document or idea into interactive training in minutes. LearnPack builds structure, creates activities, translates content, analyzes learner progress and Rigobot the AI tutor keeps learners supported at every step.",
     "ctaTry": "Try LearnPack",
     "ctaDemo": "Watch sixty second demo"
   },

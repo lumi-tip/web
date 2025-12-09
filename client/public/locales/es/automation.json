@@ -1,14 +1,14 @@
 {
   "meta": {
-    "title": "Automatizacion Integral de Capacitacion | LearnPack",
-    "description": "Crea capacitacion que se actualiza sola. Convierte cualquier documento o idea en cursos interactivos con automatizacion integrada para actualizaciones, analiticas y soporte al estudiante.",
+    "title": "Automatizacion de Capacitacion con IA | LearnPack",
+    "description": "Crea capacitacion a escala con automatizacion impulsada por IA. Convierte cualquier documento o idea en capacitacion interactiva en minutos con soporte de tutor IA integrado.",
     "keywords": "automatizacion de capacitacion, creacion de cursos con IA, capacitacion corporativa, exportacion SCORM, integracion LMS, capacitacion de empleados, tutor IA, aprendizaje automatizado",
-    "ogTitle": "Crea Capacitacion Que Se Actualiza Sola | LearnPack",
-    "ogDescription": "Convierte cualquier documento o idea en cursos interactivos con automatizacion integrada para actualizaciones, analiticas y soporte."
+    "ogTitle": "Crea Capacitacion a Escala con IA | LearnPack",
+    "ogDescription": "Convierte cualquier documento o idea en capacitacion interactiva en minutos. LearnPack construye la estructura, crea actividades, y Rigobot mantiene a los estudiantes apoyados."
   },
   "hero": {
-    "title": "Crea capacitacion que se actualiza sola",
-    "subtitle": "Convierte cualquier documento o idea en un curso interactivo con automatizacion integrada para actualizaciones, analiticas y soporte al estudiante. Lanza contenido diez veces mas rapido manteniendo todo alineado.",
+    "title": "Crea capacitacion a escala con automatizacion impulsada por IA",
+    "subtitle": "Convierte cualquier documento o idea en capacitacion interactiva en minutos. LearnPack construye la estructura, crea actividades, traduce contenido, analiza el progreso del estudiante y Rigobot el tutor IA mantiene a los estudiantes apoyados en cada paso.",
     "ctaTry": "Prueba LearnPack",
     "ctaDemo": "Ver demo de sesenta segundos"
   },
