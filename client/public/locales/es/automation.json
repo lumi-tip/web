@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "title": "Automatizacion Integral para Capacitacion Corporativa | LearnPack",
+    "description": "Automatiza la creacion de cursos, actualizaciones, analiticas y tutoria para que tu equipo solo se enfoque en el contenido que importa. Gestion del ciclo de vida de capacitacion con IA.",
+    "keywords": "automatizacion de capacitacion, creacion de cursos con IA, capacitacion corporativa, exportacion SCORM, integracion LMS, capacitacion de empleados, tutor IA, aprendizaje automatizado",
+    "ogTitle": "Automatizacion Integral de Capacitacion | LearnPack",
+    "ogDescription": "Automatiza la creacion de cursos, actualizaciones, analiticas y tutoria. Deja que tu equipo se enfoque en el contenido que importa."
+  },
+  "hero": {
+    "title": "Automatizacion integral para capacitacion corporativa",
+    "subtitle": "Automatiza la creacion de cursos, actualizaciones, analiticas y tutoria para que tu equipo solo se enfoque en el contenido que importa.",
+    "ctaTry": "Prueba LearnPack",
+    "ctaDemo": "Agenda una demo en vivo"
+  },
+  "definition": {
+    "text": "LearnPack automatiza todo el ciclo de vida de la capacitacion corporativa desde la creacion de contenido hasta la entrega, analiticas y actualizaciones continuas usando IA."
+  },
+  "problems": {
+    "title": "Lo que dejas de hacer manualmente",
+    "subtitle": "LearnPack elimina el trabajo repetitivo de tu flujo de capacitacion.",
+    "items": {
+      "expensive": {
+        "title": "Crear cursos desde cero",
+        "description": "No mas reconstruir cada diapositiva. Comienza desde documentos, videos o SOPs y deja que la IA genere la primera version."
+      },
+      "updates": {
+        "title": "Reconstruir contenido para cada actualizacion",
+        "description": "Actualiza una politica o proceso una vez y deja que LearnPack propague los cambios en todas las lecciones."
+      },
+      "visibility": {
+        "title": "Copiar y pegar en multiples herramientas",
+        "description": "Genera, publica y entrega capacitacion desde un solo lugar sin malabarear herramientas de autoria, LMS y presentaciones."
+      },
+      "completion": {
+        "title": "Perseguir a los estudiantes para que terminen",
+        "description": "Rastrea el progreso automaticamente y ve quien esta atascado o en riesgo de abandonar."
+      },
+      "support": {
+        "title": "Responder las mismas preguntas repetidamente",
+        "description": "Rigobot brinda ayuda instantanea y contextual para que los gerentes y capacitadores no tengan que hacerlo."
+      }
+    }
+  },
+  "features": {
+    "title": "Automatizacion a lo largo del ciclo de capacitacion",
+    "subtitle": "Desde el primer borrador de un curso hasta las actualizaciones continuas y el soporte al estudiante.",
+    "items": {
+      "generation": {
+        "title": "Generacion de cursos",
+        "description": "Convierte PDFs, videos y SOPs en cursos interactivos con lecciones, quizzes y retos en minutos."
+      },
+      "editing": {
+        "title": "Iteracion continua",
+        "description": "Usa IA para reescribir, simplificar o expandir cualquier bloque de contenido sin abrir una herramienta de diseno."
+      },
+      "translations": {
+        "title": "Traducciones instantaneas",
+        "description": "Traduce un curso completo a cualquier idioma y adapta el vocabulario para cada audiencia."
+      },
+      "analytics": {
+        "title": "Analiticas y alertas",
+        "description": "Ve quien esta aprendiendo, donde tienen dificultades y que modulos necesitan mejoras en tiempo real."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Como funciona la automatizacion integral",
+    "subtitle": "Tres simples pasos y todo lo demas lo maneja LearnPack.",
+    "steps": {
+      "step1": {
+        "title": "Ingresa tu contenido o idea",
+        "description": "Sube documentos, videos o SOPs, o responde cuatro preguntas guiadas sobre el tema, audiencia y objetivos."
+      },
+      "step2": {
+        "title": "La IA construye el curso",
+        "description": "LearnPack genera un curso estructurado con lecciones, quizzes y actividades interactivas."
+      },
+      "step3": {
+        "title": "La IA lo mantiene con el tiempo",
+        "description": "Usa Rigobot para actualizar contenido, agregar nuevos ejemplos o traducir sin empezar desde cero."
+      }
+    },
+    "cta": "Mira el demo de 60 segundos"
+  },
+  "featureTable": {
+    "title": "Lo que LearnPack automatiza vs lo que tu controlas",
+    "subtitle": "Automatizacion donde ahorra mas tiempo. Control humano donde importa.",
+    "items": {
+      "courseGen": {
+        "title": "Estructura del curso",
+        "description": "Automatizado. LearnPack propone lecciones, actividades y evaluaciones. Tu apruebas o ajustas."
+      },
+      "blockEdit": {
+        "title": "Redaccion del contenido",
+        "description": "Co-creado. La IA sugiere texto y tus expertos mantienen la voz y precision."
+      },
+      "tutor": {
+        "title": "Soporte al estudiante",
+        "description": "Automatizado. Rigobot responde preguntas y guia a los estudiantes con un enfoque socratico."
+      },
+      "scorm": {
+        "title": "Entrega SCORM y LMS",
+        "description": "Automatizado. Los paquetes se generan en SCORM y se incrustan o exportan a tu LMS con un clic."
+      },
+      "multilingual": {
+        "title": "Localizacion",
+        "description": "Automatizado. Los idiomas y variantes regionales se crean instantaneamente. Tu controlas la terminologia final y notas de cumplimiento."
+      }
+    }
+  },
+  "useCases": {
+    "title": "Donde brilla la automatizacion integral",
+    "subtitle": "El mismo motor se adapta a necesidades de capacitacion muy diferentes.",
+    "items": {
+      "employee": {
+        "title": "Onboarding de empleados",
+        "description": "Lanza rutas de onboarding consistentes en todas las ubicaciones sin reconstruir contenido."
+      },
+      "product": {
+        "title": "Capacitacion de producto y ventas",
+        "description": "Manten los modulos de producto actualizados cuando cambian las funciones sin re-grabar cada video."
+      },
+      "technical": {
+        "title": "Capacitacion tecnica y de herramientas",
+        "description": "Convierte documentacion en laboratorios interactivos y retos que se actualizan con cada version."
+      },
+      "compliance": {
+        "title": "Cumplimiento y politicas",
+        "description": "Actualiza politicas una vez y automaticamente reflejalas en cada curso afectado."
+      }
+    }
+  },
+  "metrics": {
+    "title": "Impacto medido de la automatizacion",
+    "subtitle": "Basado en implementaciones con centros de capacitacion y equipos corporativos.",
+    "items": {
+      "cost": {
+        "value": "80%",
+        "label": "menor costo de produccion de cursos"
+      },
+      "completion": {
+        "value": "2x",
+        "label": "mayores tasas de finalizacion"
+      },
+      "speed": {
+        "value": "<1hr",
+        "label": "para lanzar un nuevo curso"
+      },
+      "dropout": {
+        "value": "50%",
+        "label": "reduccion en desercion de estudiantes con Rigobot"
+      }
+    }
+  },
+  "testimonial": {
+    "quote": "LearnPack redujo nuestro tiempo de creacion de cursos de semanas a horas sin perder calidad.",
+    "author": "Director de RRHH",
+    "company": "Grovear",
+    "cta": "Ver el caso de estudio completo"
+  },
+  "finalCta": {
+    "title": "Listo para automatizar tu ciclo de capacitacion?",
+    "subtitle": "Genera tu primer curso con IA y deja que LearnPack maneje el trabajo pesado desde ahi.",
+    "ctaTry": "Comienza gratis",
+    "ctaDemo": "Agenda una demo en vivo"
+  }
+}

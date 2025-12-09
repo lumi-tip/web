@@ -44,10 +44,6 @@ app.use((req, res, next) => {
   const contentPath = path.resolve(import.meta.dirname, "..", "content");
   app.use('/content', express.static(contentPath));
 
-  // Serve i18n translation files from public folder
-  const publicPath = path.resolve(import.meta.dirname, "..", "public");
-  app.use('/locales', express.static(path.join(publicPath, 'locales')));
-
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
