@@ -148,49 +148,59 @@ export default function Automation() {
 
       <Header />
 
-      <main>
-        {/* Hero Section - With animated stars and blue glows like homepage */}
+      <main className="hero-animated-bg relative overflow-hidden">
+        {/* Page-wide animated stars */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {stars.map((star, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-primary"
+              style={{
+                left: star.left,
+                top: star.top,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                animation: `starTwinkleUnified ${star.duration} ease-in-out ${star.delay} infinite`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Blue glow - top right (hero area) */}
+        <div 
+          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.08) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - mid-page left (around features/how it works) */}
+        <div 
+          className="absolute top-[40%] left-0 w-[500px] h-[500px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.05) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - bottom right (around metrics/CTA) */}
+        <div 
+          className="absolute bottom-[10%] right-0 w-[500px] h-[500px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Hero Section */}
         <section 
-          className="hero-animated-bg relative min-h-[70vh] flex items-center py-24 md:py-32 lg:py-40 overflow-hidden"
+          className="relative min-h-[70vh] flex items-center py-24 md:py-32 lg:py-40"
           data-testid="section-automation-hero"
         >
-          {/* Animated stars */}
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            {stars.map((star, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-primary"
-                style={{
-                  left: star.left,
-                  top: star.top,
-                  width: `${star.size}px`,
-                  height: `${star.size}px`,
-                  animation: `starTwinkleUnified ${star.duration} ease-in-out ${star.delay} infinite`,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Blue glow - top right */}
-          <div 
-            className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle, hsl(207 100% 50% / 0.08) 0%, transparent 70%)',
-              filter: 'blur(80px)',
-            }}
-            aria-hidden="true"
-          />
-
-          {/* Blue glow - bottom left */}
-          <div 
-            className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle, hsl(200 80% 60% / 0.06) 0%, transparent 70%)',
-              filter: 'blur(80px)',
-            }}
-            aria-hidden="true"
-          />
-
           <div className="content-container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 
@@ -225,22 +235,22 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Definition - Elegant centered text without box */}
-        <section className="py-12 md:py-16" data-testid="section-definition">
+        {/* Definition - Editorial style with generous spacing */}
+        <section className="py-20 md:py-28 lg:py-32 relative z-10" data-testid="section-definition">
           <div className="content-container">
-            <p className="text-lg md:text-xl text-center leading-relaxed text-muted-foreground max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl text-center leading-relaxed text-muted-foreground max-w-3xl mx-auto font-light">
               {t('definition.text')}
             </p>
           </div>
         </section>
 
-        {/* What you stop doing manually - 3 column list layout */}
+        {/* What you stop doing manually - Horizontal flow with curved connector */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-problems"
         >
           <div className="content-container">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-14 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-problems">
                 {t('problems.title')}
               </h2>
@@ -249,31 +259,53 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="grid gap-10 md:gap-12 md:grid-cols-3 max-w-5xl mx-auto">
-              {problemItems.map(({ key, icon: Icon }) => (
-                <div 
-                  key={key}
-                  className="flex flex-col items-center text-center md:items-start md:text-left"
-                  data-testid={`item-problem-${key}`}
-                >
-                  <div className="mb-4">
-                    <Icon className="h-5 w-5 text-primary/60" strokeWidth={1.5} />
+            {/* Horizontal flow layout with curved connector */}
+            <div className="relative max-w-6xl mx-auto">
+              {/* SVG curved connector line - hidden on mobile */}
+              <svg 
+                className="hidden lg:block absolute top-12 left-0 w-full h-20 pointer-events-none"
+                viewBox="0 0 1200 80"
+                fill="none"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M 60 40 Q 180 10, 300 40 Q 420 70, 540 40 Q 660 10, 780 40 Q 900 70, 1020 40 Q 1080 25, 1140 40"
+                  stroke="hsl(var(--primary) / 0.15)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              {/* Flow items */}
+              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-6">
+                {problemItems.map(({ key, icon: Icon }, index) => (
+                  <div 
+                    key={key}
+                    className="flex flex-col items-center text-center flex-1 max-w-[200px]"
+                    data-testid={`item-problem-${key}`}
+                  >
+                    {/* Circle with icon */}
+                    <div className="w-14 h-14 rounded-full border border-primary/20 bg-background flex items-center justify-center mb-5 relative z-10 shadow-sm">
+                      <Icon className="h-5 w-5 text-primary/70" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-semibold mb-2 text-foreground text-sm">
+                      {t(`problems.items.${key}.title`)}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {t(`problems.items.${key}.description`)}
+                    </p>
                   </div>
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    {t(`problems.items.${key}.title`)}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t(`problems.items.${key}.description`)}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Features Section - Icon + text strip without cards */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-features"
         >
           <div className="content-container">
@@ -312,7 +344,7 @@ export default function Automation() {
 
         {/* How It Works - Horizontal timeline with round numbers */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-how-it-works"
         >
           <div className="content-container">
@@ -370,7 +402,7 @@ export default function Automation() {
 
         {/* Automates vs Control - Clean 2-column table */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-feature-table"
         >
           <div className="content-container">
@@ -413,7 +445,7 @@ export default function Automation() {
 
         {/* Use Cases - Minimal icon circles */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-use-cases"
         >
           <div className="content-container">
@@ -450,7 +482,7 @@ export default function Automation() {
 
         {/* Metrics - Large numbers without boxes */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-metrics"
         >
           <div className="content-container">
@@ -483,7 +515,7 @@ export default function Automation() {
 
         {/* Testimonial - Cleaner, with case study CTA */}
         <section 
-          className="py-14 md:py-18"
+          className="py-14 md:py-18 relative z-10"
           data-testid="section-testimonial"
         >
           <div className="content-container">
@@ -512,7 +544,7 @@ export default function Automation() {
 
         {/* FAQ Section */}
         <section 
-          className="py-16 md:py-20 lg:py-24"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-faq"
         >
           <div className="content-container">
