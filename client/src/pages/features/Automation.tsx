@@ -104,7 +104,7 @@ export default function Automation() {
   const faqItems = [
     { key: 'formats' },
     { key: 'lms' },
-    { key: 'update' }
+    { key: 'speed' }
   ];
 
   const jsonLd = {
@@ -303,39 +303,35 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Features Section - Icon + text strip without cards */}
+        {/* Features Section - Horizontal strip with vertical dividers */}
         <section 
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-features"
         >
           <div className="content-container">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-14 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-features">
                 {t('features.title')}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('features.subtitle')}
-              </p>
             </div>
 
-            <div className="grid gap-10 md:gap-12 md:grid-cols-2 max-w-4xl mx-auto">
-              {featureItems.map(({ key, icon: Icon }) => (
+            {/* Horizontal feature strip with vertical dividers */}
+            <div className="flex flex-col md:flex-row items-stretch justify-center max-w-5xl mx-auto">
+              {featureItems.map(({ key, icon: Icon }, index) => (
                 <div 
                   key={key}
-                  className="flex items-start gap-4"
+                  className={`flex-1 text-center px-6 md:px-8 py-6 md:py-0 ${
+                    index < featureItems.length - 1 ? 'border-b md:border-b-0 md:border-r border-border/20' : ''
+                  }`}
                   data-testid={`item-feature-${key}`}
                 >
-                  <div className="flex-shrink-0">
-                    <Icon className="h-4 w-4 text-primary/60" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">
-                      {t(`features.items.${key}.title`)}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {t(`features.items.${key}.description`)}
-                    </p>
-                  </div>
+                  <Icon className="h-4 w-4 text-primary/50 mx-auto mb-4" strokeWidth={1.5} />
+                  <h3 className="font-semibold mb-2 text-sm">
+                    {t(`features.items.${key}.title`)}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[200px] mx-auto">
+                    {t(`features.items.${key}.description`)}
+                  </p>
                 </div>
               ))}
             </div>
@@ -400,40 +396,45 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Automates vs Control - Clean 2-column table */}
+        {/* Automation vs Control - Two balanced columns with vertical divider */}
         <section 
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-feature-table"
         >
           <div className="content-container">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-14 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-feature-table">
                 {t('featureTable.title')}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('featureTable.subtitle')}
-              </p>
             </div>
 
+            {/* Two balanced columns centered */}
             <div className="max-w-3xl mx-auto">
-              {/* Table header */}
-              <div className="grid grid-cols-2 gap-6 mb-6 pb-4 border-b border-border/20">
-                <div className="text-sm font-semibold text-primary">{t('featureTable.columnAutomated')}</div>
-                <div className="text-sm font-semibold text-muted-foreground">{t('featureTable.columnControl')}</div>
+              {/* Column headers */}
+              <div className="flex items-center justify-center mb-10">
+                <div className="flex-1 text-center">
+                  <span className="text-sm font-semibold text-primary">{t('featureTable.columnAutomated')}</span>
+                </div>
+                <div className="w-px h-6 bg-border/30 mx-6" />
+                <div className="flex-1 text-center">
+                  <span className="text-sm font-semibold text-muted-foreground">{t('featureTable.columnControl')}</span>
+                </div>
               </div>
               
-              {/* Table rows */}
+              {/* Rows with vertical divider */}
               <div className="space-y-8">
                 {featureTableItems.map(({ key }) => (
                   <div 
                     key={key}
-                    className="grid grid-cols-2 gap-6"
+                    className="flex items-center"
                     data-testid={`table-row-${key}`}
                   >
-                    <div>
-                      <h4 className="font-medium text-sm mb-1">{t(`featureTable.items.${key}.automated`)}</h4>
+                    <div className="flex-1 text-center">
+                      <h4 className="font-medium text-sm">{t(`featureTable.items.${key}.title`)}</h4>
+                      <p className="text-xs text-muted-foreground mt-1">{t(`featureTable.items.${key}.automated`)}</p>
                     </div>
-                    <div>
+                    <div className="w-px h-12 bg-border/15 mx-8" />
+                    <div className="flex-1 text-center">
                       <p className="text-sm text-muted-foreground">{t(`featureTable.items.${key}.control`)}</p>
                     </div>
                   </div>
@@ -443,35 +444,33 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Use Cases - Minimal icon circles */}
+        {/* Use Cases - Clean 2x2 layout with circular icons */}
         <section 
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-use-cases"
         >
           <div className="content-container">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-14 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-use-cases">
                 {t('useCases.title')}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('useCases.subtitle')}
-              </p>
             </div>
 
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
+            {/* 2x2 clean layout with more horizontal spacing */}
+            <div className="grid gap-x-24 gap-y-16 md:grid-cols-2 max-w-4xl mx-auto">
               {useCaseItems.map(({ key, icon: Icon }) => (
                 <div 
                   key={key}
                   className="text-center"
                   data-testid={`item-use-case-${key}`}
                 >
-                  <div className="w-10 h-10 rounded-full border border-border/30 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
+                  <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center mx-auto mb-5">
+                    <Icon className="h-4 w-4 text-primary/50" strokeWidth={1.5} />
                   </div>
                   <h3 className="font-semibold mb-2 text-sm">
                     {t(`useCases.items.${key}.title`)}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mx-auto">
                     {t(`useCases.items.${key}.description`)}
                   </p>
                 </div>
@@ -480,31 +479,43 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Metrics - Large numbers without boxes */}
+        {/* Metrics - Large numbers with subtle glows */}
         <section 
-          className="py-16 md:py-20 lg:py-24 relative z-10"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-metrics"
         >
           <div className="content-container">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-14 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-metrics">
                 {t('metrics.title')}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('metrics.subtitle')}
-              </p>
             </div>
 
-            <div className="grid gap-10 md:grid-cols-4 max-w-4xl mx-auto text-center">
+            <div className="grid gap-16 md:gap-20 md:grid-cols-4 max-w-5xl mx-auto text-center">
               {metricItems.map(({ key, value, color }) => (
                 <div 
                   key={key}
+                  className="relative"
                   data-testid={`metric-${key}`}
                 >
-                  <div className={`text-4xl md:text-5xl font-bold mb-2 ${color}`}>
+                  {/* Subtle glow behind number */}
+                  <div 
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(circle at 50% 30%, ${
+                        color === 'text-emerald-400' ? 'rgba(52, 211, 153, 0.08)' :
+                        color === 'text-blue-400' ? 'rgba(96, 165, 250, 0.08)' :
+                        color === 'text-violet-400' ? 'rgba(167, 139, 250, 0.08)' :
+                        'rgba(251, 191, 36, 0.08)'
+                      } 0%, transparent 60%)`,
+                      filter: 'blur(20px)',
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div className={`text-5xl md:text-6xl font-bold mb-3 ${color} relative z-10`}>
                     {value}
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground relative z-10">
                     {t(`metrics.items.${key}.label`)}
                   </p>
                 </div>
@@ -513,18 +524,23 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Testimonial - Cleaner, with case study CTA */}
+        {/* Testimonial - Reduced padding, subtle background */}
         <section 
-          className="py-14 md:py-18 relative z-10"
+          className="py-12 md:py-16 relative z-10"
           data-testid="section-testimonial"
         >
           <div className="content-container">
-            <div className="max-w-2xl mx-auto text-center">
-              <Quote className="h-6 w-6 text-primary/15 mx-auto mb-4" />
-              <blockquote className="text-lg md:text-xl font-medium mb-4 leading-relaxed">
+            <div 
+              className="max-w-xl mx-auto text-center py-10 px-8 rounded-lg"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.02) 100%)'
+              }}
+            >
+              <Quote className="h-4 w-4 text-primary/20 mx-auto mb-5" />
+              <blockquote className="text-base md:text-lg font-medium mb-4 leading-relaxed">
                 "{t('testimonial.quote')}"
               </blockquote>
-              <div className="text-sm text-muted-foreground mb-6">
+              <div className="text-sm text-muted-foreground mb-5">
                 <span className="font-semibold text-foreground">{t('testimonial.author')}</span>
                 <span className="mx-2">·</span>
                 <span>{t('testimonial.company')}</span>
@@ -542,37 +558,37 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* FAQ Section - More spacing, centered alignment */}
         <section 
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-faq"
         >
           <div className="content-container">
-            <div className="text-center mb-10 md:mb-14">
+            <div className="text-center mb-14 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-faq">
                 {t('faq.title')}
               </h2>
             </div>
 
-            <div className="max-w-2xl mx-auto space-y-6">
+            <div className="max-w-xl mx-auto space-y-10">
               {faqItems.map(({ key }, index) => (
                 <div 
                   key={key}
-                  className="border-b border-border/20 pb-6"
+                  className="text-center"
                   data-testid={`faq-item-${key}`}
                 >
                   <button
-                    className="w-full flex items-center justify-between text-left py-2 group"
+                    className="w-full flex flex-col items-center py-3 group"
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     data-testid={`faq-button-${key}`}
                   >
-                    <span className="font-medium pr-4">{t(`faq.items.${key}.question`)}</span>
+                    <span className="font-medium text-center">{t(`faq.items.${key}.question`)}</span>
                     <ChevronDown 
-                      className={`h-4 w-4 text-muted-foreground flex-shrink-0 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} 
+                      className={`h-4 w-4 text-muted-foreground mt-2 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} 
                     />
                   </button>
                   {openFaq === index && (
-                    <p className="text-sm text-muted-foreground pt-3 pb-1 leading-relaxed">
+                    <p className="text-sm text-muted-foreground pt-4 leading-relaxed text-center">
                       {t(`faq.items.${key}.answer`)}
                     </p>
                   )}

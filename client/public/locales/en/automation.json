@@ -4,7 +4,7 @@
     "description": "Create training at scale with AI powered automation. Turn any document or idea into interactive training in minutes with built-in AI tutor support.",
     "keywords": "training automation, AI course creation, corporate training, SCORM export, LMS integration, employee training, AI tutor, automated learning",
     "ogTitle": "Create Training at Scale with AI | LearnPack",
-    "ogDescription": "Turn any document or idea into interactive training in minutes. LearnPack builds structure, creates activities, and Rigobot keeps learners supported."
+    "ogDescription": "Turn any document or idea into interactive training in minutes. LearnPack builds structure, creates activities, and Rigobot the AI tutor keeps learners supported."
   },
   "hero": {
     "title": "Create training at scale with AI powered automation",
@@ -37,29 +37,28 @@
       },
       "questions": {
         "title": "Answering the same questions",
-        "description": "Rigobot gives instant, contextual help so trainers do not have to."
+        "description": "Rigobot the AI tutor gives instant, contextual help so trainers do not have to."
       }
     }
   },
   "features": {
     "title": "Automation across the training lifecycle",
-    "subtitle": "From the first version of a course to ongoing updates and learner support.",
     "items": {
       "generation": {
         "title": "Course generation",
-        "description": "Turn PDFs, videos, and SOPs into structured interactive courses in minutes."
+        "description": "Turn PDFs, videos and SOPs into structured interactive courses in minutes."
       },
       "editing": {
-        "title": "Continuous iteration",
-        "description": "Use AI to rewrite, simplify, or expand content block by block."
+        "title": "AI assisted iteration",
+        "description": "Refine or expand content block by block with AI assisted editing."
       },
       "translations": {
-        "title": "Instant translations",
-        "description": "Translate the full course into any language instantly."
+        "title": "Multilingual output",
+        "description": "Generate complete versions of any training in multiple languages."
       },
       "analytics": {
-        "title": "Analytics and alerts",
-        "description": "Track learner progress and see where users struggle in real time."
+        "title": "Analytics and learner insights",
+        "description": "Track learner progress and identify where users struggle."
       }
     }
   },
@@ -77,67 +76,69 @@
       },
       "step3": {
         "title": "AI maintains it over time",
-        "description": "Rigobot helps refine content, adjust examples and add new material without rebuilding."
+        "description": "Rigobot the AI tutor helps refine content, adjust examples and add new material without rebuilding."
       }
     },
     "cta": "Watch the sixty second demo"
   },
   "featureTable": {
-    "title": "What LearnPack automates vs what you control",
-    "subtitle": "Automation where it saves time. Human control where it matters.",
+    "title": "Automation vs Control",
     "columnAutomated": "Automated",
     "columnControl": "You control",
     "items": {
       "structure": {
-        "automated": "Course structure",
-        "control": "LearnPack proposes lessons and assessments. You approve or tweak."
+        "title": "Course structure",
+        "automated": "LearnPack proposes lessons and assessments.",
+        "control": "You approve and refine."
       },
       "wording": {
-        "automated": "Content wording",
-        "control": "AI suggests text. Humans keep accuracy and tone."
+        "title": "Content wording",
+        "automated": "AI drafts text.",
+        "control": "You ensure tone and correctness."
       },
       "support": {
-        "automated": "Learner support",
-        "control": "Rigobot answers questions and guides learners contextually."
+        "title": "Learner support",
+        "automated": "Rigobot the AI tutor answers learner questions and identifies who needs help.",
+        "control": ""
       },
       "scorm": {
-        "automated": "SCORM and LMS delivery",
-        "control": "Packages export in one click."
+        "title": "SCORM and LMS delivery",
+        "automated": "One click export.",
+        "control": ""
       },
       "localization": {
-        "automated": "Localization",
-        "control": "You adjust terminology and compliance notes."
+        "title": "Localization",
+        "automated": "AI generates variants.",
+        "control": "You review terminology and compliance notes."
       }
     }
   },
   "useCases": {
     "title": "Where end to end automation shines",
-    "subtitle": "The same engine adapts to many training needs.",
     "items": {
       "employee": {
         "title": "Employee onboarding",
-        "description": "Launch consistent onboarding across locations without rebuilding material."
+        "description": "Launch consistent onboarding modules across locations."
       },
       "product": {
         "title": "Product and sales training",
-        "description": "Keep modules updated as products evolve."
+        "description": "Keep product knowledge aligned without rebuilding content."
       },
       "technical": {
         "title": "Technical and tools training",
-        "description": "Turn documentation into interactive content that updates with each release."
+        "description": "Turn documentation into interactive materials and guided exercises."
       },
       "compliance": {
         "title": "Compliance and policies",
-        "description": "Update a policy once and reflect changes across every course."
+        "description": "Express policy changes across training fast and clearly."
       }
     }
   },
   "metrics": {
     "title": "Measured impact of automation",
-    "subtitle": "Based on deployments with training centers and corporate teams.",
     "items": {
       "cost": {
-        "label": "lower course production cost"
+        "label": "lower production cost"
       },
       "completion": {
         "label": "higher completion rates"
@@ -146,7 +147,7 @@
         "label": "to publish a new course"
       },
       "dropout": {
-        "label": "learner dropout reduction with Rigobot"
+        "label": "reduction in dropout with Rigobot the AI tutor"
       }
     }
   },
@@ -161,15 +162,15 @@
     "items": {
       "formats": {
         "question": "What formats can I upload?",
-        "answer": "You can start from PDFs, videos, Word files, slide decks or simply describe your idea."
+        "answer": "You can upload PDFs, videos, presentations, written documents or describe your idea."
       },
       "lms": {
         "question": "Does it work with our LMS?",
-        "answer": "Yes. You can export SCORM or embed the course directly with an iframe."
+        "answer": "Yes. You can export SCORM or embed modules directly."
       },
-      "update": {
-        "question": "How often can I update a course?",
-        "answer": "As often as you want. Rigobot helps refine or rewrite content instantly."
+      "speed": {
+        "question": "How fast can I create new courses?",
+        "answer": "Most courses can be generated and refined in a short time using the same source materials."
       }
     }
   },

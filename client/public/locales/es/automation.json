@@ -4,7 +4,7 @@
     "description": "Crea capacitacion a escala con automatizacion impulsada por IA. Convierte cualquier documento o idea en capacitacion interactiva en minutos con soporte de tutor IA integrado.",
     "keywords": "automatizacion de capacitacion, creacion de cursos con IA, capacitacion corporativa, exportacion SCORM, integracion LMS, capacitacion de empleados, tutor IA, aprendizaje automatizado",
     "ogTitle": "Crea Capacitacion a Escala con IA | LearnPack",
-    "ogDescription": "Convierte cualquier documento o idea en capacitacion interactiva en minutos. LearnPack construye la estructura, crea actividades, y Rigobot mantiene a los estudiantes apoyados."
+    "ogDescription": "Convierte cualquier documento o idea en capacitacion interactiva en minutos. LearnPack construye la estructura, crea actividades, y Rigobot el tutor IA mantiene a los estudiantes apoyados."
   },
   "hero": {
     "title": "Crea capacitacion a escala con automatizacion impulsada por IA",
@@ -37,29 +37,28 @@
       },
       "questions": {
         "title": "Responder las mismas preguntas",
-        "description": "Rigobot brinda ayuda instantanea y contextual para que los capacitadores no tengan que hacerlo."
+        "description": "Rigobot el tutor IA brinda ayuda instantanea y contextual para que los capacitadores no tengan que hacerlo."
       }
     }
   },
   "features": {
     "title": "Automatizacion a lo largo del ciclo de capacitacion",
-    "subtitle": "Desde la primera version de un curso hasta actualizaciones continuas y soporte al estudiante.",
     "items": {
       "generation": {
         "title": "Generacion de cursos",
         "description": "Convierte PDFs, videos y SOPs en cursos interactivos estructurados en minutos."
       },
       "editing": {
-        "title": "Iteracion continua",
-        "description": "Usa IA para reescribir, simplificar o expandir contenido bloque por bloque."
+        "title": "Iteracion asistida por IA",
+        "description": "Refina o expande contenido bloque por bloque con edicion asistida por IA."
       },
       "translations": {
-        "title": "Traducciones instantaneas",
-        "description": "Traduce el curso completo a cualquier idioma instantaneamente."
+        "title": "Salida multilingue",
+        "description": "Genera versiones completas de cualquier capacitacion en multiples idiomas."
       },
       "analytics": {
-        "title": "Analiticas y alertas",
-        "description": "Rastrea el progreso del estudiante y ve donde tienen dificultades en tiempo real."
+        "title": "Analiticas e insights del estudiante",
+        "description": "Rastrea el progreso del estudiante e identifica donde tienen dificultades."
       }
     }
   },
@@ -77,67 +76,69 @@
       },
       "step3": {
         "title": "La IA lo mantiene en el tiempo",
-        "description": "Rigobot ayuda a refinar contenido, ajustar ejemplos y agregar material nuevo sin reconstruir."
+        "description": "Rigobot el tutor IA ayuda a refinar contenido, ajustar ejemplos y agregar material nuevo sin reconstruir."
       }
     },
     "cta": "Ver demo de sesenta segundos"
   },
   "featureTable": {
-    "title": "Lo que LearnPack automatiza vs lo que tu controlas",
-    "subtitle": "Automatizacion donde ahorra tiempo. Control humano donde importa.",
+    "title": "Automatizacion vs Control",
     "columnAutomated": "Automatizado",
     "columnControl": "Tu controlas",
     "items": {
       "structure": {
-        "automated": "Estructura del curso",
-        "control": "LearnPack propone lecciones y evaluaciones. Tu apruebas o ajustas."
+        "title": "Estructura del curso",
+        "automated": "LearnPack propone lecciones y evaluaciones.",
+        "control": "Tu apruebas y refinas."
       },
       "wording": {
-        "automated": "Redaccion del contenido",
-        "control": "La IA sugiere texto. Los humanos mantienen precision y tono."
+        "title": "Redaccion del contenido",
+        "automated": "La IA redacta el texto.",
+        "control": "Tu aseguras tono y correccion."
       },
       "support": {
-        "automated": "Soporte al estudiante",
-        "control": "Rigobot responde preguntas y guia a los estudiantes contextualmente."
+        "title": "Soporte al estudiante",
+        "automated": "Rigobot el tutor IA responde preguntas de estudiantes e identifica quien necesita ayuda.",
+        "control": ""
       },
       "scorm": {
-        "automated": "Entrega SCORM y LMS",
-        "control": "Los paquetes se exportan en un click."
+        "title": "Entrega SCORM y LMS",
+        "automated": "Exportacion en un click.",
+        "control": ""
       },
       "localization": {
-        "automated": "Localizacion",
-        "control": "Tu ajustas terminologia y notas de cumplimiento."
+        "title": "Localizacion",
+        "automated": "La IA genera variantes.",
+        "control": "Tu revisas terminologia y notas de cumplimiento."
       }
     }
   },
   "useCases": {
     "title": "Donde brilla la automatizacion integral",
-    "subtitle": "El mismo motor se adapta a muchas necesidades de capacitacion.",
     "items": {
       "employee": {
         "title": "Onboarding de empleados",
-        "description": "Lanza onboarding consistente en todas las ubicaciones sin reconstruir material."
+        "description": "Lanza modulos de onboarding consistentes en todas las ubicaciones."
       },
       "product": {
         "title": "Capacitacion de producto y ventas",
-        "description": "Manten los modulos actualizados a medida que evolucionan los productos."
+        "description": "Manten el conocimiento de producto alineado sin reconstruir contenido."
       },
       "technical": {
         "title": "Capacitacion tecnica y de herramientas",
-        "description": "Convierte documentacion en contenido interactivo que se actualiza con cada version."
+        "description": "Convierte documentacion en materiales interactivos y ejercicios guiados."
       },
       "compliance": {
         "title": "Cumplimiento y politicas",
-        "description": "Actualiza una politica una vez y refleja los cambios en todos los cursos."
+        "description": "Expresa cambios de politica en la capacitacion rapida y claramente."
       }
     }
   },
   "metrics": {
     "title": "Impacto medido de la automatizacion",
-    "subtitle": "Basado en implementaciones con centros de capacitacion y equipos corporativos.",
     "items": {
       "cost": {
-        "label": "menor costo de produccion de cursos"
+        "label": "menor costo de produccion"
       },
       "completion": {
         "label": "mayores tasas de finalizacion"
@@ -146,7 +147,7 @@
         "label": "para publicar un nuevo curso"
       },
       "dropout": {
-        "label": "reduccion de desercion con Rigobot"
+        "label": "reduccion de desercion con Rigobot el tutor IA"
       }
     }
   },
@@ -161,15 +162,15 @@
     "items": {
       "formats": {
         "question": "Que formatos puedo subir?",
-        "answer": "Puedes comenzar desde PDFs, videos, archivos Word, presentaciones o simplemente describir tu idea."
+        "answer": "Puedes subir PDFs, videos, presentaciones, documentos escritos o describir tu idea."
       },
       "lms": {
         "question": "Funciona con nuestro LMS?",
-        "answer": "Si. Puedes exportar SCORM o incrustar el curso directamente con un iframe."
+        "answer": "Si. Puedes exportar SCORM o incrustar modulos directamente."
       },
-      "update": {
-        "question": "Con que frecuencia puedo actualizar un curso?",
-        "answer": "Tan seguido como quieras. Rigobot ayuda a refinar o reescribir contenido instantaneamente."
+      "speed": {
+        "question": "Que tan rapido puedo crear nuevos cursos?",
+        "answer": "La mayoria de los cursos pueden generarse y refinarse en poco tiempo usando los mismos materiales fuente."
       }
     }
   },
