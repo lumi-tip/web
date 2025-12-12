@@ -272,55 +272,55 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with sinusoidal connector through circle centers */}
+            {/* Horizontal flow layout with precise connector through circle centers */}
             <div className="relative">
-              {/* Sinusoidal SVG connector line passing through center of each circle */}
-              <svg 
-                className="hidden lg:block absolute top-0 left-0 w-full h-16 pointer-events-none overflow-visible"
-                style={{ top: '24px' }}
-                viewBox="0 0 100 16"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <defs>
-                  <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="0.5" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="rgba(56, 189, 248, 0.4)" />
-                    <stop offset="50%" stopColor="rgba(56, 189, 248, 0.3)" />
-                    <stop offset="100%" stopColor="rgba(56, 189, 248, 0.4)" />
-                  </linearGradient>
-                </defs>
-                {/* Sinusoidal wave connecting 5 circle centers at 10%, 30%, 50%, 70%, 90% */}
-                <path
-                  d="M 10 8 
-                     C 15 4, 20 12, 30 8 
-                     C 35 4, 40 12, 50 8 
-                     C 55 4, 60 12, 70 8 
-                     C 75 4, 80 12, 90 8"
-                  stroke="url(#waveGradient)"
-                  strokeWidth="0.3"
-                  fill="none"
-                  strokeLinecap="round"
-                  filter="url(#waveGlow)"
-                  className="animate-wave-draw"
-                />
-              </svg>
+              {/* Flow items - 5 circles evenly distributed with connecting line */}
+              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8 relative">
+                {/* SVG connecting line - positioned at exact vertical center of circles (32px from top) */}
+                <svg 
+                  className="hidden lg:block absolute pointer-events-none"
+                  style={{ 
+                    top: '32px',
+                    left: '10%',
+                    width: '80%',
+                    height: '2px',
+                    transform: 'translateY(-50%)'
+                  }}
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <filter id="lineGlow" x="-20%" y="-500%" width="140%" height="1100%">
+                      <feGaussianBlur stdDeviation="2" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="rgba(56, 189, 248, 0.5)" />
+                      <stop offset="50%" stopColor="rgba(56, 189, 248, 0.35)" />
+                      <stop offset="100%" stopColor="rgba(56, 189, 248, 0.5)" />
+                    </linearGradient>
+                  </defs>
+                  <line
+                    x1="0"
+                    y1="1"
+                    x2="100%"
+                    y2="1"
+                    stroke="url(#lineGradient)"
+                    strokeWidth="2"
+                    filter="url(#lineGlow)"
+                  />
+                </svg>
 
-              {/* Flow items - 5 circles evenly distributed */}
-              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8">
                 {problemItems.map(({ key, icon: Icon }) => (
                   <div 
                     key={key}
                     className="flex flex-col items-center text-center flex-1 max-w-[180px] relative"
                     data-testid={`item-problem-${key}`}
                   >
-                    {/* Glowing circle with icon */}
+                    {/* Glowing circle with icon - line passes through center */}
                     <div 
                       className="w-16 h-16 rounded-full border border-primary/30 bg-background flex items-center justify-center mb-6 relative z-10"
                       style={{
