@@ -176,11 +176,31 @@ export default function Automation() {
           aria-hidden="true"
         />
 
-        {/* Blue glow - mid-page left (around features/how it works) */}
+        {/* Blue glow - mid-page left (around problems section) */}
         <div 
-          className="absolute top-[40%] left-0 w-[500px] h-[500px] pointer-events-none"
+          className="absolute top-[30%] left-[-10%] w-[700px] h-[700px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.05) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.07) 0%, transparent 60%)',
+            filter: 'blur(120px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - mid-page right (around features section) */}
+        <div 
+          className="absolute top-[45%] right-[-5%] w-[600px] h-[600px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 60%)',
+            filter: 'blur(100px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - lower mid (around how it works) */}
+        <div 
+          className="absolute top-[60%] left-[20%] w-[500px] h-[500px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(210 90% 55% / 0.05) 0%, transparent 65%)',
             filter: 'blur(100px)',
           }}
           aria-hidden="true"
@@ -188,10 +208,10 @@ export default function Automation() {
 
         {/* Blue glow - bottom right (around metrics/CTA) */}
         <div 
-          className="absolute bottom-[10%] right-0 w-[500px] h-[500px] pointer-events-none"
+          className="absolute bottom-[10%] right-0 w-[600px] h-[600px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 70%)',
-            filter: 'blur(100px)',
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.07) 0%, transparent 60%)',
+            filter: 'blur(120px)',
           }}
           aria-hidden="true"
         />
@@ -259,38 +279,56 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with curved connector */}
+            {/* Horizontal flow layout with luminous connector */}
             <div className="relative max-w-6xl mx-auto">
-              {/* SVG curved connector line - hidden on mobile */}
+              {/* SVG luminous connector line that goes through circles - hidden on mobile */}
               <svg 
-                className="hidden lg:block absolute top-12 left-0 w-full h-20 pointer-events-none"
-                viewBox="0 0 1200 80"
+                className="hidden lg:block absolute top-8 left-0 w-full h-16 pointer-events-none"
+                viewBox="0 0 1200 64"
                 fill="none"
                 preserveAspectRatio="none"
                 aria-hidden="true"
               >
+                {/* Glow effect */}
+                <defs>
+                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                {/* Main line with glow */}
                 <path
-                  d="M 60 40 Q 180 10, 300 40 Q 420 70, 540 40 Q 660 10, 780 40 Q 900 70, 1020 40 Q 1080 25, 1140 40"
-                  stroke="hsl(var(--primary) / 0.15)"
+                  d="M 60 32 L 300 32 L 540 32 L 780 32 L 1020 32 L 1140 32"
+                  stroke="hsl(200, 80%, 60%)"
                   strokeWidth="2"
+                  strokeOpacity="0.3"
                   fill="none"
                   strokeLinecap="round"
+                  filter="url(#glow)"
                 />
               </svg>
 
-              {/* Flow items */}
-              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-6">
-                {problemItems.map(({ key, icon: Icon }, index) => (
+              {/* Flow items with increased spacing */}
+              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-10">
+                {problemItems.map(({ key, icon: Icon }) => (
                   <div 
                     key={key}
-                    className="flex flex-col items-center text-center flex-1 max-w-[200px]"
+                    className="flex flex-col items-center text-center flex-1 max-w-[180px]"
                     data-testid={`item-problem-${key}`}
                   >
-                    {/* Circle with icon */}
-                    <div className="w-14 h-14 rounded-full border border-primary/20 bg-background flex items-center justify-center mb-5 relative z-10 shadow-sm">
-                      <Icon className="h-5 w-5 text-primary/70" strokeWidth={1.5} />
+                    {/* Glowing circle with icon */}
+                    <div 
+                      className="w-16 h-16 rounded-full border border-primary/30 bg-background flex items-center justify-center mb-6 relative z-10"
+                      style={{
+                        boxShadow: '0 0 20px rgba(56, 189, 248, 0.15), 0 0 40px rgba(56, 189, 248, 0.08), inset 0 0 20px rgba(56, 189, 248, 0.05)'
+                      }}
+                    >
+                      <Icon className="h-5 w-5 text-primary/80" strokeWidth={1.5} />
                     </div>
-                    <h3 className="font-semibold mb-2 text-foreground text-sm">
+                    <h3 className="font-semibold mb-3 text-foreground text-sm">
                       {t(`problems.items.${key}.title`)}
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
@@ -303,9 +341,9 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Features Section - Horizontal strip with vertical dividers */}
+        {/* Features Section - Vertical cards with glowing borders */}
         <section 
-          className="py-16 md:py-20 lg:py-24 relative z-10"
+          className="py-20 md:py-24 lg:py-28 relative z-10"
           data-testid="section-features"
         >
           <div className="content-container">
@@ -315,21 +353,32 @@ export default function Automation() {
               </h2>
             </div>
 
-            {/* Horizontal feature strip with vertical dividers */}
-            <div className="flex flex-col md:flex-row items-stretch justify-center max-w-5xl mx-auto">
-              {featureItems.map(({ key, icon: Icon }, index) => (
+            {/* Four vertical cards with glowing borders */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {featureItems.map(({ key, icon: Icon }) => (
                 <div 
                   key={key}
-                  className={`flex-1 text-center px-6 md:px-8 py-6 md:py-0 ${
-                    index < featureItems.length - 1 ? 'border-b md:border-b-0 md:border-r border-border/20' : ''
-                  }`}
+                  className="relative rounded-xl p-6 text-center"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    border: '1px solid rgba(56, 189, 248, 0.15)',
+                    boxShadow: '0 0 30px rgba(56, 189, 248, 0.06), inset 0 0 20px rgba(56, 189, 248, 0.02)'
+                  }}
                   data-testid={`item-feature-${key}`}
                 >
-                  <Icon className="h-4 w-4 text-primary/50 mx-auto mb-4" strokeWidth={1.5} />
-                  <h3 className="font-semibold mb-2 text-sm">
+                  {/* Icon with glow at top */}
+                  <div 
+                    className="w-12 h-12 rounded-full border border-primary/25 bg-background/50 flex items-center justify-center mx-auto mb-5"
+                    style={{
+                      boxShadow: '0 0 15px rgba(56, 189, 248, 0.12), 0 0 30px rgba(56, 189, 248, 0.06)'
+                    }}
+                  >
+                    <Icon className="h-5 w-5 text-primary/70" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-semibold mb-3 text-sm">
                     {t(`features.items.${key}.title`)}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[200px] mx-auto">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     {t(`features.items.${key}.description`)}
                   </p>
                 </div>
