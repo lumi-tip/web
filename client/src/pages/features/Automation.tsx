@@ -279,46 +279,27 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with luminous connector */}
-            <div className="relative max-w-6xl mx-auto">
-              {/* SVG luminous connector line that goes through circles - hidden on mobile */}
-              <svg 
-                className="hidden lg:block absolute top-8 left-0 w-full h-16 pointer-events-none"
-                viewBox="0 0 1200 64"
-                fill="none"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                {/* Glow effect */}
-                <defs>
-                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="4" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-                {/* Main line with glow */}
-                <path
-                  d="M 60 32 L 300 32 L 540 32 L 780 32 L 1020 32 L 1140 32"
-                  stroke="hsl(200, 80%, 60%)"
-                  strokeWidth="2"
-                  strokeOpacity="0.3"
-                  fill="none"
-                  strokeLinecap="round"
-                  filter="url(#glow)"
-                />
-              </svg>
-
-              {/* Flow items with increased spacing */}
-              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-10">
-                {problemItems.map(({ key, icon: Icon }) => (
+            {/* Horizontal flow layout with luminous connector going through circles */}
+            <div className="relative">
+              {/* Flow items with connector line going through circle centers */}
+              <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8">
+                {problemItems.map(({ key, icon: Icon }, index) => (
                   <div 
                     key={key}
-                    className="flex flex-col items-center text-center flex-1 max-w-[180px]"
+                    className="flex flex-col items-center text-center flex-1 max-w-[180px] relative"
                     data-testid={`item-problem-${key}`}
                   >
+                    {/* Connector line segment - goes through circle center */}
+                    {index < problemItems.length - 1 && (
+                      <div 
+                        className="hidden lg:block absolute top-8 left-[calc(50%+32px)] w-[calc(100%+32px)] h-[2px]"
+                        style={{
+                          background: 'linear-gradient(90deg, rgba(56, 189, 248, 0.3) 0%, rgba(56, 189, 248, 0.15) 100%)',
+                          boxShadow: '0 0 10px rgba(56, 189, 248, 0.3), 0 0 20px rgba(56, 189, 248, 0.15)'
+                        }}
+                        aria-hidden="true"
+                      />
+                    )}
                     {/* Glowing circle with icon */}
                     <div 
                       className="w-16 h-16 rounded-full border border-primary/30 bg-background flex items-center justify-center mb-6 relative z-10"
@@ -353,12 +334,12 @@ export default function Automation() {
               </h2>
             </div>
 
-            {/* Four vertical cards with glowing borders */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {/* Four vertical cards with glowing borders - taller cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {featureItems.map(({ key, icon: Icon }) => (
                 <div 
                   key={key}
-                  className="relative rounded-xl p-6 text-center"
+                  className="relative rounded-xl px-6 py-8 text-center min-h-[220px] flex flex-col"
                   style={{
                     background: 'rgba(255, 255, 255, 0.02)',
                     border: '1px solid rgba(56, 189, 248, 0.15)',
@@ -378,7 +359,7 @@ export default function Automation() {
                   <h3 className="font-semibold mb-3 text-sm">
                     {t(`features.items.${key}.title`)}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed flex-1">
                     {t(`features.items.${key}.description`)}
                   </p>
                 </div>
