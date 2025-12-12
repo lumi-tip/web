@@ -279,19 +279,19 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with sinusoidal connector */}
+            {/* Horizontal flow layout with sinusoidal connector through circle centers */}
             <div className="relative">
-              {/* Sinusoidal SVG connector line - hidden on mobile */}
+              {/* Sinusoidal SVG connector line passing through center of each circle */}
               <svg 
-                className="hidden lg:block absolute top-4 left-0 w-full h-24 pointer-events-none overflow-visible"
-                viewBox="0 0 1000 80"
-                fill="none"
+                className="hidden lg:block absolute top-0 left-0 w-full h-16 pointer-events-none overflow-visible"
+                style={{ top: '24px' }}
+                viewBox="0 0 100 16"
                 preserveAspectRatio="none"
                 aria-hidden="true"
               >
                 <defs>
                   <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feGaussianBlur stdDeviation="0.5" result="blur" />
                     <feMerge>
                       <feMergeNode in="blur" />
                       <feMergeNode in="SourceGraphic" />
@@ -299,19 +299,19 @@ export default function Automation() {
                   </filter>
                   <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="rgba(56, 189, 248, 0.4)" />
-                    <stop offset="50%" stopColor="rgba(56, 189, 248, 0.25)" />
+                    <stop offset="50%" stopColor="rgba(56, 189, 248, 0.3)" />
                     <stop offset="100%" stopColor="rgba(56, 189, 248, 0.4)" />
                   </linearGradient>
                 </defs>
-                {/* Sinusoidal wave path connecting circles */}
+                {/* Sinusoidal wave connecting 5 circle centers at 10%, 30%, 50%, 70%, 90% */}
                 <path
-                  d="M 100 40 
-                     C 150 20, 200 60, 300 40 
-                     C 350 25, 400 55, 500 40 
-                     C 550 25, 600 55, 700 40 
-                     C 750 25, 800 55, 900 40"
+                  d="M 10 8 
+                     C 15 4, 20 12, 30 8 
+                     C 35 4, 40 12, 50 8 
+                     C 55 4, 60 12, 70 8 
+                     C 75 4, 80 12, 90 8"
                   stroke="url(#waveGradient)"
-                  strokeWidth="2"
+                  strokeWidth="0.3"
                   fill="none"
                   strokeLinecap="round"
                   filter="url(#waveGlow)"
@@ -319,7 +319,7 @@ export default function Automation() {
                 />
               </svg>
 
-              {/* Flow items */}
+              {/* Flow items - 5 circles evenly distributed */}
               <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8">
                 {problemItems.map(({ key, icon: Icon }) => (
                   <div 
@@ -410,33 +410,48 @@ export default function Automation() {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between max-w-5xl mx-auto gap-10 md:gap-6">
-              {howItWorksSteps.map(({ key, icon: Icon, number }, index) => (
-                <div 
-                  key={key}
-                  className="flex-1 relative flex flex-col items-center text-center"
-                  data-testid={`step-${key}`}
-                >
-                  {/* Connector line */}
-                  {index < howItWorksSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-5 left-[60%] w-full h-[1px] bg-border/30" />
-                  )}
-                  
-                  {/* Round number */}
-                  <div className="w-10 h-10 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center mb-4 relative z-10">
-                    <span className="text-xs font-semibold text-primary">{number}</span>
+            <div className="relative max-w-5xl mx-auto">
+              {/* Straight luminous connector line through circle centers */}
+              <div 
+                className="hidden md:block absolute h-[2px] z-0"
+                style={{
+                  top: '20px',
+                  left: '16.67%',
+                  width: '66.67%',
+                  background: 'linear-gradient(90deg, rgba(56, 189, 248, 0.3) 0%, rgba(56, 189, 248, 0.2) 50%, rgba(56, 189, 248, 0.3) 100%)',
+                  boxShadow: '0 0 10px rgba(56, 189, 248, 0.25), 0 0 20px rgba(56, 189, 248, 0.1)'
+                }}
+                aria-hidden="true"
+              />
+              
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-6">
+                {howItWorksSteps.map(({ key, icon: Icon, number }) => (
+                  <div 
+                    key={key}
+                    className="flex-1 relative flex flex-col items-center text-center"
+                    data-testid={`step-${key}`}
+                  >
+                    {/* Round number with glow */}
+                    <div 
+                      className="w-10 h-10 rounded-full border border-primary/25 bg-background flex items-center justify-center mb-4 relative z-10"
+                      style={{
+                        boxShadow: '0 0 15px rgba(56, 189, 248, 0.12), 0 0 25px rgba(56, 189, 248, 0.06)'
+                      }}
+                    >
+                      <span className="text-xs font-semibold text-primary">{number}</span>
+                    </div>
+                    
+                    <Icon className="h-4 w-4 text-muted-foreground mb-3" strokeWidth={1.5} />
+                    
+                    <h3 className="font-semibold mb-2 text-sm">
+                      {t(`howItWorks.steps.${key}.title`)}
+                    </h3>
+                    <p className="text-xs text-muted-foreground max-w-[200px]">
+                      {t(`howItWorks.steps.${key}.description`)}
+                    </p>
                   </div>
-                  
-                  <Icon className="h-4 w-4 text-muted-foreground mb-3" strokeWidth={1.5} />
-                  
-                  <h3 className="font-semibold mb-2 text-sm">
-                    {t(`howItWorks.steps.${key}.title`)}
-                  </h3>
-                  <p className="text-xs text-muted-foreground max-w-[200px]">
-                    {t(`howItWorks.steps.${key}.description`)}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             <div className="text-center mt-10">
