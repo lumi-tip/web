@@ -429,6 +429,22 @@
   }
 }
 
+/* Wave Draw Animation - sinusoidal line drawing from left to right */
+@keyframes waveDraw {
+  0% {
+    stroke-dashoffset: 1200;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-wave-draw {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: waveDraw 2s ease-out forwards;
+}
+
 /* Gentle Card Glow Shimmer Animation */
 @keyframes cardGlowShimmer {
   0%, 100% {

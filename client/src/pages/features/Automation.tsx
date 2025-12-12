@@ -40,7 +40,7 @@ function generateStars(count: number) {
 export default function Automation() {
   const { t, i18n } = useTranslation('automation');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const stars = useMemo(() => generateStars(40), []);
+  const stars = useMemo(() => generateStars(80), []);
 
   const handleTryClick = () => {
     analytics.ctaClick('try_learnpack', 'automation_page');
@@ -279,27 +279,54 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with luminous connector going through circles */}
+            {/* Horizontal flow layout with sinusoidal connector */}
             <div className="relative">
-              {/* Flow items with connector line going through circle centers */}
+              {/* Sinusoidal SVG connector line - hidden on mobile */}
+              <svg 
+                className="hidden lg:block absolute top-4 left-0 w-full h-24 pointer-events-none overflow-visible"
+                viewBox="0 0 1000 80"
+                fill="none"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <defs>
+                  <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(56, 189, 248, 0.4)" />
+                    <stop offset="50%" stopColor="rgba(56, 189, 248, 0.25)" />
+                    <stop offset="100%" stopColor="rgba(56, 189, 248, 0.4)" />
+                  </linearGradient>
+                </defs>
+                {/* Sinusoidal wave path connecting circles */}
+                <path
+                  d="M 100 40 
+                     C 150 20, 200 60, 300 40 
+                     C 350 25, 400 55, 500 40 
+                     C 550 25, 600 55, 700 40 
+                     C 750 25, 800 55, 900 40"
+                  stroke="url(#waveGradient)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                  filter="url(#waveGlow)"
+                  className="animate-wave-draw"
+                />
+              </svg>
+
+              {/* Flow items */}
               <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8">
-                {problemItems.map(({ key, icon: Icon }, index) => (
+                {problemItems.map(({ key, icon: Icon }) => (
                   <div 
                     key={key}
                     className="flex flex-col items-center text-center flex-1 max-w-[180px] relative"
                     data-testid={`item-problem-${key}`}
                   >
-                    {/* Connector line segment - goes through circle center */}
-                    {index < problemItems.length - 1 && (
-                      <div 
-                        className="hidden lg:block absolute top-8 left-[calc(50%+32px)] w-[calc(100%+32px)] h-[2px]"
-                        style={{
-                          background: 'linear-gradient(90deg, rgba(56, 189, 248, 0.3) 0%, rgba(56, 189, 248, 0.15) 100%)',
-                          boxShadow: '0 0 10px rgba(56, 189, 248, 0.3), 0 0 20px rgba(56, 189, 248, 0.15)'
-                        }}
-                        aria-hidden="true"
-                      />
-                    )}
                     {/* Glowing circle with icon */}
                     <div 
                       className="w-16 h-16 rounded-full border border-primary/30 bg-background flex items-center justify-center mb-6 relative z-10"
