@@ -88,28 +88,28 @@
     "items": {
       "structure": {
         "title": "Estructura del curso",
-        "automated": "LearnPack propone lecciones y evaluaciones.",
-        "control": "Tu apruebas y refinas."
+        "automated": "LearnPack propone esquemas de lecciones y evaluaciones.",
+        "control": "Estructura final, tono y precision"
       },
       "wording": {
         "title": "Redaccion del contenido",
-        "automated": "La IA redacta el texto.",
-        "control": "Tu aseguras tono y correccion."
+        "automated": "La IA redacta texto que puedes refinar.",
+        "control": "Decisiones y aprobaciones de contenido"
       },
       "support": {
         "title": "Soporte al estudiante",
-        "automated": "Rigobot el tutor IA responde preguntas de estudiantes e identifica quien necesita ayuda.",
-        "control": ""
+        "automated": "Rigobot el tutor IA responde preguntas de estudiantes y escala cuando es necesario.",
+        "control": "Casos de estudiantes escalados"
       },
       "scorm": {
-        "title": "Entrega SCORM y LMS",
-        "automated": "Exportacion en un click.",
-        "control": ""
+        "title": "SCORM y entrega",
+        "automated": "Exportacion en un click lista para cualquier LMS.",
+        "control": "Notas de cumplimiento"
       },
       "localization": {
         "title": "Localizacion",
-        "automated": "La IA genera variantes.",
-        "control": "Tu revisas terminologia y notas de cumplimiento."
+        "automated": "La IA genera versiones multilingues para tu revision.",
+        "control": "Terminologia y matices locales"
       }
     }
   },
@@ -118,36 +118,19 @@
     "items": {
       "employee": {
         "title": "Onboarding de empleados",
-        "description": "Lanza modulos de onboarding consistentes en todas las ubicaciones."
+        "description": "Lanza capacitacion consistente en todos los equipos con configuracion minima."
       },
       "product": {
         "title": "Capacitacion de producto y ventas",
-        "description": "Manten el conocimiento de producto alineado sin reconstruir contenido."
+        "description": "Proporciona material siempre alineado a medida que evoluciona el conocimiento del producto."
       },
       "technical": {
         "title": "Capacitacion tecnica y de herramientas",
-        "description": "Convierte documentacion en materiales interactivos y ejercicios guiados."
+        "description": "Convierte documentacion en practica guiada y materiales interactivos."
       },
       "compliance": {
         "title": "Cumplimiento y politicas",
-        "description": "Expresa cambios de politica en la capacitacion rapida y claramente."
-      }
-    }
-  },
-  "metrics": {
-    "title": "Impacto medido de la automatizacion",
-    "items": {
-      "cost": {
-        "label": "menor costo de produccion"
-      },
-      "completion": {
-        "label": "mayores tasas de finalizacion"
-      },
-      "speed": {
-        "label": "para publicar un nuevo curso"
-      },
-      "dropout": {
-        "label": "reduccion de desercion con Rigobot el tutor IA"
+        "description": "Traduce cambios de politicas en capacitacion clara rapidamente."
       }
     }
   },
@@ -162,15 +145,15 @@
     "items": {
       "formats": {
         "question": "Que formatos puedo subir?",
-        "answer": "Puedes subir PDFs, videos, presentaciones, documentos escritos o describir tu idea."
+        "answer": "Puedes subir PDFs, videos, presentaciones, documentos internos o simplemente describir tu idea y el sistema genera una primera version."
       },
       "lms": {
         "question": "Funciona con nuestro LMS?",
         "answer": "Si. Puedes exportar SCORM o incrustar modulos directamente."
       },
       "speed": {
-        "question": "Que tan rapido puedo crear nuevos cursos?",
-        "answer": "La mayoria de los cursos pueden generarse y refinarse en poco tiempo usando los mismos materiales fuente."
+        "question": "Que tan rapido puedo crear un nuevo curso?",
+        "answer": "La mayoria de los cursos pueden crearse o regenerarse rapidamente usando los mismos materiales fuente."
       }
     }
   },

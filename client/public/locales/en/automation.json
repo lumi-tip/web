@@ -88,28 +88,28 @@
     "items": {
       "structure": {
         "title": "Course structure",
-        "automated": "LearnPack proposes lessons and assessments.",
-        "control": "You approve and refine."
+        "automated": "LearnPack proposes lesson outlines and assessments.",
+        "control": "Final structure, tone and accuracy"
       },
       "wording": {
         "title": "Content wording",
-        "automated": "AI drafts text.",
-        "control": "You ensure tone and correctness."
+        "automated": "AI drafts text that you can refine.",
+        "control": "Content decisions and approvals"
       },
       "support": {
         "title": "Learner support",
-        "automated": "Rigobot the AI tutor answers learner questions and identifies who needs help.",
-        "control": ""
+        "automated": "Rigobot the AI tutor answers learner questions and escalates when needed.",
+        "control": "Escalated learner cases"
       },
       "scorm": {
-        "title": "SCORM and LMS delivery",
-        "automated": "One click export.",
-        "control": ""
+        "title": "SCORM and delivery",
+        "automated": "One click export ready for any LMS.",
+        "control": "Compliance notes"
       },
       "localization": {
         "title": "Localization",
-        "automated": "AI generates variants.",
-        "control": "You review terminology and compliance notes."
+        "automated": "AI generates multilingual versions for you to review.",
+        "control": "Terminology and local nuance"
       }
     }
   },
@@ -118,36 +118,19 @@
     "items": {
       "employee": {
         "title": "Employee onboarding",
-        "description": "Launch consistent onboarding modules across locations."
+        "description": "Launch consistent training across teams with minimal setup."
       },
       "product": {
         "title": "Product and sales training",
-        "description": "Keep product knowledge aligned without rebuilding content."
+        "description": "Provide always aligned material as product knowledge evolves."
       },
       "technical": {
         "title": "Technical and tools training",
-        "description": "Turn documentation into interactive materials and guided exercises."
+        "description": "Turn documentation into guided practice and interactive materials."
       },
       "compliance": {
         "title": "Compliance and policies",
-        "description": "Express policy changes across training fast and clearly."
-      }
-    }
-  },
-  "metrics": {
-    "title": "Measured impact of automation",
-    "items": {
-      "cost": {
-        "label": "lower production cost"
-      },
-      "completion": {
-        "label": "higher completion rates"
-      },
-      "speed": {
-        "label": "to publish a new course"
-      },
-      "dropout": {
-        "label": "reduction in dropout with Rigobot the AI tutor"
+        "description": "Translate policy changes into clear training rapidly."
       }
     }
   },
@@ -162,15 +145,15 @@
     "items": {
       "formats": {
         "question": "What formats can I upload?",
-        "answer": "You can upload PDFs, videos, presentations, written documents or describe your idea."
+        "answer": "You can upload PDFs, videos, presentations, internal documents or simply describe your idea and the system generates a first version."
       },
       "lms": {
         "question": "Does it work with our LMS?",
         "answer": "Yes. You can export SCORM or embed modules directly."
       },
       "speed": {
-        "question": "How fast can I create new courses?",
-        "answer": "Most courses can be generated and refined in a short time using the same source materials."
+        "question": "How fast can I create a new course?",
+        "answer": "Most courses can be created or regenerated quickly using the same source materials."
       }
     }
   },

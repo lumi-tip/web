@@ -94,13 +94,6 @@ export default function Automation() {
     { key: 'compliance', icon: Shield }
   ];
 
-  const metricItems = [
-    { key: 'cost', value: '80%', color: 'text-emerald-400' },
-    { key: 'completion', value: '2x', color: 'text-blue-400' },
-    { key: 'speed', value: '<1hr', color: 'text-violet-400' },
-    { key: 'dropout', value: '50%', color: 'text-amber-400' }
-  ];
-
   const faqItems = [
     { key: 'formats' },
     { key: 'lms' },
@@ -468,46 +461,83 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Automation vs Control - Two balanced columns with vertical divider */}
+        {/* Automation vs Control - Premium centered two-column layout */}
         <section 
-          className="py-16 md:py-20 lg:py-24 relative z-10"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-feature-table"
         >
-          <div className="content-container">
-            <div className="text-center mb-14 md:mb-20">
+          {/* Subtle glow behind section */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 70%)'
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="content-container relative z-10">
+            <div className="text-center mb-16 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-feature-table">
                 {t('featureTable.title')}
               </h2>
             </div>
 
-            {/* Two balanced columns centered */}
-            <div className="max-w-3xl mx-auto">
+            {/* Two perfectly centered columns with luminous divider */}
+            <div className="max-w-4xl mx-auto">
               {/* Column headers */}
-              <div className="flex items-center justify-center mb-10">
+              <div className="flex items-center justify-center mb-14">
                 <div className="flex-1 text-center">
-                  <span className="text-sm font-semibold text-primary">{t('featureTable.columnAutomated')}</span>
+                  <span className="text-base font-semibold text-primary">{t('featureTable.columnAutomated')}</span>
                 </div>
-                <div className="w-px h-6 bg-border/30 mx-6" />
+                <div 
+                  className="w-px h-8 mx-10"
+                  style={{
+                    background: 'linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.3) 50%, transparent 100%)',
+                    boxShadow: '0 0 8px rgba(56, 189, 248, 0.2)'
+                  }}
+                />
                 <div className="flex-1 text-center">
-                  <span className="text-sm font-semibold text-muted-foreground">{t('featureTable.columnControl')}</span>
+                  <span className="text-base font-semibold text-muted-foreground">{t('featureTable.columnControl')}</span>
                 </div>
               </div>
               
-              {/* Rows with vertical divider */}
-              <div className="space-y-8">
+              {/* Rows with glowing icons and vertical luminous divider */}
+              <div className="space-y-12">
                 {featureTableItems.map(({ key }) => (
                   <div 
                     key={key}
-                    className="flex items-center"
+                    className="flex items-start"
                     data-testid={`table-row-${key}`}
                   >
-                    <div className="flex-1 text-center">
-                      <h4 className="font-medium text-sm">{t(`featureTable.items.${key}.title`)}</h4>
-                      <p className="text-xs text-muted-foreground mt-1">{t(`featureTable.items.${key}.automated`)}</p>
+                    {/* Left column - Automated */}
+                    <div className="flex-1 flex items-start gap-4">
+                      {/* Glowing icon */}
+                      <div 
+                        className="w-8 h-8 rounded-full border border-primary/25 bg-background flex items-center justify-center flex-shrink-0"
+                        style={{
+                          boxShadow: '0 0 12px rgba(56, 189, 248, 0.15), 0 0 24px rgba(56, 189, 248, 0.08)'
+                        }}
+                      >
+                        <Zap className="h-3 w-3 text-primary/70" strokeWidth={1.5} />
+                      </div>
+                      <div className="text-left">
+                        <h4 className="font-medium text-sm mb-1">{t(`featureTable.items.${key}.title`)}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{t(`featureTable.items.${key}.automated`)}</p>
+                      </div>
                     </div>
-                    <div className="w-px h-12 bg-border/15 mx-8" />
-                    <div className="flex-1 text-center">
-                      <p className="text-sm text-muted-foreground">{t(`featureTable.items.${key}.control`)}</p>
+
+                    {/* Luminous vertical divider */}
+                    <div 
+                      className="w-px h-16 mx-8 flex-shrink-0 hidden md:block"
+                      style={{
+                        background: 'linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.2) 50%, transparent 100%)',
+                        boxShadow: '0 0 6px rgba(56, 189, 248, 0.15)'
+                      }}
+                    />
+
+                    {/* Right column - You control */}
+                    <div className="flex-1 text-left hidden md:block">
+                      <p className="text-sm text-muted-foreground leading-relaxed">{t(`featureTable.items.${key}.control`)}</p>
                     </div>
                   </div>
                 ))}
@@ -516,79 +546,40 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* Use Cases - Clean 2x2 layout with circular icons */}
+        {/* Use Cases - Larger glowing circular icons in two clean rows */}
         <section 
-          className="py-16 md:py-20 lg:py-24 relative z-10"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-use-cases"
         >
           <div className="content-container">
-            <div className="text-center mb-14 md:mb-20">
+            <div className="text-center mb-16 md:mb-24">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-use-cases">
                 {t('useCases.title')}
               </h2>
             </div>
 
-            {/* 2x2 clean layout with more horizontal spacing */}
-            <div className="grid gap-x-24 gap-y-16 md:grid-cols-2 max-w-4xl mx-auto">
+            {/* Two rows of 2 items each with larger glowing circular icons */}
+            <div className="grid gap-x-32 gap-y-20 md:grid-cols-2 max-w-3xl mx-auto">
               {useCaseItems.map(({ key, icon: Icon }) => (
                 <div 
                   key={key}
                   className="text-center"
                   data-testid={`item-use-case-${key}`}
                 >
-                  <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center mx-auto mb-5">
-                    <Icon className="h-4 w-4 text-primary/50" strokeWidth={1.5} />
+                  {/* Larger glowing circular icon */}
+                  <div 
+                    className="w-20 h-20 rounded-full border border-primary/25 bg-background flex items-center justify-center mx-auto mb-6"
+                    style={{
+                      boxShadow: '0 0 25px rgba(56, 189, 248, 0.12), 0 0 50px rgba(56, 189, 248, 0.06), inset 0 0 20px rgba(56, 189, 248, 0.03)'
+                    }}
+                  >
+                    <Icon className="h-7 w-7 text-primary/70" strokeWidth={1.5} />
                   </div>
-                  <h3 className="font-semibold mb-2 text-sm">
+                  <h3 className="font-semibold mb-3 text-base">
                     {t(`useCases.items.${key}.title`)}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mx-auto">
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-[280px] mx-auto">
                     {t(`useCases.items.${key}.description`)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Metrics - Large numbers with subtle glows */}
-        <section 
-          className="py-20 md:py-28 lg:py-32 relative z-10"
-          data-testid="section-metrics"
-        >
-          <div className="content-container">
-            <div className="text-center mb-14 md:mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-metrics">
-                {t('metrics.title')}
-              </h2>
-            </div>
-
-            <div className="grid gap-16 md:gap-20 md:grid-cols-4 max-w-5xl mx-auto text-center">
-              {metricItems.map(({ key, value, color }) => (
-                <div 
-                  key={key}
-                  className="relative"
-                  data-testid={`metric-${key}`}
-                >
-                  {/* Subtle glow behind number */}
-                  <div 
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background: `radial-gradient(circle at 50% 30%, ${
-                        color === 'text-emerald-400' ? 'rgba(52, 211, 153, 0.08)' :
-                        color === 'text-blue-400' ? 'rgba(96, 165, 250, 0.08)' :
-                        color === 'text-violet-400' ? 'rgba(167, 139, 250, 0.08)' :
-                        'rgba(251, 191, 36, 0.08)'
-                      } 0%, transparent 60%)`,
-                      filter: 'blur(20px)',
-                    }}
-                    aria-hidden="true"
-                  />
-                  <div className={`text-5xl md:text-6xl font-bold mb-3 ${color} relative z-10`}>
-                    {value}
-                  </div>
-                  <p className="text-sm text-muted-foreground relative z-10">
-                    {t(`metrics.items.${key}.label`)}
                   </p>
                 </div>
               ))}
@@ -630,40 +621,48 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* FAQ Section - More spacing, centered alignment */}
+        {/* FAQ Section - Accordion dropdown style like homepage */}
         <section 
-          className="py-16 md:py-20 lg:py-24 relative z-10"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-faq"
         >
           <div className="content-container">
-            <div className="text-center mb-14 md:mb-20">
+            <div className="text-center mb-16 md:mb-20">
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-faq">
                 {t('faq.title')}
               </h2>
             </div>
 
-            <div className="max-w-xl mx-auto space-y-10">
+            {/* Accordion style FAQs with smooth animations */}
+            <div className="max-w-2xl mx-auto">
               {faqItems.map(({ key }, index) => (
                 <div 
                   key={key}
-                  className="text-center"
+                  className="border-b border-border/20"
                   data-testid={`faq-item-${key}`}
                 >
                   <button
-                    className="w-full flex flex-col items-center py-3 group"
+                    className="w-full flex items-center justify-between py-6 text-left group"
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     data-testid={`faq-button-${key}`}
                   >
-                    <span className="font-medium text-center">{t(`faq.items.${key}.question`)}</span>
+                    <span className="font-medium text-base pr-4">{t(`faq.items.${key}.question`)}</span>
                     <ChevronDown 
-                      className={`h-4 w-4 text-muted-foreground mt-2 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} 
+                      className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ease-out ${openFaq === index ? 'rotate-180' : ''}`} 
                     />
                   </button>
-                  {openFaq === index && (
-                    <p className="text-sm text-muted-foreground pt-4 leading-relaxed text-center">
-                      {t(`faq.items.${key}.answer`)}
-                    </p>
-                  )}
+                  <div 
+                    className="grid transition-all duration-300 ease-out"
+                    style={{
+                      gridTemplateRows: openFaq === index ? '1fr' : '0fr'
+                    }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-sm text-muted-foreground leading-relaxed pb-6">
+                        {t(`faq.items.${key}.answer`)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
