@@ -445,6 +445,21 @@
   animation: waveDraw 2s ease-out forwards;
 }
 
+/* Flowing Wave Animation - subtle continuous flow effect */
+@keyframes waveFlow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -60;
+  }
+}
+
+.animate-wave-flow {
+  stroke-dasharray: 20 10;
+  animation: waveFlow 3s linear infinite;
+}
+
 /* Gentle Card Glow Shimmer Animation */
 @keyframes cardGlowShimmer {
   0%, 100% {

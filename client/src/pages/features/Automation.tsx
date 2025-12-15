@@ -272,52 +272,59 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with wavy connector through circle centers */}
+            {/* Horizontal flow layout with elegant sinusoidal connector through circle centers */}
             <div className="relative">
-              {/* Flow items - 5 circles evenly distributed with sinusoidal connecting line */}
+              {/* Flow items - 5 circles evenly distributed with flowing sine wave */}
               <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8 relative">
-                {/* Wavy SVG connecting line - passes through exact center of each circle */}
+                {/* Elegant sinusoidal SVG wave - mathematically correct sine curve through circle centers */}
                 <svg 
                   className="hidden lg:block absolute pointer-events-none overflow-visible"
                   style={{ 
                     top: '32px',
                     left: '0',
                     width: '100%',
-                    height: '40px',
+                    height: '48px',
                     transform: 'translateY(-50%)'
                   }}
-                  viewBox="0 0 1000 40"
+                  viewBox="0 0 1000 48"
                   preserveAspectRatio="none"
                   aria-hidden="true"
                 >
                   <defs>
-                    <filter id="waveGlow" x="-10%" y="-100%" width="120%" height="300%">
-                      <feGaussianBlur stdDeviation="2" result="blur" />
+                    <filter id="waveGlow" x="-10%" y="-200%" width="120%" height="500%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
                       <feMerge>
                         <feMergeNode in="blur" />
                         <feMergeNode in="SourceGraphic" />
                       </feMerge>
                     </filter>
                     <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="rgba(56, 189, 248, 0.5)" />
-                      <stop offset="25%" stopColor="rgba(56, 189, 248, 0.4)" />
-                      <stop offset="50%" stopColor="rgba(56, 189, 248, 0.35)" />
-                      <stop offset="75%" stopColor="rgba(56, 189, 248, 0.4)" />
-                      <stop offset="100%" stopColor="rgba(56, 189, 248, 0.5)" />
+                      <stop offset="0%" stopColor="rgba(56, 189, 248, 0.6)" />
+                      <stop offset="25%" stopColor="rgba(56, 189, 248, 0.5)" />
+                      <stop offset="50%" stopColor="rgba(56, 189, 248, 0.45)" />
+                      <stop offset="75%" stopColor="rgba(56, 189, 248, 0.5)" />
+                      <stop offset="100%" stopColor="rgba(56, 189, 248, 0.6)" />
                     </linearGradient>
                   </defs>
-                  {/* Sinusoidal wave: circles at x=100,300,500,700,900 (10%,30%,50%,70%,90%), wave passes through y=20 (center) at each */}
+                  {/* Elegant continuous sine wave using quarter-period bezier segments */}
+                  {/* Circle centers at x=100,300,500,700,900 (y=24), peaks at y=8, valleys at y=40 */}
                   <path
-                    d="M 100 20 
-                       C 150 8, 250 32, 300 20 
-                       C 350 8, 450 32, 500 20 
-                       C 550 8, 650 32, 700 20 
-                       C 750 8, 850 32, 900 20"
+                    d="M 100 24 
+                       C 136.42 24, 163.58 40, 200 40 
+                       C 236.42 40, 263.58 24, 300 24 
+                       C 336.42 24, 363.58 8, 400 8 
+                       C 436.42 8, 463.58 24, 500 24 
+                       C 536.42 24, 563.58 40, 600 40 
+                       C 636.42 40, 663.58 24, 700 24 
+                       C 736.42 24, 763.58 8, 800 8 
+                       C 836.42 8, 863.58 24, 900 24"
                     stroke="url(#waveGradient)"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     fill="none"
                     strokeLinecap="round"
+                    strokeLinejoin="round"
                     filter="url(#waveGlow)"
+                    className="animate-wave-flow"
                   />
                 </svg>
 
