@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "title": "Hyperpersonalized Learning | AI Tutor | LearnPack",
+    "description": "AI-powered personalized learning that adapts to every learner. Real-time guidance, contextual support, and adaptive explanations from the AI Tutor.",
+    "keywords": "hyperpersonalized learning, AI tutor, adaptive learning, personalized training, contextual guidance, real-time support, intelligent tutoring",
+    "ogTitle": "Hyperpersonalized Learning with AI Tutor | LearnPack",
+    "ogDescription": "Every learner receives real-time, adaptive support from the AI Tutor. Personalized guidance that improves comprehension, engagement, and completion rates."
+  },
+  "hero": {
+    "title": "A learning experience that adapts to every learner",
+    "subtitle": "The AI Tutor understands what each learner is reading and provides real-time, contextual guidance that improves comprehension, engagement, and completion rates.",
+    "ctaStart": "Start for Free",
+    "ctaDemo": "Book a Demo"
+  },
+  "definition": {
+    "text": "Hyperpersonalized Learning in LearnPack means that every learner receives real-time adaptive support from the AI Tutor. It tailors explanations, clarifies concepts, and guides understanding directly inside the learning experience."
+  },
+  "uniqueValue": {
+    "title": "Support that feels personal, at scale",
+    "bullets": [
+      "Responds to the learner's exact confusion",
+      "Adjusts depth and clarity of explanations",
+      "Tailors examples to each role or objective",
+      "Evolves as the learner progresses",
+      "Integrates seamlessly with any content"
+    ]
+  },
+  "howItWorks": {
+    "title": "Learning that reacts to the learner",
+    "steps": {
+      "step1": {
+        "title": "Reads the moment",
+        "description": "The AI Tutor interprets context: what the learner is reading, previous attempts, and moments of hesitation."
+      },
+      "step2": {
+        "title": "Responds intelligently",
+        "description": "It provides clarifications, examples, or questions based on level, history, and the learner's objective."
+      },
+      "step3": {
+        "title": "Guides the learning path",
+        "description": "As the learner advances, the AI Tutor adjusts the guidance to strengthen long-term understanding."
+      }
+    }
+  },
+  "examples": {
+    "title": "What hyperpersonalization looks like in practice",
+    "scenarios": {
+      "scenario1": {
+        "text": "A learner asks for a simpler explanation. The AI Tutor rewrites the paragraph instantly."
+      },
+      "scenario2": {
+        "text": "A sales employee requests an industry example. The AI Tutor adapts automatically."
+      },
+      "scenario3": {
+        "text": "A learner submits a wrong answer. The AI Tutor guides reasoning instead of giving the solution."
+      }
+    }
+  },
+  "impact": {
+    "title": "A measurable difference in how people learn",
+    "text": "Organizations using LearnPack see learners progressing with higher confidence and fewer blockers. Training programs supported by the AI Tutor achieve up to double the completion rate and significantly lower dropout levels, with clearer understanding and stronger skill application.",
+    "note": "Metrics based on aggregated performance across training centers and enterprise environments."
+  },
+  "useCases": {
+    "title": "Perfect for any learning journey",
+    "items": {
+      "onboarding": {
+        "title": "Onboarding",
+        "description": "Support that adapts to each new hire's background."
+      },
+      "technical": {
+        "title": "Technical Training",
+        "description": "Guidance through complex ideas and reasoning."
+      },
+      "compliance": {
+        "title": "Compliance",
+        "description": "AI Tutor simplifies dense rules and policies."
+      },
+      "sales": {
+        "title": "Product & Sales Training",
+        "description": "Role-tailored examples inside the content."
+      }
+    }
+  },
+  "comparison": {
+    "title": "Static learning vs adaptive learning",
+    "static": {
+      "title": "Static learning",
+      "bullets": [
+        "Same content for everyone",
+        "Learners get stuck",
+        "No real-time adaptation"
+      ]
+    },
+    "adaptive": {
+      "title": "Adaptive learning",
+      "bullets": [
+        "Personalized guidance",
+        "Instant support",
+        "Each learner advances at their pace"
+      ]
+    }
+  },
+  "testimonial": {
+    "quote": "The AI Tutor helped our teams learn faster and stay engaged. It feels like having a personal coach inside every course.",
+    "author": "Training Director",
+    "company": "Enterprise Client"
+  },
+  "cta": {
+    "title": "Give every learner the support they need, the moment they need it.",
+    "ctaStart": "Start for Free",
+    "ctaDemo": "Book a Demo"
+  }
+}

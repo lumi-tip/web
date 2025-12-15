@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "title": "Aprendizaje Hiperpersonalizado | Tutor IA | LearnPack",
+    "description": "Aprendizaje personalizado impulsado por IA que se adapta a cada estudiante. Orientación en tiempo real, soporte contextual y explicaciones adaptativas del Tutor IA.",
+    "keywords": "aprendizaje hiperpersonalizado, tutor IA, aprendizaje adaptativo, capacitación personalizada, orientación contextual, soporte en tiempo real, tutoría inteligente",
+    "ogTitle": "Aprendizaje Hiperpersonalizado con Tutor IA | LearnPack",
+    "ogDescription": "Cada estudiante recibe soporte adaptativo en tiempo real del Tutor IA. Orientación personalizada que mejora la comprensión, el compromiso y las tasas de finalización."
+  },
+  "hero": {
+    "title": "Una experiencia de aprendizaje que se adapta a cada estudiante",
+    "subtitle": "El Tutor IA entiende lo que cada estudiante está leyendo y proporciona orientación contextual en tiempo real que mejora la comprensión, el compromiso y las tasas de finalización.",
+    "ctaStart": "Comenzar Gratis",
+    "ctaDemo": "Reservar Demo"
+  },
+  "definition": {
+    "text": "El Aprendizaje Hiperpersonalizado en LearnPack significa que cada estudiante recibe soporte adaptativo en tiempo real del Tutor IA. Adapta explicaciones, aclara conceptos y guía la comprensión directamente dentro de la experiencia de aprendizaje."
+  },
+  "uniqueValue": {
+    "title": "Soporte que se siente personal, a escala",
+    "bullets": [
+      "Responde a la confusión exacta del estudiante",
+      "Ajusta la profundidad y claridad de las explicaciones",
+      "Adapta ejemplos a cada rol u objetivo",
+      "Evoluciona a medida que el estudiante progresa",
+      "Se integra perfectamente con cualquier contenido"
+    ]
+  },
+  "howItWorks": {
+    "title": "Aprendizaje que reacciona al estudiante",
+    "steps": {
+      "step1": {
+        "title": "Lee el momento",
+        "description": "El Tutor IA interpreta el contexto: lo que el estudiante está leyendo, intentos anteriores y momentos de duda."
+      },
+      "step2": {
+        "title": "Responde inteligentemente",
+        "description": "Proporciona aclaraciones, ejemplos o preguntas basadas en el nivel, historial y objetivo del estudiante."
+      },
+      "step3": {
+        "title": "Guía el camino de aprendizaje",
+        "description": "A medida que el estudiante avanza, el Tutor IA ajusta la orientación para fortalecer la comprensión a largo plazo."
+      }
+    }
+  },
+  "examples": {
+    "title": "Cómo se ve la hiperpersonalización en la práctica",
+    "scenarios": {
+      "scenario1": {
+        "text": "Un estudiante pide una explicación más simple. El Tutor IA reescribe el párrafo al instante."
+      },
+      "scenario2": {
+        "text": "Un empleado de ventas solicita un ejemplo de la industria. El Tutor IA se adapta automáticamente."
+      },
+      "scenario3": {
+        "text": "Un estudiante envía una respuesta incorrecta. El Tutor IA guía el razonamiento en lugar de dar la solución."
+      }
+    }
+  },
+  "impact": {
+    "title": "Una diferencia medible en cómo aprenden las personas",
+    "text": "Las organizaciones que usan LearnPack ven a los estudiantes progresando con mayor confianza y menos bloqueos. Los programas de capacitación respaldados por el Tutor IA logran hasta el doble de la tasa de finalización y niveles de abandono significativamente más bajos, con una comprensión más clara y una aplicación de habilidades más sólida.",
+    "note": "Métricas basadas en el rendimiento agregado en centros de capacitación y entornos empresariales."
+  },
+  "useCases": {
+    "title": "Perfecto para cualquier viaje de aprendizaje",
+    "items": {
+      "onboarding": {
+        "title": "Incorporación",
+        "description": "Soporte que se adapta a los antecedentes de cada nuevo empleado."
+      },
+      "technical": {
+        "title": "Capacitación Técnica",
+        "description": "Orientación a través de ideas complejas y razonamiento."
+      },
+      "compliance": {
+        "title": "Cumplimiento",
+        "description": "El Tutor IA simplifica reglas y políticas densas."
+      },
+      "sales": {
+        "title": "Capacitación de Producto y Ventas",
+        "description": "Ejemplos adaptados a cada rol dentro del contenido."
+      }
+    }
+  },
+  "comparison": {
+    "title": "Aprendizaje estático vs aprendizaje adaptativo",
+    "static": {
+      "title": "Aprendizaje estático",
+      "bullets": [
+        "Mismo contenido para todos",
+        "Los estudiantes se atascan",
+        "Sin adaptación en tiempo real"
+      ]
+    },
+    "adaptive": {
+      "title": "Aprendizaje adaptativo",
+      "bullets": [
+        "Orientación personalizada",
+        "Soporte instantáneo",
+        "Cada estudiante avanza a su ritmo"
+      ]
+    }
+  },
+  "testimonial": {
+    "quote": "El Tutor IA ayudó a nuestros equipos a aprender más rápido y mantenerse comprometidos. Se siente como tener un coach personal dentro de cada curso.",
+    "author": "Director de Capacitación",
+    "company": "Cliente Empresarial"
+  },
+  "cta": {
+    "title": "Dale a cada estudiante el apoyo que necesita, en el momento que lo necesita.",
+    "ctaStart": "Comenzar Gratis",
+    "ctaDemo": "Reservar Demo"
+  }
+}

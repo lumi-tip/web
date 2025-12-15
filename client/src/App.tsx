@@ -117,6 +117,11 @@ function Router() {
           <Hyperpersonalization />
         </Suspense>
       </Route>
+      <Route path="/features/hyperpersonalized-learning">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <Hyperpersonalization />
+        </Suspense>
+      </Route>
       <Route path="/features/adaptive-intelligence">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <AdaptiveIntelligence />
