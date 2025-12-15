@@ -13,6 +13,7 @@
     "ctaDemo": "Reservar Demo"
   },
   "definition": {
+    "label": "Definición · Aprendizaje Hiperpersonalizado",
     "text": "El Aprendizaje Hiperpersonalizado en LearnPack significa que cada estudiante recibe soporte adaptativo en tiempo real del Tutor IA. Adapta explicaciones, aclara conceptos y guía la comprensión directamente dentro de la experiencia de aprendizaje."
   },
   "uniqueValue": {
@@ -23,7 +24,13 @@
       "Adapta ejemplos a cada rol u objetivo",
       "Evoluciona a medida que el estudiante progresa",
       "Se integra perfectamente con cualquier contenido"
-    ]
+    ],
+    "diagram": {
+      "levels": "Diferentes niveles",
+      "roles": "Diferentes roles",
+      "goals": "Diferentes objetivos",
+      "result": "Una experiencia de Tutor IA"
+    }
   },
   "howItWorks": {
     "title": "Aprendizaje que reacciona al estudiante",
@@ -46,13 +53,16 @@
     "title": "Cómo se ve la hiperpersonalización en la práctica",
     "scenarios": {
       "scenario1": {
+        "title": "Explicaciones más simples",
         "text": "Un estudiante pide una explicación más simple. El Tutor IA reescribe el párrafo al instante."
       },
       "scenario2": {
+        "title": "Ejemplos por rol",
         "text": "Un empleado de ventas solicita un ejemplo de la industria. El Tutor IA se adapta automáticamente."
       },
       "scenario3": {
-        "text": "Un estudiante envía una respuesta incorrecta. El Tutor IA guía el razonamiento en lugar de dar la solución."
+        "title": "Razonamiento guiado",
+        "text": "El Tutor IA guía el razonamiento en lugar de dar la solución."
       }
     }
   },
@@ -66,7 +76,7 @@
     "items": {
       "onboarding": {
         "title": "Incorporación",
-        "description": "Soporte que se adapta a los antecedentes de cada nuevo empleado."
+        "description": "Soporte adaptado a los antecedentes de cada nuevo empleado."
       },
       "technical": {
         "title": "Capacitación Técnica",
@@ -74,7 +84,7 @@
       },
       "compliance": {
         "title": "Cumplimiento",
-        "description": "El Tutor IA simplifica reglas y políticas densas."
+        "description": "El Tutor IA aclara reglas y políticas densas."
       },
       "sales": {
         "title": "Capacitación de Producto y Ventas",

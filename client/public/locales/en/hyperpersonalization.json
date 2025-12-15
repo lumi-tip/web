@@ -13,6 +13,7 @@
     "ctaDemo": "Book a Demo"
   },
   "definition": {
+    "label": "Definition · Hyperpersonalized Learning",
     "text": "Hyperpersonalized Learning in LearnPack means that every learner receives real-time adaptive support from the AI Tutor. It tailors explanations, clarifies concepts, and guides understanding directly inside the learning experience."
   },
   "uniqueValue": {
@@ -23,7 +24,13 @@
       "Tailors examples to each role or objective",
       "Evolves as the learner progresses",
       "Integrates seamlessly with any content"
-    ]
+    ],
+    "diagram": {
+      "levels": "Different levels",
+      "roles": "Different roles",
+      "goals": "Different goals",
+      "result": "One AI Tutor experience"
+    }
   },
   "howItWorks": {
     "title": "Learning that reacts to the learner",
@@ -46,13 +53,16 @@
     "title": "What hyperpersonalization looks like in practice",
     "scenarios": {
       "scenario1": {
+        "title": "Simpler explanations",
         "text": "A learner asks for a simpler explanation. The AI Tutor rewrites the paragraph instantly."
       },
       "scenario2": {
+        "title": "Role-based examples",
         "text": "A sales employee requests an industry example. The AI Tutor adapts automatically."
       },
       "scenario3": {
-        "text": "A learner submits a wrong answer. The AI Tutor guides reasoning instead of giving the solution."
+        "title": "Guided reasoning",
+        "text": "The AI Tutor guides reasoning instead of just giving the solution."
       }
     }
   },
@@ -66,7 +76,7 @@
     "items": {
       "onboarding": {
         "title": "Onboarding",
-        "description": "Support that adapts to each new hire's background."
+        "description": "Support adapted to each new hire's background."
       },
       "technical": {
         "title": "Technical Training",
@@ -74,7 +84,7 @@
       },
       "compliance": {
         "title": "Compliance",
-        "description": "AI Tutor simplifies dense rules and policies."
+        "description": "AI Tutor clarifies dense rules and policies."
       },
       "sales": {
         "title": "Product & Sales Training",
