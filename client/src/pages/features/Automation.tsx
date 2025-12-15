@@ -272,45 +272,52 @@ export default function Automation() {
               </p>
             </div>
 
-            {/* Horizontal flow layout with precise connector through circle centers */}
+            {/* Horizontal flow layout with wavy connector through circle centers */}
             <div className="relative">
-              {/* Flow items - 5 circles evenly distributed with connecting line */}
+              {/* Flow items - 5 circles evenly distributed with sinusoidal connecting line */}
               <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8 relative">
-                {/* SVG connecting line - positioned at exact vertical center of circles (32px from top) */}
+                {/* Wavy SVG connecting line - passes through exact center of each circle */}
                 <svg 
-                  className="hidden lg:block absolute pointer-events-none"
+                  className="hidden lg:block absolute pointer-events-none overflow-visible"
                   style={{ 
                     top: '32px',
-                    left: '10%',
-                    width: '80%',
-                    height: '2px',
+                    left: '0',
+                    width: '100%',
+                    height: '40px',
                     transform: 'translateY(-50%)'
                   }}
+                  viewBox="0 0 1000 40"
                   preserveAspectRatio="none"
                   aria-hidden="true"
                 >
                   <defs>
-                    <filter id="lineGlow" x="-20%" y="-500%" width="140%" height="1100%">
+                    <filter id="waveGlow" x="-10%" y="-100%" width="120%" height="300%">
                       <feGaussianBlur stdDeviation="2" result="blur" />
                       <feMerge>
                         <feMergeNode in="blur" />
                         <feMergeNode in="SourceGraphic" />
                       </feMerge>
                     </filter>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="rgba(56, 189, 248, 0.5)" />
+                      <stop offset="25%" stopColor="rgba(56, 189, 248, 0.4)" />
                       <stop offset="50%" stopColor="rgba(56, 189, 248, 0.35)" />
+                      <stop offset="75%" stopColor="rgba(56, 189, 248, 0.4)" />
                       <stop offset="100%" stopColor="rgba(56, 189, 248, 0.5)" />
                     </linearGradient>
                   </defs>
-                  <line
-                    x1="0"
-                    y1="1"
-                    x2="100%"
-                    y2="1"
-                    stroke="url(#lineGradient)"
+                  {/* Sinusoidal wave: circles at x=100,300,500,700,900 (10%,30%,50%,70%,90%), wave passes through y=20 (center) at each */}
+                  <path
+                    d="M 100 20 
+                       C 150 8, 250 32, 300 20 
+                       C 350 8, 450 32, 500 20 
+                       C 550 8, 650 32, 700 20 
+                       C 750 8, 850 32, 900 20"
+                    stroke="url(#waveGradient)"
                     strokeWidth="2"
-                    filter="url(#lineGlow)"
+                    fill="none"
+                    strokeLinecap="round"
+                    filter="url(#waveGlow)"
                   />
                 </svg>
 
