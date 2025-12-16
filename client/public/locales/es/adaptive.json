@@ -104,6 +104,23 @@
       "sales": "Habilitacion de Ventas"
     }
   },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "questions": {
+      "q1": {
+        "question": "Que es la Inteligencia Adaptativa de Cursos en LearnPack?",
+        "answer": "La Inteligencia Adaptativa de Cursos es el sistema impulsado por IA de LearnPack que ajusta automaticamente el contenido del curso basandose en el comportamiento del estudiante en tiempo real. Monitorea senales como el tiempo empleado, errores cometidos y patrones de frustracion para modificar la dificultad, agregar ejemplos o reforzar conceptos exactamente cuando se necesita."
+      },
+      "q2": {
+        "question": "Como personaliza LearnPack la formacion automaticamente?",
+        "answer": "LearnPack analiza los patrones de interaccion de cada estudiante en tiempo real. Cuando el sistema detecta que un estudiante esta teniendo dificultades, puede insertar automaticamente ejemplos adicionales, ajustar los niveles de dificultad, revisar conceptos clave o incluso adaptar el contenido al idioma preferido del estudiante, todo sin intervencion manual."
+      },
+      "q3": {
+        "question": "Es util la Inteligencia Adaptativa de Cursos para formacion corporativa?",
+        "answer": "Absolutamente. La formacion corporativa a menudo sufre de contenido unico que no logra involucrar a equipos diversos. La Inteligencia Adaptativa asegura que cada empleado reciba un ritmo y soporte personalizado, lo que lleva a mayores tasas de finalizacion, mejor retencion de conocimientos y tiempo de formacion reducido en programas de incorporacion, cumplimiento y desarrollo de habilidades."
+      }
+    }
+  },
   "cta": {
     "title": "Construye formacion que mejora sola.",
     "ctaStart": "Comenzar Gratis",

@@ -18,10 +18,20 @@ import {
   Layers,
   Radio,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Plus,
+  Sparkles,
+  RefreshCw,
+  Languages
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 function generateStars(count: number) {
   return Array.from({ length: count }, () => ({
@@ -33,17 +43,9 @@ function generateStars(count: number) {
   }));
 }
 
-const adaptationMetrics = {
-  extraExample: { engagement: { before: 40, after: 85, change: '+45%' }, completion: { before: 35, after: 95, change: '+60%' }, difficulty: { before: 25, after: 95, change: '+70%' } },
-  difficulty: { engagement: { before: 50, after: 80, change: '+30%' }, completion: { before: 40, after: 85, change: '+45%' }, difficulty: { before: 20, after: 90, change: '+70%' } },
-  reinforced: { engagement: { before: 45, after: 90, change: '+45%' }, completion: { before: 30, after: 80, change: '+50%' }, difficulty: { before: 35, after: 85, change: '+50%' } },
-  translation: { engagement: { before: 30, after: 75, change: '+45%' }, completion: { before: 25, after: 70, change: '+45%' }, difficulty: { before: 40, after: 80, change: '+40%' } },
-};
-
 export default function AdaptiveIntelligence() {
   const { t, i18n } = useTranslation('adaptive');
   const stars = useMemo(() => generateStars(80), []);
-  const [selectedAdaptation, setSelectedAdaptation] = useState<keyof typeof adaptationMetrics>('extraExample');
 
   const handleTryClick = () => {
     analytics.ctaClick('try_adaptive', 'adaptive_page');
@@ -253,7 +255,7 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 3: STATIC LEARNING PROBLEM - Cards with improved spacing */}
+        {/* SECTION 3: STATIC LEARNING PROBLEM - Premium cards with glowing icons */}
         <section 
           className="py-16 md:py-20"
           data-testid="section-problem"
@@ -268,24 +270,38 @@ export default function AdaptiveIntelligence() {
               </p>
             </div>
             
-            {/* 3 cards with improved spacing */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+            {/* 3 premium cards with glowing icon circles */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {/* Card 1 */}
               <div 
-                className="rounded-xl p-6 text-center"
+                className="rounded-xl p-8 text-center relative"
                 style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.6)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                  backgroundColor: '#0A1220',
+                  border: '1px solid rgba(31, 111, 235, 0.2)',
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)',
                 }}
                 data-testid="card-problem-1"
               >
-                <div 
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <Layers className="w-7 h-7 text-[#3A8DFF]" />
+                {/* Icon with soft blue glow */}
+                <div className="relative mx-auto mb-6 w-16 h-16">
+                  <div 
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(31, 111, 235, 0.25) 0%, transparent 70%)',
+                      filter: 'blur(8px)',
+                    }}
+                  />
+                  <div 
+                    className="relative w-16 h-16 rounded-full flex items-center justify-center"
+                    style={{ 
+                      backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                      border: '1px solid rgba(31, 111, 235, 0.3)',
+                    }}
+                  >
+                    <Layers className="w-7 h-7 text-[#3A8DFF]" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-3 text-white">
+                <h3 className="text-xl font-semibold mb-4 text-white">
                   {t('problem.cards.oneSize.title')}
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed">
@@ -295,20 +311,34 @@ export default function AdaptiveIntelligence() {
               
               {/* Card 2 */}
               <div 
-                className="rounded-xl p-6 text-center"
+                className="rounded-xl p-8 text-center relative"
                 style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.6)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                  backgroundColor: '#0A1220',
+                  border: '1px solid rgba(31, 111, 235, 0.2)',
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)',
                 }}
                 data-testid="card-problem-2"
               >
-                <div 
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <Radio className="w-7 h-7 text-[#3A8DFF]" />
+                {/* Icon with soft blue glow */}
+                <div className="relative mx-auto mb-6 w-16 h-16">
+                  <div 
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(31, 111, 235, 0.25) 0%, transparent 70%)',
+                      filter: 'blur(8px)',
+                    }}
+                  />
+                  <div 
+                    className="relative w-16 h-16 rounded-full flex items-center justify-center"
+                    style={{ 
+                      backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                      border: '1px solid rgba(31, 111, 235, 0.3)',
+                    }}
+                  >
+                    <Radio className="w-7 h-7 text-[#3A8DFF]" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-3 text-white">
+                <h3 className="text-xl font-semibold mb-4 text-white">
                   {t('problem.cards.noSignals.title')}
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed">
@@ -318,20 +348,34 @@ export default function AdaptiveIntelligence() {
               
               {/* Card 3 */}
               <div 
-                className="rounded-xl p-6 text-center"
+                className="rounded-xl p-8 text-center relative"
                 style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.6)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                  backgroundColor: '#0A1220',
+                  border: '1px solid rgba(31, 111, 235, 0.2)',
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)',
                 }}
                 data-testid="card-problem-3"
               >
-                <div 
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <Clock className="w-7 h-7 text-[#3A8DFF]" />
+                {/* Icon with soft blue glow */}
+                <div className="relative mx-auto mb-6 w-16 h-16">
+                  <div 
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(31, 111, 235, 0.25) 0%, transparent 70%)',
+                      filter: 'blur(8px)',
+                    }}
+                  />
+                  <div 
+                    className="relative w-16 h-16 rounded-full flex items-center justify-center"
+                    style={{ 
+                      backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                      border: '1px solid rgba(31, 111, 235, 0.3)',
+                    }}
+                  >
+                    <Clock className="w-7 h-7 text-[#3A8DFF]" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-3 text-white">
+                <h3 className="text-xl font-semibold mb-4 text-white">
                   {t('problem.cards.outdated.title')}
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed">
@@ -342,7 +386,7 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 4: WHAT ADAPTIVE INTELLIGENCE DOES - Horizontal icons without cards */}
+        {/* SECTION 4: WHAT ADAPTIVE INTELLIGENCE DOES - Hexagon icons with thin glowing line */}
         <section 
           className="py-20 md:py-24"
           data-testid="section-what-it-does"
@@ -352,27 +396,46 @@ export default function AdaptiveIntelligence() {
               {t('whatItDoes.title')}
             </h2>
             
-            {/* Horizontal layout with icons and connecting line */}
+            {/* Horizontal layout with hexagon icons and elegant connecting line */}
             <div className="max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 relative">
-                {/* Horizontal connecting line - desktop only */}
+                {/* Horizontal connecting line with blue glow - desktop only */}
                 <div 
-                  className="hidden md:block absolute top-10 left-[15%] right-[15%] h-[2px]"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.3)' }}
+                  className="hidden md:block absolute top-12 left-[18%] right-[18%] h-[1px]"
+                  style={{ 
+                    backgroundColor: 'rgba(31, 111, 235, 0.5)',
+                    boxShadow: '0 0 8px rgba(31, 111, 235, 0.4), 0 0 16px rgba(31, 111, 235, 0.2)',
+                  }}
                   aria-hidden="true"
                 />
                 
-                {/* Detects */}
+                {/* Detects - Hexagon */}
                 <div className="flex flex-col items-center text-center relative z-10 flex-1" data-testid="block-detects">
                   <div 
-                    className="w-20 h-20 rounded-full flex items-center justify-center mb-5"
-                    style={{ 
+                    className="w-24 h-24 flex items-center justify-center mb-5 relative"
+                    style={{
+                      clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                       backgroundColor: '#0A1A2F',
-                      border: '2px solid #1F6FEB',
-                      boxShadow: '0 0 25px rgba(31, 111, 235, 0.2)',
                     }}
                   >
-                    <Eye className="w-9 h-9 text-[#3A8DFF]" />
+                    {/* Hexagon border effect */}
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                        background: 'linear-gradient(135deg, rgba(31, 111, 235, 0.6), rgba(31, 111, 235, 0.2))',
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-[2px] flex items-center justify-center"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                        backgroundColor: '#0A1A2F',
+                        boxShadow: '0 0 30px rgba(31, 111, 235, 0.3)',
+                      }}
+                    >
+                      <Eye className="w-9 h-9 text-[#3A8DFF]" />
+                    </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-white">
                     {t('whatItDoes.blocks.detects.title')}
@@ -385,17 +448,33 @@ export default function AdaptiveIntelligence() {
                 {/* Arrow - mobile only */}
                 <ArrowRight className="md:hidden w-6 h-6 text-[#3A8DFF] rotate-90" aria-hidden="true" />
                 
-                {/* Adjusts */}
+                {/* Adjusts - Hexagon */}
                 <div className="flex flex-col items-center text-center relative z-10 flex-1" data-testid="block-adjusts">
                   <div 
-                    className="w-20 h-20 rounded-full flex items-center justify-center mb-5"
-                    style={{ 
+                    className="w-24 h-24 flex items-center justify-center mb-5 relative"
+                    style={{
+                      clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                       backgroundColor: '#0A1A2F',
-                      border: '2px solid #1F6FEB',
-                      boxShadow: '0 0 25px rgba(31, 111, 235, 0.2)',
                     }}
                   >
-                    <Brain className="w-9 h-9 text-[#3A8DFF]" />
+                    {/* Hexagon border effect */}
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                        background: 'linear-gradient(135deg, rgba(31, 111, 235, 0.6), rgba(31, 111, 235, 0.2))',
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-[2px] flex items-center justify-center"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                        backgroundColor: '#0A1A2F',
+                        boxShadow: '0 0 30px rgba(31, 111, 235, 0.3)',
+                      }}
+                    >
+                      <Brain className="w-9 h-9 text-[#3A8DFF]" />
+                    </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-white">
                     {t('whatItDoes.blocks.adjusts.title')}
@@ -408,17 +487,33 @@ export default function AdaptiveIntelligence() {
                 {/* Arrow - mobile only */}
                 <ArrowRight className="md:hidden w-6 h-6 text-[#3A8DFF] rotate-90" aria-hidden="true" />
                 
-                {/* Guides */}
+                {/* Guides - Hexagon */}
                 <div className="flex flex-col items-center text-center relative z-10 flex-1" data-testid="block-guides">
                   <div 
-                    className="w-20 h-20 rounded-full flex items-center justify-center mb-5"
-                    style={{ 
+                    className="w-24 h-24 flex items-center justify-center mb-5 relative"
+                    style={{
+                      clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
                       backgroundColor: '#0A1A2F',
-                      border: '2px solid #1F6FEB',
-                      boxShadow: '0 0 25px rgba(31, 111, 235, 0.2)',
                     }}
                   >
-                    <Zap className="w-9 h-9 text-[#3A8DFF]" />
+                    {/* Hexagon border effect */}
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                        background: 'linear-gradient(135deg, rgba(31, 111, 235, 0.6), rgba(31, 111, 235, 0.2))',
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-[2px] flex items-center justify-center"
+                      style={{
+                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                        backgroundColor: '#0A1A2F',
+                        boxShadow: '0 0 30px rgba(31, 111, 235, 0.3)',
+                      }}
+                    >
+                      <Zap className="w-9 h-9 text-[#3A8DFF]" />
+                    </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-white">
                     {t('whatItDoes.blocks.guides.title')}
@@ -432,7 +527,7 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 5: ADAPTIVE ENGINE - Centered split screen */}
+        {/* SECTION 5: ADAPTIVE ENGINE - Better centered layout */}
         <section 
           className="py-20 md:py-24 relative"
           data-testid="section-engine"
@@ -444,123 +539,125 @@ export default function AdaptiveIntelligence() {
             
             {/* Centered block containing both timeline and mockup */}
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-4xl">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl w-full">
                 {/* Left - Timeline with icons */}
                 <div className="flex justify-center lg:justify-end">
-                <div className="space-y-0">
-                  {[
-                    { key: 'observe', icon: Eye },
-                    { key: 'interpret', icon: Brain },
-                    { key: 'act', icon: Zap },
-                    { key: 'validate', icon: CheckCircle }
-                  ].map(({ key, icon: Icon }, index) => (
-                    <div key={key} className="flex items-start gap-5" data-testid={`step-${key}`}>
-                      {/* Timeline line and dot */}
-                      <div className="flex flex-col items-center">
-                        <div 
-                          className="w-12 h-12 rounded-full flex items-center justify-center"
-                          style={{
-                            backgroundColor: '#1F6FEB',
-                            boxShadow: '0 0 20px rgba(31, 111, 235, 0.4)',
-                          }}
-                        >
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        {index < 3 && (
+                  <div className="space-y-0">
+                    {[
+                      { key: 'observe', icon: Eye },
+                      { key: 'interpret', icon: Brain },
+                      { key: 'act', icon: Zap },
+                      { key: 'validate', icon: CheckCircle }
+                    ].map(({ key, icon: Icon }, index) => (
+                      <div key={key} className="flex items-start gap-5" data-testid={`step-${key}`}>
+                        {/* Timeline line and dot */}
+                        <div className="flex flex-col items-center">
                           <div 
-                            className="w-[2px] h-14"
-                            style={{ backgroundColor: '#1F6FEB' }}
-                          />
-                        )}
+                            className="w-12 h-12 rounded-full flex items-center justify-center"
+                            style={{
+                              backgroundColor: '#1F6FEB',
+                              boxShadow: '0 0 20px rgba(31, 111, 235, 0.4)',
+                            }}
+                          >
+                            <Icon className="w-6 h-6 text-white" />
+                          </div>
+                          {index < 3 && (
+                            <div 
+                              className="w-[2px] h-14"
+                              style={{ backgroundColor: '#1F6FEB' }}
+                            />
+                          )}
+                        </div>
+                        {/* Step text */}
+                        <div className="pt-3 pb-6">
+                          <h3 className="text-xl font-semibold text-white">
+                            {t(`engine.steps.${key}`)}
+                          </h3>
+                        </div>
                       </div>
-                      {/* Step text */}
-                      <div className="pt-3 pb-6">
-                        <h3 className="text-xl font-semibold text-white">
-                          {t(`engine.steps.${key}`)}
-                        </h3>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Right - Improved course mockup showing adaptation */}
-              <div 
-                className="rounded-xl p-6"
-                style={{
-                  backgroundColor: '#0E1629',
-                  border: '1px solid rgba(31, 111, 235, 0.2)',
-                }}
-              >
-                {/* Browser chrome */}
-                <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
-                  <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/60" />
-                  <span className="ml-4 text-xs text-white/40">LearnPack Course</span>
+                    ))}
+                  </div>
                 </div>
                 
-                {/* Course interface with adaptation visualization */}
-                <div className="space-y-4">
-                  {/* Content block that shows change */}
-                  <div className="flex items-center gap-3">
-                    <div className="h-4 bg-white/10 rounded flex-1" />
-                    <div 
-                      className="px-2 py-1 rounded text-[10px] font-medium"
-                      style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#4ade80' }}
-                    >
-                      Adapted
-                    </div>
-                  </div>
-                  
-                  {/* Module cards - one highlighted as changed */}
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="h-16 bg-white/5 rounded border border-white/10 flex items-center justify-center">
-                      <span className="text-[10px] text-white/30">Module 1</span>
-                    </div>
-                    <div 
-                      className="h-16 rounded flex items-center justify-center relative overflow-visible"
-                      style={{ 
-                        backgroundColor: 'rgba(31, 111, 235, 0.15)',
-                        border: '1px solid rgba(31, 111, 235, 0.4)',
-                      }}
-                    >
-                      <span className="text-[10px] text-[#3A8DFF]">Module 2</span>
-                      {/* Glow effect */}
-                      <div 
-                        className="absolute inset-0 rounded pointer-events-none"
-                        style={{ boxShadow: '0 0 15px rgba(31, 111, 235, 0.3)' }}
-                      />
-                    </div>
-                    <div className="h-16 bg-white/5 rounded border border-white/10 flex items-center justify-center">
-                      <span className="text-[10px] text-white/30">Module 3</span>
-                    </div>
-                  </div>
-                  
-                  {/* Difficulty adjustment indicator */}
+                {/* Right - Improved course mockup showing adaptation */}
+                <div className="flex justify-center lg:justify-start">
                   <div 
-                    className="px-3 py-2 rounded-lg flex items-center gap-2"
-                    style={{ backgroundColor: 'rgba(251, 191, 36, 0.1)', border: '1px solid rgba(251, 191, 36, 0.3)' }}
+                    className="rounded-xl p-6 w-full max-w-sm"
+                    style={{
+                      backgroundColor: '#0E1629',
+                      border: '1px solid rgba(31, 111, 235, 0.2)',
+                    }}
                   >
-                    <Activity className="w-4 h-4 text-amber-400" />
-                    <span className="text-xs text-amber-400">Difficulty adjusted to match pace</span>
-                  </div>
-                  
-                  {/* Progress indicator */}
-                  <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
-                    <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full w-2/3 bg-[#1F6FEB] rounded-full" />
+                    {/* Browser chrome */}
+                    <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
+                      <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                      <span className="ml-4 text-xs text-white/40">LearnPack Course</span>
                     </div>
-                    <span className="text-xs text-white/40">67%</span>
+                    
+                    {/* Course interface with adaptation visualization */}
+                    <div className="space-y-4">
+                      {/* Content block that shows change */}
+                      <div className="flex items-center gap-3">
+                        <div className="h-4 bg-white/10 rounded flex-1" />
+                        <div 
+                          className="px-2 py-1 rounded text-[10px] font-medium"
+                          style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#4ade80' }}
+                        >
+                          Adapted
+                        </div>
+                      </div>
+                      
+                      {/* Module cards - one highlighted as changed */}
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="h-16 bg-white/5 rounded border border-white/10 flex items-center justify-center">
+                          <span className="text-[10px] text-white/30">Module 1</span>
+                        </div>
+                        <div 
+                          className="h-16 rounded flex items-center justify-center relative overflow-visible"
+                          style={{ 
+                            backgroundColor: 'rgba(31, 111, 235, 0.15)',
+                            border: '1px solid rgba(31, 111, 235, 0.4)',
+                          }}
+                        >
+                          <span className="text-[10px] text-[#3A8DFF]">Module 2</span>
+                          {/* Glow effect */}
+                          <div 
+                            className="absolute inset-0 rounded pointer-events-none"
+                            style={{ boxShadow: '0 0 15px rgba(31, 111, 235, 0.3)' }}
+                          />
+                        </div>
+                        <div className="h-16 bg-white/5 rounded border border-white/10 flex items-center justify-center">
+                          <span className="text-[10px] text-white/30">Module 3</span>
+                        </div>
+                      </div>
+                      
+                      {/* Difficulty adjustment indicator */}
+                      <div 
+                        className="px-3 py-2 rounded-lg flex items-center gap-2"
+                        style={{ backgroundColor: 'rgba(251, 191, 36, 0.1)', border: '1px solid rgba(251, 191, 36, 0.3)' }}
+                      >
+                        <Activity className="w-4 h-4 text-amber-400" />
+                        <span className="text-xs text-amber-400">Difficulty adjusted to match pace</span>
+                      </div>
+                      
+                      {/* Progress indicator */}
+                      <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
+                        <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                          <div className="h-full w-2/3 bg-[#1F6FEB] rounded-full" />
+                        </div>
+                        <span className="text-xs text-white/40">67%</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 6: WHAT ADAPTATION LOOKS LIKE - Before/After chart */}
+        {/* SECTION 6: WHAT ADAPTATION LOOKS LIKE - Static display, no interactivity */}
         <section 
           className="py-20 md:py-24"
           data-testid="section-examples"
@@ -570,135 +667,103 @@ export default function AdaptiveIntelligence() {
               {t('examples.title')}
             </h2>
             
-            {/* Instruction text */}
+            {/* Subtitle without instruction */}
             <p className="text-center text-white/60 mb-12 max-w-xl mx-auto">
-              {t('examples.instruction')}
+              Real-time adaptations that improve learner outcomes.
             </p>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-              {/* Left - Stacked adaptation examples with active/inactive styling */}
-              <div className="relative">
-                <div className="space-y-4">
-                  {(['extraExample', 'difficulty', 'reinforced', 'translation'] as const).map((card) => {
-                    const isActive = selectedAdaptation === card;
-                    return (
-                      <div 
-                        key={card}
-                        onClick={() => setSelectedAdaptation(card)}
-                        className="px-6 py-4 rounded-lg transition-all duration-300 cursor-pointer hover:translate-x-2"
-                        style={{
-                          backgroundColor: isActive ? '#1F6FEB' : 'rgba(10, 26, 47, 0.7)',
-                          border: `1px solid ${isActive ? '#3A8DFF' : 'rgba(31, 111, 235, 0.15)'}`,
-                          boxShadow: isActive ? '0 0 25px rgba(31, 111, 235, 0.3)' : 'none',
-                        }}
-                        data-testid={`card-example-${card}`}
-                      >
-                        <span className={`font-medium ${isActive ? 'text-white' : 'text-white/50'}`}>
-                          {t(`examples.cards.${card}`)}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              
-              {/* Right - Before/After comparison chart with dynamic values */}
+            {/* Grid of 4 equal adaptation types */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {/* Extra Example */}
               <div 
-                className="rounded-xl p-6"
+                className="rounded-xl p-6 text-center"
                 style={{
-                  backgroundColor: '#0E1629',
-                  border: '1px solid rgba(31, 111, 235, 0.2)',
+                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
                 }}
+                data-testid="card-example-extraExample"
               >
-                {/* Chart with Before/After labels - updates based on selection */}
-                <div className="space-y-6">
-                  {/* Metric 1: Engagement */}
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
-                      <span>Engagement</span>
-                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].engagement.change}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex-1">
-                        <div className="text-[10px] text-white/40 mb-1">Before</div>
-                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
-                            style={{ width: `${adaptationMetrics[selectedAdaptation].engagement.before}%` }}
-                          />
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="text-[10px] text-white/40 mb-1">After</div>
-                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
-                            style={{ width: `${adaptationMetrics[selectedAdaptation].engagement.after}%` }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Metric 2: Completion Rate */}
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
-                      <span>Completion Rate</span>
-                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].completion.change}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex-1">
-                        <div className="text-[10px] text-white/40 mb-1">Before</div>
-                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
-                            style={{ width: `${adaptationMetrics[selectedAdaptation].completion.before}%` }}
-                          />
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="text-[10px] text-white/40 mb-1">After</div>
-                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
-                            style={{ width: `${adaptationMetrics[selectedAdaptation].completion.after}%` }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Metric 3: Difficulty Match */}
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
-                      <span>Difficulty Match</span>
-                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].difficulty.change}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex-1">
-                        <div className="text-[10px] text-white/40 mb-1">Before</div>
-                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
-                            style={{ width: `${adaptationMetrics[selectedAdaptation].difficulty.before}%` }}
-                          />
-                        </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="text-[10px] text-white/40 mb-1">After</div>
-                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
-                            style={{ width: `${adaptationMetrics[selectedAdaptation].difficulty.after}%` }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
+                >
+                  <Plus className="w-6 h-6 text-[#3A8DFF]" />
                 </div>
+                <h3 className="font-medium text-white mb-2">
+                  {t('examples.cards.extraExample')}
+                </h3>
+                <p className="text-xs text-white/50">
+                  When a learner struggles, additional examples are inserted automatically.
+                </p>
+              </div>
+
+              {/* Difficulty Adjusted */}
+              <div 
+                className="rounded-xl p-6 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                }}
+                data-testid="card-example-difficulty"
+              >
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
+                >
+                  <Sparkles className="w-6 h-6 text-[#3A8DFF]" />
+                </div>
+                <h3 className="font-medium text-white mb-2">
+                  {t('examples.cards.difficulty')}
+                </h3>
+                <p className="text-xs text-white/50">
+                  Content difficulty scales up or down based on performance.
+                </p>
+              </div>
+
+              {/* Concept Reinforced */}
+              <div 
+                className="rounded-xl p-6 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                }}
+                data-testid="card-example-reinforced"
+              >
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
+                >
+                  <RefreshCw className="w-6 h-6 text-[#3A8DFF]" />
+                </div>
+                <h3 className="font-medium text-white mb-2">
+                  {t('examples.cards.reinforced')}
+                </h3>
+                <p className="text-xs text-white/50">
+                  Key concepts are revisited when mastery isn't detected.
+                </p>
+              </div>
+
+              {/* Translation Triggered */}
+              <div 
+                className="rounded-xl p-6 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                }}
+                data-testid="card-example-translation"
+              >
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
+                >
+                  <Languages className="w-6 h-6 text-[#3A8DFF]" />
+                </div>
+                <h3 className="font-medium text-white mb-2">
+                  {t('examples.cards.translation')}
+                </h3>
+                <p className="text-xs text-white/50">
+                  Content adapts to learner's preferred language automatically.
+                </p>
               </div>
             </div>
           </div>
@@ -843,7 +908,74 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 9: FINAL CTA */}
+        {/* SECTION 9: FAQ - Accordion style */}
+        <section 
+          className="py-20 md:py-24"
+          data-testid="section-faq"
+        >
+          <div className="content-container">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-center text-white">
+              {t('faq.title')}
+            </h2>
+            
+            <div className="max-w-3xl mx-auto">
+              <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem 
+                  value="item-1" 
+                  className="rounded-xl px-6 border"
+                  style={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgba(31, 111, 235, 0.3)',
+                  }}
+                  data-testid="faq-item-1"
+                >
+                  <AccordionTrigger className="text-white hover:no-underline py-5 text-left">
+                    {t('faq.questions.q1.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q1.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem 
+                  value="item-2" 
+                  className="rounded-xl px-6 border"
+                  style={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgba(31, 111, 235, 0.3)',
+                  }}
+                  data-testid="faq-item-2"
+                >
+                  <AccordionTrigger className="text-white hover:no-underline py-5 text-left">
+                    {t('faq.questions.q2.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q2.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem 
+                  value="item-3" 
+                  className="rounded-xl px-6 border"
+                  style={{
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgba(31, 111, 235, 0.3)',
+                  }}
+                  data-testid="faq-item-3"
+                >
+                  <AccordionTrigger className="text-white hover:no-underline py-5 text-left">
+                    {t('faq.questions.q3.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q3.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 10: FINAL CTA */}
         <section 
           className="py-24 md:py-28"
           data-testid="section-cta"
