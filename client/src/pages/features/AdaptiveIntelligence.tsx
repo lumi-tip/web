@@ -13,9 +13,12 @@ import {
   Monitor,
   GraduationCap,
   TrendingUp,
-  BarChart3,
   Activity,
-  Target
+  Target,
+  Layers,
+  Radio,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import { useMemo } from 'react';
@@ -86,7 +89,7 @@ export default function AdaptiveIntelligence() {
       <Header />
 
       <main className="hero-animated-bg relative overflow-hidden">
-        {/* Starfield background */}
+        {/* Starfield background only - no vertical light beams */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           {stars.map((star, i) => (
             <div
@@ -103,69 +106,33 @@ export default function AdaptiveIntelligence() {
           ))}
         </div>
 
-        {/* Vertical light beams */}
+        {/* Subtle blue glow - top right only */}
         <div 
-          className="absolute top-0 left-[20%] w-[2px] h-full pointer-events-none"
+          className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, transparent 0%, hsl(207 100% 50% / 0.15) 20%, hsl(207 100% 50% / 0.08) 50%, transparent 100%)',
-          }}
-          aria-hidden="true"
-        />
-        <div 
-          className="absolute top-0 right-[25%] w-[2px] h-full pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, transparent 0%, hsl(207 100% 50% / 0.12) 30%, hsl(207 100% 50% / 0.06) 60%, transparent 100%)',
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 70%)',
+            filter: 'blur(80px)',
           }}
           aria-hidden="true"
         />
 
-        {/* Blue glow - top right */}
+        {/* Subtle blue glow - bottom left */}
         <div 
-          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+          className="absolute bottom-[20%] left-[-5%] w-[400px] h-[400px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.05) 0%, transparent 60%)',
             filter: 'blur(100px)',
           }}
           aria-hidden="true"
         />
 
-        {/* Blue glow - mid-page left */}
-        <div 
-          className="absolute top-[30%] left-[-10%] w-[700px] h-[700px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.07) 0%, transparent 60%)',
-            filter: 'blur(120px)',
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Blue glow - mid-page right */}
-        <div 
-          className="absolute top-[50%] right-[-5%] w-[600px] h-[600px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 60%)',
-            filter: 'blur(100px)',
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Blue glow - bottom */}
-        <div 
-          className="absolute bottom-[10%] left-[30%] w-[600px] h-[600px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.07) 0%, transparent 60%)',
-            filter: 'blur(120px)',
-          }}
-          aria-hidden="true"
-        />
-
-        {/* SECTION 1: HERO */}
+        {/* SECTION 1: HERO - Moved up with reduced padding */}
         <section 
-          className="py-20 md:py-28 lg:py-36"
+          className="pt-8 pb-16 md:pt-12 md:pb-20 lg:pt-16 lg:pb-24"
           data-testid="section-adaptive-hero"
         >
           <div className="content-container relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               {/* Left column - Text */}
               <div className="text-center lg:text-left">
                 <h1 
@@ -174,7 +141,7 @@ export default function AdaptiveIntelligence() {
                 >
                   {t('hero.title')}
                 </h1>
-                <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed max-w-xl">
+                <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed max-w-xl">
                   {t('hero.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -198,14 +165,14 @@ export default function AdaptiveIntelligence() {
                 </div>
               </div>
               
-              {/* Right column - Course mockup */}
+              {/* Right column - Course mockup with subtle glow */}
               <div className="flex items-center justify-center">
                 <div 
                   className="relative w-full max-w-md rounded-xl p-6"
                   style={{
                     backgroundColor: '#0E1629',
                     border: '1px solid rgba(31, 111, 235, 0.3)',
-                    boxShadow: '0 0 60px rgba(31, 111, 235, 0.15)',
+                    boxShadow: '0 0 40px rgba(31, 111, 235, 0.12)',
                   }}
                   data-testid="mockup-adaptive-course"
                 >
@@ -278,9 +245,9 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 3: STATIC LEARNING PROBLEM - Diagonal cards */}
+        {/* SECTION 3: STATIC LEARNING PROBLEM - Straight 3 columns with icons on top */}
         <section 
-          className="py-20 md:py-28"
+          className="py-20 md:py-24"
           data-testid="section-problem"
         >
           <div className="content-container">
@@ -293,17 +260,19 @@ export default function AdaptiveIntelligence() {
               </p>
             </div>
             
-            {/* Diagonal card layout */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {/* Card 1 - shifted up */}
-              <div 
-                className="rounded-xl p-6 md:-translate-y-4"
-                style={{
-                  backgroundColor: '#102C4C',
-                  borderLeft: '3px solid #3A8DFF',
-                }}
-                data-testid="card-problem-1"
-              >
+            {/* Clean 3-column layout - minimalist with icons on top */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+              {/* Column 1 */}
+              <div className="text-center" data-testid="card-problem-1">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                  style={{ 
+                    backgroundColor: 'rgba(31, 111, 235, 0.1)',
+                    border: '1px solid rgba(31, 111, 235, 0.3)',
+                  }}
+                >
+                  <Layers className="w-8 h-8 text-[#3A8DFF]" />
+                </div>
                 <h3 className="text-lg font-semibold mb-3 text-white">
                   {t('problem.cards.oneSize.title')}
                 </h3>
@@ -312,15 +281,17 @@ export default function AdaptiveIntelligence() {
                 </p>
               </div>
               
-              {/* Card 2 - center */}
-              <div 
-                className="rounded-xl p-6"
-                style={{
-                  backgroundColor: '#102C4C',
-                  borderLeft: '3px solid #3A8DFF',
-                }}
-                data-testid="card-problem-2"
-              >
+              {/* Column 2 */}
+              <div className="text-center" data-testid="card-problem-2">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                  style={{ 
+                    backgroundColor: 'rgba(31, 111, 235, 0.1)',
+                    border: '1px solid rgba(31, 111, 235, 0.3)',
+                  }}
+                >
+                  <Radio className="w-8 h-8 text-[#3A8DFF]" />
+                </div>
                 <h3 className="text-lg font-semibold mb-3 text-white">
                   {t('problem.cards.noSignals.title')}
                 </h3>
@@ -329,15 +300,17 @@ export default function AdaptiveIntelligence() {
                 </p>
               </div>
               
-              {/* Card 3 - shifted down */}
-              <div 
-                className="rounded-xl p-6 md:translate-y-4"
-                style={{
-                  backgroundColor: '#102C4C',
-                  borderLeft: '3px solid #3A8DFF',
-                }}
-                data-testid="card-problem-3"
-              >
+              {/* Column 3 */}
+              <div className="text-center" data-testid="card-problem-3">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                  style={{ 
+                    backgroundColor: 'rgba(31, 111, 235, 0.1)',
+                    border: '1px solid rgba(31, 111, 235, 0.3)',
+                  }}
+                >
+                  <Clock className="w-8 h-8 text-[#3A8DFF]" />
+                </div>
                 <h3 className="text-lg font-semibold mb-3 text-white">
                   {t('problem.cards.outdated.title')}
                 </h3>
@@ -349,79 +322,91 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 4: WHAT ADAPTIVE INTELLIGENCE DOES */}
+        {/* SECTION 4: WHAT ADAPTIVE INTELLIGENCE DOES - Horizontal icons without cards */}
         <section 
-          className="py-20 md:py-28"
+          className="py-20 md:py-24"
           data-testid="section-what-it-does"
         >
           <div className="content-container">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-14 text-center text-white">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-16 text-center text-white">
               {t('whatItDoes.title')}
             </h2>
             
-            {/* Three horizontal blocks with overlapping effect */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
-              {/* Background glow layer */}
-              <div 
-                className="absolute inset-0 -m-8 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(ellipse at center, rgba(31, 111, 235, 0.08) 0%, transparent 70%)',
-                }}
-                aria-hidden="true"
-              />
-              
-              <div 
-                className="relative rounded-xl p-8 text-center"
-                style={{
-                  backgroundColor: 'rgba(16, 44, 76, 0.6)',
-                  border: '1px solid rgba(58, 141, 255, 0.2)',
-                  boxShadow: '0 0 30px rgba(31, 111, 235, 0.1)',
-                }}
-                data-testid="block-detects"
-              >
-                <Eye className="w-10 h-10 text-[#3A8DFF] mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3 text-white">
-                  {t('whatItDoes.blocks.detects.title')}
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  {t('whatItDoes.blocks.detects.description')}
-                </p>
-              </div>
-              
-              <div 
-                className="relative rounded-xl p-8 text-center"
-                style={{
-                  backgroundColor: 'rgba(16, 44, 76, 0.6)',
-                  border: '1px solid rgba(58, 141, 255, 0.2)',
-                  boxShadow: '0 0 30px rgba(31, 111, 235, 0.1)',
-                }}
-                data-testid="block-adjusts"
-              >
-                <Brain className="w-10 h-10 text-[#3A8DFF] mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3 text-white">
-                  {t('whatItDoes.blocks.adjusts.title')}
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  {t('whatItDoes.blocks.adjusts.description')}
-                </p>
-              </div>
-              
-              <div 
-                className="relative rounded-xl p-8 text-center"
-                style={{
-                  backgroundColor: 'rgba(16, 44, 76, 0.6)',
-                  border: '1px solid rgba(58, 141, 255, 0.2)',
-                  boxShadow: '0 0 30px rgba(31, 111, 235, 0.1)',
-                }}
-                data-testid="block-guides"
-              >
-                <Zap className="w-10 h-10 text-[#3A8DFF] mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3 text-white">
-                  {t('whatItDoes.blocks.guides.title')}
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">
-                  {t('whatItDoes.blocks.guides.description')}
-                </p>
+            {/* Horizontal layout with icons and connecting line */}
+            <div className="max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 relative">
+                {/* Horizontal connecting line - desktop only */}
+                <div 
+                  className="hidden md:block absolute top-10 left-[15%] right-[15%] h-[2px]"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.3)' }}
+                  aria-hidden="true"
+                />
+                
+                {/* Detects */}
+                <div className="flex flex-col items-center text-center relative z-10 flex-1" data-testid="block-detects">
+                  <div 
+                    className="w-20 h-20 rounded-full flex items-center justify-center mb-5"
+                    style={{ 
+                      backgroundColor: '#0A1A2F',
+                      border: '2px solid #1F6FEB',
+                      boxShadow: '0 0 25px rgba(31, 111, 235, 0.2)',
+                    }}
+                  >
+                    <Eye className="w-9 h-9 text-[#3A8DFF]" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-white">
+                    {t('whatItDoes.blocks.detects.title')}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">
+                    {t('whatItDoes.blocks.detects.description')}
+                  </p>
+                </div>
+
+                {/* Arrow - mobile only */}
+                <ArrowRight className="md:hidden w-6 h-6 text-[#3A8DFF] rotate-90" aria-hidden="true" />
+                
+                {/* Adjusts */}
+                <div className="flex flex-col items-center text-center relative z-10 flex-1" data-testid="block-adjusts">
+                  <div 
+                    className="w-20 h-20 rounded-full flex items-center justify-center mb-5"
+                    style={{ 
+                      backgroundColor: '#0A1A2F',
+                      border: '2px solid #1F6FEB',
+                      boxShadow: '0 0 25px rgba(31, 111, 235, 0.2)',
+                    }}
+                  >
+                    <Brain className="w-9 h-9 text-[#3A8DFF]" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-white">
+                    {t('whatItDoes.blocks.adjusts.title')}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">
+                    {t('whatItDoes.blocks.adjusts.description')}
+                  </p>
+                </div>
+
+                {/* Arrow - mobile only */}
+                <ArrowRight className="md:hidden w-6 h-6 text-[#3A8DFF] rotate-90" aria-hidden="true" />
+                
+                {/* Guides */}
+                <div className="flex flex-col items-center text-center relative z-10 flex-1" data-testid="block-guides">
+                  <div 
+                    className="w-20 h-20 rounded-full flex items-center justify-center mb-5"
+                    style={{ 
+                      backgroundColor: '#0A1A2F',
+                      border: '2px solid #1F6FEB',
+                      boxShadow: '0 0 25px rgba(31, 111, 235, 0.2)',
+                    }}
+                  >
+                    <Zap className="w-9 h-9 text-[#3A8DFF]" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-white">
+                    {t('whatItDoes.blocks.guides.title')}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed max-w-[200px]">
+                    {t('whatItDoes.blocks.guides.description')}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -429,51 +414,47 @@ export default function AdaptiveIntelligence() {
 
         {/* SECTION 5: ADAPTIVE ENGINE - Split screen with timeline */}
         <section 
-          className="py-20 md:py-28 relative"
+          className="py-20 md:py-24 relative"
           data-testid="section-engine"
         >
-          {/* Brighter background glow for this section */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse at 70% 50%, rgba(58, 141, 255, 0.08) 0%, transparent 50%)',
-            }}
-            aria-hidden="true"
-          />
-          
           <div className="content-container relative z-10">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-14 text-center text-white">
               {t('engine.title')}
             </h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl mx-auto">
-              {/* Left - Timeline */}
-              <div className="relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
+              {/* Left - Timeline with icons */}
+              <div className="flex justify-center lg:justify-end">
                 <div className="space-y-0">
-                  {['observe', 'interpret', 'act', 'validate'].map((step, index) => (
-                    <div key={step} className="flex items-start gap-6" data-testid={`step-${step}`}>
+                  {[
+                    { key: 'observe', icon: Eye },
+                    { key: 'interpret', icon: Brain },
+                    { key: 'act', icon: Zap },
+                    { key: 'validate', icon: CheckCircle }
+                  ].map(({ key, icon: Icon }, index) => (
+                    <div key={key} className="flex items-start gap-5" data-testid={`step-${key}`}>
                       {/* Timeline line and dot */}
                       <div className="flex flex-col items-center">
                         <div 
-                          className="w-10 h-10 rounded-full flex items-center justify-center"
+                          className="w-12 h-12 rounded-full flex items-center justify-center"
                           style={{
                             backgroundColor: '#1F6FEB',
                             boxShadow: '0 0 20px rgba(31, 111, 235, 0.4)',
                           }}
                         >
-                          <CheckCircle className="w-5 h-5 text-white" />
+                          <Icon className="w-6 h-6 text-white" />
                         </div>
                         {index < 3 && (
                           <div 
-                            className="w-[2px] h-16"
+                            className="w-[2px] h-14"
                             style={{ backgroundColor: '#1F6FEB' }}
                           />
                         )}
                       </div>
                       {/* Step text */}
-                      <div className="pt-2 pb-8">
+                      <div className="pt-3 pb-6">
                         <h3 className="text-xl font-semibold text-white">
-                          {t(`engine.steps.${step}`)}
+                          {t(`engine.steps.${key}`)}
                         </h3>
                       </div>
                     </div>
@@ -481,7 +462,7 @@ export default function AdaptiveIntelligence() {
                 </div>
               </div>
               
-              {/* Right - Static course mockup */}
+              {/* Right - Improved course mockup showing adaptation */}
               <div 
                 className="rounded-xl p-6"
                 style={{
@@ -494,22 +475,57 @@ export default function AdaptiveIntelligence() {
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
                   <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                  <span className="ml-4 text-xs text-white/40">LearnPack Course</span>
                 </div>
                 
-                {/* Course interface mock */}
+                {/* Course interface with adaptation visualization */}
                 <div className="space-y-4">
-                  <div className="h-4 bg-white/10 rounded w-1/2" />
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="h-20 bg-white/5 rounded border border-white/10" />
-                    <div className="h-20 bg-[#1F6FEB]/20 rounded border border-[#1F6FEB]/40" />
-                    <div className="h-20 bg-white/5 rounded border border-white/10" />
+                  {/* Content block that shows change */}
+                  <div className="flex items-center gap-3">
+                    <div className="h-4 bg-white/10 rounded flex-1" />
+                    <div 
+                      className="px-2 py-1 rounded text-[10px] font-medium"
+                      style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#4ade80' }}
+                    >
+                      Adapted
+                    </div>
                   </div>
-                  <div className="h-3 bg-white/10 rounded w-3/4" />
-                  <div className="h-3 bg-white/10 rounded w-full" />
-                  <div className="h-3 bg-white/10 rounded w-2/3" />
+                  
+                  {/* Module cards - one highlighted as changed */}
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="h-16 bg-white/5 rounded border border-white/10 flex items-center justify-center">
+                      <span className="text-[10px] text-white/30">Module 1</span>
+                    </div>
+                    <div 
+                      className="h-16 rounded flex items-center justify-center relative overflow-visible"
+                      style={{ 
+                        backgroundColor: 'rgba(31, 111, 235, 0.15)',
+                        border: '1px solid rgba(31, 111, 235, 0.4)',
+                      }}
+                    >
+                      <span className="text-[10px] text-[#3A8DFF]">Module 2</span>
+                      {/* Glow effect */}
+                      <div 
+                        className="absolute inset-0 rounded pointer-events-none"
+                        style={{ boxShadow: '0 0 15px rgba(31, 111, 235, 0.3)' }}
+                      />
+                    </div>
+                    <div className="h-16 bg-white/5 rounded border border-white/10 flex items-center justify-center">
+                      <span className="text-[10px] text-white/30">Module 3</span>
+                    </div>
+                  </div>
+                  
+                  {/* Difficulty adjustment indicator */}
+                  <div 
+                    className="px-3 py-2 rounded-lg flex items-center gap-2"
+                    style={{ backgroundColor: 'rgba(251, 191, 36, 0.1)', border: '1px solid rgba(251, 191, 36, 0.3)' }}
+                  >
+                    <Activity className="w-4 h-4 text-amber-400" />
+                    <span className="text-xs text-amber-400">Difficulty adjusted to match pace</span>
+                  </div>
                   
                   {/* Progress indicator */}
-                  <div className="flex items-center gap-3 mt-6 pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
                     <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
                       <div className="h-full w-2/3 bg-[#1F6FEB] rounded-full" />
                     </div>
@@ -521,9 +537,9 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 6: INTERACTIVE ADAPTATION EXAMPLES - Stacked cards */}
+        {/* SECTION 6: WHAT ADAPTATION LOOKS LIKE - Before/After chart */}
         <section 
-          className="py-20 md:py-28"
+          className="py-20 md:py-24"
           data-testid="section-examples"
         >
           <div className="content-container">
@@ -532,7 +548,7 @@ export default function AdaptiveIntelligence() {
             </h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-              {/* Left - Stacked cards */}
+              {/* Left - Stacked adaptation examples */}
               <div className="relative">
                 <div className="space-y-4">
                   {['extraExample', 'difficulty', 'reinforced', 'translation'].map((card, index) => (
@@ -540,9 +556,9 @@ export default function AdaptiveIntelligence() {
                       key={card}
                       className="px-6 py-4 rounded-lg transition-all duration-300 cursor-pointer hover:translate-x-2"
                       style={{
-                        backgroundColor: index === 0 ? '#1F6FEB' : '#102C4C',
+                        backgroundColor: index === 0 ? '#1F6FEB' : 'rgba(16, 44, 76, 0.6)',
                         border: `1px solid ${index === 0 ? '#3A8DFF' : 'rgba(58, 141, 255, 0.2)'}`,
-                        boxShadow: index === 0 ? '0 0 30px rgba(31, 111, 235, 0.3)' : 'none',
+                        boxShadow: index === 0 ? '0 0 25px rgba(31, 111, 235, 0.25)' : 'none',
                       }}
                       data-testid={`card-example-${card}`}
                     >
@@ -554,7 +570,7 @@ export default function AdaptiveIntelligence() {
                 </div>
               </div>
               
-              {/* Right - Data visualization mockup */}
+              {/* Right - Before/After comparison chart */}
               <div 
                 className="rounded-xl p-6"
                 style={{
@@ -562,24 +578,75 @@ export default function AdaptiveIntelligence() {
                   border: '1px solid rgba(31, 111, 235, 0.2)',
                 }}
               >
-                {/* Chart mockup */}
-                <div className="h-48 flex items-end justify-between gap-2 px-4">
-                  {[40, 65, 45, 80, 55, 70, 90, 60, 75, 85].map((height, i) => (
-                    <div
-                      key={i}
-                      className="flex-1 rounded-t"
-                      style={{
-                        height: `${height}%`,
-                        backgroundColor: i >= 6 ? '#1F6FEB' : 'rgba(31, 111, 235, 0.3)',
-                      }}
-                    />
-                  ))}
-                </div>
-                {/* Trend line overlay effect */}
-                <div className="mt-4 pt-4 border-t border-white/10">
-                  <div className="flex items-center justify-between text-xs text-white/40">
-                    <span>Week 1</span>
-                    <span>Week 10</span>
+                {/* Chart with Before/After labels */}
+                <div className="space-y-6">
+                  {/* Metric 1: Engagement */}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                      <span>Engagement</span>
+                      <span className="text-green-400">+45%</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">Before</div>
+                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
+                          <div className="h-full w-[40%] bg-white/40 rounded-full" />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">After</div>
+                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
+                          <div className="h-full w-[85%] bg-[#1F6FEB] rounded-full" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Metric 2: Completion Rate */}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                      <span>Completion Rate</span>
+                      <span className="text-green-400">+60%</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">Before</div>
+                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
+                          <div className="h-full w-[35%] bg-white/40 rounded-full" />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">After</div>
+                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
+                          <div className="h-full w-[95%] bg-[#1F6FEB] rounded-full" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Metric 3: Difficulty Match */}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                      <span>Difficulty Match</span>
+                      <span className="text-green-400">+70%</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">Before</div>
+                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
+                          <div className="h-full w-[25%] bg-white/40 rounded-full" />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">After</div>
+                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
+                          <div className="h-full w-[95%] bg-[#1F6FEB] rounded-full" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -589,7 +656,7 @@ export default function AdaptiveIntelligence() {
 
         {/* SECTION 7: ADAPTIVE ANALYTICS - Floating metrics */}
         <section 
-          className="py-20 md:py-28"
+          className="py-20 md:py-24"
           data-testid="section-analytics"
         >
           <div className="content-container">
@@ -665,42 +732,70 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 8: USE CASES */}
+        {/* SECTION 8: USE CASES - Oval pills in 2 rows */}
         <section 
-          className="py-20 md:py-28"
+          className="py-20 md:py-24"
           data-testid="section-use-cases"
         >
           <div className="content-container">
-            <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-              {[
-                { key: 'onboarding', icon: Users },
-                { key: 'compliance', icon: Shield },
-                { key: 'software', icon: Monitor },
-                { key: 'customer', icon: GraduationCap },
-                { key: 'sales', icon: TrendingUp },
-              ].map(({ key, icon: Icon }) => (
-                <div 
-                  key={key}
-                  className="px-6 py-3 rounded-full flex items-center gap-3"
-                  style={{
-                    backgroundColor: 'rgba(16, 44, 76, 0.5)',
-                    border: '1px solid rgba(58, 141, 255, 0.2)',
-                  }}
-                  data-testid={`usecase-${key}`}
-                >
-                  <Icon className="w-4 h-4 text-[#3A8DFF]" />
-                  <span className="text-sm text-white/80">
-                    {t(`useCases.items.${key}`)}
-                  </span>
-                </div>
-              ))}
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-center text-white">
+              {t('useCases.title')}
+            </h2>
+            
+            {/* Two rows of pills */}
+            <div className="max-w-3xl mx-auto space-y-4">
+              {/* Row 1 */}
+              <div className="flex flex-wrap justify-center gap-4">
+                {[
+                  { key: 'onboarding', icon: Users },
+                  { key: 'compliance', icon: Shield },
+                  { key: 'software', icon: Monitor },
+                ].map(({ key, icon: Icon }) => (
+                  <div 
+                    key={key}
+                    className="px-6 py-3 rounded-full flex items-center gap-3"
+                    style={{
+                      backgroundColor: 'rgba(10, 26, 47, 0.8)',
+                      border: '1px solid rgba(31, 111, 235, 0.35)',
+                    }}
+                    data-testid={`usecase-${key}`}
+                  >
+                    <Icon className="w-5 h-5 text-[#3A8DFF]" />
+                    <span className="text-sm font-medium text-white/90">
+                      {t(`useCases.items.${key}`)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              {/* Row 2 */}
+              <div className="flex flex-wrap justify-center gap-4">
+                {[
+                  { key: 'customer', icon: GraduationCap },
+                  { key: 'sales', icon: TrendingUp },
+                ].map(({ key, icon: Icon }) => (
+                  <div 
+                    key={key}
+                    className="px-6 py-3 rounded-full flex items-center gap-3"
+                    style={{
+                      backgroundColor: 'rgba(10, 26, 47, 0.8)',
+                      border: '1px solid rgba(31, 111, 235, 0.35)',
+                    }}
+                    data-testid={`usecase-${key}`}
+                  >
+                    <Icon className="w-5 h-5 text-[#3A8DFF]" />
+                    <span className="text-sm font-medium text-white/90">
+                      {t(`useCases.items.${key}`)}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* SECTION 9: FINAL CTA */}
         <section 
-          className="py-24 md:py-32"
+          className="py-24 md:py-28"
           data-testid="section-cta"
         >
           <div className="content-container">
