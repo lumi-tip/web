@@ -25,7 +25,7 @@ import {
   Languages
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -43,9 +43,17 @@ function generateStars(count: number) {
   }));
 }
 
+const adaptationMetrics = {
+  extraExample: { engagement: { before: 40, after: 85, change: '+45%' }, completion: { before: 35, after: 95, change: '+60%' }, difficulty: { before: 25, after: 95, change: '+70%' } },
+  difficulty: { engagement: { before: 50, after: 80, change: '+30%' }, completion: { before: 40, after: 85, change: '+45%' }, difficulty: { before: 20, after: 90, change: '+70%' } },
+  reinforced: { engagement: { before: 45, after: 90, change: '+45%' }, completion: { before: 30, after: 80, change: '+50%' }, difficulty: { before: 35, after: 85, change: '+50%' } },
+  translation: { engagement: { before: 30, after: 75, change: '+45%' }, completion: { before: 25, after: 70, change: '+45%' }, difficulty: { before: 40, after: 80, change: '+40%' } },
+};
+
 export default function AdaptiveIntelligence() {
   const { t, i18n } = useTranslation('adaptive');
   const stars = useMemo(() => generateStars(80), []);
+  const [selectedAdaptation, setSelectedAdaptation] = useState<keyof typeof adaptationMetrics>('extraExample');
 
   const handleTryClick = () => {
     analytics.ctaClick('try_adaptive', 'adaptive_page');
@@ -657,7 +665,7 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 6: WHAT ADAPTATION LOOKS LIKE - Static display, no interactivity */}
+        {/* SECTION 6: WHAT ADAPTATION LOOKS LIKE - Interactive with Before/After chart */}
         <section 
           className="py-20 md:py-24"
           data-testid="section-examples"
@@ -667,103 +675,135 @@ export default function AdaptiveIntelligence() {
               {t('examples.title')}
             </h2>
             
-            {/* Subtitle without instruction */}
+            {/* Instruction text */}
             <p className="text-center text-white/60 mb-12 max-w-xl mx-auto">
-              Real-time adaptations that improve learner outcomes.
+              {t('examples.instruction')}
             </p>
             
-            {/* Grid of 4 equal adaptation types */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {/* Extra Example */}
-              <div 
-                className="rounded-xl p-6 text-center"
-                style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
-                }}
-                data-testid="card-example-extraExample"
-              >
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <Plus className="w-6 h-6 text-[#3A8DFF]" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+              {/* Left - Stacked adaptation examples with active/inactive styling */}
+              <div className="relative">
+                <div className="space-y-4">
+                  {(['extraExample', 'difficulty', 'reinforced', 'translation'] as const).map((card) => {
+                    const isActive = selectedAdaptation === card;
+                    return (
+                      <div 
+                        key={card}
+                        onClick={() => setSelectedAdaptation(card)}
+                        className="px-6 py-4 rounded-lg transition-all duration-300 cursor-pointer hover:translate-x-2"
+                        style={{
+                          backgroundColor: isActive ? '#1F6FEB' : 'rgba(10, 26, 47, 0.7)',
+                          border: `1px solid ${isActive ? '#3A8DFF' : 'rgba(31, 111, 235, 0.15)'}`,
+                          boxShadow: isActive ? '0 0 25px rgba(31, 111, 235, 0.3)' : 'none',
+                        }}
+                        data-testid={`card-example-${card}`}
+                      >
+                        <span className={`font-medium ${isActive ? 'text-white' : 'text-white/50'}`}>
+                          {t(`examples.cards.${card}`)}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
-                <h3 className="font-medium text-white mb-2">
-                  {t('examples.cards.extraExample')}
-                </h3>
-                <p className="text-xs text-white/50">
-                  When a learner struggles, additional examples are inserted automatically.
-                </p>
               </div>
-
-              {/* Difficulty Adjusted */}
+              
+              {/* Right - Before/After comparison chart with dynamic values */}
               <div 
-                className="rounded-xl p-6 text-center"
+                className="rounded-xl p-6"
                 style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                  backgroundColor: '#0E1629',
+                  border: '1px solid rgba(31, 111, 235, 0.2)',
                 }}
-                data-testid="card-example-difficulty"
               >
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <Sparkles className="w-6 h-6 text-[#3A8DFF]" />
+                {/* Chart with Before/After labels - updates based on selection */}
+                <div className="space-y-6">
+                  {/* Metric 1: Engagement */}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                      <span>Engagement</span>
+                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].engagement.change}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">Before</div>
+                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].engagement.before}%` }}
+                          />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">After</div>
+                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].engagement.after}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Metric 2: Completion Rate */}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                      <span>Completion Rate</span>
+                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].completion.change}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">Before</div>
+                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].completion.before}%` }}
+                          />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">After</div>
+                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].completion.after}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Metric 3: Difficulty Match */}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-white/60 mb-2">
+                      <span>Difficulty Match</span>
+                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].difficulty.change}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">Before</div>
+                        <div className="h-4 bg-white/20 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].difficulty.before}%` }}
+                          />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="text-[10px] text-white/40 mb-1">After</div>
+                        <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].difficulty.after}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-medium text-white mb-2">
-                  {t('examples.cards.difficulty')}
-                </h3>
-                <p className="text-xs text-white/50">
-                  Content difficulty scales up or down based on performance.
-                </p>
-              </div>
-
-              {/* Concept Reinforced */}
-              <div 
-                className="rounded-xl p-6 text-center"
-                style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
-                }}
-                data-testid="card-example-reinforced"
-              >
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <RefreshCw className="w-6 h-6 text-[#3A8DFF]" />
-                </div>
-                <h3 className="font-medium text-white mb-2">
-                  {t('examples.cards.reinforced')}
-                </h3>
-                <p className="text-xs text-white/50">
-                  Key concepts are revisited when mastery isn't detected.
-                </p>
-              </div>
-
-              {/* Translation Triggered */}
-              <div 
-                className="rounded-xl p-6 text-center"
-                style={{
-                  backgroundColor: 'rgba(10, 26, 47, 0.7)',
-                  border: '1px solid rgba(31, 111, 235, 0.25)',
-                }}
-                data-testid="card-example-translation"
-              >
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
-                >
-                  <Languages className="w-6 h-6 text-[#3A8DFF]" />
-                </div>
-                <h3 className="font-medium text-white mb-2">
-                  {t('examples.cards.translation')}
-                </h3>
-                <p className="text-xs text-white/50">
-                  Content adapts to learner's preferred language automatically.
-                </p>
               </div>
             </div>
           </div>
