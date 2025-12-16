@@ -539,9 +539,9 @@ export default function AdaptiveIntelligence() {
             
             {/* Centered block containing both timeline and mockup */}
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl w-full">
+              <div className="flex flex-col lg:flex-row gap-12 lg:gap-28 items-center justify-center">
                 {/* Left - Timeline with icons */}
-                <div className="flex justify-center lg:justify-end">
+                <div className="flex justify-center">
                   <div className="space-y-0">
                     {[
                       { key: 'observe', icon: Eye },
@@ -580,9 +580,9 @@ export default function AdaptiveIntelligence() {
                 </div>
                 
                 {/* Right - Improved course mockup showing adaptation */}
-                <div className="flex justify-center lg:justify-start">
+                <div className="flex justify-center">
                   <div 
-                    className="rounded-xl p-6 w-full max-w-sm"
+                    className="rounded-xl p-6 w-80"
                     style={{
                       backgroundColor: '#0E1629',
                       border: '1px solid rgba(31, 111, 235, 0.2)',
