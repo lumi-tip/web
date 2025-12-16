@@ -73,7 +73,7 @@ export default function Hyperpersonalization() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground">
       <Helmet key={i18n.language}>
         <title>{t('meta.title')}</title>
         <meta name="description" content={t('meta.description')} />
@@ -89,34 +89,68 @@ export default function Hyperpersonalization() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      {/* Starfield background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {stars.map((star, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full opacity-0"
-            style={{
-              left: star.left,
-              top: star.top,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              backgroundColor: 'hsl(var(--primary))',
-              animationName: 'starTwinkleUnified',
-              animationTimingFunction: 'ease-in-out',
-              animationIterationCount: 'infinite',
-              animationDelay: star.delay,
-              animationDuration: star.duration,
-            }}
-          />
-        ))}
-      </div>
-
       <Header />
 
-      <main className="relative z-10">
+      <main className="hero-animated-bg relative overflow-hidden">
+        {/* Starfield background - scrolls with content */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {stars.map((star, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-primary"
+              style={{
+                left: star.left,
+                top: star.top,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                animation: `starTwinkleUnified ${star.duration} ease-in-out ${star.delay} infinite`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Blue glow - top right (hero area) */}
+        <div 
+          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.08) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - mid-page left */}
+        <div 
+          className="absolute top-[30%] left-[-10%] w-[700px] h-[700px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.07) 0%, transparent 60%)',
+            filter: 'blur(120px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - mid-page right */}
+        <div 
+          className="absolute top-[50%] right-[-5%] w-[600px] h-[600px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 60%)',
+            filter: 'blur(100px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Blue glow - bottom area */}
+        <div 
+          className="absolute bottom-[10%] right-0 w-[600px] h-[600px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.07) 0%, transparent 60%)',
+            filter: 'blur(120px)',
+          }}
+          aria-hidden="true"
+        />
         {/* SECTION 1: HERO - 2-column layout with styled AI Tutor example card */}
         <section 
-          className="py-28 md:py-36 lg:py-44"
+          className="py-16 md:py-20 lg:py-24"
           data-testid="section-hyperpersonalization-hero"
         >
           <div className="content-container">
@@ -255,41 +289,51 @@ export default function Hyperpersonalization() {
                 </ul>
               </div>
               
-              {/* Right column - 4 stacked chips with glow */}
+              {/* Right column - Diagram with arrow toward "One AI Tutor experience" */}
               <div className="flex items-center justify-center">
                 <div 
-                  className="relative p-8"
+                  className="relative p-12"
                   style={{
-                    background: 'radial-gradient(circle at center, rgba(48, 79, 254, 0.1) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle at center, rgba(48, 79, 254, 0.15) 0%, transparent 70%)',
                   }}
+                  data-testid="diagram-unique-value"
                 >
-                  <div className="space-y-4 flex flex-col items-center">
-                    <div 
-                      className="px-6 py-3 text-sm rounded-full text-center"
-                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.15)', color: 'hsl(var(--foreground) / 0.9)' }}
-                    >
-                      {t('uniqueValue.diagram.levels')}
+                  <div className="flex items-center gap-8">
+                    {/* Left side - 3 stacked chips */}
+                    <div className="space-y-4 flex flex-col items-center">
+                      <div 
+                        className="px-8 py-4 text-base rounded-full text-center whitespace-nowrap"
+                        style={{ backgroundColor: 'rgba(48, 79, 254, 0.2)', color: 'hsl(var(--foreground) / 0.95)' }}
+                      >
+                        {t('uniqueValue.diagram.levels')}
+                      </div>
+                      <div 
+                        className="px-8 py-4 text-base rounded-full text-center whitespace-nowrap"
+                        style={{ backgroundColor: 'rgba(48, 79, 254, 0.2)', color: 'hsl(var(--foreground) / 0.95)' }}
+                      >
+                        {t('uniqueValue.diagram.roles')}
+                      </div>
+                      <div 
+                        className="px-8 py-4 text-base rounded-full text-center whitespace-nowrap"
+                        style={{ backgroundColor: 'rgba(48, 79, 254, 0.2)', color: 'hsl(var(--foreground) / 0.95)' }}
+                      >
+                        {t('uniqueValue.diagram.goals')}
+                      </div>
                     </div>
-                    <div 
-                      className="px-6 py-3 text-sm rounded-full text-center"
-                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.15)', color: 'hsl(var(--foreground) / 0.9)' }}
-                    >
-                      {t('uniqueValue.diagram.roles')}
+                    
+                    {/* Arrow */}
+                    <div className="flex items-center">
+                      <ArrowRight className="w-8 h-8 text-primary" />
                     </div>
+                    
+                    {/* Right side - Result chip */}
                     <div 
-                      className="px-6 py-3 text-sm rounded-full text-center"
-                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.15)', color: 'hsl(var(--foreground) / 0.9)' }}
-                    >
-                      {t('uniqueValue.diagram.goals')}
-                    </div>
-                    {/* Emphasized result chip */}
-                    <div 
-                      className="px-8 py-4 text-base font-medium rounded-lg text-center mt-2"
+                      className="px-10 py-5 text-lg font-semibold rounded-xl text-center"
                       style={{ 
-                        backgroundColor: 'rgba(48, 79, 254, 0.25)', 
+                        backgroundColor: 'rgba(48, 79, 254, 0.3)', 
                         color: 'hsl(var(--foreground))',
-                        border: '1px solid rgba(48, 79, 254, 0.4)',
-                        boxShadow: '0 0 20px rgba(48, 79, 254, 0.2)',
+                        border: '1px solid rgba(48, 79, 254, 0.5)',
+                        boxShadow: '0 0 40px rgba(48, 79, 254, 0.25)',
                       }}
                     >
                       {t('uniqueValue.diagram.result')}
@@ -347,7 +391,7 @@ export default function Hyperpersonalization() {
               {t('examples.title')}
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {/* Card 1: Simpler explanations */}
               <div 
                 className="rounded-xl p-6"
@@ -358,16 +402,15 @@ export default function Hyperpersonalization() {
                 }}
                 data-testid="card-example-1"
               >
-                <h3 className="text-lg font-semibold mb-3" data-testid="text-example-title-1">
+                <h3 className="text-base font-semibold mb-4" data-testid="text-example-title-1">
                   {t('examples.scenarios.scenario1.title')}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4" data-testid="text-example-description-1">
-                  {t('examples.scenarios.scenario1.text')}
-                </p>
-                <div className="flex items-start gap-2 pt-3 border-t border-foreground/10">
-                  <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-sm italic text-foreground/70" data-testid="text-example-response-1">
-                    {t('examples.scenarios.scenario1.response')}
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-example-description-1">
+                    <span className="font-medium text-foreground/80">Scenario:</span> {t('examples.scenarios.scenario1.text')}
+                  </p>
+                  <p className="text-sm leading-relaxed" data-testid="text-example-response-1">
+                    <span className="font-medium text-primary">AI Tutor:</span> <span className="italic text-foreground/70">{t('examples.scenarios.scenario1.response')}</span>
                   </p>
                 </div>
               </div>
@@ -382,16 +425,15 @@ export default function Hyperpersonalization() {
                 }}
                 data-testid="card-example-2"
               >
-                <h3 className="text-lg font-semibold mb-3" data-testid="text-example-title-2">
+                <h3 className="text-base font-semibold mb-4" data-testid="text-example-title-2">
                   {t('examples.scenarios.scenario2.title')}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4" data-testid="text-example-description-2">
-                  {t('examples.scenarios.scenario2.text')}
-                </p>
-                <div className="flex items-start gap-2 pt-3 border-t border-foreground/10">
-                  <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-sm italic text-foreground/70" data-testid="text-example-response-2">
-                    {t('examples.scenarios.scenario2.response')}
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-example-description-2">
+                    <span className="font-medium text-foreground/80">Scenario:</span> {t('examples.scenarios.scenario2.text')}
+                  </p>
+                  <p className="text-sm leading-relaxed" data-testid="text-example-response-2">
+                    <span className="font-medium text-primary">AI Tutor:</span> <span className="italic text-foreground/70">{t('examples.scenarios.scenario2.response')}</span>
                   </p>
                 </div>
               </div>
@@ -406,16 +448,15 @@ export default function Hyperpersonalization() {
                 }}
                 data-testid="card-example-3"
               >
-                <h3 className="text-lg font-semibold mb-3" data-testid="text-example-title-3">
+                <h3 className="text-base font-semibold mb-4" data-testid="text-example-title-3">
                   {t('examples.scenarios.scenario3.title')}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4" data-testid="text-example-description-3">
-                  {t('examples.scenarios.scenario3.text')}
-                </p>
-                <div className="flex items-start gap-2 pt-3 border-t border-foreground/10">
-                  <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-sm italic text-foreground/70" data-testid="text-example-response-3">
-                    {t('examples.scenarios.scenario3.response')}
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-example-description-3">
+                    <span className="font-medium text-foreground/80">Scenario:</span> {t('examples.scenarios.scenario3.text')}
+                  </p>
+                  <p className="text-sm leading-relaxed" data-testid="text-example-response-3">
+                    <span className="font-medium text-primary">AI Tutor:</span> <span className="italic text-foreground/70">{t('examples.scenarios.scenario3.response')}</span>
                   </p>
                 </div>
               </div>
