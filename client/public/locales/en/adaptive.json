@@ -67,6 +67,7 @@
   },
   "examples": {
     "title": "What adaptation looks like in practice.",
+    "instruction": "Select an adaptation to see its impact on key metrics.",
     "cards": {
       "extraExample": "Extra example added",
       "difficulty": "Difficulty adjusted",

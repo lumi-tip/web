@@ -21,7 +21,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 function generateStars(count: number) {
   return Array.from({ length: count }, () => ({
@@ -33,9 +33,17 @@ function generateStars(count: number) {
   }));
 }
 
+const adaptationMetrics = {
+  extraExample: { engagement: { before: 40, after: 85, change: '+45%' }, completion: { before: 35, after: 95, change: '+60%' }, difficulty: { before: 25, after: 95, change: '+70%' } },
+  difficulty: { engagement: { before: 50, after: 80, change: '+30%' }, completion: { before: 40, after: 85, change: '+45%' }, difficulty: { before: 20, after: 90, change: '+70%' } },
+  reinforced: { engagement: { before: 45, after: 90, change: '+45%' }, completion: { before: 30, after: 80, change: '+50%' }, difficulty: { before: 35, after: 85, change: '+50%' } },
+  translation: { engagement: { before: 30, after: 75, change: '+45%' }, completion: { before: 25, after: 70, change: '+45%' }, difficulty: { before: 40, after: 80, change: '+40%' } },
+};
+
 export default function AdaptiveIntelligence() {
   const { t, i18n } = useTranslation('adaptive');
   const stars = useMemo(() => generateStars(80), []);
+  const [selectedAdaptation, setSelectedAdaptation] = useState<keyof typeof adaptationMetrics>('extraExample');
 
   const handleTryClick = () => {
     analytics.ctaClick('try_adaptive', 'adaptive_page');
@@ -219,9 +227,9 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 2: DEFINITION BOX */}
+        {/* SECTION 2: DEFINITION BOX - Reduced bottom spacing */}
         <section 
-          className="py-12 md:py-16"
+          className="py-8 md:py-12"
           data-testid="section-definition"
         >
           <div className="content-container">
@@ -245,13 +253,13 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 3: STATIC LEARNING PROBLEM - Straight 3 columns with icons on top */}
+        {/* SECTION 3: STATIC LEARNING PROBLEM - Cards with improved spacing */}
         <section 
-          className="py-20 md:py-24"
+          className="py-16 md:py-20"
           data-testid="section-problem"
         >
           <div className="content-container">
-            <div className="text-center mb-14">
+            <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">
                 {t('problem.title')}
               </h2>
@@ -260,18 +268,22 @@ export default function AdaptiveIntelligence() {
               </p>
             </div>
             
-            {/* Clean 3-column layout - minimalist with icons on top */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto">
-              {/* Column 1 */}
-              <div className="text-center" data-testid="card-problem-1">
+            {/* 3 cards with improved spacing */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+              {/* Card 1 */}
+              <div 
+                className="rounded-xl p-6 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 26, 47, 0.6)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                }}
+                data-testid="card-problem-1"
+              >
                 <div 
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-                  style={{ 
-                    backgroundColor: 'rgba(31, 111, 235, 0.1)',
-                    border: '1px solid rgba(31, 111, 235, 0.3)',
-                  }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
                 >
-                  <Layers className="w-8 h-8 text-[#3A8DFF]" />
+                  <Layers className="w-7 h-7 text-[#3A8DFF]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-3 text-white">
                   {t('problem.cards.oneSize.title')}
@@ -281,16 +293,20 @@ export default function AdaptiveIntelligence() {
                 </p>
               </div>
               
-              {/* Column 2 */}
-              <div className="text-center" data-testid="card-problem-2">
+              {/* Card 2 */}
+              <div 
+                className="rounded-xl p-6 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 26, 47, 0.6)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                }}
+                data-testid="card-problem-2"
+              >
                 <div 
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-                  style={{ 
-                    backgroundColor: 'rgba(31, 111, 235, 0.1)',
-                    border: '1px solid rgba(31, 111, 235, 0.3)',
-                  }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
                 >
-                  <Radio className="w-8 h-8 text-[#3A8DFF]" />
+                  <Radio className="w-7 h-7 text-[#3A8DFF]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-3 text-white">
                   {t('problem.cards.noSignals.title')}
@@ -300,16 +316,20 @@ export default function AdaptiveIntelligence() {
                 </p>
               </div>
               
-              {/* Column 3 */}
-              <div className="text-center" data-testid="card-problem-3">
+              {/* Card 3 */}
+              <div 
+                className="rounded-xl p-6 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 26, 47, 0.6)',
+                  border: '1px solid rgba(31, 111, 235, 0.25)',
+                }}
+                data-testid="card-problem-3"
+              >
                 <div 
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-                  style={{ 
-                    backgroundColor: 'rgba(31, 111, 235, 0.1)',
-                    border: '1px solid rgba(31, 111, 235, 0.3)',
-                  }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                  style={{ backgroundColor: 'rgba(31, 111, 235, 0.15)' }}
                 >
-                  <Clock className="w-8 h-8 text-[#3A8DFF]" />
+                  <Clock className="w-7 h-7 text-[#3A8DFF]" />
                 </div>
                 <h3 className="text-lg font-semibold mb-3 text-white">
                   {t('problem.cards.outdated.title')}
@@ -412,7 +432,7 @@ export default function AdaptiveIntelligence() {
           </div>
         </section>
 
-        {/* SECTION 5: ADAPTIVE ENGINE - Split screen with timeline */}
+        {/* SECTION 5: ADAPTIVE ENGINE - Centered split screen */}
         <section 
           className="py-20 md:py-24 relative"
           data-testid="section-engine"
@@ -422,9 +442,11 @@ export default function AdaptiveIntelligence() {
               {t('engine.title')}
             </h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
-              {/* Left - Timeline with icons */}
-              <div className="flex justify-center lg:justify-end">
+            {/* Centered block containing both timeline and mockup */}
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-4xl">
+                {/* Left - Timeline with icons */}
+                <div className="flex justify-center lg:justify-end">
                 <div className="space-y-0">
                   {[
                     { key: 'observe', icon: Eye },
@@ -534,6 +556,7 @@ export default function AdaptiveIntelligence() {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </section>
 
@@ -543,34 +566,43 @@ export default function AdaptiveIntelligence() {
           data-testid="section-examples"
         >
           <div className="content-container">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-14 text-center text-white">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-center text-white">
               {t('examples.title')}
             </h2>
             
+            {/* Instruction text */}
+            <p className="text-center text-white/60 mb-12 max-w-xl mx-auto">
+              {t('examples.instruction')}
+            </p>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-              {/* Left - Stacked adaptation examples */}
+              {/* Left - Stacked adaptation examples with active/inactive styling */}
               <div className="relative">
                 <div className="space-y-4">
-                  {['extraExample', 'difficulty', 'reinforced', 'translation'].map((card, index) => (
-                    <div 
-                      key={card}
-                      className="px-6 py-4 rounded-lg transition-all duration-300 cursor-pointer hover:translate-x-2"
-                      style={{
-                        backgroundColor: index === 0 ? '#1F6FEB' : 'rgba(16, 44, 76, 0.6)',
-                        border: `1px solid ${index === 0 ? '#3A8DFF' : 'rgba(58, 141, 255, 0.2)'}`,
-                        boxShadow: index === 0 ? '0 0 25px rgba(31, 111, 235, 0.25)' : 'none',
-                      }}
-                      data-testid={`card-example-${card}`}
-                    >
-                      <span className={`font-medium ${index === 0 ? 'text-white' : 'text-white/80'}`}>
-                        {t(`examples.cards.${card}`)}
-                      </span>
-                    </div>
-                  ))}
+                  {(['extraExample', 'difficulty', 'reinforced', 'translation'] as const).map((card) => {
+                    const isActive = selectedAdaptation === card;
+                    return (
+                      <div 
+                        key={card}
+                        onClick={() => setSelectedAdaptation(card)}
+                        className="px-6 py-4 rounded-lg transition-all duration-300 cursor-pointer hover:translate-x-2"
+                        style={{
+                          backgroundColor: isActive ? '#1F6FEB' : 'rgba(10, 26, 47, 0.7)',
+                          border: `1px solid ${isActive ? '#3A8DFF' : 'rgba(31, 111, 235, 0.15)'}`,
+                          boxShadow: isActive ? '0 0 25px rgba(31, 111, 235, 0.3)' : 'none',
+                        }}
+                        data-testid={`card-example-${card}`}
+                      >
+                        <span className={`font-medium ${isActive ? 'text-white' : 'text-white/50'}`}>
+                          {t(`examples.cards.${card}`)}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               
-              {/* Right - Before/After comparison chart */}
+              {/* Right - Before/After comparison chart with dynamic values */}
               <div 
                 className="rounded-xl p-6"
                 style={{
@@ -578,26 +610,32 @@ export default function AdaptiveIntelligence() {
                   border: '1px solid rgba(31, 111, 235, 0.2)',
                 }}
               >
-                {/* Chart with Before/After labels */}
+                {/* Chart with Before/After labels - updates based on selection */}
                 <div className="space-y-6">
                   {/* Metric 1: Engagement */}
                   <div>
                     <div className="flex items-center justify-between text-xs text-white/60 mb-2">
                       <span>Engagement</span>
-                      <span className="text-green-400">+45%</span>
+                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].engagement.change}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex-1">
                         <div className="text-[10px] text-white/40 mb-1">Before</div>
                         <div className="h-4 bg-white/20 rounded-full overflow-hidden">
-                          <div className="h-full w-[40%] bg-white/40 rounded-full" />
+                          <div 
+                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].engagement.before}%` }}
+                          />
                         </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
                       <div className="flex-1">
                         <div className="text-[10px] text-white/40 mb-1">After</div>
                         <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
-                          <div className="h-full w-[85%] bg-[#1F6FEB] rounded-full" />
+                          <div 
+                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].engagement.after}%` }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -607,20 +645,26 @@ export default function AdaptiveIntelligence() {
                   <div>
                     <div className="flex items-center justify-between text-xs text-white/60 mb-2">
                       <span>Completion Rate</span>
-                      <span className="text-green-400">+60%</span>
+                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].completion.change}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex-1">
                         <div className="text-[10px] text-white/40 mb-1">Before</div>
                         <div className="h-4 bg-white/20 rounded-full overflow-hidden">
-                          <div className="h-full w-[35%] bg-white/40 rounded-full" />
+                          <div 
+                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].completion.before}%` }}
+                          />
                         </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
                       <div className="flex-1">
                         <div className="text-[10px] text-white/40 mb-1">After</div>
                         <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
-                          <div className="h-full w-[95%] bg-[#1F6FEB] rounded-full" />
+                          <div 
+                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].completion.after}%` }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -630,20 +674,26 @@ export default function AdaptiveIntelligence() {
                   <div>
                     <div className="flex items-center justify-between text-xs text-white/60 mb-2">
                       <span>Difficulty Match</span>
-                      <span className="text-green-400">+70%</span>
+                      <span className="text-green-400">{adaptationMetrics[selectedAdaptation].difficulty.change}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex-1">
                         <div className="text-[10px] text-white/40 mb-1">Before</div>
                         <div className="h-4 bg-white/20 rounded-full overflow-hidden">
-                          <div className="h-full w-[25%] bg-white/40 rounded-full" />
+                          <div 
+                            className="h-full bg-white/40 rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].difficulty.before}%` }}
+                          />
                         </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-[#3A8DFF] flex-shrink-0" />
                       <div className="flex-1">
                         <div className="text-[10px] text-white/40 mb-1">After</div>
                         <div className="h-4 bg-[#1F6FEB]/20 rounded-full overflow-hidden">
-                          <div className="h-full w-[95%] bg-[#1F6FEB] rounded-full" />
+                          <div 
+                            className="h-full bg-[#1F6FEB] rounded-full transition-all duration-500" 
+                            style={{ width: `${adaptationMetrics[selectedAdaptation].difficulty.after}%` }}
+                          />
                         </div>
                       </div>
                     </div>

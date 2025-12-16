@@ -67,6 +67,7 @@
   },
   "examples": {
     "title": "Como se ve la adaptacion en la practica.",
+    "instruction": "Selecciona una adaptacion para ver su impacto en las metricas clave.",
     "cards": {
       "extraExample": "Ejemplo extra agregado",
       "difficulty": "Dificultad ajustada",
