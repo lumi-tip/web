@@ -10,7 +10,11 @@
     "title": "A learning experience that adapts to every learner",
     "subtitle": "The AI Tutor understands what each learner is reading and provides real-time, contextual guidance that improves comprehension, engagement, and completion rates.",
     "ctaStart": "Start for Free",
-    "ctaDemo": "Book a Demo"
+    "ctaDemo": "Book a Demo",
+    "exampleLabel": "Example · Context-aware help",
+    "courseExcerpt": "An API (Application Programming Interface) allows different software systems to communicate with each other.",
+    "highlightedLine": "REST endpoints use HTTP methods like GET, POST, PUT, and DELETE to perform operations on resources.",
+    "aiTutorMessage": "I see you are working on REST endpoints. Do you want a simpler explanation or an example for a banking API?"
   },
   "definition": {
     "label": "DEFINITION · HYPERPERSONALIZED LEARNING",
@@ -54,15 +58,18 @@
     "scenarios": {
       "scenario1": {
         "title": "Simpler explanations",
-        "text": "A learner asks for a simpler explanation. The AI Tutor rewrites the paragraph instantly."
+        "text": "A learner asks for a simpler explanation. The AI Tutor rewrites the paragraph instantly.",
+        "response": "\"GET retrieves data, POST sends new data. Think of it like reading vs. writing.\""
       },
       "scenario2": {
         "title": "Role-based examples",
-        "text": "A sales employee requests an industry example. The AI Tutor adapts automatically."
+        "text": "A sales employee requests an industry example. The AI Tutor adapts automatically.",
+        "response": "\"When a prospect asks for pricing, you'd use a GET request to fetch their quote.\""
       },
       "scenario3": {
         "title": "Guided reasoning",
-        "text": "The AI Tutor guides reasoning instead of just giving the solution."
+        "text": "The AI Tutor guides reasoning instead of just giving the solution.",
+        "response": "\"What happens if the input is null? Think about edge cases first.\""
       }
     }
   },

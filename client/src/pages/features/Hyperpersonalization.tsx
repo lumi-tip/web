@@ -1,22 +1,19 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { Stepper, Step } from '@/components/Stepper';
 import { 
   Bot,
-  Brain,
-  Lightbulb,
   Users,
   Code,
   Shield,
   ShoppingBag,
   ArrowRight,
-  BookOpen,
-  Compass,
   Check,
-  X,
-  ChevronRight
+  X
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 
@@ -34,18 +31,24 @@ export default function Hyperpersonalization() {
     window.location.href = '/contact';
   };
 
-  const howItWorksSteps = [
-    { key: 'step1', icon: BookOpen, number: '1' },
-    { key: 'step2', icon: Brain, number: '2' },
-    { key: 'step3', icon: Compass, number: '3' }
-  ];
-
   const useCaseItems = [
     { key: 'onboarding', icon: Users },
     { key: 'technical', icon: Code },
     { key: 'compliance', icon: Shield },
     { key: 'sales', icon: ShoppingBag }
   ];
+
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 60 }, (_, i) => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 12}s`,
+        duration: `${5 + Math.random() * 7}s`,
+        size: Math.random() > 0.7 ? 2 : Math.random() > 0.4 ? 1.5 : 1,
+      })),
+    []
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -70,7 +73,7 @@ export default function Hyperpersonalization() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
       <Helmet key={i18n.language}>
         <title>{t('meta.title')}</title>
         <meta name="description" content={t('meta.description')} />
@@ -86,10 +89,32 @@ export default function Hyperpersonalization() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
+      {/* Starfield background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-0"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              backgroundColor: 'hsl(var(--primary))',
+              animationName: 'starTwinkleUnified',
+              animationTimingFunction: 'ease-in-out',
+              animationIterationCount: 'infinite',
+              animationDelay: star.delay,
+              animationDuration: star.duration,
+            }}
+          />
+        ))}
+      </div>
+
       <Header />
 
-      <main>
-        {/* SECTION 1: HERO - 2-column layout with contextual AI Tutor preview */}
+      <main className="relative z-10">
+        {/* SECTION 1: HERO - 2-column layout with styled AI Tutor example card */}
         <section 
           className="py-28 md:py-36 lg:py-44"
           data-testid="section-hyperpersonalization-hero"
@@ -127,27 +152,52 @@ export default function Hyperpersonalization() {
                 </div>
               </div>
 
-              {/* Right column - Contextual AI Tutor preview with course text */}
+              {/* Right column - Dark navy styled card with AI Tutor example */}
               <div className="lg:col-span-5">
-                <div className="space-y-4">
-                  {/* Course content block */}
-                  <div className="text-sm text-muted-foreground leading-relaxed">
-                    <p className="mb-2">Chapter 3: Building Web APIs</p>
-                    <p className="text-foreground/70">
-                      An API (Application Programming Interface) allows different software systems to communicate. 
-                      <span className="bg-primary/20 px-1 mx-1">REST endpoints use HTTP methods like GET, POST, PUT, and DELETE</span>
-                      to perform operations on resources.
-                    </p>
-                  </div>
+                <div 
+                  className="rounded-xl p-6 relative"
+                  style={{
+                    backgroundColor: '#0A1125',
+                    boxShadow: '0 0 60px rgba(48, 79, 254, 0.15), 0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                  }}
+                  data-testid="card-ai-tutor-example"
+                >
+                  {/* Label */}
+                  <p 
+                    className="text-xs font-medium tracking-wider text-blue-400/80 mb-4 uppercase"
+                    data-testid="text-example-label"
+                  >
+                    {t('hero.exampleLabel')}
+                  </p>
+                  
+                  {/* Course excerpt */}
+                  <p 
+                    className="text-sm text-white/70 leading-relaxed mb-3"
+                    data-testid="text-course-excerpt"
+                  >
+                    {t('hero.courseExcerpt')}
+                  </p>
+                  
+                  {/* Highlighted line */}
+                  <p 
+                    className="text-sm text-white bg-blue-500/20 px-3 py-2 rounded mb-5"
+                    data-testid="text-highlighted-line"
+                  >
+                    {t('hero.highlightedLine')}
+                  </p>
+                  
                   {/* AI Tutor chat bubble */}
-                  <div className="flex gap-3 items-start mt-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Bot className="w-4 h-4 text-primary" />
+                  <div className="flex gap-3 items-start" data-testid="container-ai-tutor-bubble">
+                    <div 
+                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.3)' }}
+                    >
+                      <Bot className="w-4 h-4 text-blue-400" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-xs text-muted-foreground mb-1">AI Tutor</p>
-                      <p className="text-foreground/90 text-sm leading-relaxed">
-                        "I see you are working on REST endpoints. Do you want a simpler explanation or an example for a banking API?"
+                      <p className="text-xs text-blue-400/80 mb-1">AI Tutor</p>
+                      <p className="text-white text-sm leading-relaxed" data-testid="text-ai-tutor-message">
+                        "{t('hero.aiTutorMessage')}"
                       </p>
                     </div>
                   </div>
@@ -157,7 +207,7 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 2: DEFINITION BOX - With label, reduced width */}
+        {/* SECTION 2: DEFINITION BOX - Dark navy with blue border and glow */}
         <section 
           className="py-16 md:py-20"
           data-testid="section-definition"
@@ -168,10 +218,14 @@ export default function Hyperpersonalization() {
                 {t('definition.label')}
               </p>
               <div 
-                className="px-8 py-10 md:px-10 md:py-10 text-center"
-                style={{ backgroundColor: '#F8F9FB', color: '#1a1a2e' }}
+                className="px-8 py-10 md:px-10 md:py-10 text-center rounded-xl relative"
+                style={{ 
+                  backgroundColor: '#0E1629',
+                  border: '1px solid #304FFE',
+                  boxShadow: '0 0 40px rgba(48, 79, 254, 0.1)',
+                }}
               >
-                <p className="text-lg md:text-xl leading-relaxed">
+                <p className="text-lg md:text-xl leading-relaxed text-white">
                   {t('definition.text')}
                 </p>
               </div>
@@ -179,13 +233,13 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 3: UNIQUE VALUE - 2-column with diagram */}
+        {/* SECTION 3: UNIQUE VALUE - 2-column with 4-chip diagram */}
         <section 
           className="py-20 md:py-24 lg:py-28"
           data-testid="section-unique-value"
         >
           <div className="content-container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left column - headline and bullets */}
               <div>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
@@ -201,26 +255,45 @@ export default function Hyperpersonalization() {
                 </ul>
               </div>
               
-              {/* Right column - Diagram with 3 chips pointing to one box */}
+              {/* Right column - 4 stacked chips with glow */}
               <div className="flex items-center justify-center">
-                <div className="flex items-center gap-6">
-                  {/* Left chips stacked */}
-                  <div className="space-y-3">
-                    <div className="px-4 py-2 text-sm rounded-full bg-primary/10 text-foreground/80 text-center">
+                <div 
+                  className="relative p-8"
+                  style={{
+                    background: 'radial-gradient(circle at center, rgba(48, 79, 254, 0.1) 0%, transparent 70%)',
+                  }}
+                >
+                  <div className="space-y-4 flex flex-col items-center">
+                    <div 
+                      className="px-6 py-3 text-sm rounded-full text-center"
+                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.15)', color: 'hsl(var(--foreground) / 0.9)' }}
+                    >
                       {t('uniqueValue.diagram.levels')}
                     </div>
-                    <div className="px-4 py-2 text-sm rounded-full bg-primary/10 text-foreground/80 text-center">
+                    <div 
+                      className="px-6 py-3 text-sm rounded-full text-center"
+                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.15)', color: 'hsl(var(--foreground) / 0.9)' }}
+                    >
                       {t('uniqueValue.diagram.roles')}
                     </div>
-                    <div className="px-4 py-2 text-sm rounded-full bg-primary/10 text-foreground/80 text-center">
+                    <div 
+                      className="px-6 py-3 text-sm rounded-full text-center"
+                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.15)', color: 'hsl(var(--foreground) / 0.9)' }}
+                    >
                       {t('uniqueValue.diagram.goals')}
                     </div>
-                  </div>
-                  {/* Arrow */}
-                  <ChevronRight className="w-6 h-6 text-primary flex-shrink-0" />
-                  {/* Right box */}
-                  <div className="px-5 py-4 text-sm font-medium bg-primary/20 text-foreground rounded-lg text-center">
-                    {t('uniqueValue.diagram.result')}
+                    {/* Emphasized result chip */}
+                    <div 
+                      className="px-8 py-4 text-base font-medium rounded-lg text-center mt-2"
+                      style={{ 
+                        backgroundColor: 'rgba(48, 79, 254, 0.25)', 
+                        color: 'hsl(var(--foreground))',
+                        border: '1px solid rgba(48, 79, 254, 0.4)',
+                        boxShadow: '0 0 20px rgba(48, 79, 254, 0.2)',
+                      }}
+                    >
+                      {t('uniqueValue.diagram.result')}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -228,133 +301,122 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 4: HOW IT WORKS - Circular numbered icons, better spacing */}
+        {/* SECTION 4: HOW IT WORKS - Matching homepage style with stars and Stepper */}
         <section 
-          className="py-24 md:py-28 lg:py-32"
-          style={{ backgroundColor: '#F3F7FF' }}
+          className="py-20 md:py-24 lg:py-28 relative overflow-hidden"
           data-testid="section-how-it-works"
         >
-          <div className="content-container">
-            <div className="max-w-3xl mx-auto">
-              <h2 
-                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-20 text-center"
-                style={{ color: '#1a1a2e' }}
-              >
+          {/* Background glows */}
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.04) 30%, hsl(var(--primary) / 0.02) 50%, transparent 70%)',
+              filter: 'blur(40px)',
+            }}
+            aria-hidden="true"
+          />
+          
+          <div className="content-container relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {t('howItWorks.title')}
               </h2>
-              
-              <div className="space-y-16">
-                {howItWorksSteps.map((step) => (
-                  <div 
-                    key={step.key}
-                    className="flex gap-6 items-start"
-                  >
-                    {/* Circular numbered icon */}
-                    <div 
-                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-lg font-bold"
-                      style={{ backgroundColor: '#0ea5e9', color: '#ffffff' }}
-                    >
-                      {step.number}
-                    </div>
-                    <div className="flex-1 pt-1">
-                      <h3 
-                        className="text-xl font-bold mb-3"
-                        style={{ color: '#1a1a2e' }}
-                      >
-                        {t(`howItWorks.steps.${step.key}.title`)}
-                      </h3>
-                      <p 
-                        className="text-lg leading-relaxed"
-                        style={{ color: '#4a4a5a' }}
-                      >
-                        {t(`howItWorks.steps.${step.key}.description`)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
+            
+            <Stepper>
+              <Step title={t('howItWorks.steps.step1.title')}>
+                {t('howItWorks.steps.step1.description')}
+              </Step>
+              <Step title={t('howItWorks.steps.step2.title')}>
+                {t('howItWorks.steps.step2.description')}
+              </Step>
+              <Step title={t('howItWorks.steps.step3.title')}>
+                {t('howItWorks.steps.step3.description')}
+              </Step>
+            </Stepper>
           </div>
         </section>
 
-        {/* SECTION 5: EXAMPLES - 3 distinct rows with titles and visuals */}
+        {/* SECTION 5: EXAMPLES - 3 equal horizontal cards */}
         <section 
           className="py-20 md:py-24 lg:py-28"
           data-testid="section-examples"
         >
           <div className="content-container">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-16 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-14 text-center">
               {t('examples.title')}
             </h2>
             
-            <div className="space-y-16 max-w-4xl mx-auto">
-              {/* Row 1: Simpler explanations */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">
-                    {t('examples.scenarios.scenario1.title')}
-                  </h3>
-                  <p className="text-lg text-foreground/80 leading-relaxed">
-                    {t('examples.scenarios.scenario1.text')}
-                  </p>
-                </div>
-                <div className="text-sm space-y-2">
-                  <div className="flex items-start gap-3">
-                    <div className="w-full">
-                      <p className="text-muted-foreground line-through text-xs mb-2">
-                        The HTTP protocol utilizes various request methods...
-                      </p>
-                      <p className="text-foreground/80 text-sm pl-3 border-l-2 border-primary">
-                        GET retrieves data. POST sends data. Simple.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Row 2: Role-based examples */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div className="order-2 md:order-1 text-sm space-y-2">
-                  <div className="flex items-start gap-3">
-                    <div className="w-full">
-                      <p className="text-muted-foreground text-xs mb-2">
-                        Generic example: "Imagine a store..."
-                      </p>
-                      <p className="text-foreground/80 text-sm pl-3 border-l-2 border-primary">
-                        For Sales: "When a prospect asks for pricing..."
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="order-1 md:order-2">
-                  <h3 className="text-xl font-semibold mb-3">
-                    {t('examples.scenarios.scenario2.title')}
-                  </h3>
-                  <p className="text-lg text-foreground/80 leading-relaxed">
-                    {t('examples.scenarios.scenario2.text')}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {/* Card 1: Simpler explanations */}
+              <div 
+                className="rounded-xl p-6"
+                style={{
+                  backgroundColor: 'hsl(var(--foreground) / 0.03)',
+                  border: '1px solid hsl(var(--foreground) / 0.08)',
+                  boxShadow: '0 0 30px hsl(var(--primary) / 0.05)',
+                }}
+                data-testid="card-example-1"
+              >
+                <h3 className="text-lg font-semibold mb-3" data-testid="text-example-title-1">
+                  {t('examples.scenarios.scenario1.title')}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4" data-testid="text-example-description-1">
+                  {t('examples.scenarios.scenario1.text')}
+                </p>
+                <div className="flex items-start gap-2 pt-3 border-t border-foreground/10">
+                  <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <p className="text-sm italic text-foreground/70" data-testid="text-example-response-1">
+                    {t('examples.scenarios.scenario1.response')}
                   </p>
                 </div>
               </div>
 
-              {/* Row 3: Guided reasoning */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">
-                    {t('examples.scenarios.scenario3.title')}
-                  </h3>
-                  <p className="text-lg text-foreground/80 leading-relaxed">
-                    {t('examples.scenarios.scenario3.text')}
+              {/* Card 2: Role-based examples */}
+              <div 
+                className="rounded-xl p-6"
+                style={{
+                  backgroundColor: 'hsl(var(--foreground) / 0.03)',
+                  border: '1px solid hsl(var(--foreground) / 0.08)',
+                  boxShadow: '0 0 30px hsl(var(--primary) / 0.05)',
+                }}
+                data-testid="card-example-2"
+              >
+                <h3 className="text-lg font-semibold mb-3" data-testid="text-example-title-2">
+                  {t('examples.scenarios.scenario2.title')}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4" data-testid="text-example-description-2">
+                  {t('examples.scenarios.scenario2.text')}
+                </p>
+                <div className="flex items-start gap-2 pt-3 border-t border-foreground/10">
+                  <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <p className="text-sm italic text-foreground/70" data-testid="text-example-response-2">
+                    {t('examples.scenarios.scenario2.response')}
                   </p>
                 </div>
-                <div className="text-sm space-y-2">
-                  <div className="flex items-start gap-3">
-                    <Lightbulb className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <div className="w-full">
-                      <p className="text-foreground/80 text-sm">
-                        "What happens if the input is null? Think about edge cases..."
-                      </p>
-                    </div>
-                  </div>
+              </div>
+
+              {/* Card 3: Guided reasoning */}
+              <div 
+                className="rounded-xl p-6"
+                style={{
+                  backgroundColor: 'hsl(var(--foreground) / 0.03)',
+                  border: '1px solid hsl(var(--foreground) / 0.08)',
+                  boxShadow: '0 0 30px hsl(var(--primary) / 0.05)',
+                }}
+                data-testid="card-example-3"
+              >
+                <h3 className="text-lg font-semibold mb-3" data-testid="text-example-title-3">
+                  {t('examples.scenarios.scenario3.title')}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4" data-testid="text-example-description-3">
+                  {t('examples.scenarios.scenario3.text')}
+                </p>
+                <div className="flex items-start gap-2 pt-3 border-t border-foreground/10">
+                  <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <p className="text-sm italic text-foreground/70" data-testid="text-example-response-3">
+                    {t('examples.scenarios.scenario3.response')}
+                  </p>
                 </div>
               </div>
             </div>

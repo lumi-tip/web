@@ -10,7 +10,11 @@
     "title": "Una experiencia de aprendizaje que se adapta a cada estudiante",
     "subtitle": "El Tutor IA entiende lo que cada estudiante está leyendo y proporciona orientación contextual en tiempo real que mejora la comprensión, el compromiso y las tasas de finalización.",
     "ctaStart": "Comenzar Gratis",
-    "ctaDemo": "Reservar Demo"
+    "ctaDemo": "Reservar Demo",
+    "exampleLabel": "Ejemplo · Ayuda contextual",
+    "courseExcerpt": "Una API (Interfaz de Programación de Aplicaciones) permite que diferentes sistemas de software se comuniquen entre sí.",
+    "highlightedLine": "Los endpoints REST utilizan métodos HTTP como GET, POST, PUT y DELETE para realizar operaciones en recursos.",
+    "aiTutorMessage": "Veo que estás trabajando con endpoints REST. ¿Quieres una explicación más simple o un ejemplo para una API bancaria?"
   },
   "definition": {
     "label": "DEFINICIÓN · APRENDIZAJE HIPERPERSONALIZADO",
@@ -54,15 +58,18 @@
     "scenarios": {
       "scenario1": {
         "title": "Explicaciones más simples",
-        "text": "Un estudiante pide una explicación más simple. El Tutor IA reescribe el párrafo al instante."
+        "text": "Un estudiante pide una explicación más simple. El Tutor IA reescribe el párrafo al instante.",
+        "response": "\"GET obtiene datos, POST envía datos nuevos. Piensa en ello como leer vs. escribir.\""
       },
       "scenario2": {
         "title": "Ejemplos por rol",
-        "text": "Un empleado de ventas solicita un ejemplo de la industria. El Tutor IA se adapta automáticamente."
+        "text": "Un empleado de ventas solicita un ejemplo de la industria. El Tutor IA se adapta automáticamente.",
+        "response": "\"Cuando un prospecto pide precios, usarías una solicitud GET para obtener su cotización.\""
       },
       "scenario3": {
         "title": "Razonamiento guiado",
-        "text": "El Tutor IA guía el razonamiento en lugar de dar la solución."
+        "text": "El Tutor IA guía el razonamiento en lugar de dar la solución.",
+        "response": "\"¿Qué pasa si la entrada es nula? Piensa primero en los casos límite.\""
       }
     }
   },
