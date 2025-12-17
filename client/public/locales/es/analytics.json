@@ -51,8 +51,21 @@
   },
   "approach": {
     "title": "Analíticas diseñadas para la calidad del aprendizaje, no métricas de vanidad.",
-    "subtitle": "Cada interacción dentro de un curso LearnPack es observable, medible y exportable.",
-    "signals": ["Engagement", "Progresión", "Reintentos", "Puntos de abandono", "Interacciones con el Tutor IA"]
+    "subtitle": "LearnPack mide cómo aprenden las personas, no solo lo que hacen clic.",
+    "pillars": {
+      "observable": {
+        "title": "Observable",
+        "description": "Cada interacción dentro de un curso LearnPack puede verse y analizarse."
+      },
+      "measurable": {
+        "title": "Medible",
+        "description": "Engagement, fricción, reintentos y progresión se rastrean en tiempo real."
+      },
+      "exportable": {
+        "title": "Exportable",
+        "description": "Los insights viajan con tu curso a través de integraciones LMS estándar."
+      }
+    }
   },
   "analytics": {
     "title": "Ve cómo los estudiantes progresan, luchan y se recuperan. En tiempo real.",
@@ -99,19 +112,19 @@
     "items": {
       "corporate": {
         "title": "Capacitación corporativa",
-        "description": "Rastrea el engagement mientras cumples con requisitos de auditoría interna. Obtén visibilidad del comportamiento real de aprendizaje sin agregar complejidad a los flujos de trabajo existentes."
+        "description": "Rastrea el engagement mientras cumples con requisitos de auditoría interna."
       },
       "financial": {
         "title": "Instituciones financieras",
-        "description": "Despliega módulos de aprendizaje estandarizados con resultados medibles. Mantén documentación de cumplimiento junto con la entrega de capacitación."
+        "description": "Despliega aprendizaje estandarizado con resultados medibles."
       },
       "healthcare": {
         "title": "Salud e industrias reguladas",
-        "description": "Asegura consistencia en la capacitación sin ralentizar las actualizaciones. Adapta el contenido rápidamente mientras mantienes registros listos para auditoría."
+        "description": "Asegura consistencia sin ralentizar las actualizaciones."
       },
       "training": {
         "title": "Centros de capacitación y academias",
-        "description": "Demuestra la efectividad del aprendizaje a socios y organismos acreditadores. Muestra evidencia de engagement, no solo finalización."
+        "description": "Demuestra la efectividad del aprendizaje a socios y organismos acreditadores."
       }
     }
   },

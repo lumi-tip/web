@@ -27,7 +27,10 @@ import {
   GraduationCap,
   Lightbulb,
   Package,
-  Lock
+  Lock,
+  Search,
+  Gauge,
+  Share2
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 
@@ -309,7 +312,7 @@ export default function AnalyticsCompliance() {
           </div>
         </section>
 
-        {/* SECTION 3: PROBLEM SECTION - Premium 2x2 grid with glowy borders */}
+        {/* SECTION 3: PROBLEM SECTION - Premium 2x2 grid with brighter boxes */}
         <section 
           className="py-20 md:py-24 lg:py-28 relative z-10"
           data-testid="section-problem"
@@ -328,24 +331,25 @@ export default function AnalyticsCompliance() {
                 return (
                   <div 
                     key={item}
-                    className="p-6 md:p-8 rounded-xl border border-primary/15 relative overflow-visible"
+                    className="p-6 md:p-8 rounded-xl border border-primary/20 relative overflow-visible"
                     style={{
-                      backgroundColor: 'rgba(10, 17, 37, 0.7)',
-                      boxShadow: '0 0 30px rgba(48, 79, 254, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
+                      backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                      backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.04) 0%, transparent 100%)',
+                      boxShadow: '0 0 12px rgba(59, 130, 246, 0.12), 0 0 40px rgba(48, 79, 254, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
                     }}
                   >
                     <div className="flex items-start gap-4">
                       <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 border border-amber-500/20"
+                        className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 border border-amber-500/25"
                         style={{
-                          backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                          boxShadow: '0 0 20px rgba(245, 158, 11, 0.1)'
+                          backgroundColor: 'rgba(245, 158, 11, 0.12)',
+                          boxShadow: '0 0 20px rgba(245, 158, 11, 0.12)'
                         }}
                       >
-                        <Icon className="w-5 h-5 text-amber-400/80" strokeWidth={1.5} />
+                        <Icon className="w-6 h-6 text-amber-400" strokeWidth={1.5} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground mb-2 text-base">
+                        <h3 className="font-semibold text-foreground mb-2 text-lg">
                           {t(`problem.items.${item}.title`)}
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -360,39 +364,109 @@ export default function AnalyticsCompliance() {
           </div>
         </section>
 
-        {/* SECTION 4: APPROACH - Proper anchor section with 2-column layout */}
+        {/* SECTION 4: APPROACH - Strong principle section with 3 pillars */}
         <section 
-          className="py-20 md:py-28 lg:py-32 relative z-10"
+          className="py-24 md:py-32 lg:py-40 relative z-10"
           data-testid="section-approach"
         >
-          <div className="content-container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
-              {/* Left - Title + paragraph */}
-              <div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-                  {t('approach.title')}
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  {t('approach.subtitle')}
+          {/* Distinct background overlay */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, rgba(31, 111, 235, 0.03) 0%, transparent 50%, rgba(31, 111, 235, 0.02) 100%)',
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="content-container relative z-10">
+            {/* Centered header with more prominence */}
+            <div className="text-center mb-16 md:mb-20">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                {t('approach.title')}
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+                {t('approach.subtitle')}
+              </p>
+            </div>
+            
+            {/* 3 large pillars - Observable, Measurable, Exportable */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Observable */}
+              <div 
+                className="p-8 md:p-10 rounded-xl border border-primary/20 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                  backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+                }}
+              >
+                <div 
+                  className="w-14 h-14 rounded-xl mx-auto mb-6 flex items-center justify-center border border-primary/25"
+                  style={{
+                    backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                    boxShadow: '0 0 25px rgba(56, 189, 248, 0.15)'
+                  }}
+                >
+                  <Search className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  {t('approach.pillars.observable.title')}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {t('approach.pillars.observable.description')}
                 </p>
               </div>
               
-              {/* Right - Signal chips grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {(t('approach.signals', { returnObjects: true }) as string[]).map((signal, index) => (
-                  <div 
-                    key={index}
-                    className="px-4 py-3 rounded-lg text-center border border-primary/25"
-                    style={{
-                      backgroundColor: 'rgba(31, 111, 235, 0.08)',
-                      boxShadow: '0 0 15px rgba(56, 189, 248, 0.08)'
-                    }}
-                  >
-                    <span className="text-sm font-medium text-primary">
-                      {signal}
-                    </span>
-                  </div>
-                ))}
+              {/* Measurable */}
+              <div 
+                className="p-8 md:p-10 rounded-xl border border-primary/20 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                  backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+                }}
+              >
+                <div 
+                  className="w-14 h-14 rounded-xl mx-auto mb-6 flex items-center justify-center border border-primary/25"
+                  style={{
+                    backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                    boxShadow: '0 0 25px rgba(56, 189, 248, 0.15)'
+                  }}
+                >
+                  <Gauge className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  {t('approach.pillars.measurable.title')}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {t('approach.pillars.measurable.description')}
+                </p>
+              </div>
+              
+              {/* Exportable */}
+              <div 
+                className="p-8 md:p-10 rounded-xl border border-primary/20 text-center"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                  backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+                }}
+              >
+                <div 
+                  className="w-14 h-14 rounded-xl mx-auto mb-6 flex items-center justify-center border border-primary/25"
+                  style={{
+                    backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                    boxShadow: '0 0 25px rgba(56, 189, 248, 0.15)'
+                  }}
+                >
+                  <Share2 className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  {t('approach.pillars.exportable.title')}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {t('approach.pillars.exportable.description')}
+                </p>
               </div>
             </div>
           </div>
@@ -579,52 +653,44 @@ export default function AnalyticsCompliance() {
           </div>
         </section>
 
-        {/* SECTION 7: USE CASES - Alternating horizontal rows */}
+        {/* SECTION 7: USE CASES - Compact 2x2 grid */}
         <section 
-          className="py-20 md:py-28 lg:py-32 relative z-10"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-use-cases"
         >
           <div className="content-container">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-16 md:mb-20 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10 md:mb-12 text-center">
               {t('useCases.title')}
             </h2>
             
-            <div className="max-w-3xl mx-auto space-y-0">
-              {useCaseItems.map(({ key, icon: Icon }, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
+              {useCaseItems.map(({ key, icon: Icon }) => (
                 <div 
                   key={key}
-                  className="py-8 md:py-10"
+                  className="p-5 md:p-6 rounded-xl border border-primary/15 flex items-start gap-4"
+                  style={{
+                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                    boxShadow: '0 0 20px rgba(48, 79, 254, 0.06)',
+                  }}
                   data-testid={`use-case-${key}`}
                 >
-                  <div className="flex items-start gap-5 md:gap-6">
-                    <div 
-                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 border border-primary/25"
-                      style={{
-                        backgroundColor: 'rgba(31, 111, 235, 0.08)',
-                        boxShadow: '0 0 20px rgba(56, 189, 248, 0.12)'
-                      }}
-                    >
-                      <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-2">
-                        {t(`useCases.items.${key}.title`)}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {t(`useCases.items.${key}.description`)}
-                      </p>
-                    </div>
+                  <div 
+                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 border border-primary/25"
+                    style={{
+                      backgroundColor: 'rgba(31, 111, 235, 0.1)',
+                      boxShadow: '0 0 15px rgba(56, 189, 248, 0.1)'
+                    }}
+                  >
+                    <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
                   </div>
-                  
-                  {/* Subtle divider except for last item */}
-                  {index < useCaseItems.length - 1 && (
-                    <div 
-                      className="mt-8 md:mt-10 h-px"
-                      style={{
-                        background: 'linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.15) 50%, transparent 100%)'
-                      }}
-                    />
-                  )}
+                  <div>
+                    <h3 className="font-semibold text-base mb-1">
+                      {t(`useCases.items.${key}.title`)}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-snug">
+                      {t(`useCases.items.${key}.description`)}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

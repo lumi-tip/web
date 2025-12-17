@@ -51,8 +51,21 @@
   },
   "approach": {
     "title": "Analytics designed for learning quality, not vanity metrics.",
-    "subtitle": "Every interaction inside a LearnPack course is observable, measurable, and exportable.",
-    "signals": ["Engagement", "Progression", "Retries", "Drop-off points", "AI Tutor interactions"]
+    "subtitle": "LearnPack measures how people learn, not just what they click.",
+    "pillars": {
+      "observable": {
+        "title": "Observable",
+        "description": "Every interaction inside a LearnPack course can be seen and analyzed."
+      },
+      "measurable": {
+        "title": "Measurable",
+        "description": "Engagement, friction, retries, and progression are tracked in real time."
+      },
+      "exportable": {
+        "title": "Exportable",
+        "description": "Insights travel with your course through standard LMS integrations."
+      }
+    }
   },
   "analytics": {
     "title": "See how learners progress, struggle, and recover. In real time.",
@@ -99,19 +112,19 @@
     "items": {
       "corporate": {
         "title": "Corporate training",
-        "description": "Track engagement while meeting internal audit requirements. Get visibility into real learning behavior without adding complexity to existing workflows."
+        "description": "Track engagement while meeting internal audit requirements."
       },
       "financial": {
         "title": "Financial institutions",
-        "description": "Deploy standardized learning modules with measurable outcomes. Maintain compliance documentation alongside training delivery."
+        "description": "Deploy standardized learning with measurable outcomes."
       },
       "healthcare": {
         "title": "Healthcare and regulated industries",
-        "description": "Ensure training consistency without slowing updates. Adapt content rapidly while maintaining audit-ready records."
+        "description": "Ensure consistency without slowing updates."
       },
       "training": {
         "title": "Training centers and academies",
-        "description": "Prove learning effectiveness to partners and accrediting bodies. Show evidence of engagement, not just completion."
+        "description": "Prove learning effectiveness to partners and accrediting bodies."
       }
     }
   },
