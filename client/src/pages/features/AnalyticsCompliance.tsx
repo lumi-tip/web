@@ -364,107 +364,59 @@ export default function AnalyticsCompliance() {
           </div>
         </section>
 
-        {/* SECTION 4: APPROACH - Strong principle section with 3 pillars */}
+        {/* SECTION 4: APPROACH - Minimal text-focused layout */}
         <section 
-          className="py-24 md:py-32 lg:py-40 relative z-10"
+          className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-approach"
         >
-          {/* Distinct background overlay */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'linear-gradient(180deg, rgba(31, 111, 235, 0.03) 0%, transparent 50%, rgba(31, 111, 235, 0.02) 100%)',
-            }}
-            aria-hidden="true"
-          />
-
-          <div className="content-container relative z-10">
-            {/* Centered header with more prominence */}
-            <div className="text-center mb-16 md:mb-20">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <div className="content-container">
+            {/* Centered header - more compact */}
+            <div className="text-center mb-12 md:mb-14">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {t('approach.title')}
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
                 {t('approach.subtitle')}
               </p>
             </div>
             
-            {/* 3 large pillars - Observable, Measurable, Exportable */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* 3 columns - minimal text layout, no boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto text-center">
               {/* Observable */}
-              <div 
-                className="p-8 md:p-10 rounded-xl border border-primary/20 text-center"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
-                }}
-              >
-                <div 
-                  className="w-14 h-14 rounded-xl mx-auto mb-6 flex items-center justify-center border border-primary/25"
-                  style={{
-                    backgroundColor: 'rgba(31, 111, 235, 0.12)',
-                    boxShadow: '0 0 25px rgba(56, 189, 248, 0.15)'
-                  }}
-                >
-                  <Search className="w-7 h-7 text-primary" strokeWidth={1.5} />
+              <div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Search className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold">
+                    {t('approach.pillars.observable.title')}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {t('approach.pillars.observable.title')}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {t('approach.pillars.observable.description')}
                 </p>
               </div>
               
               {/* Measurable */}
-              <div 
-                className="p-8 md:p-10 rounded-xl border border-primary/20 text-center"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
-                }}
-              >
-                <div 
-                  className="w-14 h-14 rounded-xl mx-auto mb-6 flex items-center justify-center border border-primary/25"
-                  style={{
-                    backgroundColor: 'rgba(31, 111, 235, 0.12)',
-                    boxShadow: '0 0 25px rgba(56, 189, 248, 0.15)'
-                  }}
-                >
-                  <Gauge className="w-7 h-7 text-primary" strokeWidth={1.5} />
+              <div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Gauge className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold">
+                    {t('approach.pillars.measurable.title')}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {t('approach.pillars.measurable.title')}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {t('approach.pillars.measurable.description')}
                 </p>
               </div>
               
               {/* Exportable */}
-              <div 
-                className="p-8 md:p-10 rounded-xl border border-primary/20 text-center"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
-                }}
-              >
-                <div 
-                  className="w-14 h-14 rounded-xl mx-auto mb-6 flex items-center justify-center border border-primary/25"
-                  style={{
-                    backgroundColor: 'rgba(31, 111, 235, 0.12)',
-                    boxShadow: '0 0 25px rgba(56, 189, 248, 0.15)'
-                  }}
-                >
-                  <Share2 className="w-7 h-7 text-primary" strokeWidth={1.5} />
+              <div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Share2 className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold">
+                    {t('approach.pillars.exportable.title')}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {t('approach.pillars.exportable.title')}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {t('approach.pillars.exportable.description')}
                 </p>
               </div>
