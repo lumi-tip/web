@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "title": "Analytics & Compliance | LearnPack",
+    "description": "Track real learning behavior in real time and deploy courses in regulated environments. SCORM-ready, LMS-friendly analytics built for compliance.",
+    "keywords": "training analytics, learning compliance, SCORM export, LMS integration, learning behavior, engagement metrics, regulated training",
+    "ogTitle": "Analytics & Compliance | LearnPack",
+    "ogDescription": "Real-time visibility into learner engagement, performance, and friction points. Secure deployment through SCORM exports and LMS integrations."
+  },
+  "hero": {
+    "title": "Training insights you can trust. Compliance you can prove.",
+    "subtitle": "Track real learning behavior in real time and deploy courses in regulated environments without breaking your existing infrastructure.",
+    "ctaDemo": "Book a Demo",
+    "ctaAnalytics": "See how analytics work",
+    "trustLine": "SCORM-ready. LMS-friendly. Built for regulated environments.",
+    "metricLabels": {
+      "engagement": "Engagement",
+      "completion": "Completion",
+      "friction": "Friction signals"
+    },
+    "flowLabels": {
+      "course": "Course",
+      "scorm": "SCORM export",
+      "lms": "LMS"
+    }
+  },
+  "definition": {
+    "label": "DEFINITION",
+    "text": "LearnPack Analytics & Compliance provides real-time visibility into learner engagement, performance, and friction points. It enables secure deployment through SCORM exports and LMS-compatible integrations."
+  },
+  "problem": {
+    "title": "Most training analytics tell you what was clicked, not what was learned.",
+    "intro": "Standard LMS reports miss the signals that matter most for learning outcomes.",
+    "items": {
+      "surface": {
+        "title": "Surface-level metrics",
+        "description": "Completion rates without understanding engagement or confusion."
+      },
+      "delayed": {
+        "title": "Delayed insights",
+        "description": "Problems are detected after learners drop out."
+      },
+      "noContext": {
+        "title": "No behavioral context",
+        "description": "LMS reports cannot see hesitation, retries, or friction."
+      },
+      "rigid": {
+        "title": "Compliance without flexibility",
+        "description": "Rigid systems slow down updates and localization."
+      }
+    }
+  },
+  "approach": {
+    "title": "Analytics designed for learning quality, not vanity metrics.",
+    "subtitle": "Every interaction inside a LearnPack course is observable, measurable, and exportable.",
+    "signals": ["Engagement", "Progression", "Retries", "Drop-off points", "AI Tutor interactions"]
+  },
+  "analytics": {
+    "title": "See how learners progress, struggle, and recover. In real time.",
+    "tracksTitle": "What LearnPack tracks",
+    "tracksBullets": [
+      "Engagement signals across lessons and interactions",
+      "Repeated attempts, pauses, and retries",
+      "Drop-off points inside content blocks",
+      "AI Tutor interactions (when help is requested and why)"
+    ],
+    "getsTitle": "What instructors and teams get",
+    "getsBullets": [
+      "Immediate visibility into learner friction",
+      "Early signals before dropout happens",
+      "Clear indicators of content that needs refinement",
+      "Evidence of real participation, not passive clicking"
+    ],
+    "note": "Note: LearnPack analytics focus on learning behavior, not surveillance."
+  },
+  "aiInsight": {
+    "title": "From raw data to actionable insight.",
+    "text": "LearnPack uses AI to interpret learning signals and highlight where learners are getting stuck, disengaged, or progressing smoothly, so teams can improve content continuously without manual analysis.",
+    "highlights": [
+      "Where learners get stuck",
+      "Where content needs refinement",
+      "What improves completion"
+    ]
+  },
+  "compliance": {
+    "title": "Deploy LearnPack in regulated environments with confidence.",
+    "subtitle": "LearnPack does not replace your LMS. It connects to it.",
+    "flowCaption": "SCORM 1.2 and SCORM 2004"
+  },
+  "scorm": {
+    "items": {
+      "export": {
+        "title": "SCORM export",
+        "description": "Export courses as SCORM packages compatible with standard LMS workflows."
+      },
+      "embedding": {
+        "title": "LMS embedding",
+        "description": "Embed LearnPack content where learners already train."
+      },
+      "independence": {
+        "title": "Infrastructure independence",
+        "description": "Deploy without forcing a proprietary hosting lock-in."
+      }
+    }
+  },
+  "security": {
+    "title": "Built to meet enterprise and institutional requirements.",
+    "items": [
+      "Compatible with ISO 27001 environments",
+      "Compatible with SOC 2 environments",
+      "Compatible with HIPAA environments",
+      "FedRAMP-aligned environments"
+    ]
+  },
+  "useCases": {
+    "title": "Where this matters most",
+    "items": {
+      "corporate": {
+        "title": "Corporate training",
+        "description": "Track engagement while meeting internal audit requirements."
+      },
+      "financial": {
+        "title": "Financial institutions",
+        "description": "Deploy standardized learning modules with measurable outcomes."
+      },
+      "healthcare": {
+        "title": "Healthcare and regulated industries",
+        "description": "Ensure training consistency without slowing updates."
+      },
+      "training": {
+        "title": "Training centers and academies",
+        "description": "Prove learning effectiveness to partners and accrediting bodies."
+      }
+    }
+  },
+  "differentiator": {
+    "traditional": "Traditional LMS reporting",
+    "learnpack": "LearnPack",
+    "rows": [
+      { "traditional": "Activity reporting", "learnpack": "Learning behavior signals" },
+      { "traditional": "Retrospective insights", "learnpack": "Real-time visibility" },
+      { "traditional": "Slow updates", "learnpack": "Continuous content refinement" }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "lastUpdated": "Last updated: December 2025",
+    "questions": {
+      "q1": {
+        "question": "Does LearnPack replace our LMS?",
+        "answer": "No. LearnPack integrates with existing LMS platforms through SCORM exports or embedding, allowing organizations to keep their current infrastructure."
+      },
+      "q2": {
+        "question": "What kind of analytics does LearnPack provide?",
+        "answer": "LearnPack provides real-time insights into learner engagement, progression, and friction points, including interactions with the AI Tutor."
+      },
+      "q3": {
+        "question": "Is LearnPack suitable for regulated industries?",
+        "answer": "Yes. LearnPack is designed to operate in compliance-oriented environments and supports secure deployment through standard LMS integrations."
+      }
+    }
+  },
+  "cta": {
+    "title": "Turn training data into learning decisions.",
+    "subtitle": "See how analytics and compliance work together inside LearnPack.",
+    "ctaDemo": "Book a Demo",
+    "ctaResults": "View Results"
+  }
+}
