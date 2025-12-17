@@ -123,6 +123,27 @@
     "author": "Training Director",
     "company": "Enterprise Client"
   },
+  "faq": {
+    "title": "FAQs",
+    "questions": {
+      "q1": {
+        "question": "What is hyperpersonalized learning in LearnPack?",
+        "answer": "Hyperpersonalized learning in LearnPack means each learner receives real-time, context-aware support from the AI Tutor. The guidance adapts to what the learner is reading, their progress, and past interactions, helping them understand concepts inside the learning experience."
+      },
+      "q2": {
+        "question": "Is the AI Tutor just a chatbot?",
+        "answer": "No. The AI Tutor is not a generic chatbot. It understands the course content and what the learner is reading, then provides contextual explanations and guiding questions tied directly to that material."
+      },
+      "q3": {
+        "question": "How is hyperpersonalized learning different from adaptive learning?",
+        "answer": "Adaptive learning typically changes content paths or difficulty. Hyperpersonalized learning adds real-time guidance inside the content, including explanations, examples, and Socratic support when learners get stuck."
+      },
+      "q4": {
+        "question": "Does the AI Tutor replace instructors?",
+        "answer": "No. The AI Tutor supports learners between instructor interactions by clarifying concepts and reducing frustration. Instructors keep control of the learning experience while gaining better visibility into learner progress."
+      }
+    }
+  },
   "cta": {
     "title": "Give every learner the support they need, the moment they need it.",
     "ctaStart": "Start for Free",

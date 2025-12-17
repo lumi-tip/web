@@ -16,6 +16,12 @@ import {
   X
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Hyperpersonalization() {
   const { t, i18n } = useTranslation('hyperpersonalization');
@@ -582,7 +588,91 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 10: FINAL CTA - Wider primary button, more padding */}
+        {/* SECTION 10: FAQs - Accordion layout */}
+        <section 
+          className="py-20 md:py-24 lg:py-28"
+          data-testid="section-faq"
+        >
+          <div className="content-container">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-center">
+              {t('faq.title')}
+            </h2>
+            
+            <div className="max-w-3xl mx-auto">
+              <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem 
+                  value="faq-1" 
+                  className="rounded-xl px-6 border-0"
+                  style={{
+                    backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                    boxShadow: '0 0 20px rgba(31, 111, 235, 0.08)',
+                  }}
+                  data-testid="faq-item-1"
+                >
+                  <AccordionTrigger className="text-left text-white hover:no-underline py-5">
+                    {t('faq.questions.q1.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q1.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem 
+                  value="faq-2" 
+                  className="rounded-xl px-6 border-0"
+                  style={{
+                    backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                    boxShadow: '0 0 20px rgba(31, 111, 235, 0.08)',
+                  }}
+                  data-testid="faq-item-2"
+                >
+                  <AccordionTrigger className="text-left text-white hover:no-underline py-5">
+                    {t('faq.questions.q2.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q2.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem 
+                  value="faq-3" 
+                  className="rounded-xl px-6 border-0"
+                  style={{
+                    backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                    boxShadow: '0 0 20px rgba(31, 111, 235, 0.08)',
+                  }}
+                  data-testid="faq-item-3"
+                >
+                  <AccordionTrigger className="text-left text-white hover:no-underline py-5">
+                    {t('faq.questions.q3.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q3.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem 
+                  value="faq-4" 
+                  className="rounded-xl px-6 border-0"
+                  style={{
+                    backgroundColor: 'rgba(10, 26, 47, 0.7)',
+                    boxShadow: '0 0 20px rgba(31, 111, 235, 0.08)',
+                  }}
+                  data-testid="faq-item-4"
+                >
+                  <AccordionTrigger className="text-left text-white hover:no-underline py-5">
+                    {t('faq.questions.q4.question')}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/70 pb-5">
+                    {t('faq.questions.q4.answer')}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 11: FINAL CTA - Wider primary button, more padding */}
         <section 
           className="py-28 md:py-32 lg:py-36"
           data-testid="section-final-cta"

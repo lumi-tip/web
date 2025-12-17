@@ -123,6 +123,27 @@
     "author": "Director de Capacitación",
     "company": "Cliente Empresarial"
   },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "questions": {
+      "q1": {
+        "question": "¿Qué es el aprendizaje hiperpersonalizado en LearnPack?",
+        "answer": "El aprendizaje hiperpersonalizado en LearnPack significa que cada estudiante recibe soporte en tiempo real y consciente del contexto del Tutor IA. La orientación se adapta a lo que el estudiante está leyendo, su progreso e interacciones pasadas, ayudándolo a comprender conceptos dentro de la experiencia de aprendizaje."
+      },
+      "q2": {
+        "question": "¿El Tutor IA es solo un chatbot?",
+        "answer": "No. El Tutor IA no es un chatbot genérico. Entiende el contenido del curso y lo que el estudiante está leyendo, luego proporciona explicaciones contextuales y preguntas orientadoras vinculadas directamente a ese material."
+      },
+      "q3": {
+        "question": "¿En qué se diferencia el aprendizaje hiperpersonalizado del aprendizaje adaptativo?",
+        "answer": "El aprendizaje adaptativo típicamente cambia las rutas de contenido o la dificultad. El aprendizaje hiperpersonalizado añade orientación en tiempo real dentro del contenido, incluyendo explicaciones, ejemplos y apoyo socrático cuando los estudiantes se atascan."
+      },
+      "q4": {
+        "question": "¿El Tutor IA reemplaza a los instructores?",
+        "answer": "No. El Tutor IA apoya a los estudiantes entre las interacciones con el instructor, aclarando conceptos y reduciendo la frustración. Los instructores mantienen el control de la experiencia de aprendizaje mientras obtienen mejor visibilidad del progreso del estudiante."
+      }
+    }
+  },
   "cta": {
     "title": "Dale a cada estudiante el apoyo que necesita, en el momento que lo necesita.",
     "ctaStart": "Comenzar Gratis",
