@@ -12,9 +12,7 @@ import {
   GraduationCap,
   ArrowRight,
   Check,
-  Building2,
-  UserCircle,
-  Sparkles
+  ChevronDown
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import {
@@ -172,7 +170,7 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 2: SYSTEM - 3 Steps (The core differentiator) */}
+        {/* SECTION 2: SYSTEM - Vertical Flow Diagram with glowing connectors */}
         <section 
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-system"
@@ -187,104 +185,91 @@ export default function Hyperpersonalization() {
               </p>
             </div>
             
-            {/* 3 Steps - Horizontal on desktop */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {/* Step 1: Build base course */}
-              <div className="relative">
+            {/* Vertical Flow Diagram */}
+            <div className="max-w-xl mx-auto flex flex-col items-center">
+              {/* Step 1: Base course */}
+              <div 
+                className="w-full px-6 py-5 rounded-xl text-center relative"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.6)',
+                  border: '1px solid rgba(48, 79, 254, 0.3)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.12)',
+                }}
+                data-testid="flow-step-1"
+              >
+                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Step 1</p>
+                <h3 className="font-semibold text-lg mb-1">{t('system.step1.title')}</h3>
+                <p className="text-sm text-muted-foreground">{t('system.step1.description')}</p>
+              </div>
+              
+              {/* Connector line with glow */}
+              <div className="relative h-12 flex items-center justify-center">
                 <div 
-                  className="p-6 rounded-xl border border-primary/15 h-full"
+                  className="w-0.5 h-full"
                   style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                    boxShadow: '0 0 25px rgba(48, 79, 254, 0.08)',
+                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.6) 0%, rgba(48, 79, 254, 0.3) 100%)',
+                    boxShadow: '0 0 8px rgba(48, 79, 254, 0.5)',
                   }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div 
-                      className="w-10 h-10 rounded-lg flex items-center justify-center border border-primary/25"
-                      style={{
-                        backgroundColor: 'rgba(31, 111, 235, 0.12)',
-                      }}
-                    >
-                      <Building2 className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    </div>
-                    <span className="text-xs font-medium text-primary uppercase tracking-wider">Step 1</span>
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    {t('system.step1.title')}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t('system.step1.description')}
-                  </p>
-                </div>
+                />
+                <ChevronDown 
+                  className="absolute bottom-0 w-5 h-5 text-primary" 
+                  style={{ filter: 'drop-shadow(0 0 4px rgba(48, 79, 254, 0.6))' }}
+                />
               </div>
               
               {/* Step 2: Learner profiling */}
-              <div className="relative">
-                <div 
-                  className="p-6 rounded-xl border border-primary/15 h-full"
-                  style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                    boxShadow: '0 0 25px rgba(48, 79, 254, 0.08)',
-                  }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div 
-                      className="w-10 h-10 rounded-lg flex items-center justify-center border border-primary/25"
-                      style={{
-                        backgroundColor: 'rgba(31, 111, 235, 0.12)',
-                      }}
-                    >
-                      <UserCircle className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    </div>
-                    <span className="text-xs font-medium text-primary uppercase tracking-wider">Step 2</span>
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    {t('system.step2.title')}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t('system.step2.description')}
-                  </p>
-                </div>
+              <div 
+                className="w-full px-6 py-5 rounded-xl text-center relative"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.6)',
+                  border: '1px solid rgba(48, 79, 254, 0.3)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.12)',
+                }}
+                data-testid="flow-step-2"
+              >
+                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Step 2</p>
+                <h3 className="font-semibold text-lg mb-1">{t('system.step2.title')}</h3>
+                <p className="text-sm text-muted-foreground">{t('system.step2.description')}</p>
               </div>
               
-              {/* Step 3: Adapt the course */}
-              <div className="relative">
+              {/* Connector line with glow */}
+              <div className="relative h-12 flex items-center justify-center">
                 <div 
-                  className="p-6 rounded-xl border border-primary/15 h-full"
+                  className="w-0.5 h-full"
                   style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                    boxShadow: '0 0 25px rgba(48, 79, 254, 0.08)',
+                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.6) 0%, rgba(48, 79, 254, 0.3) 100%)',
+                    boxShadow: '0 0 8px rgba(48, 79, 254, 0.5)',
                   }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div 
-                      className="w-10 h-10 rounded-lg flex items-center justify-center border border-primary/25"
-                      style={{
-                        backgroundColor: 'rgba(31, 111, 235, 0.12)',
-                      }}
-                    >
-                      <Sparkles className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    </div>
-                    <span className="text-xs font-medium text-primary uppercase tracking-wider">Step 3</span>
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    {t('system.step3.title')}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t('system.step3.description')}
-                  </p>
-                </div>
+                />
+                <ChevronDown 
+                  className="absolute bottom-0 w-5 h-5 text-primary" 
+                  style={{ filter: 'drop-shadow(0 0 4px rgba(48, 79, 254, 0.6))' }}
+                />
+              </div>
+              
+              {/* Step 3: Personalized course */}
+              <div 
+                className="w-full px-6 py-5 rounded-xl text-center relative"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.8)',
+                  border: '1px solid rgba(48, 79, 254, 0.5)',
+                  boxShadow: '0 0 40px rgba(48, 79, 254, 0.2)',
+                }}
+                data-testid="flow-step-3"
+              >
+                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Step 3</p>
+                <h3 className="font-semibold text-lg mb-1">{t('system.step3.title')}</h3>
+                <p className="text-sm text-muted-foreground">{t('system.step3.description')}</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 3: EXAMPLE - Marco & Laura (KEY differentiator) */}
+        {/* SECTION 3: EXAMPLE - Bifurcation Visual (Base course splits to Marco/Laura) */}
         <section 
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-example"
         >
-          {/* Subtle background */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -298,86 +283,139 @@ export default function Hyperpersonalization() {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {t('example.title')}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('example.intro')}
-              </p>
             </div>
             
-            {/* Two personas side by side */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
-              {/* Marco */}
+            {/* Bifurcation Visual */}
+            <div className="max-w-3xl mx-auto">
+              {/* Base course at top */}
               <div 
-                className="p-6 rounded-xl border border-primary/20"
+                className="mx-auto max-w-md px-6 py-4 rounded-xl text-center mb-2"
                 style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.5)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.1)',
+                  backgroundColor: 'rgba(10, 20, 60, 0.7)',
+                  border: '1px solid rgba(48, 79, 254, 0.4)',
+                  boxShadow: '0 0 25px rgba(48, 79, 254, 0.15)',
                 }}
-                data-testid="example-marco"
+                data-testid="example-base-course"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold"
-                    style={{
-                      backgroundColor: 'rgba(34, 197, 94, 0.2)',
-                      color: 'rgb(134, 239, 172)',
-                    }}
-                  >
-                    M
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">{t('example.marco.name')}</p>
-                    <p className="text-sm text-muted-foreground">{t('example.marco.profile')}</p>
-                  </div>
-                </div>
-                <p className="text-sm leading-relaxed text-foreground/80">
-                  {t('example.marco.result')}
-                </p>
+                <p className="text-sm text-muted-foreground mb-1">{t('example.intro')}</p>
+                <p className="font-semibold text-primary">Same base lesson</p>
               </div>
               
-              {/* Laura */}
-              <div 
-                className="p-6 rounded-xl border border-primary/20"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.5)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.1)',
-                }}
-                data-testid="example-laura"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold"
-                    style={{
-                      backgroundColor: 'rgba(168, 85, 247, 0.2)',
-                      color: 'rgb(216, 180, 254)',
-                    }}
-                  >
-                    L
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">{t('example.laura.name')}</p>
-                    <p className="text-sm text-muted-foreground">{t('example.laura.profile')}</p>
-                  </div>
-                </div>
-                <p className="text-sm leading-relaxed text-foreground/80">
-                  {t('example.laura.result')}
-                </p>
+              {/* Bifurcation connectors */}
+              <div className="relative h-16 flex justify-center">
+                {/* Center vertical line */}
+                <div 
+                  className="absolute top-0 w-0.5 h-6"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.5) 0%, rgba(48, 79, 254, 0.3) 100%)',
+                    boxShadow: '0 0 6px rgba(48, 79, 254, 0.4)',
+                  }}
+                />
+                {/* Horizontal connector */}
+                <div 
+                  className="absolute top-6 h-0.5"
+                  style={{
+                    width: '60%',
+                    background: 'linear-gradient(90deg, rgba(34, 197, 94, 0.4) 0%, rgba(48, 79, 254, 0.3) 50%, rgba(168, 85, 247, 0.4) 100%)',
+                    boxShadow: '0 0 6px rgba(48, 79, 254, 0.3)',
+                  }}
+                />
+                {/* Left vertical line (to Marco) */}
+                <div 
+                  className="absolute top-6 left-[20%] w-0.5 h-10"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(34, 197, 94, 0.4) 0%, rgba(34, 197, 94, 0.6) 100%)',
+                    boxShadow: '0 0 6px rgba(34, 197, 94, 0.4)',
+                  }}
+                />
+                {/* Right vertical line (to Laura) */}
+                <div 
+                  className="absolute top-6 right-[20%] w-0.5 h-10"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(168, 85, 247, 0.4) 0%, rgba(168, 85, 247, 0.6) 100%)',
+                    boxShadow: '0 0 6px rgba(168, 85, 247, 0.4)',
+                  }}
+                />
               </div>
+              
+              {/* Marco and Laura side by side */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Marco */}
+                <div 
+                  className="p-5 rounded-xl"
+                  style={{
+                    backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                    border: '1px solid rgba(34, 197, 94, 0.3)',
+                    boxShadow: '0 0 25px rgba(34, 197, 94, 0.1)',
+                  }}
+                  data-testid="example-marco"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div 
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold"
+                      style={{
+                        backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                        color: 'rgb(134, 239, 172)',
+                      }}
+                    >
+                      M
+                    </div>
+                    <div>
+                      <p className="font-semibold">{t('example.marco.name')}</p>
+                      <p className="text-xs text-muted-foreground">{t('example.marco.profile')}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/80">
+                    {t('example.marco.result')}
+                  </p>
+                </div>
+                
+                {/* Laura */}
+                <div 
+                  className="p-5 rounded-xl"
+                  style={{
+                    backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                    border: '1px solid rgba(168, 85, 247, 0.3)',
+                    boxShadow: '0 0 25px rgba(168, 85, 247, 0.1)',
+                  }}
+                  data-testid="example-laura"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div 
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold"
+                      style={{
+                        backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                        color: 'rgb(216, 180, 254)',
+                      }}
+                    >
+                      L
+                    </div>
+                    <div>
+                      <p className="font-semibold">{t('example.laura.name')}</p>
+                      <p className="text-xs text-muted-foreground">{t('example.laura.profile')}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/80">
+                    {t('example.laura.result')}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Conclusion */}
+              <p className="text-center text-lg font-medium text-primary mt-8">
+                {t('example.conclusion')}
+              </p>
             </div>
-            
-            {/* Conclusion */}
-            <p className="text-center text-lg font-medium text-primary">
-              {t('example.conclusion')}
-            </p>
           </div>
         </section>
 
-        {/* SECTION 4: AI TUTOR - Repositioned as support tool */}
+        {/* SECTION 4: AI TUTOR - Text left, Mock visual right */}
         <section 
           className="py-16 md:py-20 relative z-10"
           data-testid="section-ai-tutor"
         >
           <div className="content-container">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 {/* Left - Text */}
                 <div>
@@ -395,49 +433,82 @@ export default function Hyperpersonalization() {
                   <h2 className="text-2xl md:text-3xl font-bold mb-4">
                     {t('aiTutor.title')}
                   </h2>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed">
                     {t('aiTutor.subtitle')}
                   </p>
                 </div>
                 
-                {/* Right - Bullets */}
-                <div>
-                  <ul className="space-y-4">
-                    {(t('aiTutor.bullets', { returnObjects: true }) as string[]).map((bullet, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-foreground/90">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Right - Mock visual (course fragment + AI bubble) */}
+                <div 
+                  className="rounded-xl p-5 relative"
+                  style={{
+                    backgroundColor: 'rgba(10, 20, 60, 0.6)',
+                    border: '1px solid rgba(48, 79, 254, 0.2)',
+                    boxShadow: '0 0 40px rgba(48, 79, 254, 0.1)',
+                  }}
+                  data-testid="ai-tutor-mock"
+                >
+                  {/* Course content fragment */}
+                  <div className="mb-4">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Lesson content</p>
+                    <div 
+                      className="p-3 rounded-lg text-sm text-foreground/70 leading-relaxed"
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                      }}
+                    >
+                      "The key to effective project management is understanding resource allocation and timeline dependencies..."
+                    </div>
+                  </div>
+                  
+                  {/* AI Tutor response bubble */}
+                  <div className="flex gap-3 items-start">
+                    <div 
+                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.3)' }}
+                    >
+                      <Bot className="w-4 h-4 text-primary" />
+                    </div>
+                    <div 
+                      className="flex-1 p-3 rounded-lg text-sm"
+                      style={{
+                        backgroundColor: 'rgba(48, 79, 254, 0.1)',
+                        border: '1px solid rgba(48, 79, 254, 0.2)',
+                      }}
+                    >
+                      <p className="text-xs text-primary mb-1 font-medium">AI Tutor</p>
+                      <p className="text-foreground/80 italic">
+                        "Think of it like coaching a sports team - you need to know your players' strengths and plan the game accordingly."
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 5: WHY MATTERS - Simple bullets */}
+        {/* SECTION 5: WHY MATTERS - Editorial inline style, no boxes */}
         <section 
           className="py-16 md:py-20 relative z-10"
           data-testid="section-why-matters"
         >
           <div className="content-container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10 text-center">
                 {t('whyMatters.title')}
               </h2>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+              {/* Editorial 2-column inline layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5 max-w-2xl mx-auto">
                 {(t('whyMatters.bullets', { returnObjects: true }) as string[]).map((bullet, index) => (
                   <div 
                     key={index}
-                    className="flex items-center gap-3 p-4 rounded-lg text-left"
-                    style={{
-                      backgroundColor: 'rgba(31, 111, 235, 0.05)',
-                    }}
+                    className="flex items-start gap-3"
                   >
-                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-sm text-foreground/90">{bullet}</span>
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground/90 leading-relaxed">{bullet}</span>
                   </div>
                 ))}
               </div>
@@ -445,7 +516,7 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 6: USE CASES - 2x2 grid */}
+        {/* SECTION 6: USE CASES - Asymmetric layout (1 large + 3 small) */}
         <section 
           className="py-16 md:py-20 relative z-10"
           data-testid="section-use-cases"
@@ -455,34 +526,64 @@ export default function Hyperpersonalization() {
               {t('useCases.title')}
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-              {useCaseItems.map(({ key, icon: Icon }) => (
+            <div className="max-w-4xl mx-auto">
+              {/* Featured use case (Corporate onboarding) */}
+              <div 
+                className="p-6 rounded-xl mb-5 flex items-start gap-5"
+                style={{
+                  backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                  border: '1px solid rgba(48, 79, 254, 0.25)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.1)',
+                }}
+                data-testid="use-case-onboarding"
+              >
                 <div 
-                  key={key}
-                  className="p-5 rounded-xl border border-primary/15 flex items-start gap-4"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/30"
                   style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                    backgroundColor: 'rgba(31, 111, 235, 0.15)',
                   }}
-                  data-testid={`use-case-${key}`}
                 >
+                  <Users className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-1">
+                    {t('useCases.items.onboarding.title')}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t('useCases.items.onboarding.description')}
+                  </p>
+                </div>
+              </div>
+              
+              {/* 3 smaller use cases */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {useCaseItems.slice(1).map(({ key, icon: Icon }) => (
                   <div 
-                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 border border-primary/25"
+                    key={key}
+                    className="p-4 rounded-xl"
                     style={{
-                      backgroundColor: 'rgba(31, 111, 235, 0.1)',
+                      backgroundColor: 'rgba(10, 20, 60, 0.35)',
+                      border: '1px solid rgba(48, 79, 254, 0.15)',
                     }}
+                    data-testid={`use-case-${key}`}
                   >
-                    <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-base mb-1">
+                    <div 
+                      className="w-9 h-9 rounded-lg flex items-center justify-center mb-3 border border-primary/20"
+                      style={{
+                        backgroundColor: 'rgba(31, 111, 235, 0.08)',
+                      }}
+                    >
+                      <Icon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-semibold text-sm mb-1">
                       {t(`useCases.items.${key}.title`)}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-snug">
+                    <p className="text-xs text-muted-foreground leading-snug">
                       {t(`useCases.items.${key}.description`)}
                     </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
