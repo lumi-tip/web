@@ -282,189 +282,261 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 3: EXAMPLE - Bifurcation Visual (Base course splits to Marco/Laura) */}
+        {/* SECTION 3: EXAMPLE - Dynamic Bifurcation Visual (Base course splits to Marco/Laura) */}
         <section 
-          className="py-16 md:py-20 lg:py-24 relative z-10"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-example"
         >
           <div className="content-container">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {t('example.title')}
               </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                {t('example.intro')}
+              </p>
             </div>
             
-            {/* Bifurcation Visual */}
-            <div className="max-w-3xl mx-auto">
-              {/* Base course at top */}
+            {/* Enhanced Bifurcation Visual */}
+            <div className="max-w-5xl mx-auto">
+              {/* Base course at top - centered, prominent */}
               <div 
-                className="mx-auto max-w-md px-6 py-4 rounded-xl text-center mb-2"
+                className="mx-auto max-w-sm px-8 py-5 rounded-2xl text-center relative"
                 style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.7)',
-                  border: '1px solid rgba(48, 79, 254, 0.4)',
-                  boxShadow: '0 0 25px rgba(48, 79, 254, 0.15)',
+                  backgroundColor: 'rgba(10, 20, 60, 0.8)',
+                  border: '2px solid rgba(48, 79, 254, 0.5)',
+                  boxShadow: '0 0 50px rgba(48, 79, 254, 0.25), 0 0 100px rgba(48, 79, 254, 0.1)',
                 }}
                 data-testid="example-base-course"
               >
-                <p className="text-sm text-muted-foreground mb-1">{t('example.intro')}</p>
-                <p className="font-semibold text-primary">Same base lesson</p>
+                <div className="w-10 h-10 mx-auto mb-3 rounded-lg flex items-center justify-center"
+                  style={{
+                    backgroundColor: 'rgba(48, 79, 254, 0.2)',
+                    border: '1px solid rgba(48, 79, 254, 0.3)',
+                  }}
+                >
+                  <GraduationCap className="w-5 h-5 text-primary" />
+                </div>
+                <p className="font-bold text-lg text-primary">{t('example.baseLesson')}</p>
               </div>
               
-              {/* Bifurcation connectors */}
-              <div className="relative h-16 flex justify-center">
-                {/* Center vertical line */}
+              {/* Enhanced Bifurcation connectors with glowing effect */}
+              <div className="relative h-24 md:h-32 flex justify-center">
+                {/* Center vertical line from base */}
                 <div 
-                  className="absolute top-0 w-0.5 h-6"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-8 md:h-10 rounded-full"
                   style={{
-                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.5) 0%, rgba(48, 79, 254, 0.3) 100%)',
-                    boxShadow: '0 0 6px rgba(48, 79, 254, 0.4)',
+                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.8) 0%, rgba(48, 79, 254, 0.4) 100%)',
+                    boxShadow: '0 0 12px rgba(48, 79, 254, 0.6), 0 0 24px rgba(48, 79, 254, 0.3)',
                   }}
                 />
-                {/* Horizontal connector */}
+                
+                {/* Glowing split node */}
                 <div 
-                  className="absolute top-6 h-0.5"
+                  className="absolute top-8 md:top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full"
                   style={{
-                    width: '60%',
-                    background: 'linear-gradient(90deg, rgba(34, 197, 94, 0.4) 0%, rgba(48, 79, 254, 0.3) 50%, rgba(168, 85, 247, 0.4) 100%)',
-                    boxShadow: '0 0 6px rgba(48, 79, 254, 0.3)',
+                    backgroundColor: 'rgba(48, 79, 254, 0.8)',
+                    boxShadow: '0 0 15px rgba(48, 79, 254, 0.8), 0 0 30px rgba(48, 79, 254, 0.5)',
                   }}
                 />
-                {/* Left vertical line (to Marco) */}
+                
+                {/* Left diagonal line (to Marco) */}
                 <div 
-                  className="absolute top-6 left-[20%] w-0.5 h-10"
+                  className="absolute top-10 md:top-12 left-[15%] md:left-[22%] w-1 h-14 md:h-20 rounded-full origin-top"
                   style={{
-                    background: 'linear-gradient(180deg, rgba(34, 197, 94, 0.4) 0%, rgba(34, 197, 94, 0.6) 100%)',
-                    boxShadow: '0 0 6px rgba(34, 197, 94, 0.4)',
+                    background: 'linear-gradient(180deg, rgba(34, 197, 94, 0.5) 0%, rgba(34, 197, 94, 0.8) 100%)',
+                    boxShadow: '0 0 12px rgba(34, 197, 94, 0.5), 0 0 24px rgba(34, 197, 94, 0.3)',
+                    transform: 'rotate(-25deg)',
                   }}
                 />
-                {/* Right vertical line (to Laura) */}
+                
+                {/* Right diagonal line (to Laura) */}
                 <div 
-                  className="absolute top-6 right-[20%] w-0.5 h-10"
+                  className="absolute top-10 md:top-12 right-[15%] md:right-[22%] w-1 h-14 md:h-20 rounded-full origin-top"
                   style={{
-                    background: 'linear-gradient(180deg, rgba(168, 85, 247, 0.4) 0%, rgba(168, 85, 247, 0.6) 100%)',
-                    boxShadow: '0 0 6px rgba(168, 85, 247, 0.4)',
+                    background: 'linear-gradient(180deg, rgba(168, 85, 247, 0.5) 0%, rgba(168, 85, 247, 0.8) 100%)',
+                    boxShadow: '0 0 12px rgba(168, 85, 247, 0.5), 0 0 24px rgba(168, 85, 247, 0.3)',
+                    transform: 'rotate(25deg)',
                   }}
                 />
               </div>
               
-              {/* Marco and Laura side by side */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Marco */}
+              {/* Marco and Laura - larger cards with more spacing */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24">
+                {/* Marco - Left path */}
                 <div 
-                  className="p-5 rounded-xl"
+                  className="p-6 md:p-8 rounded-2xl relative"
                   style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.5)',
-                    border: '1px solid rgba(34, 197, 94, 0.3)',
-                    boxShadow: '0 0 25px rgba(34, 197, 94, 0.1)',
+                    backgroundColor: 'rgba(10, 20, 60, 0.6)',
+                    border: '2px solid rgba(34, 197, 94, 0.4)',
+                    boxShadow: '0 0 40px rgba(34, 197, 94, 0.15), inset 0 1px 0 rgba(34, 197, 94, 0.1)',
                   }}
                   data-testid="example-marco"
                 >
-                  <div className="flex items-center gap-3 mb-3">
+                  {/* Glow accent */}
+                  <div 
+                    className="absolute -top-1 left-1/2 -translate-x-1/2 w-16 h-1 rounded-full"
+                    style={{
+                      background: 'linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.6), transparent)',
+                    }}
+                  />
+                  
+                  <div className="flex items-center gap-4 mb-5">
                     <div 
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold"
+                      className="w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold"
                       style={{
                         backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                        border: '2px solid rgba(34, 197, 94, 0.4)',
                         color: 'rgb(134, 239, 172)',
+                        boxShadow: '0 0 20px rgba(34, 197, 94, 0.2)',
                       }}
                     >
                       M
                     </div>
                     <div>
-                      <p className="font-semibold">{t('example.marco.name')}</p>
-                      <p className="text-xs text-muted-foreground">{t('example.marco.profile')}</p>
+                      <p className="font-bold text-lg">{t('example.marco.name')}</p>
+                      <p className="text-sm text-muted-foreground">{t('example.marco.profile')}</p>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-foreground/80">
-                    {t('example.marco.result')}
-                  </p>
+                  
+                  <div 
+                    className="p-4 rounded-xl"
+                    style={{
+                      backgroundColor: 'rgba(34, 197, 94, 0.05)',
+                      border: '1px solid rgba(34, 197, 94, 0.15)',
+                    }}
+                  >
+                    <p className="text-sm md:text-base leading-relaxed text-foreground/85">
+                      {t('example.marco.result')}
+                    </p>
+                  </div>
                 </div>
                 
-                {/* Laura */}
+                {/* Laura - Right path */}
                 <div 
-                  className="p-5 rounded-xl"
+                  className="p-6 md:p-8 rounded-2xl relative"
                   style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.5)',
-                    border: '1px solid rgba(168, 85, 247, 0.3)',
-                    boxShadow: '0 0 25px rgba(168, 85, 247, 0.1)',
+                    backgroundColor: 'rgba(10, 20, 60, 0.6)',
+                    border: '2px solid rgba(168, 85, 247, 0.4)',
+                    boxShadow: '0 0 40px rgba(168, 85, 247, 0.15), inset 0 1px 0 rgba(168, 85, 247, 0.1)',
                   }}
                   data-testid="example-laura"
                 >
-                  <div className="flex items-center gap-3 mb-3">
+                  {/* Glow accent */}
+                  <div 
+                    className="absolute -top-1 left-1/2 -translate-x-1/2 w-16 h-1 rounded-full"
+                    style={{
+                      background: 'linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)',
+                    }}
+                  />
+                  
+                  <div className="flex items-center gap-4 mb-5">
                     <div 
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold"
+                      className="w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold"
                       style={{
                         backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                        border: '2px solid rgba(168, 85, 247, 0.4)',
                         color: 'rgb(216, 180, 254)',
+                        boxShadow: '0 0 20px rgba(168, 85, 247, 0.2)',
                       }}
                     >
                       L
                     </div>
                     <div>
-                      <p className="font-semibold">{t('example.laura.name')}</p>
-                      <p className="text-xs text-muted-foreground">{t('example.laura.profile')}</p>
+                      <p className="font-bold text-lg">{t('example.laura.name')}</p>
+                      <p className="text-sm text-muted-foreground">{t('example.laura.profile')}</p>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-foreground/80">
-                    {t('example.laura.result')}
-                  </p>
+                  
+                  <div 
+                    className="p-4 rounded-xl"
+                    style={{
+                      backgroundColor: 'rgba(168, 85, 247, 0.05)',
+                      border: '1px solid rgba(168, 85, 247, 0.15)',
+                    }}
+                  >
+                    <p className="text-sm md:text-base leading-relaxed text-foreground/85">
+                      {t('example.laura.result')}
+                    </p>
+                  </div>
                 </div>
               </div>
               
               {/* Conclusion */}
-              <p className="text-center text-lg font-medium text-primary mt-8">
+              <p className="text-center text-xl font-semibold text-primary mt-12">
                 {t('example.conclusion')}
               </p>
             </div>
           </div>
         </section>
 
-        {/* SECTION 4: AI TUTOR - Text left, Mock visual right + Features list */}
+        {/* SECTION 4: AI TUTOR - Product highlight with better spacing */}
         <section 
-          className="py-16 md:py-20 relative z-10"
+          className="py-24 md:py-32 lg:py-36 relative z-10"
           data-testid="section-ai-tutor"
         >
           <div className="content-container">
-            <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-12">
-                {/* Left - Text */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
+            <div className="max-w-6xl mx-auto">
+              {/* Two-column layout: Text left, Mock right */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+                {/* Left - Text content with larger fonts */}
+                <div className="lg:sticky lg:top-8">
+                  <div className="flex items-center gap-3 mb-6">
                     <div 
-                      className="w-10 h-10 rounded-lg flex items-center justify-center border border-primary/25"
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
                       style={{
-                        backgroundColor: 'rgba(31, 111, 235, 0.12)',
+                        backgroundColor: 'rgba(48, 79, 254, 0.15)',
+                        border: '1px solid rgba(48, 79, 254, 0.3)',
+                        boxShadow: '0 0 25px rgba(48, 79, 254, 0.15)',
                       }}
                     >
-                      <Bot className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                      <Bot className="w-6 h-6 text-primary" strokeWidth={1.5} />
                     </div>
-                    <span className="text-xs font-medium text-primary uppercase tracking-wider">AI Tutor</span>
+                    <span className="text-sm font-semibold text-primary uppercase tracking-wider">AI Tutor</span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                  
+                  <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold mb-6 leading-tight">
                     {t('aiTutor.title')}
                   </h2>
-                  <p className="text-muted-foreground leading-relaxed">
+                  
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
                     {t('aiTutor.subtitle')}
                   </p>
+                  
+                  {/* Features list - inline checkmarks, no boxes */}
+                  <div data-testid="ai-tutor-features">
+                    <h3 className="text-base font-semibold mb-5 text-foreground/90">
+                      {t('aiTutor.featuresTitle')}
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                      {(t('aiTutor.features', { returnObjects: true }) as string[]).map((feature, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground/80 leading-relaxed">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Right - Mock visual (course fragment + AI bubble) */}
                 <div 
-                  className="rounded-xl p-5 relative"
+                  className="rounded-2xl p-6 md:p-8 relative"
                   style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.6)',
-                    border: '1px solid rgba(48, 79, 254, 0.2)',
-                    boxShadow: '0 0 40px rgba(48, 79, 254, 0.1)',
+                    backgroundColor: 'rgba(10, 20, 60, 0.7)',
+                    border: '1px solid rgba(48, 79, 254, 0.25)',
+                    boxShadow: '0 0 60px rgba(48, 79, 254, 0.12), 0 20px 40px rgba(0, 0, 0, 0.2)',
                   }}
                   data-testid="ai-tutor-mock"
                 >
                   {/* Course content fragment */}
-                  <div className="mb-4">
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Lesson content</p>
+                  <div className="mb-6">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-medium">Lesson content</p>
                     <div 
-                      className="p-3 rounded-lg text-sm text-foreground/70 leading-relaxed"
+                      className="p-4 rounded-xl text-sm md:text-base text-foreground/70 leading-relaxed"
                       style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
                       }}
                     >
                       "The key to effective project management is understanding resource allocation and timeline dependencies..."
@@ -472,41 +544,30 @@ export default function Hyperpersonalization() {
                   </div>
                   
                   {/* AI Tutor response bubble */}
-                  <div className="flex gap-3 items-start">
+                  <div className="flex gap-4 items-start">
                     <div 
-                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: 'rgba(48, 79, 254, 0.3)' }}
-                    >
-                      <Bot className="w-4 h-4 text-primary" />
-                    </div>
-                    <div 
-                      className="flex-1 p-3 rounded-lg text-sm"
-                      style={{
-                        backgroundColor: 'rgba(48, 79, 254, 0.1)',
-                        border: '1px solid rgba(48, 79, 254, 0.2)',
+                      className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ 
+                        backgroundColor: 'rgba(48, 79, 254, 0.25)',
+                        border: '1px solid rgba(48, 79, 254, 0.4)',
+                        boxShadow: '0 0 15px rgba(48, 79, 254, 0.2)',
                       }}
                     >
-                      <p className="text-xs text-primary mb-1 font-medium">AI Tutor</p>
-                      <p className="text-foreground/80 italic">
+                      <Bot className="w-5 h-5 text-primary" />
+                    </div>
+                    <div 
+                      className="flex-1 p-4 rounded-xl"
+                      style={{
+                        backgroundColor: 'rgba(48, 79, 254, 0.12)',
+                        border: '1px solid rgba(48, 79, 254, 0.25)',
+                      }}
+                    >
+                      <p className="text-xs text-primary mb-2 font-semibold uppercase tracking-wide">AI Tutor</p>
+                      <p className="text-foreground/85 italic text-sm md:text-base leading-relaxed">
                         "Think of it like coaching a sports team - you need to know your players' strengths and plan the game accordingly."
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              
-              {/* AI Tutor Features - Clean checkmark list */}
-              <div className="max-w-3xl mx-auto" data-testid="ai-tutor-features">
-                <h3 className="text-lg font-semibold mb-6 text-center">
-                  {t('aiTutor.featuresTitle')}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
-                  {(t('aiTutor.features', { returnObjects: true }) as string[]).map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-sm text-foreground/85 leading-relaxed">{feature}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>

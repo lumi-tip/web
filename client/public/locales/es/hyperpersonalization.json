@@ -31,6 +31,7 @@
   "example": {
     "title": "Un curso. Muchas formas de entenderlo.",
     "intro": "Una empresa imparte un curso sobre herramientas internas y flujos de trabajo.",
+    "baseLesson": "Misma lección base",
     "marco": {
       "name": "Marco",
       "profile": "aprende mejor a través de analogías deportivas",
