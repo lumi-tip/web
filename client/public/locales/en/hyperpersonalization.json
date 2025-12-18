@@ -1,142 +1,103 @@
 {
   "meta": {
-    "title": "Hyperpersonalized Learning | AI Tutor | LearnPack",
-    "description": "AI-powered personalized learning that adapts to every learner. Real-time guidance, contextual support, and adaptive explanations from the AI Tutor.",
-    "keywords": "hyperpersonalized learning, AI tutor, adaptive learning, personalized training, contextual guidance, real-time support, intelligent tutoring",
-    "ogTitle": "Hyperpersonalized Learning with AI Tutor | LearnPack",
-    "ogDescription": "Every learner receives real-time, adaptive support from the AI Tutor. Personalized guidance that improves comprehension, engagement, and completion rates."
+    "title": "Hyperpersonalized Learning | Adaptive Training System | LearnPack",
+    "description": "A hyperpersonalization system that turns one training course into unique learning experiences for each employee. Built for organizations, tailored to every learner.",
+    "keywords": "hyperpersonalized learning, adaptive training, personalized learning system, corporate training, learner profiling, adaptive course experience",
+    "ogTitle": "Hyperpersonalized Learning System | LearnPack",
+    "ogDescription": "Turn a single training course into personalized learning experiences for each employee. Adapt content, examples, and explanations to how every person learns."
   },
   "hero": {
-    "title": "A learning experience that adapts to every learner",
-    "subtitle": "The AI Tutor understands what each learner is reading and provides real-time, contextual guidance that improves comprehension, engagement, and completion rates.",
+    "title": "Hyperpersonalized learning, built for organizations and tailored to every learner",
+    "subtitle": "LearnPack turns a single training course into a unique learning experience for each employee, adapting content, examples, and explanations to how every person learns.",
     "ctaStart": "Start for Free",
-    "ctaDemo": "Book a Demo",
-    "exampleLabel": "Example · Context-aware help",
-    "courseExcerpt": "An API (Application Programming Interface) allows different software systems to communicate with each other.",
-    "highlightedLine": "REST endpoints use HTTP methods like GET, POST, PUT, and DELETE to perform operations on resources.",
-    "aiTutorMessage": "I see you are working on REST endpoints. Do you want a simpler explanation or an example for a banking API?"
+    "ctaDemo": "Book a Demo"
   },
-  "definition": {
-    "label": "DEFINITION · HYPERPERSONALIZED LEARNING",
-    "text": "Hyperpersonalized Learning in LearnPack means that every learner receives real-time adaptive support from the AI Tutor. It tailors explanations, clarifies concepts, and guides understanding directly inside the learning experience."
+  "system": {
+    "title": "How hyperpersonalized learning actually works",
+    "subtitle": "A clear process, no smoke.",
+    "step1": {
+      "title": "Build the base course for your organization",
+      "description": "Organizations create one training course aligned with company goals, tools, language, and internal guidelines."
+    },
+    "step2": {
+      "title": "Understand each learner as an individual",
+      "description": "Before starting, LearnPack asks each learner a small set of questions to understand their background, role, experience level, and learning preferences."
+    },
+    "step3": {
+      "title": "Adapt the course to each person",
+      "description": "LearnPack dynamically adapts examples, explanations, and references so every learner receives the same knowledge, explained in a way that makes sense to them."
+    }
   },
-  "uniqueValue": {
-    "title": "Support that feels personal, at scale",
+  "example": {
+    "title": "One course. Many ways to understand it.",
+    "intro": "A company delivers a course on internal tools and workflows.",
+    "marco": {
+      "name": "Marco",
+      "profile": "learns better through sports analogies",
+      "result": "LearnPack explains processes using examples related to teamwork, strategy, and game flow."
+    },
+    "laura": {
+      "name": "Laura",
+      "profile": "works in design and branding",
+      "result": "LearnPack adapts the same concepts using visual, creative, and fashion-related analogies."
+    },
+    "conclusion": "Same course. Same objectives. Different explanations. Better retention."
+  },
+  "aiTutor": {
+    "title": "The AI Tutor supports hyperpersonalization in real time",
+    "subtitle": "The AI Tutor helps learners during the course by answering questions, clarifying concepts, and guiding understanding. It works on top of the personalized experience, reinforcing learning without replacing instructors.",
     "bullets": [
-      "Responds to the learner's exact confusion",
-      "Adjusts depth and clarity of explanations",
-      "Tailors examples to each role or objective",
-      "Evolves as the learner progresses",
-      "Integrates seamlessly with any content"
-    ],
-    "diagram": {
-      "levels": "Different levels",
-      "roles": "Different roles",
-      "goals": "Different goals",
-      "result": "One AI Tutor experience"
-    }
+      "Clarifies content adapted to the learner",
+      "Provides contextual explanations",
+      "Reinforces personalized examples",
+      "Reduces frustration while learning"
+    ]
   },
-  "howItWorks": {
-    "title": "Learning that reacts to the learner",
-    "steps": {
-      "step1": {
-        "title": "Reads the moment",
-        "description": "The AI Tutor interprets context: what the learner is reading, previous attempts, and moments of hesitation."
-      },
-      "step2": {
-        "title": "Responds intelligently",
-        "description": "It provides clarifications, examples, or questions based on level, history, and the learner's objective."
-      },
-      "step3": {
-        "title": "Guides the learning path",
-        "description": "As the learner advances, the AI Tutor adjusts the guidance to strengthen long-term understanding."
-      }
-    }
-  },
-  "examples": {
-    "title": "What hyperpersonalization looks like in practice",
-    "scenarios": {
-      "scenario1": {
-        "title": "Simpler explanations",
-        "text": "A learner asks for a simpler explanation. The AI Tutor rewrites the paragraph instantly.",
-        "response": "\"GET retrieves data, POST sends new data. Think of it like reading vs. writing.\""
-      },
-      "scenario2": {
-        "title": "Role-based examples",
-        "text": "A sales employee requests an industry example. The AI Tutor adapts automatically.",
-        "response": "\"When a prospect asks for pricing, you'd use a GET request to fetch their quote.\""
-      },
-      "scenario3": {
-        "title": "Guided reasoning",
-        "text": "The AI Tutor guides reasoning instead of just giving the solution.",
-        "response": "\"What happens if the input is null? Think about edge cases first.\""
-      }
-    }
-  },
-  "impact": {
-    "title": "A measurable difference in how people learn",
-    "text": "Organizations using LearnPack see learners progressing with higher confidence and fewer blockers. Training programs supported by the AI Tutor achieve up to double the completion rate and significantly lower dropout levels, with clearer understanding and stronger skill application.",
-    "note": "Metrics based on aggregated performance across training centers and enterprise environments."
+  "whyMatters": {
+    "title": "Why this level of personalization matters",
+    "bullets": [
+      "Higher retention and understanding",
+      "Faster onboarding and upskilling",
+      "Less frustration during training",
+      "Same course quality, personalized at scale"
+    ]
   },
   "useCases": {
-    "title": "Perfect for any learning journey",
+    "title": "Where hyperpersonalization makes the difference",
     "items": {
       "onboarding": {
-        "title": "Onboarding",
-        "description": "Support adapted to each new hire's background."
+        "title": "Corporate onboarding",
+        "description": "Adapt training to each new hire's background and role."
       },
-      "technical": {
-        "title": "Technical Training",
-        "description": "Guidance through complex ideas and reasoning."
+      "tools": {
+        "title": "Internal tools and processes",
+        "description": "Explain systems using familiar contexts for each team."
       },
       "compliance": {
-        "title": "Compliance",
-        "description": "AI Tutor clarifies dense rules and policies."
+        "title": "Compliance and policies",
+        "description": "Clarify regulations with examples relevant to each department."
       },
-      "sales": {
-        "title": "Product & Sales Training",
-        "description": "Role-tailored examples inside the content."
+      "technical": {
+        "title": "Technical and role-specific training",
+        "description": "Tailor complexity and examples to experience levels."
       }
     }
-  },
-  "comparison": {
-    "title": "Static learning vs adaptive learning",
-    "static": {
-      "title": "Static learning",
-      "bullets": [
-        "Same content for everyone",
-        "Learners get stuck",
-        "No real-time adaptation"
-      ]
-    },
-    "adaptive": {
-      "title": "Adaptive learning",
-      "bullets": [
-        "Personalized guidance",
-        "Instant support",
-        "Each learner advances at their pace"
-      ]
-    }
-  },
-  "testimonial": {
-    "quote": "The AI Tutor helped our teams learn faster and stay engaged. It feels like having a personal coach inside every course.",
-    "author": "Training Director",
-    "company": "Enterprise Client"
   },
   "faq": {
     "title": "FAQs",
+    "lastUpdated": "Last updated: December 2025",
     "questions": {
       "q1": {
         "question": "What is hyperpersonalized learning in LearnPack?",
-        "answer": "Hyperpersonalized learning in LearnPack means each learner receives real-time, context-aware support from the AI Tutor. The guidance adapts to what the learner is reading, their progress, and past interactions, helping them understand concepts inside the learning experience."
+        "answer": "Hyperpersonalized learning in LearnPack is a system that adapts a single training course to each individual learner. It combines organization-specific base content with learner profiling and dynamic adaptation of examples and explanations."
       },
       "q2": {
-        "question": "Is the AI Tutor just a chatbot?",
-        "answer": "No. The AI Tutor is not a generic chatbot. It understands the course content and what the learner is reading, then provides contextual explanations and guiding questions tied directly to that material."
+        "question": "How does learner profiling work?",
+        "answer": "Before starting a course, LearnPack asks each learner around 5 questions about their role, experience, background, and learning preferences. This information is used to personalize the entire learning experience."
       },
       "q3": {
-        "question": "How is hyperpersonalized learning different from adaptive learning?",
-        "answer": "Adaptive learning typically changes content paths or difficulty. Hyperpersonalized learning adds real-time guidance inside the content, including explanations, examples, and Socratic support when learners get stuck."
+        "question": "Is the AI Tutor the same as hyperpersonalization?",
+        "answer": "No. The AI Tutor is one component that supports the hyperpersonalization system. It provides real-time guidance within the personalized experience but is not the whole system."
       },
       "q4": {
         "question": "Does the AI Tutor replace instructors?",
@@ -145,7 +106,7 @@
     }
   },
   "cta": {
-    "title": "Give every learner the support they need, the moment they need it.",
+    "title": "Give every learner the experience they need to succeed.",
     "ctaStart": "Start for Free",
     "ctaDemo": "Book a Demo"
   }
