@@ -45,7 +45,7 @@ export default function Hyperpersonalization() {
 
   const stars = useMemo(
     () =>
-      Array.from({ length: 60 }, (_, i) => ({
+      Array.from({ length: 80 }, (_, i) => ({
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         delay: `${Math.random() * 12}s`,
@@ -97,8 +97,9 @@ export default function Hyperpersonalization() {
       <Header />
 
       <main className="hero-animated-bg relative overflow-hidden">
-        {/* Starfield background */}
+        {/* GLOBAL BACKGROUND - Stars and light beams applied at top level for continuity */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {/* Starfield - distributed across entire page */}
           {stars.map((star, i) => (
             <div
               key={i}
@@ -114,27 +115,43 @@ export default function Hyperpersonalization() {
           ))}
         </div>
 
-        {/* Blue glows */}
+        {/* GLOBAL LIGHT BEAMS - Long, blurred, continuous across page */}
         <div 
-          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+          className="absolute top-0 right-0 w-[800px] h-[1200px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.08) 0%, transparent 70%)',
-            filter: 'blur(100px)',
+            background: 'radial-gradient(ellipse at top right, hsl(207 100% 50% / 0.06) 0%, transparent 60%)',
+            filter: 'blur(150px)',
           }}
           aria-hidden="true"
         />
         <div 
-          className="absolute top-[40%] left-[-10%] w-[700px] h-[700px] pointer-events-none"
+          className="absolute top-[20%] left-[-15%] w-[900px] h-[1400px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.06) 0%, transparent 60%)',
-            filter: 'blur(120px)',
+            background: 'radial-gradient(ellipse at center left, hsl(200 80% 60% / 0.04) 0%, transparent 55%)',
+            filter: 'blur(180px)',
+          }}
+          aria-hidden="true"
+        />
+        <div 
+          className="absolute top-[50%] right-[-10%] w-[700px] h-[1000px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center right, hsl(210 90% 55% / 0.05) 0%, transparent 50%)',
+            filter: 'blur(160px)',
+          }}
+          aria-hidden="true"
+        />
+        <div 
+          className="absolute top-[75%] left-[5%] w-[600px] h-[800px] pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at bottom left, hsl(205 85% 60% / 0.04) 0%, transparent 55%)',
+            filter: 'blur(140px)',
           }}
           aria-hidden="true"
         />
 
         {/* SECTION 1: HERO - Centered, focused on system */}
         <section 
-          className="py-20 md:py-28 lg:py-32"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-hero"
         >
           <div className="content-container">
@@ -270,15 +287,7 @@ export default function Hyperpersonalization() {
           className="py-16 md:py-20 lg:py-24 relative z-10"
           data-testid="section-example"
         >
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'linear-gradient(180deg, rgba(31, 111, 235, 0.02) 0%, transparent 50%, rgba(31, 111, 235, 0.02) 100%)',
-            }}
-            aria-hidden="true"
-          />
-          
-          <div className="content-container relative z-10">
+          <div className="content-container">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {t('example.title')}
@@ -409,14 +418,14 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 4: AI TUTOR - Text left, Mock visual right */}
+        {/* SECTION 4: AI TUTOR - Text left, Mock visual right + Features list */}
         <section 
           className="py-16 md:py-20 relative z-10"
           data-testid="section-ai-tutor"
         >
           <div className="content-container">
             <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-12">
                 {/* Left - Text */}
                 <div>
                   <div className="flex items-center gap-3 mb-4">
@@ -483,6 +492,21 @@ export default function Hyperpersonalization() {
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+              
+              {/* AI Tutor Features - Clean checkmark list */}
+              <div className="max-w-3xl mx-auto" data-testid="ai-tutor-features">
+                <h3 className="text-lg font-semibold mb-6 text-center">
+                  {t('aiTutor.featuresTitle')}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
+                  {(t('aiTutor.features', { returnObjects: true }) as string[]).map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
+                      <span className="text-sm text-foreground/85 leading-relaxed">{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

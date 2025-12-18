@@ -46,11 +46,15 @@
   "aiTutor": {
     "title": "The AI Tutor supports hyperpersonalization in real time",
     "subtitle": "The AI Tutor helps learners during the course by answering questions, clarifying concepts, and guiding understanding. It works on top of the personalized experience, reinforcing learning without replacing instructors.",
-    "bullets": [
-      "Clarifies content adapted to the learner",
-      "Provides contextual explanations",
-      "Reinforces personalized examples",
-      "Reduces frustration while learning"
+    "featuresTitle": "What the AI Tutor does during learning",
+    "features": [
+      "Instant, on-demand help inside the course",
+      "Context-aware explanations based on what the learner is reading",
+      "Remembers learner progress and past interactions",
+      "Uses Socratic guidance instead of just giving answers",
+      "Adapts explanations to the learner's level and background",
+      "Multilingual support",
+      "Available 24/7 without increasing instructor workload"
     ]
   },
   "whyMatters": {
