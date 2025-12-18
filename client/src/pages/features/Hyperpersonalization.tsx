@@ -461,7 +461,7 @@ export default function Hyperpersonalization() {
         >
           <div className="content-container">
             <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-12">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 {/* Left - Text */}
                 <div>
                   <div className="flex items-center gap-3 mb-4">
@@ -530,71 +530,78 @@ export default function Hyperpersonalization() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4.5: AI TUTOR FEATURES - Spotlight Carousel */}
+        <section 
+          className="py-20 md:py-28 relative z-10"
+          data-testid="section-ai-tutor-features"
+        >
+          <div className="content-container">
+            <div 
+              className="max-w-3xl mx-auto" 
+              data-testid="ai-tutor-features"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold mb-12 text-center">
+                {t('aiTutor.featuresTitle')}
+              </h3>
               
-              {/* AI Tutor Features - Spotlight Carousel */}
-              <div 
-                className="mt-20 max-w-2xl mx-auto" 
-                data-testid="ai-tutor-features"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-              >
-                <h3 className="text-xl md:text-2xl font-semibold mb-10 text-center text-foreground/90">
-                  {t('aiTutor.featuresTitle')}
-                </h3>
+              {/* Carousel Container */}
+              <div className="relative">
+                {/* Feature Spotlight */}
+                <div 
+                  className="flex flex-col items-center text-center p-10 md:p-12 rounded-2xl transition-all duration-500"
+                  style={{
+                    backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                    border: '1px solid rgba(48, 79, 254, 0.2)',
+                    boxShadow: '0 0 80px rgba(48, 79, 254, 0.1)',
+                  }}
+                >
+                  {features[activeFeatureIndex] && (() => {
+                    const iconKey = features[activeFeatureIndex].icon as keyof typeof iconMap;
+                    const IconComponent = iconMap[iconKey];
+                    return (
+                      <>
+                        <div 
+                          className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300"
+                          style={{
+                            backgroundColor: 'rgba(48, 79, 254, 0.2)',
+                            border: '1px solid rgba(48, 79, 254, 0.4)',
+                            boxShadow: '0 0 40px rgba(48, 79, 254, 0.25)',
+                          }}
+                        >
+                          {IconComponent && <IconComponent className="w-10 h-10 text-primary" strokeWidth={1.5} />}
+                        </div>
+                        <h4 className="text-2xl font-semibold mb-4 text-foreground">
+                          {features[activeFeatureIndex].title}
+                        </h4>
+                        <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                          {features[activeFeatureIndex].description}
+                        </p>
+                      </>
+                    );
+                  })()}
+                </div>
                 
-                {/* Carousel Container */}
-                <div className="relative">
-                  {/* Feature Spotlight */}
-                  <div 
-                    className="flex flex-col items-center text-center p-8 rounded-2xl transition-all duration-500"
-                    style={{
-                      backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                      border: '1px solid rgba(48, 79, 254, 0.15)',
-                      boxShadow: '0 0 60px rgba(48, 79, 254, 0.08)',
-                    }}
-                  >
-                    {features[activeFeatureIndex] && (() => {
-                      const iconKey = features[activeFeatureIndex].icon as keyof typeof iconMap;
-                      const IconComponent = iconMap[iconKey];
-                      return (
-                        <>
-                          <div 
-                            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300"
-                            style={{
-                              backgroundColor: 'rgba(48, 79, 254, 0.15)',
-                              border: '1px solid rgba(48, 79, 254, 0.3)',
-                              boxShadow: '0 0 30px rgba(48, 79, 254, 0.2)',
-                            }}
-                          >
-                            {IconComponent && <IconComponent className="w-8 h-8 text-primary" strokeWidth={1.5} />}
-                          </div>
-                          <h4 className="text-xl font-semibold mb-3 text-foreground">
-                            {features[activeFeatureIndex].title}
-                          </h4>
-                          <p className="text-base text-muted-foreground leading-relaxed max-w-md">
-                            {features[activeFeatureIndex].description}
-                          </p>
-                        </>
-                      );
-                    })()}
-                  </div>
-                  
-                  {/* Navigation Dots */}
-                  <div className="flex justify-center gap-2 mt-6">
-                    {features.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setActiveFeatureIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === activeFeatureIndex 
-                            ? 'bg-primary w-6' 
-                            : 'bg-foreground/20 hover:bg-foreground/40'
-                        }`}
-                        aria-label={`Go to feature ${index + 1}`}
-                        data-testid={`carousel-dot-${index}`}
-                      />
-                    ))}
-                  </div>
+                {/* Navigation Dots */}
+                <div className="flex justify-center gap-3 mt-8">
+                  {features.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveFeatureIndex(index)}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        index === activeFeatureIndex 
+                          ? 'bg-primary w-8' 
+                          : 'bg-foreground/20 hover:bg-foreground/40 w-2.5'
+                      }`}
+                      aria-label={`Go to feature ${index + 1}`}
+                      data-testid={`carousel-dot-${index}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
