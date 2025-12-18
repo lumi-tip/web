@@ -31,7 +31,6 @@
   "example": {
     "title": "One course. Many ways to understand it.",
     "intro": "A company delivers a course on internal tools and workflows.",
-    "baseLesson": "Same base lesson",
     "marco": {
       "name": "Marco",
       "profile": "learns better through sports analogies",
