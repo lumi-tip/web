@@ -48,13 +48,41 @@
     "subtitle": "El AI Tutor ayuda a los estudiantes durante el curso respondiendo preguntas, aclarando conceptos y guiando la comprensión. Funciona sobre la experiencia personalizada, reforzando el aprendizaje sin reemplazar a los instructores.",
     "featuresTitle": "Qué hace el AI Tutor durante el aprendizaje",
     "features": [
-      "Ayuda instantánea y bajo demanda dentro del curso",
-      "Explicaciones contextuales basadas en lo que el estudiante está leyendo",
-      "Recuerda el progreso del estudiante e interacciones previas",
-      "Usa orientación socrática en lugar de solo dar respuestas",
-      "Adapta explicaciones al nivel y contexto del estudiante",
-      "Soporte multilingüe",
-      "Disponible 24/7 sin aumentar la carga de trabajo del instructor"
+      {
+        "icon": "zap",
+        "title": "Ayuda Instantánea",
+        "description": "Asistencia bajo demanda dentro del curso, justo cuando más lo necesitan"
+      },
+      {
+        "icon": "focus",
+        "title": "Contextual",
+        "description": "Explicaciones adaptadas a lo que el estudiante está leyendo en ese momento"
+      },
+      {
+        "icon": "brain",
+        "title": "Memoria y Progreso",
+        "description": "Recuerda el viaje de cada estudiante, construyendo sobre interacciones pasadas"
+      },
+      {
+        "icon": "compass",
+        "title": "Guía Socrática",
+        "description": "Guía la comprensión a través de preguntas en lugar de solo dar respuestas"
+      },
+      {
+        "icon": "sliders",
+        "title": "Nivel Adaptativo",
+        "description": "Ajusta complejidad y tono según el contexto de cada estudiante"
+      },
+      {
+        "icon": "globe",
+        "title": "Multilingüe",
+        "description": "Apoya a los estudiantes en su idioma preferido sin problemas"
+      },
+      {
+        "icon": "clock",
+        "title": "Siempre Disponible",
+        "description": "Soporte 24/7 sin aumentar la carga de trabajo del instructor"
+      }
     ]
   },
   "whyMatters": {

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -12,7 +12,14 @@ import {
   GraduationCap,
   ArrowRight,
   Check,
-  ChevronDown
+  ChevronDown,
+  Zap,
+  Focus,
+  Brain,
+  Compass,
+  SlidersHorizontal,
+  Globe,
+  Clock
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import {
@@ -42,6 +49,35 @@ export default function Hyperpersonalization() {
     { key: 'compliance', icon: Shield },
     { key: 'technical', icon: GraduationCap }
   ];
+
+  const iconMap = {
+    zap: Zap,
+    focus: Focus,
+    brain: Brain,
+    compass: Compass,
+    sliders: SlidersHorizontal,
+    globe: Globe,
+    clock: Clock,
+  } as const;
+
+  const features = t('aiTutor.features', { returnObjects: true }) as Array<{
+    icon: string;
+    title: string;
+    description: string;
+  }>;
+
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextFeature = useCallback(() => {
+    setActiveFeatureIndex((prev) => (prev + 1) % features.length);
+  }, [features.length]);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(nextFeature, 4000);
+    return () => clearInterval(interval);
+  }, [isPaused, nextFeature]);
 
   const stars = useMemo(
     () =>
@@ -495,18 +531,70 @@ export default function Hyperpersonalization() {
                 </div>
               </div>
               
-              {/* AI Tutor Features - Clean checkmark list */}
-              <div className="max-w-3xl mx-auto" data-testid="ai-tutor-features">
-                <h3 className="text-lg font-semibold mb-6 text-center">
+              {/* AI Tutor Features - Spotlight Carousel */}
+              <div 
+                className="mt-20 max-w-2xl mx-auto" 
+                data-testid="ai-tutor-features"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                <h3 className="text-xl md:text-2xl font-semibold mb-10 text-center text-foreground/90">
                   {t('aiTutor.featuresTitle')}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
-                  {(t('aiTutor.features', { returnObjects: true }) as string[]).map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
-                      <span className="text-sm text-foreground/85 leading-relaxed">{feature}</span>
-                    </div>
-                  ))}
+                
+                {/* Carousel Container */}
+                <div className="relative">
+                  {/* Feature Spotlight */}
+                  <div 
+                    className="flex flex-col items-center text-center p-8 rounded-2xl transition-all duration-500"
+                    style={{
+                      backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                      border: '1px solid rgba(48, 79, 254, 0.15)',
+                      boxShadow: '0 0 60px rgba(48, 79, 254, 0.08)',
+                    }}
+                  >
+                    {features[activeFeatureIndex] && (() => {
+                      const iconKey = features[activeFeatureIndex].icon as keyof typeof iconMap;
+                      const IconComponent = iconMap[iconKey];
+                      return (
+                        <>
+                          <div 
+                            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300"
+                            style={{
+                              backgroundColor: 'rgba(48, 79, 254, 0.15)',
+                              border: '1px solid rgba(48, 79, 254, 0.3)',
+                              boxShadow: '0 0 30px rgba(48, 79, 254, 0.2)',
+                            }}
+                          >
+                            {IconComponent && <IconComponent className="w-8 h-8 text-primary" strokeWidth={1.5} />}
+                          </div>
+                          <h4 className="text-xl font-semibold mb-3 text-foreground">
+                            {features[activeFeatureIndex].title}
+                          </h4>
+                          <p className="text-base text-muted-foreground leading-relaxed max-w-md">
+                            {features[activeFeatureIndex].description}
+                          </p>
+                        </>
+                      );
+                    })()}
+                  </div>
+                  
+                  {/* Navigation Dots */}
+                  <div className="flex justify-center gap-2 mt-6">
+                    {features.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setActiveFeatureIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === activeFeatureIndex 
+                            ? 'bg-primary w-6' 
+                            : 'bg-foreground/20 hover:bg-foreground/40'
+                        }`}
+                        aria-label={`Go to feature ${index + 1}`}
+                        data-testid={`carousel-dot-${index}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

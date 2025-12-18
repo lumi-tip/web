@@ -48,13 +48,41 @@
     "subtitle": "The AI Tutor helps learners during the course by answering questions, clarifying concepts, and guiding understanding. It works on top of the personalized experience, reinforcing learning without replacing instructors.",
     "featuresTitle": "What the AI Tutor does during learning",
     "features": [
-      "Instant, on-demand help inside the course",
-      "Context-aware explanations based on what the learner is reading",
-      "Remembers learner progress and past interactions",
-      "Uses Socratic guidance instead of just giving answers",
-      "Adapts explanations to the learner's level and background",
-      "Multilingual support",
-      "Available 24/7 without increasing instructor workload"
+      {
+        "icon": "zap",
+        "title": "Instant Help",
+        "description": "On-demand assistance inside the course, right when learners need it most"
+      },
+      {
+        "icon": "focus",
+        "title": "Context-Aware",
+        "description": "Explanations tailored to exactly what the learner is reading at that moment"
+      },
+      {
+        "icon": "brain",
+        "title": "Memory & Progress",
+        "description": "Remembers each learner's journey, building on past interactions"
+      },
+      {
+        "icon": "compass",
+        "title": "Socratic Guidance",
+        "description": "Guides understanding through questions rather than just giving answers"
+      },
+      {
+        "icon": "sliders",
+        "title": "Adaptive Level",
+        "description": "Adjusts complexity and tone to match each learner's background"
+      },
+      {
+        "icon": "globe",
+        "title": "Multilingual",
+        "description": "Supports learners in their preferred language seamlessly"
+      },
+      {
+        "icon": "clock",
+        "title": "Always Available",
+        "description": "24/7 support without increasing instructor workload"
+      }
     ]
   },
   "whyMatters": {
