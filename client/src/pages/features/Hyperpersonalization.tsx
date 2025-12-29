@@ -68,6 +68,7 @@ export default function Hyperpersonalization() {
 
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
   const nextFeature = useCallback(() => {
     setActiveFeatureIndex((prev) => (prev + 1) % features.length);
@@ -238,18 +239,29 @@ export default function Hyperpersonalization() {
               </p>
             </div>
             
-            {/* Split Number/Content Layout */}
-            <div className="max-w-3xl mx-auto">
+            {/* Split Number/Content Layout with hover interactions */}
+            <div 
+              className="max-w-3xl mx-auto"
+              onMouseLeave={() => setHoveredStep(null)}
+            >
               {/* Step 1 */}
-              <div className="flex gap-6 md:gap-10 mb-10" data-testid="flow-step-1">
+              <div 
+                className="flex gap-6 md:gap-10 mb-10 cursor-pointer transition-all duration-300"
+                style={{
+                  opacity: hoveredStep === null ? 1 : hoveredStep === 1 ? 1 : 0.4,
+                  transform: hoveredStep === 1 ? 'scale(1.02)' : 'scale(1)',
+                }}
+                onMouseEnter={() => setHoveredStep(1)}
+                data-testid="flow-step-1"
+              >
                 {/* Number Column */}
                 <div className="relative flex flex-col items-center">
                   <div 
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold transition-all duration-300"
                     style={{
-                      backgroundColor: 'rgba(48, 79, 254, 0.15)',
-                      border: '1px solid rgba(48, 79, 254, 0.4)',
-                      boxShadow: '0 0 30px rgba(48, 79, 254, 0.2)',
+                      backgroundColor: hoveredStep === 1 ? 'rgba(48, 79, 254, 0.25)' : 'rgba(48, 79, 254, 0.15)',
+                      border: hoveredStep === 1 ? '1px solid rgba(48, 79, 254, 0.6)' : '1px solid rgba(48, 79, 254, 0.4)',
+                      boxShadow: hoveredStep === 1 ? '0 0 50px rgba(48, 79, 254, 0.35)' : '0 0 30px rgba(48, 79, 254, 0.2)',
                       color: 'rgb(96, 165, 250)',
                     }}
                   >
@@ -267,8 +279,13 @@ export default function Hyperpersonalization() {
                 </div>
                 {/* Content Column */}
                 <div className="flex-1 pt-2">
-                  <h3 className="font-semibold text-xl md:text-2xl mb-2 text-foreground">
-                    {t('system.step1.title')}
+                  <h3 
+                    className="font-semibold mb-2 text-foreground transition-all duration-300"
+                    style={{
+                      fontSize: hoveredStep === 1 ? '1.5rem' : undefined,
+                    }}
+                  >
+                    <span className="text-xl md:text-2xl">{t('system.step1.title')}</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     {t('system.step1.description')}
@@ -277,15 +294,23 @@ export default function Hyperpersonalization() {
               </div>
               
               {/* Step 2 */}
-              <div className="flex gap-6 md:gap-10 mb-10" data-testid="flow-step-2">
+              <div 
+                className="flex gap-6 md:gap-10 mb-10 cursor-pointer transition-all duration-300"
+                style={{
+                  opacity: hoveredStep === null ? 1 : hoveredStep === 2 ? 1 : 0.4,
+                  transform: hoveredStep === 2 ? 'scale(1.02)' : 'scale(1)',
+                }}
+                onMouseEnter={() => setHoveredStep(2)}
+                data-testid="flow-step-2"
+              >
                 {/* Number Column */}
                 <div className="relative flex flex-col items-center">
                   <div 
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold transition-all duration-300"
                     style={{
-                      backgroundColor: 'rgba(48, 79, 254, 0.15)',
-                      border: '1px solid rgba(48, 79, 254, 0.4)',
-                      boxShadow: '0 0 30px rgba(48, 79, 254, 0.2)',
+                      backgroundColor: hoveredStep === 2 ? 'rgba(48, 79, 254, 0.25)' : 'rgba(48, 79, 254, 0.15)',
+                      border: hoveredStep === 2 ? '1px solid rgba(48, 79, 254, 0.6)' : '1px solid rgba(48, 79, 254, 0.4)',
+                      boxShadow: hoveredStep === 2 ? '0 0 50px rgba(48, 79, 254, 0.35)' : '0 0 30px rgba(48, 79, 254, 0.2)',
                       color: 'rgb(96, 165, 250)',
                     }}
                   >
@@ -303,8 +328,13 @@ export default function Hyperpersonalization() {
                 </div>
                 {/* Content Column */}
                 <div className="flex-1 pt-2">
-                  <h3 className="font-semibold text-xl md:text-2xl mb-2 text-foreground">
-                    {t('system.step2.title')}
+                  <h3 
+                    className="font-semibold mb-2 text-foreground transition-all duration-300"
+                    style={{
+                      fontSize: hoveredStep === 2 ? '1.5rem' : undefined,
+                    }}
+                  >
+                    <span className="text-xl md:text-2xl">{t('system.step2.title')}</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     {t('system.step2.description')}
@@ -313,15 +343,23 @@ export default function Hyperpersonalization() {
               </div>
               
               {/* Step 3 */}
-              <div className="flex gap-6 md:gap-10" data-testid="flow-step-3">
+              <div 
+                className="flex gap-6 md:gap-10 cursor-pointer transition-all duration-300"
+                style={{
+                  opacity: hoveredStep === null ? 1 : hoveredStep === 3 ? 1 : 0.4,
+                  transform: hoveredStep === 3 ? 'scale(1.02)' : 'scale(1)',
+                }}
+                onMouseEnter={() => setHoveredStep(3)}
+                data-testid="flow-step-3"
+              >
                 {/* Number Column */}
                 <div className="relative flex flex-col items-center">
                   <div 
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold transition-all duration-300"
                     style={{
-                      backgroundColor: 'rgba(48, 79, 254, 0.2)',
-                      border: '1px solid rgba(48, 79, 254, 0.5)',
-                      boxShadow: '0 0 40px rgba(48, 79, 254, 0.25)',
+                      backgroundColor: hoveredStep === 3 ? 'rgba(48, 79, 254, 0.3)' : 'rgba(48, 79, 254, 0.2)',
+                      border: hoveredStep === 3 ? '1px solid rgba(48, 79, 254, 0.7)' : '1px solid rgba(48, 79, 254, 0.5)',
+                      boxShadow: hoveredStep === 3 ? '0 0 60px rgba(48, 79, 254, 0.4)' : '0 0 40px rgba(48, 79, 254, 0.25)',
                       color: 'rgb(129, 140, 248)',
                     }}
                   >
@@ -330,8 +368,13 @@ export default function Hyperpersonalization() {
                 </div>
                 {/* Content Column */}
                 <div className="flex-1 pt-2">
-                  <h3 className="font-semibold text-xl md:text-2xl mb-2 text-foreground">
-                    {t('system.step3.title')}
+                  <h3 
+                    className="font-semibold mb-2 text-foreground transition-all duration-300"
+                    style={{
+                      fontSize: hoveredStep === 3 ? '1.5rem' : undefined,
+                    }}
+                  >
+                    <span className="text-xl md:text-2xl">{t('system.step3.title')}</span>
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     {t('system.step3.description')}
