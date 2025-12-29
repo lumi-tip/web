@@ -1,6 +1,7 @@
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import { motion, useInView } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -69,6 +70,10 @@ export default function Hyperpersonalization() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+  
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const isTimelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
+  const whyMattersBullets = t('whyMatters.bullets', { returnObjects: true }) as string[];
 
   const nextFeature = useCallback(() => {
     setActiveFeatureIndex((prev) => (prev + 1) % features.length);
@@ -675,71 +680,171 @@ export default function Hyperpersonalization() {
           </div>
         </section>
 
-        {/* SECTION 5: WHY MATTERS - Editorial inline style, no boxes */}
+        {/* SECTION 5: WHY MATTERS - Signal Sweep Timeline */}
         <section 
-          className="py-20 md:py-28 lg:py-32 relative z-10"
+          className="py-20 md:py-28 relative z-10"
           data-testid="section-why-matters"
         >
           <div className="content-container">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-16 md:mb-20 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-16 text-center">
               {t('whyMatters.title')}
             </h2>
             
-            {/* Full-width alternating rows */}
-            <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
-              {(t('whyMatters.bullets', { returnObjects: true }) as string[]).map((bullet, index) => {
-                const isEven = index % 2 === 0;
-                return (
-                  <div 
-                    key={index}
-                    className={`flex items-center gap-6 md:gap-10 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
-                  >
-                    {/* Decorative accent */}
-                    <div 
-                      className="hidden md:flex flex-shrink-0 w-20 h-20 items-center justify-center"
-                    >
-                      <div 
-                        className="w-3 h-3 rounded-full"
-                        style={{
-                          backgroundColor: 'rgba(96, 165, 250, 0.8)',
-                          boxShadow: '0 0 20px rgba(48, 79, 254, 0.6), 0 0 40px rgba(48, 79, 254, 0.3)',
-                        }}
-                      />
-                    </div>
+            {/* Signal Sweep Timeline */}
+            <div 
+              ref={timelineRef}
+              className="max-w-4xl mx-auto"
+            >
+              {/* Desktop: Horizontal Timeline */}
+              <div className="hidden md:block relative">
+                {/* Central gradient line */}
+                <div 
+                  className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(48, 79, 254, 0.6) 20%, rgba(48, 79, 254, 0.6) 80%, transparent 100%)',
+                  }}
+                />
+                
+                {/* Timeline items */}
+                <div className="flex justify-between items-center relative">
+                  {whyMattersBullets.map((bullet, index) => {
+                    const isAbove = index % 2 === 0;
                     
-                    {/* Statement text */}
-                    <div 
-                      className={`flex-1 ${isEven ? 'text-left md:pr-12' : 'text-right md:pl-12'}`}
+                    return (
+                      <div 
+                        key={index}
+                        className="flex-1 flex flex-col items-center group"
+                      >
+                        {/* Statement above the line */}
+                        {isAbove && (
+                          <motion.div 
+                            className="mb-6 px-3 text-center relative cursor-default"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isTimelineInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: index * 0.15, duration: 0.5 }}
+                          >
+                            <p className="text-sm lg:text-base text-foreground/90 leading-relaxed">
+                              {bullet}
+                            </p>
+                            {/* Hover sweep underline */}
+                            <div 
+                              className="absolute bottom-0 left-1/2 h-px w-0 group-hover:w-full -translate-x-1/2 transition-all duration-500"
+                              style={{
+                                background: 'linear-gradient(90deg, transparent, rgba(48, 79, 254, 0.5), transparent)',
+                              }}
+                            />
+                          </motion.div>
+                        )}
+                        
+                        {/* Numbered marker */}
+                        <motion.div 
+                          className="relative z-10"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={isTimelineInView ? { scale: 1, opacity: 1 } : {}}
+                          transition={{ delay: index * 0.15 + 0.2, duration: 0.4, type: "spring" }}
+                        >
+                          <motion.div 
+                            className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold"
+                            style={{
+                              backgroundColor: 'rgba(10, 20, 60, 0.9)',
+                              border: '2px solid rgba(48, 79, 254, 0.5)',
+                              color: 'rgb(96, 165, 250)',
+                            }}
+                            animate={isTimelineInView ? {
+                              boxShadow: [
+                                '0 0 0px rgba(48, 79, 254, 0)',
+                                '0 0 20px rgba(48, 79, 254, 0.6)',
+                                '0 0 10px rgba(48, 79, 254, 0.3)',
+                              ],
+                            } : {}}
+                            transition={{ 
+                              delay: index * 0.2 + 0.3,
+                              duration: 1,
+                              times: [0, 0.5, 1],
+                            }}
+                          >
+                            {index + 1}
+                          </motion.div>
+                        </motion.div>
+                        
+                        {/* Statement below the line */}
+                        {!isAbove && (
+                          <motion.div 
+                            className="mt-6 px-3 text-center relative cursor-default"
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={isTimelineInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: index * 0.15, duration: 0.5 }}
+                          >
+                            <p className="text-sm lg:text-base text-foreground/90 leading-relaxed">
+                              {bullet}
+                            </p>
+                            {/* Hover sweep underline */}
+                            <div 
+                              className="absolute bottom-0 left-1/2 h-px w-0 group-hover:w-full -translate-x-1/2 transition-all duration-500"
+                              style={{
+                                background: 'linear-gradient(90deg, transparent, rgba(48, 79, 254, 0.5), transparent)',
+                              }}
+                            />
+                          </motion.div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              {/* Mobile: Vertical Timeline */}
+              <div className="md:hidden relative pl-8">
+                {/* Vertical line */}
+                <div 
+                  className="absolute left-3 top-0 bottom-0 w-px"
+                  style={{
+                    background: 'linear-gradient(180deg, transparent 0%, rgba(48, 79, 254, 0.6) 10%, rgba(48, 79, 254, 0.6) 90%, transparent 100%)',
+                  }}
+                />
+                
+                {/* Mobile timeline items */}
+                <div className="space-y-8">
+                  {whyMattersBullets.map((bullet, index) => (
+                    <motion.div 
+                      key={index}
+                      className="relative"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isTimelineInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: index * 0.15, duration: 0.5 }}
                     >
-                      <p 
-                        className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed"
+                      {/* Marker */}
+                      <motion.div 
+                        className="absolute -left-8 top-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold"
                         style={{
-                          background: 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(148, 163, 184, 0.9) 100%)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
+                          backgroundColor: 'rgba(10, 20, 60, 0.9)',
+                          border: '2px solid rgba(48, 79, 254, 0.5)',
+                          color: 'rgb(96, 165, 250)',
+                        }}
+                        animate={isTimelineInView ? {
+                          boxShadow: [
+                            '0 0 0px rgba(48, 79, 254, 0)',
+                            '0 0 15px rgba(48, 79, 254, 0.6)',
+                            '0 0 8px rgba(48, 79, 254, 0.3)',
+                          ],
+                        } : {}}
+                        transition={{ 
+                          delay: index * 0.2 + 0.3,
+                          duration: 1,
+                          times: [0, 0.5, 1],
                         }}
                       >
+                        {index + 1}
+                      </motion.div>
+                      
+                      {/* Statement */}
+                      <p className="text-sm text-foreground/90 leading-relaxed">
                         {bullet}
                       </p>
-                    </div>
-                    
-                    {/* Decorative line on opposite side */}
-                    <div 
-                      className="hidden md:block flex-shrink-0 w-24"
-                    >
-                      <div 
-                        className="h-px w-full"
-                        style={{
-                          background: isEven 
-                            ? 'linear-gradient(90deg, rgba(48, 79, 254, 0.5) 0%, transparent 100%)'
-                            : 'linear-gradient(90deg, transparent 0%, rgba(48, 79, 254, 0.5) 100%)',
-                        }}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
