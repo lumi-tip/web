@@ -238,81 +238,105 @@ export default function Hyperpersonalization() {
               </p>
             </div>
             
-            {/* Vertical Flow Diagram */}
-            <div className="max-w-xl mx-auto flex flex-col items-center">
-              {/* Step 1: Base course */}
-              <div 
-                className="w-full px-6 py-5 rounded-xl text-center relative"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.6)',
-                  border: '1px solid rgba(48, 79, 254, 0.3)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.12)',
-                }}
-                data-testid="flow-step-1"
-              >
-                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Step 1</p>
-                <h3 className="font-semibold text-lg mb-1">{t('system.step1.title')}</h3>
-                <p className="text-sm text-muted-foreground">{t('system.step1.description')}</p>
+            {/* Split Number/Content Layout */}
+            <div className="max-w-3xl mx-auto">
+              {/* Step 1 */}
+              <div className="flex gap-6 md:gap-10 mb-10" data-testid="flow-step-1">
+                {/* Number Column */}
+                <div className="relative flex flex-col items-center">
+                  <div 
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold"
+                    style={{
+                      backgroundColor: 'rgba(48, 79, 254, 0.15)',
+                      border: '1px solid rgba(48, 79, 254, 0.4)',
+                      boxShadow: '0 0 30px rgba(48, 79, 254, 0.2)',
+                      color: 'rgb(96, 165, 250)',
+                    }}
+                  >
+                    01
+                  </div>
+                  {/* Connecting line */}
+                  <div 
+                    className="w-0.5 flex-1 mt-4"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.5) 0%, rgba(48, 79, 254, 0.2) 100%)',
+                      boxShadow: '0 0 6px rgba(48, 79, 254, 0.4)',
+                      minHeight: '40px',
+                    }}
+                  />
+                </div>
+                {/* Content Column */}
+                <div className="flex-1 pt-2">
+                  <h3 className="font-semibold text-xl md:text-2xl mb-2 text-foreground">
+                    {t('system.step1.title')}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t('system.step1.description')}
+                  </p>
+                </div>
               </div>
               
-              {/* Connector line with glow */}
-              <div className="relative h-12 flex items-center justify-center">
-                <div 
-                  className="w-0.5 h-full"
-                  style={{
-                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.6) 0%, rgba(48, 79, 254, 0.3) 100%)',
-                    boxShadow: '0 0 8px rgba(48, 79, 254, 0.5)',
-                  }}
-                />
-                <ChevronDown 
-                  className="absolute bottom-0 w-5 h-5 text-primary" 
-                  style={{ filter: 'drop-shadow(0 0 4px rgba(48, 79, 254, 0.6))' }}
-                />
+              {/* Step 2 */}
+              <div className="flex gap-6 md:gap-10 mb-10" data-testid="flow-step-2">
+                {/* Number Column */}
+                <div className="relative flex flex-col items-center">
+                  <div 
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold"
+                    style={{
+                      backgroundColor: 'rgba(48, 79, 254, 0.15)',
+                      border: '1px solid rgba(48, 79, 254, 0.4)',
+                      boxShadow: '0 0 30px rgba(48, 79, 254, 0.2)',
+                      color: 'rgb(96, 165, 250)',
+                    }}
+                  >
+                    02
+                  </div>
+                  {/* Connecting line */}
+                  <div 
+                    className="w-0.5 flex-1 mt-4"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.5) 0%, rgba(48, 79, 254, 0.2) 100%)',
+                      boxShadow: '0 0 6px rgba(48, 79, 254, 0.4)',
+                      minHeight: '40px',
+                    }}
+                  />
+                </div>
+                {/* Content Column */}
+                <div className="flex-1 pt-2">
+                  <h3 className="font-semibold text-xl md:text-2xl mb-2 text-foreground">
+                    {t('system.step2.title')}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t('system.step2.description')}
+                  </p>
+                </div>
               </div>
               
-              {/* Step 2: Learner profiling */}
-              <div 
-                className="w-full px-6 py-5 rounded-xl text-center relative"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.6)',
-                  border: '1px solid rgba(48, 79, 254, 0.3)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.12)',
-                }}
-                data-testid="flow-step-2"
-              >
-                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Step 2</p>
-                <h3 className="font-semibold text-lg mb-1">{t('system.step2.title')}</h3>
-                <p className="text-sm text-muted-foreground">{t('system.step2.description')}</p>
-              </div>
-              
-              {/* Connector line with glow */}
-              <div className="relative h-12 flex items-center justify-center">
-                <div 
-                  className="w-0.5 h-full"
-                  style={{
-                    background: 'linear-gradient(180deg, rgba(48, 79, 254, 0.6) 0%, rgba(48, 79, 254, 0.3) 100%)',
-                    boxShadow: '0 0 8px rgba(48, 79, 254, 0.5)',
-                  }}
-                />
-                <ChevronDown 
-                  className="absolute bottom-0 w-5 h-5 text-primary" 
-                  style={{ filter: 'drop-shadow(0 0 4px rgba(48, 79, 254, 0.6))' }}
-                />
-              </div>
-              
-              {/* Step 3: Personalized course */}
-              <div 
-                className="w-full px-6 py-5 rounded-xl text-center relative"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.8)',
-                  border: '1px solid rgba(48, 79, 254, 0.5)',
-                  boxShadow: '0 0 40px rgba(48, 79, 254, 0.2)',
-                }}
-                data-testid="flow-step-3"
-              >
-                <p className="text-xs font-medium text-primary uppercase tracking-wider mb-2">Step 3</p>
-                <h3 className="font-semibold text-lg mb-1">{t('system.step3.title')}</h3>
-                <p className="text-sm text-muted-foreground">{t('system.step3.description')}</p>
+              {/* Step 3 */}
+              <div className="flex gap-6 md:gap-10" data-testid="flow-step-3">
+                {/* Number Column */}
+                <div className="relative flex flex-col items-center">
+                  <div 
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-bold"
+                    style={{
+                      backgroundColor: 'rgba(48, 79, 254, 0.2)',
+                      border: '1px solid rgba(48, 79, 254, 0.5)',
+                      boxShadow: '0 0 40px rgba(48, 79, 254, 0.25)',
+                      color: 'rgb(129, 140, 248)',
+                    }}
+                  >
+                    03
+                  </div>
+                </div>
+                {/* Content Column */}
+                <div className="flex-1 pt-2">
+                  <h3 className="font-semibold text-xl md:text-2xl mb-2 text-foreground">
+                    {t('system.step3.title')}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t('system.step3.description')}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
