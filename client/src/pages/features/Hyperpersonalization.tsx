@@ -677,27 +677,69 @@ export default function Hyperpersonalization() {
 
         {/* SECTION 5: WHY MATTERS - Editorial inline style, no boxes */}
         <section 
-          className="py-16 md:py-20 relative z-10"
+          className="py-20 md:py-28 lg:py-32 relative z-10"
           data-testid="section-why-matters"
         >
           <div className="content-container">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10 text-center">
-                {t('whyMatters.title')}
-              </h2>
-              
-              {/* Editorial 2-column inline layout */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5 max-w-2xl mx-auto">
-                {(t('whyMatters.bullets', { returnObjects: true }) as string[]).map((bullet, index) => (
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-16 md:mb-20 text-center">
+              {t('whyMatters.title')}
+            </h2>
+            
+            {/* Full-width alternating rows */}
+            <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
+              {(t('whyMatters.bullets', { returnObjects: true }) as string[]).map((bullet, index) => {
+                const isEven = index % 2 === 0;
+                return (
                   <div 
                     key={index}
-                    className="flex items-start gap-3"
+                    className={`flex items-center gap-6 md:gap-10 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
                   >
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground/90 leading-relaxed">{bullet}</span>
+                    {/* Decorative accent */}
+                    <div 
+                      className="hidden md:flex flex-shrink-0 w-20 h-20 items-center justify-center"
+                    >
+                      <div 
+                        className="w-3 h-3 rounded-full"
+                        style={{
+                          backgroundColor: 'rgba(96, 165, 250, 0.8)',
+                          boxShadow: '0 0 20px rgba(48, 79, 254, 0.6), 0 0 40px rgba(48, 79, 254, 0.3)',
+                        }}
+                      />
+                    </div>
+                    
+                    {/* Statement text */}
+                    <div 
+                      className={`flex-1 ${isEven ? 'text-left md:pr-12' : 'text-right md:pl-12'}`}
+                    >
+                      <p 
+                        className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed"
+                        style={{
+                          background: 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(148, 163, 184, 0.9) 100%)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}
+                      >
+                        {bullet}
+                      </p>
+                    </div>
+                    
+                    {/* Decorative line on opposite side */}
+                    <div 
+                      className="hidden md:block flex-shrink-0 w-24"
+                    >
+                      <div 
+                        className="h-px w-full"
+                        style={{
+                          background: isEven 
+                            ? 'linear-gradient(90deg, rgba(48, 79, 254, 0.5) 0%, transparent 100%)'
+                            : 'linear-gradient(90deg, transparent 0%, rgba(48, 79, 254, 0.5) 100%)',
+                        }}
+                      />
+                    </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         </section>
