@@ -22,7 +22,8 @@ import {
   Copy,
   UserCheck,
   HelpCircle,
-  ChevronDown
+  ChevronDown,
+  Hand
 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import { useState, useMemo } from 'react';
@@ -550,8 +551,20 @@ export default function Automation() {
                     />
 
                     {/* Right column - You control */}
-                    <div className="flex-1 text-left hidden md:block">
-                      <p className="text-sm text-muted-foreground leading-relaxed">{t(`featureTable.items.${key}.control`)}</p>
+                    <div className="flex-1 flex items-start gap-4 hidden md:flex">
+                      {/* Matching icon for control side */}
+                      <div 
+                        className="w-8 h-8 rounded-full border border-muted-foreground/25 bg-background flex items-center justify-center flex-shrink-0"
+                        style={{
+                          boxShadow: '0 0 12px rgba(148, 163, 184, 0.08), 0 0 24px rgba(148, 163, 184, 0.04)'
+                        }}
+                      >
+                        <Hand className="h-3 w-3 text-muted-foreground/70" strokeWidth={1.5} />
+                      </div>
+                      <div className="text-left">
+                        <h4 className="font-medium text-sm mb-1">{t(`featureTable.items.${key}.title`)}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{t(`featureTable.items.${key}.control`)}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
