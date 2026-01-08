@@ -1,16 +1,17 @@
 {
   "meta": {
     "title": "Capacitación en Software y Herramientas | LearnPack",
-    "description": "Convierte cualquier PDF, video o documentación interna en un curso interactivo con un Tutor IA integrado e información en tiempo real sobre el aprendizaje.",
+    "description": "Convierte cualquier PDF, video o documentación interna en un curso interactivo con un Tutor de IA integrado e información de aprendizaje en tiempo real.",
     "keywords": "capacitación en software, capacitación en herramientas, tutor IA, cursos interactivos, capacitación de empleados, SCORM, integración LMS"
   },
   "hero": {
-    "title": "Capacitación en software y herramientas que la gente realmente termina.",
-    "subtitle": "Convierte cualquier PDF, video o documentación interna en un curso interactivo con un Tutor IA integrado e información en tiempo real sobre el aprendizaje.",
+    "title": "Capacitación en software y herramientas que la gente realmente completa.",
+    "subtitle": "Convierte cualquier PDF, video o documentación interna en un curso interactivo con un Tutor de IA integrado e información de aprendizaje en tiempo real.",
+    "supporting": "Transforma materiales existentes en capacitación atractiva que escala.",
     "metrics": {
       "cost": "Hasta 80% menos costo de producción de contenido",
-      "completion": "2x mayor finalización con guía en tiempo real",
-      "engagement": "50% menos desvinculación con tutoría socrática"
+      "completion": "2x mayor completitud con guía en tiempo real",
+      "engagement": "50% menos abandono con tutoría socrática"
     },
     "ctaDemo": "Agendar Demo",
     "ctaStart": "Comenzar Gratis"
@@ -18,7 +19,7 @@
   "workflow": {
     "upload": {
       "label": "Subir",
-      "text": "Añade un PDF, video o documento."
+      "text": "Agrega un PDF, video o documento."
     },
     "generate": {
       "label": "Generar",
@@ -26,27 +27,29 @@
     },
     "practice": {
       "label": "Practicar",
-      "text": "Los estudiantes reciben apoyo del Tutor IA integrado."
+      "text": "Los estudiantes reciben apoyo del Tutor de IA integrado."
     }
   },
   "definition": {
+    "label": "Qué es LearnPack",
     "line1": "LearnPack es una plataforma de aprendizaje interactivo impulsada por IA para crear y entregar paquetes de capacitación rápidamente.",
-    "line2": "Genera cursos listos para producción e incluye un Tutor IA integrado más información en tiempo real sobre el compromiso y la frustración."
+    "line2": "Genera cursos listos para producción e incluye un Tutor de IA integrado más información en tiempo real sobre compromiso y frustración."
   },
   "problems": {
     "title": "Dónde falla la capacitación en herramientas",
+    "intro": "Los enfoques tradicionales para la capacitación en software y herramientas enfrentan desafíos persistentes que limitan la efectividad y el ROI.",
     "items": {
       "cost": {
         "title": "Alto costo de producción",
-        "text": "Crear contenido de cursos a menudo cuesta de $10,000 a $50,000+."
+        "text": "Crear contenido de cursos a menudo cuesta $10,000 a $50,000+."
       },
       "slow": {
         "title": "Lento de construir",
         "text": "Un módulo de e-learning interactivo de 1 hora promedia 184 horas de desarrollo."
       },
       "completion": {
-        "title": "Baja finalización",
-        "text": "Muchos programas ven solo 20 a 30% de tasas de finalización."
+        "title": "Baja completitud",
+        "text": "Muchos programas ven solo 20 a 30% de tasas de completitud."
       },
       "visibility": {
         "title": "Sin visibilidad del aprendizaje",
@@ -69,15 +72,15 @@
         "title": "Genera contenido interactivo",
         "details": [
           "Crea lecturas cortas y multimedia.",
-          "Añade cuestionarios.",
-          "Añade desafíos de programación."
+          "Agrega cuestionarios.",
+          "Agrega desafíos de código."
         ]
       },
       "refine": {
         "title": "Refina estilo Notion con IA",
         "details": [
           "Reescribe, simplifica o expande contenido.",
-          "Añade entregables de archivo o URL.",
+          "Agrega entregables de archivo o URL.",
           "Traducciones instantáneas."
         ]
       },
@@ -96,10 +99,10 @@
     "trainers": {
       "title": "Lo que obtienen los capacitadores",
       "items": [
-        "Configuración de 2 minutos con preguntas guiadas.",
+        "Configuración en 2 minutos con preguntas guiadas.",
         "Edición estilo Notion con IA.",
         "Reescribir, simplificar, expandir.",
-        "Cuestionarios, desafíos de programación, multimedia.",
+        "Cuestionarios, desafíos de código, multimedia.",
         "Entregables de archivo o URL.",
         "Traducciones instantáneas.",
         "Publicación con un clic.",
@@ -113,15 +116,16 @@
         "Preguntas socráticas que guían",
         "Ayuda multilingüe, 24/7"
       ],
-      "supporting": "La tutoría socrática ha demostrado disminuir la desvinculación en un 50%."
+      "supporting": "La tutoría socrática ha demostrado disminuir el abandono en un 50%."
     }
   },
   "deployment": {
     "title": "Opciones de despliegue",
+    "microcopy": "Elige un formato de entrega",
     "options": {
       "url": {
         "label": "Compartir una URL única",
-        "detail": "Publica capacitación en un enlace único que los estudiantes pueden abrir instantáneamente."
+        "detail": "Publica la capacitación en un enlace único que los estudiantes pueden abrir instantáneamente."
       },
       "iframe": {
         "label": "Incrustar vía iFrame",
@@ -133,32 +137,52 @@
       }
     }
   },
-  "example": {
-    "title": "Ejemplo: Lanzamiento de paquete de capacitación en ventas",
-    "without": {
-      "title": "Sin Tutor IA",
-      "learnerSeats": "Asientos de estudiantes",
-      "teacherSeat": "Asiento de profesor",
-      "packages": "Precio único de paquetes"
+  "examples": {
+    "title": "Ejemplos del mundo real",
+    "labelA": "Ejemplo A",
+    "labelB": "Ejemplo B",
+    "placeholder": "Insertar los números de precios de la diapositiva aquí",
+    "exampleA": {
+      "title": "Lanzamiento de paquete de capacitación en ventas",
+      "without": {
+        "title": "Sin Tutor de IA",
+        "learnerSeats": "Asientos de estudiante",
+        "teacherSeat": "Asiento de profesor",
+        "packages": "Precio único de paquetes"
+      },
+      "with": {
+        "title": "Con Tutor de IA",
+        "learnerSeats": "Asientos de estudiante",
+        "teacherSeat": "Asiento de profesor",
+        "packages": "Precio único de paquetes"
+      }
     },
-    "with": {
-      "title": "Con Tutor IA",
-      "learnerSeats": "Asientos de estudiantes",
-      "teacherSeat": "Asiento de profesor",
-      "packages": "Precio único de paquetes"
-    },
-    "placeholder": "Insertar los números de precios del slide aquí"
+    "exampleB": {
+      "title": "Lanzamiento de paquete de incorporación de herramientas",
+      "without": {
+        "title": "Sin Tutor de IA",
+        "learnerSeats": "Asientos de estudiante",
+        "teacherSeat": "Asiento de profesor",
+        "packages": "Precio único de paquetes"
+      },
+      "with": {
+        "title": "Con Tutor de IA",
+        "learnerSeats": "Asientos de estudiante",
+        "teacherSeat": "Asiento de profesor",
+        "packages": "Precio único de paquetes"
+      }
+    }
   },
   "faqs": {
-    "title": "Preguntas Frecuentes",
+    "title": "Preguntas frecuentes",
     "items": {
       "speed": {
         "question": "¿Qué tan rápido podemos convertir documentación de herramientas en un curso?",
-        "answer": "Puedes convertir cualquier PDF, video, documento o material de aprendizaje en un curso interactivo completamente listo para producción en segundos."
+        "answer": "Puedes convertir cualquier PDF, video, documento o material de aprendizaje en un curso completamente interactivo y listo para producción en segundos."
       },
       "tutor": {
-        "question": "¿Qué hace el Tutor IA integrado durante la capacitación?",
-        "answer": "El Tutor IA proporciona apoyo contextual, recuerda el progreso, ofrece guía proactiva y asistencia multilingüe 24/7. Su enfoque socrático disminuye la desvinculación en un 50%."
+        "question": "¿Qué hace el Tutor de IA integrado durante la capacitación?",
+        "answer": "El Tutor de IA proporciona soporte contextual, recuerda el progreso, ofrece guía proactiva y asistencia multilingüe 24/7. Su enfoque socrático disminuye el abandono en un 50%."
       },
       "deploy": {
         "question": "¿Cómo desplegamos la capacitación en nuestro LMS?",
@@ -167,7 +191,7 @@
     }
   },
   "cta": {
-    "headline": "Convierte tu documentación de herramientas en capacitación que la gente termina.",
+    "headline": "Convierte tu documentación de herramientas en capacitación que la gente completa.",
     "ctaDemo": "Agendar Demo",
     "ctaStart": "Comenzar Gratis"
   }

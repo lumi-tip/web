@@ -7,6 +7,7 @@
   "hero": {
     "title": "Software & tool training that people actually finish.",
     "subtitle": "Turn any PDF, video, or internal documentation into an interactive course with a built in AI Tutor and real time learning insight.",
+    "supporting": "Transform existing materials into engaging training that scales.",
     "metrics": {
       "cost": "Up to 80% lower content production cost",
       "completion": "2x higher completion with real time guidance",
@@ -30,11 +31,13 @@
     }
   },
   "definition": {
+    "label": "What is LearnPack",
     "line1": "LearnPack is an AI powered interactive learning platform for creating and delivering training packages fast.",
     "line2": "It generates production ready courses and includes a built in AI Tutor plus real time insight into engagement and frustration."
   },
   "problems": {
     "title": "Where tool training breaks",
+    "intro": "Traditional approaches to software and tool training face persistent challenges that limit effectiveness and ROI.",
     "items": {
       "cost": {
         "title": "High production cost",
@@ -118,6 +121,7 @@
   },
   "deployment": {
     "title": "Deployment options",
+    "microcopy": "Choose a delivery format",
     "options": {
       "url": {
         "label": "Share a unique URL",
@@ -133,21 +137,41 @@
       }
     }
   },
-  "example": {
-    "title": "Example: Sales training package rollout",
-    "without": {
-      "title": "Without AI Tutor",
-      "learnerSeats": "Learner seats",
-      "teacherSeat": "Teacher seat",
-      "packages": "Packages one time pricing"
+  "examples": {
+    "title": "Real world examples",
+    "labelA": "Example A",
+    "labelB": "Example B",
+    "placeholder": "Insert the slide pricing numbers here",
+    "exampleA": {
+      "title": "Sales training package rollout",
+      "without": {
+        "title": "Without AI Tutor",
+        "learnerSeats": "Learner seats",
+        "teacherSeat": "Teacher seat",
+        "packages": "Packages one time pricing"
+      },
+      "with": {
+        "title": "With AI Tutor",
+        "learnerSeats": "Learner seats",
+        "teacherSeat": "Teacher seat",
+        "packages": "Packages one time pricing"
+      }
     },
-    "with": {
-      "title": "With AI Tutor",
-      "learnerSeats": "Learner seats",
-      "teacherSeat": "Teacher seat",
-      "packages": "Packages one time pricing"
-    },
-    "placeholder": "Insert the slide pricing numbers here"
+    "exampleB": {
+      "title": "Tool onboarding package rollout",
+      "without": {
+        "title": "Without AI Tutor",
+        "learnerSeats": "Learner seats",
+        "teacherSeat": "Teacher seat",
+        "packages": "Packages one time pricing"
+      },
+      "with": {
+        "title": "With AI Tutor",
+        "learnerSeats": "Learner seats",
+        "teacherSeat": "Teacher seat",
+        "packages": "Packages one time pricing"
+      }
+    }
   },
   "faqs": {
     "title": "FAQs",
