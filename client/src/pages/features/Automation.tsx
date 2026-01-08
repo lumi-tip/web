@@ -543,7 +543,7 @@ export default function Automation() {
 
                     {/* Luminous vertical divider */}
                     <div 
-                      className="w-px h-16 mx-8 flex-shrink-0 hidden md:block"
+                      className="w-px h-16 mx-10 flex-shrink-0 hidden md:block"
                       style={{
                         background: 'linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.2) 50%, transparent 100%)',
                         boxShadow: '0 0 6px rgba(56, 189, 248, 0.15)'
