@@ -139,10 +139,11 @@
   },
   "examples": {
     "title": "Real world examples",
-    "expand": "Expand",
+    "hoverHint": "Hover to preview",
     "labelA": "Example A",
     "labelB": "Example B",
-    "placeholder": "Insert the slide pricing numbers here",
+    "placeholderWithout": "Insert slide pricing numbers (without AI Tutor)",
+    "placeholderWith": "Insert slide pricing numbers (with AI Tutor)",
     "exampleA": {
       "title": "Sales training package rollout",
       "without": {

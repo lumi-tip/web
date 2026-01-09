@@ -24,10 +24,12 @@ export default function SoftwareTraining() {
   const [activeNode, setActiveNode] = useState<'upload' | 'generate' | 'practice'>('upload');
   const [activeDeployment, setActiveDeployment] = useState<'url' | 'iframe' | 'scorm'>('url');
   const [activeStep, setActiveStep] = useState(0);
+  const [stepperAutoPaused, setStepperAutoPaused] = useState(false);
   const [exampleAOpen, setExampleAOpen] = useState(false);
   const [exampleBOpen, setExampleBOpen] = useState(false);
   const [exampleAHovered, setExampleAHovered] = useState(false);
   const [exampleBHovered, setExampleBHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [autoCyclePaused, setAutoCyclePaused] = useState(false);
   
@@ -37,10 +39,7 @@ export default function SoftwareTraining() {
   const step2Ref = useRef<HTMLDivElement>(null);
   const step3Ref = useRef<HTMLDivElement>(null);
   
-  const step0InView = useInView(step0Ref, { margin: "-40% 0px -40% 0px" });
-  const step1InView = useInView(step1Ref, { margin: "-40% 0px -40% 0px" });
-  const step2InView = useInView(step2Ref, { margin: "-40% 0px -40% 0px" });
-  const step3InView = useInView(step3Ref, { margin: "-40% 0px -40% 0px" });
+  // Note: Removed useInView for stepper - now uses click/auto-advance only
 
   const nodes = ['upload', 'generate', 'practice'] as const;
 
@@ -63,13 +62,32 @@ export default function SoftwareTraining() {
 
     return () => clearInterval(interval);
   }, [autoCyclePaused]);
-  
+
+  // Stepper auto-advance: cycle 1->2->3->4->1 every 4 seconds
   useEffect(() => {
-    if (step3InView) setActiveStep(3);
-    else if (step2InView) setActiveStep(2);
-    else if (step1InView) setActiveStep(1);
-    else if (step0InView) setActiveStep(0);
-  }, [step0InView, step1InView, step2InView, step3InView]);
+    if (stepperAutoPaused) return;
+    
+    const interval = setInterval(() => {
+      setActiveStep((current) => (current + 1) % 4);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [stepperAutoPaused]);
+
+  // Handle stepper click - pause auto-advance for 10 seconds
+  const handleStepClick = useCallback((index: number) => {
+    setActiveStep(index);
+    setStepperAutoPaused(true);
+    setTimeout(() => setStepperAutoPaused(false), 10000);
+  }, []);
+
+  // Detect touch device for examples hover behavior
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouch();
+  }, []);
 
   const handleDemoClick = () => {
     analytics.ctaClick('book_demo', 'software_tool_training');
@@ -400,11 +418,11 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 5: Stepper - Self-contained scrollable module */}
+        {/* SECTION 5: Stepper - Compact content-driven module with auto-advance */}
         <section className="py-16 md:py-24 relative z-10" ref={stepperRef}>
           <div className="content-container">
             <motion.h2 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 md:mb-14 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10 md:mb-12 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -415,86 +433,107 @@ export default function SoftwareTraining() {
             </motion.h2>
 
             <div 
-              className="max-w-5xl mx-auto rounded-xl border border-primary/15 lg:h-[380px] lg:overflow-y-auto"
+              className="max-w-4xl mx-auto rounded-xl border border-primary/15"
               style={{
                 backgroundColor: 'rgba(10, 17, 37, 0.5)',
-                boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+                boxShadow: '0 0 25px rgba(48, 79, 254, 0.08)',
               }}
             >
-              <div className="flex flex-col lg:flex-row lg:h-full">
-                {/* Left side - Step list (sticky on desktop) */}
-                <div className="p-6 md:p-8 lg:w-1/2 lg:border-r border-border/20 relative lg:sticky lg:top-0 lg:h-fit lg:self-start">
-                  {/* Progress line - behind circles with lower z-index */}
-                  <div className="absolute left-10 md:left-12 top-8 bottom-8 w-0.5 bg-border/30 rounded-full" style={{ zIndex: 0 }}>
+              <div className="flex flex-col lg:flex-row">
+                {/* Left side - Step list */}
+                <div className="p-5 md:p-6 lg:w-[45%] lg:border-r border-border/20 relative">
+                  {/* Progress line - z-index 0 (lowest layer) */}
+                  <div 
+                    className="absolute left-9 md:left-10 top-6 bottom-6 w-px bg-border/20 rounded-full"
+                    style={{ zIndex: 0 }}
+                  >
                     <motion.div 
-                      className="w-full bg-primary/60 rounded-full"
+                      className="w-full bg-primary/50 rounded-full"
                       style={{ height: `${((activeStep + 1) / 4) * 100}%` }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
                     />
                   </div>
 
                   {/* Steps */}
-                  <div className="space-y-6 relative" style={{ zIndex: 1 }}>
+                  <div className="space-y-3 relative">
                     {stepKeys.map((key, index) => (
-                      <div
+                      <motion.div
                         key={key} 
                         ref={stepRefs[index]} 
-                        className="pl-12 relative text-left w-full group cursor-pointer"
-                        onClick={() => setActiveStep(index)}
+                        className="pl-10 py-2 pr-3 relative text-left w-full cursor-pointer rounded-lg transition-all duration-300"
+                        onClick={() => handleStepClick(index)}
                         role="button"
                         tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && setActiveStep(index)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleStepClick(index)}
+                        style={{ zIndex: 10 }}
+                        animate={activeStep === index ? {
+                          backgroundColor: 'rgba(56, 189, 248, 0.08)',
+                          boxShadow: 'inset 0 0 20px rgba(56, 189, 248, 0.06)'
+                        } : {
+                          backgroundColor: 'transparent',
+                          boxShadow: 'none'
+                        }}
+                        whileHover={{
+                          backgroundColor: activeStep === index ? 'rgba(56, 189, 248, 0.1)' : 'rgba(255, 255, 255, 0.02)'
+                        }}
                       >
-                        {/* Step marker - above line with higher z-index */}
+                        {/* Step marker - z-index 20 with opaque background */}
                         <motion.div 
-                          className={`absolute left-0 top-0.5 w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
+                          className={`absolute left-0 top-2.5 w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-semibold transition-colors duration-300 ${
                             activeStep >= index 
-                              ? 'border-primary bg-primary/20 text-primary' 
-                              : 'border-border/50 bg-background text-muted-foreground'
+                              ? 'border-primary text-primary' 
+                              : 'border-border/40 text-muted-foreground'
                           }`}
-                          style={{ zIndex: 2, backgroundColor: activeStep >= index ? 'rgba(56, 189, 248, 0.15)' : 'var(--background)' }}
-                          animate={activeStep >= index ? { 
-                            boxShadow: '0 0 15px rgba(56, 189, 248, 0.35)'
+                          style={{ 
+                            zIndex: 20, 
+                            backgroundColor: activeStep >= index ? 'rgba(10, 17, 37, 1)' : 'rgba(10, 17, 37, 1)',
+                            backgroundImage: activeStep >= index ? 'linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0.05) 100%)' : 'none'
+                          }}
+                          animate={activeStep === index ? { 
+                            boxShadow: '0 0 12px rgba(56, 189, 248, 0.4), 0 0 4px rgba(56, 189, 248, 0.2)'
+                          } : activeStep > index ? {
+                            boxShadow: '0 0 8px rgba(56, 189, 248, 0.2)'
                           } : {
-                            boxShadow: '0 0 0px rgba(56, 189, 248, 0)'
+                            boxShadow: 'none'
                           }}
                         >
                           {index + 1}
                         </motion.div>
 
                         {/* Step title */}
-                        <h3 className={`font-semibold text-base md:text-lg transition-colors duration-300 group-hover:text-primary ${
-                          activeStep === index ? 'text-foreground' : 'text-foreground/60'
+                        <h3 className={`font-medium text-sm md:text-base transition-colors duration-300 ${
+                          activeStep === index ? 'text-foreground' : 'text-foreground/60 hover:text-foreground/80'
                         }`}>
                           {t(`stepper.steps.${key}.title`)}
                         </h3>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
 
-                {/* Right side - Detail panel with internal scroll */}
+                {/* Right side - Detail panel with crossfade - z-index 30 */}
                 <div 
-                  className="p-6 md:p-8 lg:w-1/2 lg:overflow-y-auto"
+                  className="p-5 md:p-6 lg:w-[55%]"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.03) 0%, transparent 60%)',
+                    zIndex: 30,
+                    background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.02) 0%, transparent 60%)',
                   }}
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeStep}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.25 }}
+                      initial={{ opacity: 0, x: 8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -8 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                     >
-                      <h4 className="text-lg md:text-xl font-semibold text-primary mb-5">
+                      <h4 className="text-base md:text-lg font-semibold text-primary mb-4">
                         {t(`stepper.steps.${stepKeys[activeStep]}.title`)}
                       </h4>
-                      <ul className="space-y-4">
+                      <ul className="space-y-2.5">
                         {stepDetails(stepKeys[activeStep]).map((detail, i) => (
-                          <li key={i} className="text-sm md:text-base text-foreground/80 flex items-start gap-3">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2 flex-shrink-0" />
+                          <li key={i} className="text-sm md:text-base text-foreground/80 flex items-start gap-2.5">
+                            <span className="w-1 h-1 rounded-full bg-primary/50 mt-2 flex-shrink-0" />
                             {detail}
                           </li>
                         ))}
@@ -668,7 +707,7 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 8: Examples - Interactive expandable cards */}
+        {/* SECTION 8: Examples - Hover-to-expand on desktop, click on mobile */}
         <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
             <motion.h2 
@@ -689,19 +728,28 @@ export default function SoftwareTraining() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="rounded-xl border border-primary/20 overflow-hidden transition-all duration-300"
+                className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
                 style={{
                   backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  boxShadow: exampleAHovered ? '0 4px 30px rgba(48, 79, 254, 0.15)' : '0 0 20px rgba(48, 79, 254, 0.08)',
-                  transform: exampleAHovered ? 'translateY(-2px)' : 'translateY(0)',
+                  boxShadow: (exampleAHovered || exampleAOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
+                  transform: exampleAHovered ? 'translateY(-3px)' : 'translateY(0)',
                 }}
-                onMouseEnter={() => setExampleAHovered(true)}
-                onMouseLeave={() => setExampleAHovered(false)}
+                onMouseEnter={() => {
+                  setExampleAHovered(true);
+                  if (!isTouchDevice) setExampleAOpen(true);
+                }}
+                onMouseLeave={() => {
+                  setExampleAHovered(false);
+                  if (!isTouchDevice) setExampleAOpen(false);
+                }}
               >
-                <button
-                  onClick={() => setExampleAOpen(!exampleAOpen)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-all duration-300"
+                <div
+                  onClick={() => isTouchDevice && setExampleAOpen(!exampleAOpen)}
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer"
                   data-testid="button-example-a-toggle"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setExampleAOpen(!exampleAOpen)}
                 >
                   <div>
                     <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
@@ -710,20 +758,20 @@ export default function SoftwareTraining() {
                     <span className="font-semibold text-lg md:text-xl">{t('examples.exampleA.title')}</span>
                   </div>
                   <span 
-                    className="text-sm text-primary/80 font-medium transition-opacity duration-200"
+                    className="text-xs text-primary/70 font-medium transition-opacity duration-200"
                     style={{ opacity: exampleAHovered && !exampleAOpen ? 1 : 0 }}
                   >
-                    {t('examples.expand')}
+                    {t('examples.hoverHint')}
                   </span>
-                </button>
+                </div>
 
                 <motion.div
                   initial={false}
                   animate={{ 
-                    height: exampleAOpen ? 'auto' : exampleAHovered ? 8 : 0,
+                    height: exampleAOpen ? 'auto' : 0,
                     opacity: exampleAOpen ? 1 : 0
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
                   className="overflow-hidden"
                 >
                   <div className="grid md:grid-cols-2 gap-5 p-5 md:p-6 pt-0 md:pt-0">
@@ -732,9 +780,9 @@ export default function SoftwareTraining() {
                       <h4 className="font-semibold mb-2 text-base md:text-lg">{t('examples.exampleA.without.title')}</h4>
                       <p className="text-xs md:text-sm text-muted-foreground/70 mb-4 italic">{t('examples.exampleA.without.helper')}</p>
                       <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleA.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleA.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleA.without.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
+                        <li>{t('examples.exampleA.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
+                        <li>{t('examples.exampleA.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
+                        <li>{t('examples.exampleA.without.packages')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
                       </ul>
                     </div>
 
@@ -743,9 +791,9 @@ export default function SoftwareTraining() {
                       <h4 className="font-semibold mb-2 text-base md:text-lg text-primary">{t('examples.exampleA.with.title')}</h4>
                       <p className="text-xs md:text-sm text-primary/60 mb-4 italic">{t('examples.exampleA.with.helper')}</p>
                       <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleA.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleA.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleA.with.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
+                        <li>{t('examples.exampleA.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
+                        <li>{t('examples.exampleA.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
+                        <li>{t('examples.exampleA.with.packages')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
                       </ul>
                     </div>
                   </div>
@@ -758,19 +806,28 @@ export default function SoftwareTraining() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="rounded-xl border border-primary/20 overflow-hidden transition-all duration-300"
+                className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
                 style={{
                   backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  boxShadow: exampleBHovered ? '0 4px 30px rgba(48, 79, 254, 0.15)' : '0 0 20px rgba(48, 79, 254, 0.08)',
-                  transform: exampleBHovered ? 'translateY(-2px)' : 'translateY(0)',
+                  boxShadow: (exampleBHovered || exampleBOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
+                  transform: exampleBHovered ? 'translateY(-3px)' : 'translateY(0)',
                 }}
-                onMouseEnter={() => setExampleBHovered(true)}
-                onMouseLeave={() => setExampleBHovered(false)}
+                onMouseEnter={() => {
+                  setExampleBHovered(true);
+                  if (!isTouchDevice) setExampleBOpen(true);
+                }}
+                onMouseLeave={() => {
+                  setExampleBHovered(false);
+                  if (!isTouchDevice) setExampleBOpen(false);
+                }}
               >
-                <button
-                  onClick={() => setExampleBOpen(!exampleBOpen)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-all duration-300"
+                <div
+                  onClick={() => isTouchDevice && setExampleBOpen(!exampleBOpen)}
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer"
                   data-testid="button-example-b-toggle"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setExampleBOpen(!exampleBOpen)}
                 >
                   <div>
                     <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
@@ -779,20 +836,20 @@ export default function SoftwareTraining() {
                     <span className="font-semibold text-lg md:text-xl">{t('examples.exampleB.title')}</span>
                   </div>
                   <span 
-                    className="text-sm text-primary/80 font-medium transition-opacity duration-200"
+                    className="text-xs text-primary/70 font-medium transition-opacity duration-200"
                     style={{ opacity: exampleBHovered && !exampleBOpen ? 1 : 0 }}
                   >
-                    {t('examples.expand')}
+                    {t('examples.hoverHint')}
                   </span>
-                </button>
+                </div>
 
                 <motion.div
                   initial={false}
                   animate={{ 
-                    height: exampleBOpen ? 'auto' : exampleBHovered ? 8 : 0,
+                    height: exampleBOpen ? 'auto' : 0,
                     opacity: exampleBOpen ? 1 : 0
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
                   className="overflow-hidden"
                 >
                   <div className="grid md:grid-cols-2 gap-5 p-5 md:p-6 pt-0 md:pt-0">
@@ -801,9 +858,9 @@ export default function SoftwareTraining() {
                       <h4 className="font-semibold mb-2 text-base md:text-lg">{t('examples.exampleB.without.title')}</h4>
                       <p className="text-xs md:text-sm text-muted-foreground/70 mb-4 italic">{t('examples.exampleB.without.helper')}</p>
                       <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleB.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleB.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleB.without.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
+                        <li>{t('examples.exampleB.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
+                        <li>{t('examples.exampleB.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
+                        <li>{t('examples.exampleB.without.packages')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
                       </ul>
                     </div>
 
@@ -812,9 +869,9 @@ export default function SoftwareTraining() {
                       <h4 className="font-semibold mb-2 text-base md:text-lg text-primary">{t('examples.exampleB.with.title')}</h4>
                       <p className="text-xs md:text-sm text-primary/60 mb-4 italic">{t('examples.exampleB.with.helper')}</p>
                       <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleB.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleB.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
-                        <li>{t('examples.exampleB.with.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
+                        <li>{t('examples.exampleB.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
+                        <li>{t('examples.exampleB.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
+                        <li>{t('examples.exampleB.with.packages')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
                       </ul>
                     </div>
                   </div>

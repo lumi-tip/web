@@ -139,10 +139,11 @@
   },
   "examples": {
     "title": "Ejemplos del mundo real",
-    "expand": "Expandir",
+    "hoverHint": "Pasa el cursor para ver",
     "labelA": "Ejemplo A",
     "labelB": "Ejemplo B",
-    "placeholder": "Insertar los números de precios de la diapositiva aquí",
+    "placeholderWithout": "Insertar precios de diapositiva (sin Tutor de IA)",
+    "placeholderWith": "Insertar precios de diapositiva (con Tutor de IA)",
     "exampleA": {
       "title": "Lanzamiento de paquete de capacitación en ventas",
       "without": {
