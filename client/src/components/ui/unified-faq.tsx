@@ -73,21 +73,23 @@ export function UnifiedFAQ({
                 key={item.id} 
                 className={`faq-item ${index === 0 ? 'rounded-t-xl' : ''} ${index === items.length - 1 ? 'rounded-b-xl' : ''}`}
               >
-                <button
-                  onClick={() => toggleItem(item.id)}
-                  className="faq-trigger group"
-                  aria-expanded={openItem === item.id}
-                  aria-controls={`faq-content-${item.id}`}
-                >
-                  <span className="pr-4">{item.question}</span>
-                  <motion.span
-                    animate={{ rotate: openItem === item.id ? 180 : 0 }}
-                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                    className="flex-shrink-0 text-muted-foreground group-hover:text-foreground transition-colors"
+                <h3 className="m-0">
+                  <button
+                    onClick={() => toggleItem(item.id)}
+                    className="faq-trigger group"
+                    aria-expanded={openItem === item.id}
+                    aria-controls={`faq-content-${item.id}`}
                   >
-                    <ChevronDown className="w-5 h-5" />
-                  </motion.span>
-                </button>
+                    <span className="pr-4">{item.question}</span>
+                    <motion.span
+                      animate={{ rotate: openItem === item.id ? 180 : 0 }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      className="flex-shrink-0 text-muted-foreground group-hover:text-foreground transition-colors"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.span>
+                  </button>
+                </h3>
                 
                 <AnimatePresence initial={false}>
                   {openItem === item.id && (
