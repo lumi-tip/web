@@ -139,6 +139,7 @@
   },
   "examples": {
     "title": "Real world examples",
+    "expand": "Expand",
     "labelA": "Example A",
     "labelB": "Example B",
     "placeholder": "Insert the slide pricing numbers here",
@@ -146,12 +147,14 @@
       "title": "Sales training package rollout",
       "without": {
         "title": "Without AI Tutor",
+        "helper": "Standard delivery without real time tutoring support.",
         "learnerSeats": "Learner seats",
         "teacherSeat": "Teacher seat",
         "packages": "Packages one time pricing"
       },
       "with": {
         "title": "With AI Tutor",
+        "helper": "Includes built in AI Tutor support during learning.",
         "learnerSeats": "Learner seats",
         "teacherSeat": "Teacher seat",
         "packages": "Packages one time pricing"
@@ -161,12 +164,14 @@
       "title": "Tool onboarding package rollout",
       "without": {
         "title": "Without AI Tutor",
+        "helper": "Standard delivery without real time tutoring support.",
         "learnerSeats": "Learner seats",
         "teacherSeat": "Teacher seat",
         "packages": "Packages one time pricing"
       },
       "with": {
         "title": "With AI Tutor",
+        "helper": "Includes built in AI Tutor support during learning.",
         "learnerSeats": "Learner seats",
         "teacherSeat": "Teacher seat",
         "packages": "Packages one time pricing"
@@ -175,6 +180,7 @@
   },
   "faqs": {
     "title": "FAQs",
+    "lastUpdated": "Last updated: December 2025",
     "items": {
       "speed": {
         "question": "How fast can we turn tool documentation into a course?",

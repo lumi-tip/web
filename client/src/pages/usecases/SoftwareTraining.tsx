@@ -4,8 +4,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 function generateStars(count: number) {
   return Array.from({ length: count }, (_, i) => ({
@@ -25,7 +26,10 @@ export default function SoftwareTraining() {
   const [activeStep, setActiveStep] = useState(0);
   const [exampleAOpen, setExampleAOpen] = useState(false);
   const [exampleBOpen, setExampleBOpen] = useState(false);
+  const [exampleAHovered, setExampleAHovered] = useState(false);
+  const [exampleBHovered, setExampleBHovered] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [autoCyclePaused, setAutoCyclePaused] = useState(false);
   
   const stepperRef = useRef<HTMLDivElement>(null);
   const step0Ref = useRef<HTMLDivElement>(null);
@@ -37,6 +41,28 @@ export default function SoftwareTraining() {
   const step1InView = useInView(step1Ref, { margin: "-40% 0px -40% 0px" });
   const step2InView = useInView(step2Ref, { margin: "-40% 0px -40% 0px" });
   const step3InView = useInView(step3Ref, { margin: "-40% 0px -40% 0px" });
+
+  const nodes = ['upload', 'generate', 'practice'] as const;
+
+  const handleNodeClick = useCallback((node: typeof nodes[number]) => {
+    setActiveNode(node);
+    setAutoCyclePaused(true);
+    setTimeout(() => setAutoCyclePaused(false), 10000);
+  }, []);
+
+  useEffect(() => {
+    if (autoCyclePaused) return;
+    
+    const interval = setInterval(() => {
+      setActiveNode((current) => {
+        const currentIndex = nodes.indexOf(current);
+        const nextIndex = (currentIndex + 1) % nodes.length;
+        return nodes[nextIndex];
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [autoCyclePaused]);
   
   useEffect(() => {
     if (step3InView) setActiveStep(3);
@@ -99,7 +125,7 @@ export default function SoftwareTraining() {
       <Header />
 
       <main className="hero-animated-bg relative overflow-hidden">
-        {/* Starfield background - matches other pages */}
+        {/* Starfield background */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           {stars.map((star, i) => (
             <div
@@ -116,7 +142,7 @@ export default function SoftwareTraining() {
           ))}
         </div>
 
-        {/* Blue glow - top right (hero area) */}
+        {/* Blue glow - top right */}
         <div 
           className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
           style={{
@@ -156,10 +182,10 @@ export default function SoftwareTraining() {
           aria-hidden="true"
         />
 
-        {/* SECTION 1: Hero - 2 column layout */}
-        <section className="pt-28 pb-20 md:pt-36 md:pb-28 relative z-10">
+        {/* SECTION 1: Hero - Compact 2-column layout */}
+        <section className="pt-16 pb-12 md:pt-20 md:pb-16 relative z-10">
           <div className="content-container">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               {/* Left column - Content */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -167,15 +193,15 @@ export default function SoftwareTraining() {
                 transition={{ duration: 0.6 }}
               >
                 <h1 
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4"
                   data-testid="heading-hero"
                 >
                   {t('hero.title')}
                 </h1>
-                <p className="text-xl md:text-2xl text-muted-foreground mb-4 leading-relaxed max-w-xl">
+                <p className="text-lg md:text-xl text-muted-foreground mb-3 leading-relaxed max-w-xl">
                   {t('hero.subtitle')}
                 </p>
-                <p className="text-lg text-muted-foreground/80 mb-10 max-w-lg">
+                <p className="text-base text-muted-foreground/80 mb-6 max-w-lg">
                   {t('hero.supporting')}
                 </p>
 
@@ -199,7 +225,7 @@ export default function SoftwareTraining() {
                 </div>
               </motion.div>
 
-              {/* Right column - Interactive 3-node diagram */}
+              {/* Right column - Auto-cycling 3-node diagram */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -207,47 +233,57 @@ export default function SoftwareTraining() {
                 className="relative"
               >
                 {/* Three nodes with connecting line */}
-                <div className="flex items-center justify-center gap-4 md:gap-6 mb-8">
-                  {(['upload', 'generate', 'practice'] as const).map((node, index) => (
+                <div className="flex items-center justify-center gap-3 md:gap-5 mb-6">
+                  {nodes.map((node, index) => (
                     <div key={node} className="flex items-center">
-                      <button
-                        onClick={() => setActiveNode(node)}
-                        onMouseEnter={() => setActiveNode(node)}
-                        className={`px-5 py-3 rounded-full border-2 text-base font-medium transition-all duration-300 ${
+                      <motion.button
+                        onClick={() => handleNodeClick(node)}
+                        className={`px-4 py-2.5 md:px-5 md:py-3 rounded-full border-2 text-sm md:text-base font-medium transition-colors duration-300 ${
                           activeNode === node
-                            ? 'border-primary bg-primary/15 text-primary shadow-[0_0_20px_rgba(56,189,248,0.25)]'
+                            ? 'border-primary bg-primary/15 text-primary'
                             : 'border-border/60 bg-card/30 text-foreground/70 hover:border-primary/40 hover:bg-card/50'
                         }`}
+                        animate={activeNode === node ? {
+                          boxShadow: '0 0 25px rgba(56, 189, 248, 0.35)',
+                          scale: 1.02,
+                        } : {
+                          boxShadow: '0 0 0px rgba(56, 189, 248, 0)',
+                          scale: 1,
+                        }}
+                        transition={{ duration: 0.4 }}
                         data-testid={`node-${node}`}
                       >
                         {t(`workflow.${node}.label`)}
-                      </button>
+                      </motion.button>
                       {index < 2 && (
-                        <div 
-                          className="w-8 md:w-12 h-0.5 mx-1"
-                          style={{
-                            background: `linear-gradient(90deg, ${activeNode === node ? 'rgba(56, 189, 248, 0.5)' : 'rgba(255,255,255,0.15)'} 0%, ${activeNode === (['upload', 'generate', 'practice'] as const)[index + 1] ? 'rgba(56, 189, 248, 0.5)' : 'rgba(255,255,255,0.15)'} 100%)`
+                        <motion.div 
+                          className="w-6 md:w-10 h-0.5 mx-1"
+                          animate={{
+                            background: activeNode === node || activeNode === nodes[index + 1]
+                              ? 'linear-gradient(90deg, rgba(56, 189, 248, 0.6) 0%, rgba(56, 189, 248, 0.6) 100%)'
+                              : 'linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%)'
                           }}
+                          transition={{ duration: 0.3 }}
                         />
                       )}
                     </div>
                   ))}
                 </div>
 
-                {/* Shared detail panel */}
+                {/* Shared detail panel with crossfade */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeNode}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="p-6 rounded-xl border border-primary/20 bg-card/40 backdrop-blur-sm text-center"
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                    className="p-5 md:p-6 rounded-xl border border-primary/20 bg-card/40 backdrop-blur-sm text-center"
                     style={{
                       boxShadow: '0 0 30px rgba(56, 189, 248, 0.08)'
                     }}
                   >
-                    <p className="text-lg text-foreground/90">
+                    <p className="text-base md:text-lg text-foreground/90">
                       {t(`workflow.${activeNode}.text`)}
                     </p>
                   </motion.div>
@@ -257,11 +293,40 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 2: Definition Box */}
-        <section className="py-12 md:py-16 relative z-10">
+        {/* SECTION 2: Metrics Strip - Clean 3-column container */}
+        <section className="py-8 md:py-10 relative z-10">
+          <div className="content-container">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="max-w-4xl mx-auto rounded-xl border border-border/40 bg-card/20 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/30"
+              style={{
+                boxShadow: '0 0 20px rgba(56, 189, 248, 0.05)'
+              }}
+              whileHover={{
+                boxShadow: '0 0 35px rgba(56, 189, 248, 0.1)'
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/30">
+                {['cost', 'completion', 'engagement'].map((metric) => (
+                  <div key={metric} className="px-6 py-5 text-center">
+                    <span className="text-sm md:text-base text-foreground/85 leading-relaxed">
+                      {t(`hero.metrics.${metric}`)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* SECTION 3: Definition Box */}
+        <section className="py-10 md:py-14 relative z-10">
           <div className="content-container">
             <motion.div 
-              className="rounded-xl p-8 md:p-10 max-w-4xl mx-auto border border-primary/15 transition-all duration-300 hover:border-primary/25"
+              className="rounded-xl p-7 md:p-9 max-w-4xl mx-auto border border-primary/15 transition-all duration-300 hover:border-primary/25"
               style={{
                 backgroundColor: 'rgba(10, 17, 37, 0.8)',
                 boxShadow: '0 0 40px rgba(48, 79, 254, 0.1)',
@@ -277,46 +342,21 @@ export default function SoftwareTraining() {
               <span className="text-xs font-medium tracking-wider text-primary mb-4 block uppercase">
                 {t('definition.label')}
               </span>
-              <p className="text-lg md:text-xl text-foreground/85 leading-relaxed mb-3">
+              <p className="text-base md:text-lg text-foreground/85 leading-relaxed mb-3">
                 {t('definition.line1')}
               </p>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                 {t('definition.line2')}
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* SECTION 3: Impact Metrics Strip */}
-        <section className="py-10 md:py-12 relative z-10">
-          <div className="content-container">
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              {['cost', 'completion', 'engagement'].map((metric, index) => (
-                <motion.div
-                  key={metric}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="px-5 py-3 rounded-full border border-border/40 bg-card/20 backdrop-blur-sm"
-                  style={{
-                    boxShadow: '0 0 20px rgba(56, 189, 248, 0.05)'
-                  }}
-                >
-                  <span className="text-sm md:text-base text-foreground/80">
-                    {t(`hero.metrics.${metric}`)}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 4: Where tool training breaks - Premium boxes matching Analytics */}
-        <section className="py-20 md:py-28 relative z-10">
+        {/* SECTION 4: Where tool training breaks */}
+        <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-5 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -325,11 +365,11 @@ export default function SoftwareTraining() {
             >
               {t('problems.title')}
             </motion.h2>
-            <p className="text-center text-lg text-muted-foreground mb-14 md:mb-16 max-w-2xl mx-auto">
+            <p className="text-center text-base md:text-lg text-muted-foreground mb-12 md:mb-14 max-w-2xl mx-auto">
               {t('problems.intro')}
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
               {['cost', 'slow', 'completion', 'visibility'].map((key, index) => (
                 <motion.div 
                   key={key}
@@ -337,7 +377,7 @@ export default function SoftwareTraining() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-6 md:p-8 rounded-xl border border-primary/20 relative overflow-visible transition-all duration-300 hover:border-primary/35"
+                  className="p-5 md:p-7 rounded-xl border border-primary/20 relative overflow-visible transition-all duration-300 hover:border-primary/35"
                   style={{
                     backgroundColor: 'rgba(10, 20, 60, 0.5)',
                     backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.04) 0%, transparent 100%)',
@@ -348,10 +388,10 @@ export default function SoftwareTraining() {
                   }}
                   data-testid={`problem-${key}`}
                 >
-                  <h3 className="font-semibold text-foreground mb-3 text-xl">
+                  <h3 className="font-semibold text-foreground mb-2 text-lg md:text-xl">
                     {t(`problems.items.${key}.title`)}
                   </h3>
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                     {t(`problems.items.${key}.text`)}
                   </p>
                 </motion.div>
@@ -360,11 +400,11 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 5: From documentation to interactive practice - Stepper */}
-        <section className="py-20 md:py-28 relative z-10" ref={stepperRef}>
+        {/* SECTION 5: Stepper - Self-contained scrollable module */}
+        <section className="py-16 md:py-24 relative z-10" ref={stepperRef}>
           <div className="content-container">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 md:mb-14 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -374,93 +414,104 @@ export default function SoftwareTraining() {
               {t('stepper.title')}
             </motion.h2>
 
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 max-w-5xl mx-auto">
-              {/* Left side - Step list */}
-              <div className="relative">
-                {/* Progress line */}
-                <div className="absolute left-4 top-3 bottom-3 w-0.5 bg-border/30 rounded-full">
-                  <motion.div 
-                    className="w-full bg-primary/60 rounded-full"
-                    style={{ height: `${((activeStep + 1) / 4) * 100}%` }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  />
-                </div>
+            <div 
+              className="max-w-5xl mx-auto rounded-xl border border-primary/15 lg:h-[380px] lg:overflow-y-auto"
+              style={{
+                backgroundColor: 'rgba(10, 17, 37, 0.5)',
+                boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+              }}
+            >
+              <div className="flex flex-col lg:flex-row lg:h-full">
+                {/* Left side - Step list (sticky on desktop) */}
+                <div className="p-6 md:p-8 lg:w-1/2 lg:border-r border-border/20 relative lg:sticky lg:top-0 lg:h-fit lg:self-start">
+                  {/* Progress line - behind circles with lower z-index */}
+                  <div className="absolute left-10 md:left-12 top-8 bottom-8 w-0.5 bg-border/30 rounded-full" style={{ zIndex: 0 }}>
+                    <motion.div 
+                      className="w-full bg-primary/60 rounded-full"
+                      style={{ height: `${((activeStep + 1) / 4) * 100}%` }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    />
+                  </div>
 
-                {/* Steps */}
-                <div className="space-y-8">
-                  {stepKeys.map((key, index) => (
-                    <div key={key} ref={stepRefs[index]} className="pl-14 relative">
-                      {/* Step marker */}
-                      <motion.div 
-                        className={`absolute left-0 top-1 w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
-                          activeStep >= index 
-                            ? 'border-primary bg-primary/20 text-primary' 
-                            : 'border-border/50 bg-background text-muted-foreground'
-                        }`}
-                        animate={activeStep >= index ? { 
-                          boxShadow: '0 0 15px rgba(56, 189, 248, 0.35)'
-                        } : {
-                          boxShadow: '0 0 0px rgba(56, 189, 248, 0)'
-                        }}
+                  {/* Steps */}
+                  <div className="space-y-6 relative" style={{ zIndex: 1 }}>
+                    {stepKeys.map((key, index) => (
+                      <div
+                        key={key} 
+                        ref={stepRefs[index]} 
+                        className="pl-12 relative text-left w-full group cursor-pointer"
+                        onClick={() => setActiveStep(index)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && setActiveStep(index)}
                       >
-                        {index + 1}
-                      </motion.div>
+                        {/* Step marker - above line with higher z-index */}
+                        <motion.div 
+                          className={`absolute left-0 top-0.5 w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
+                            activeStep >= index 
+                              ? 'border-primary bg-primary/20 text-primary' 
+                              : 'border-border/50 bg-background text-muted-foreground'
+                          }`}
+                          style={{ zIndex: 2, backgroundColor: activeStep >= index ? 'rgba(56, 189, 248, 0.15)' : 'var(--background)' }}
+                          animate={activeStep >= index ? { 
+                            boxShadow: '0 0 15px rgba(56, 189, 248, 0.35)'
+                          } : {
+                            boxShadow: '0 0 0px rgba(56, 189, 248, 0)'
+                          }}
+                        >
+                          {index + 1}
+                        </motion.div>
 
-                      {/* Step content */}
-                      <motion.div
-                        animate={{ opacity: activeStep === index ? 1 : 0.6 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <h3 className={`font-semibold text-xl mb-2 transition-colors duration-300 ${
-                          activeStep === index ? 'text-foreground' : 'text-foreground/70'
+                        {/* Step title */}
+                        <h3 className={`font-semibold text-base md:text-lg transition-colors duration-300 group-hover:text-primary ${
+                          activeStep === index ? 'text-foreground' : 'text-foreground/60'
                         }`}>
                           {t(`stepper.steps.${key}.title`)}
                         </h3>
-                      </motion.div>
-                    </div>
-                  ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Right side - Expanded details panel */}
-              <div 
-                className="lg:sticky lg:top-32 h-fit p-8 rounded-xl border border-primary/15"
-                style={{
-                  backgroundColor: 'rgba(10, 17, 37, 0.6)',
-                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
-                }}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeStep}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <h4 className="text-xl font-semibold text-primary mb-4">
-                      {t(`stepper.steps.${stepKeys[activeStep]}.title`)}
-                    </h4>
-                    <ul className="space-y-3">
-                      {stepDetails(stepKeys[activeStep]).map((detail, i) => (
-                        <li key={i} className="text-base text-foreground/80 flex items-start gap-3">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2.5 flex-shrink-0" />
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                </AnimatePresence>
+                {/* Right side - Detail panel with internal scroll */}
+                <div 
+                  className="p-6 md:p-8 lg:w-1/2 lg:overflow-y-auto"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.03) 0%, transparent 60%)',
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeStep}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <h4 className="text-lg md:text-xl font-semibold text-primary mb-5">
+                        {t(`stepper.steps.${stepKeys[activeStep]}.title`)}
+                      </h4>
+                      <ul className="space-y-4">
+                        {stepDetails(stepKeys[activeStep]).map((detail, i) => (
+                          <li key={i} className="text-sm md:text-base text-foreground/80 flex items-start gap-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2 flex-shrink-0" />
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 6: Designed for trainers and learners - Two-lane layout */}
-        <section className="py-20 md:py-28 relative z-10">
+        {/* SECTION 6: Trainers and Learners - Side by side on desktop */}
+        <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 md:mb-14 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -470,32 +521,30 @@ export default function SoftwareTraining() {
               {t('split.title')}
             </motion.h2>
 
-            <div 
-              className="grid lg:grid-cols-2 gap-0 max-w-5xl mx-auto rounded-xl border border-primary/15 overflow-hidden"
-              style={{
-                backgroundColor: 'rgba(10, 17, 37, 0.4)',
-              }}
-            >
-              {/* Left: What trainers get - Checklist */}
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-0 max-w-5xl mx-auto">
+              {/* Left: What trainers get */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="p-8 md:p-10"
+                className="p-6 md:p-8 rounded-xl lg:rounded-r-none border border-primary/15 lg:border-r-0"
+                style={{
+                  backgroundColor: 'rgba(10, 17, 37, 0.4)',
+                }}
               >
-                <h3 className="text-xl md:text-2xl font-semibold mb-8">{t('split.trainers.title')}</h3>
-                <ul className="space-y-4">
+                <h3 className="text-lg md:text-xl font-semibold mb-6">{t('split.trainers.title')}</h3>
+                <ul className="space-y-3">
                   {trainerItems.map((item, index) => (
                     <motion.li 
                       key={index}
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="flex items-start gap-4 text-base text-foreground/80"
+                      transition={{ duration: 0.3, delay: index * 0.04 }}
+                      className="flex items-start gap-3 text-sm md:text-base text-foreground/80"
                     >
-                      <span className="px-2.5 py-1 rounded-full bg-primary/15 text-primary text-xs font-semibold flex-shrink-0 mt-0.5">
+                      <span className="w-5 h-5 rounded-full bg-primary/15 text-primary text-xs font-semibold flex-shrink-0 flex items-center justify-center mt-0.5">
                         ✓
                       </span>
                       {item}
@@ -504,29 +553,21 @@ export default function SoftwareTraining() {
                 </ul>
               </motion.div>
 
-              {/* Subtle gradient divider */}
-              <div 
-                className="hidden lg:block w-px"
-                style={{
-                  background: 'linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.2) 20%, rgba(56, 189, 248, 0.2) 80%, transparent 100%)'
-                }}
-              />
-
-              {/* Right: What learners get - Chat mock */}
+              {/* Right: What learners get - Bigger chat mock, vertically centered */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="p-8 md:p-10 lg:border-l-0"
+                className="p-6 md:p-8 rounded-xl lg:rounded-l-none border border-primary/15 flex flex-col justify-center"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.03) 0%, transparent 60%)'
+                  background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.04) 0%, rgba(10, 17, 37, 0.4) 60%)',
                 }}
               >
-                <h3 className="text-xl md:text-2xl font-semibold mb-8">{t('split.learners.title')}</h3>
+                <h3 className="text-lg md:text-xl font-semibold mb-6">{t('split.learners.title')}</h3>
                 
-                {/* Chat-like UI mock */}
-                <div className="space-y-4 mb-8">
+                {/* Larger chat-like UI mock */}
+                <div className="space-y-4 mb-6">
                   {learnerBubbles.map((bubble, index) => (
                     <motion.div
                       key={index}
@@ -534,13 +575,13 @@ export default function SoftwareTraining() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                      className={`p-4 rounded-xl text-base transition-all duration-300 hover:scale-[1.02] ${
-                        index === 0 ? 'max-w-[90%] bg-primary/12 border border-primary/25 ml-auto' :
-                        index === 1 ? 'max-w-[85%] bg-card/60 border border-border/50' :
-                        'max-w-[80%] bg-primary/8 border border-primary/20 ml-auto'
+                      className={`p-4 md:p-5 rounded-xl text-sm md:text-base transition-all duration-300 hover:scale-[1.01] ${
+                        index === 0 ? 'max-w-[95%] bg-primary/12 border border-primary/25 ml-auto' :
+                        index === 1 ? 'max-w-[90%] bg-card/60 border border-border/50' :
+                        'max-w-[85%] bg-primary/8 border border-primary/20 ml-auto'
                       }`}
                       style={{
-                        boxShadow: index % 2 === 0 ? '0 0 15px rgba(56, 189, 248, 0.08)' : 'none'
+                        boxShadow: index % 2 === 0 ? '0 0 18px rgba(56, 189, 248, 0.1)' : 'none'
                       }}
                     >
                       {bubble}
@@ -548,7 +589,7 @@ export default function SoftwareTraining() {
                   ))}
                 </div>
 
-                <p className="text-base text-primary/80 font-medium">
+                <p className="text-sm md:text-base text-primary/80 font-medium">
                   {t('split.learners.supporting')}
                 </p>
               </motion.div>
@@ -556,11 +597,11 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 7: Deployment options - Segmented controls */}
-        <section className="py-20 md:py-28 relative z-10">
+        {/* SECTION 7: Deployment options */}
+        <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -569,19 +610,19 @@ export default function SoftwareTraining() {
             >
               {t('deployment.title')}
             </motion.h2>
-            <p className="text-center text-muted-foreground mb-12 text-lg">
+            <p className="text-center text-muted-foreground mb-10 text-base md:text-lg">
               {t('deployment.microcopy')}
             </p>
 
             <div className="max-w-2xl mx-auto">
               {/* Segmented controls */}
-              <div className="flex justify-center mb-10">
+              <div className="flex justify-center mb-8">
                 <div className="inline-flex p-1.5 rounded-full border border-border/40 bg-card/30 backdrop-blur-sm">
                   {(['url', 'iframe', 'scorm'] as const).map((option) => (
                     <button
                       key={option}
                       onClick={() => setActiveDeployment(option)}
-                      className={`relative px-6 py-3 rounded-full text-base font-medium transition-all duration-300 ${
+                      className={`relative px-5 py-2.5 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
                         activeDeployment === option
                           ? 'text-primary'
                           : 'text-muted-foreground hover:text-foreground'
@@ -608,17 +649,17 @@ export default function SoftwareTraining() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeDeployment}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
+                  exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.25 }}
-                  className="text-center p-8 md:p-10 rounded-xl border border-primary/15"
+                  className="text-center p-6 md:p-8 rounded-xl border border-primary/15"
                   style={{
                     backgroundColor: 'rgba(10, 17, 37, 0.6)',
                     boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
                   }}
                 >
-                  <p className="text-lg md:text-xl text-foreground/85">
+                  <p className="text-base md:text-lg text-foreground/85">
                     {t(`deployment.options.${activeDeployment}.detail`)}
                   </p>
                 </motion.div>
@@ -627,11 +668,11 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 8: Examples - Two featured expandable cards */}
-        <section className="py-20 md:py-28 relative z-10">
+        {/* SECTION 8: Examples - Interactive expandable cards */}
+        <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 md:mb-14 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -641,49 +682,56 @@ export default function SoftwareTraining() {
               {t('examples.title')}
             </motion.h2>
 
-            <div className="max-w-4xl mx-auto space-y-6">
-              {/* Example A: Sales training */}
+            <div className="max-w-4xl mx-auto space-y-5">
+              {/* Example A */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="rounded-xl border border-primary/20 overflow-hidden"
+                className="rounded-xl border border-primary/20 overflow-hidden transition-all duration-300"
                 style={{
                   backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  boxShadow: '0 0 20px rgba(48, 79, 254, 0.08)',
+                  boxShadow: exampleAHovered ? '0 4px 30px rgba(48, 79, 254, 0.15)' : '0 0 20px rgba(48, 79, 254, 0.08)',
+                  transform: exampleAHovered ? 'translateY(-2px)' : 'translateY(0)',
                 }}
+                onMouseEnter={() => setExampleAHovered(true)}
+                onMouseLeave={() => setExampleAHovered(false)}
               >
                 <button
                   onClick={() => setExampleAOpen(!exampleAOpen)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-card/20 transition-all duration-300"
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-all duration-300"
                   data-testid="button-example-a-toggle"
                 >
                   <div>
-                    <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-2">
+                    <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
                       {t('examples.labelA')}
                     </span>
-                    <span className="font-semibold text-xl">{t('examples.exampleA.title')}</span>
+                    <span className="font-semibold text-lg md:text-xl">{t('examples.exampleA.title')}</span>
                   </div>
-                  <span className="text-xl text-primary font-light transition-transform duration-200">
-                    {exampleAOpen ? '−' : '+'}
+                  <span 
+                    className="text-sm text-primary/80 font-medium transition-opacity duration-200"
+                    style={{ opacity: exampleAHovered && !exampleAOpen ? 1 : 0 }}
+                  >
+                    {t('examples.expand')}
                   </span>
                 </button>
 
                 <motion.div
                   initial={false}
                   animate={{ 
-                    height: exampleAOpen ? 'auto' : 0,
+                    height: exampleAOpen ? 'auto' : exampleAHovered ? 8 : 0,
                     opacity: exampleAOpen ? 1 : 0
                   }}
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="grid md:grid-cols-2 gap-6 p-6 md:p-8 pt-0 md:pt-0">
+                  <div className="grid md:grid-cols-2 gap-5 p-5 md:p-6 pt-0 md:pt-0">
                     {/* Without AI Tutor */}
-                    <div className="p-6 rounded-xl border border-border/40 bg-card/20">
-                      <h4 className="font-semibold mb-5 text-lg">{t('examples.exampleA.without.title')}</h4>
-                      <ul className="space-y-3 text-base text-muted-foreground">
+                    <div className="p-5 rounded-xl border border-border/40 bg-card/20">
+                      <h4 className="font-semibold mb-2 text-base md:text-lg">{t('examples.exampleA.without.title')}</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground/70 mb-4 italic">{t('examples.exampleA.without.helper')}</p>
+                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
                         <li>{t('examples.exampleA.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleA.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleA.without.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
@@ -691,9 +739,10 @@ export default function SoftwareTraining() {
                     </div>
 
                     {/* With AI Tutor */}
-                    <div className="p-6 rounded-xl border border-primary/30 bg-primary/5">
-                      <h4 className="font-semibold mb-5 text-lg text-primary">{t('examples.exampleA.with.title')}</h4>
-                      <ul className="space-y-3 text-base text-muted-foreground">
+                    <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
+                      <h4 className="font-semibold mb-2 text-base md:text-lg text-primary">{t('examples.exampleA.with.title')}</h4>
+                      <p className="text-xs md:text-sm text-primary/60 mb-4 italic">{t('examples.exampleA.with.helper')}</p>
+                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
                         <li>{t('examples.exampleA.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleA.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleA.with.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
@@ -703,48 +752,55 @@ export default function SoftwareTraining() {
                 </motion.div>
               </motion.div>
 
-              {/* Example B: Tool onboarding */}
+              {/* Example B */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="rounded-xl border border-primary/20 overflow-hidden"
+                className="rounded-xl border border-primary/20 overflow-hidden transition-all duration-300"
                 style={{
                   backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  boxShadow: '0 0 20px rgba(48, 79, 254, 0.08)',
+                  boxShadow: exampleBHovered ? '0 4px 30px rgba(48, 79, 254, 0.15)' : '0 0 20px rgba(48, 79, 254, 0.08)',
+                  transform: exampleBHovered ? 'translateY(-2px)' : 'translateY(0)',
                 }}
+                onMouseEnter={() => setExampleBHovered(true)}
+                onMouseLeave={() => setExampleBHovered(false)}
               >
                 <button
                   onClick={() => setExampleBOpen(!exampleBOpen)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-card/20 transition-all duration-300"
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-all duration-300"
                   data-testid="button-example-b-toggle"
                 >
                   <div>
-                    <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-2">
+                    <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
                       {t('examples.labelB')}
                     </span>
-                    <span className="font-semibold text-xl">{t('examples.exampleB.title')}</span>
+                    <span className="font-semibold text-lg md:text-xl">{t('examples.exampleB.title')}</span>
                   </div>
-                  <span className="text-xl text-primary font-light transition-transform duration-200">
-                    {exampleBOpen ? '−' : '+'}
+                  <span 
+                    className="text-sm text-primary/80 font-medium transition-opacity duration-200"
+                    style={{ opacity: exampleBHovered && !exampleBOpen ? 1 : 0 }}
+                  >
+                    {t('examples.expand')}
                   </span>
                 </button>
 
                 <motion.div
                   initial={false}
                   animate={{ 
-                    height: exampleBOpen ? 'auto' : 0,
+                    height: exampleBOpen ? 'auto' : exampleBHovered ? 8 : 0,
                     opacity: exampleBOpen ? 1 : 0
                   }}
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="grid md:grid-cols-2 gap-6 p-6 md:p-8 pt-0 md:pt-0">
+                  <div className="grid md:grid-cols-2 gap-5 p-5 md:p-6 pt-0 md:pt-0">
                     {/* Without AI Tutor */}
-                    <div className="p-6 rounded-xl border border-border/40 bg-card/20">
-                      <h4 className="font-semibold mb-5 text-lg">{t('examples.exampleB.without.title')}</h4>
-                      <ul className="space-y-3 text-base text-muted-foreground">
+                    <div className="p-5 rounded-xl border border-border/40 bg-card/20">
+                      <h4 className="font-semibold mb-2 text-base md:text-lg">{t('examples.exampleB.without.title')}</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground/70 mb-4 italic">{t('examples.exampleB.without.helper')}</p>
+                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
                         <li>{t('examples.exampleB.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleB.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleB.without.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
@@ -752,9 +808,10 @@ export default function SoftwareTraining() {
                     </div>
 
                     {/* With AI Tutor */}
-                    <div className="p-6 rounded-xl border border-primary/30 bg-primary/5">
-                      <h4 className="font-semibold mb-5 text-lg text-primary">{t('examples.exampleB.with.title')}</h4>
-                      <ul className="space-y-3 text-base text-muted-foreground">
+                    <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
+                      <h4 className="font-semibold mb-2 text-base md:text-lg text-primary">{t('examples.exampleB.with.title')}</h4>
+                      <p className="text-xs md:text-sm text-primary/60 mb-4 italic">{t('examples.exampleB.with.helper')}</p>
+                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
                         <li>{t('examples.exampleB.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleB.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
                         <li>{t('examples.exampleB.with.packages')}: <span className="text-foreground">{t('examples.placeholder')}</span></li>
@@ -767,42 +824,57 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 9: FAQs */}
-        <section className="py-20 md:py-28 relative z-10">
+        {/* SECTION 9: FAQs - Matching reference design */}
+        <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
-            <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-center"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              data-testid="heading-faqs"
+              className="text-center mb-10 md:mb-12"
             >
-              {t('faqs.title')}
-            </motion.h2>
+              <h2 
+                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2"
+                data-testid="heading-faqs"
+              >
+                {t('faqs.title')}
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                {t('faqs.lastUpdated')}
+              </p>
+            </motion.div>
 
-            <div className="max-w-3xl mx-auto space-y-4">
+            {/* Single container for all FAQs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="max-w-3xl mx-auto rounded-xl border border-primary/15 overflow-hidden"
+              style={{
+                backgroundColor: 'rgba(10, 17, 37, 0.5)',
+                boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+              }}
+            >
               {['speed', 'tutor', 'deploy'].map((key, index) => (
-                <motion.div
+                <div
                   key={key}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="rounded-xl border border-primary/15 overflow-hidden"
-                  style={{
-                    backgroundColor: 'rgba(10, 17, 37, 0.5)',
-                  }}
+                  className={index < 2 ? 'border-b border-border/20' : ''}
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-card/30 transition-colors"
+                    className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-card/20 transition-colors"
                     data-testid={`button-faq-${key}`}
                   >
-                    <span className="font-semibold text-lg pr-4">{t(`faqs.items.${key}.question`)}</span>
-                    <span className="text-xl text-primary font-light flex-shrink-0 transition-transform duration-200">
-                      {openFaq === index ? '−' : '+'}
-                    </span>
+                    <span className="font-semibold text-base md:text-lg pr-4">{t(`faqs.items.${key}.question`)}</span>
+                    <motion.div
+                      animate={{ rotate: openFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex-shrink-0 text-primary"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.div>
                   </button>
                   
                   <motion.div
@@ -814,25 +886,25 @@ export default function SoftwareTraining() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="px-6 pb-6 text-base text-muted-foreground leading-relaxed">
+                    <p className="px-5 md:px-6 pb-5 md:pb-6 text-sm md:text-base text-muted-foreground leading-relaxed">
                       {t(`faqs.items.${key}.answer`)}
                     </p>
                   </motion.div>
-                </motion.div>
+                </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* SECTION 10: Final CTA */}
-        <section className="py-20 md:py-28 relative z-10">
+        <section className="py-16 md:py-24 relative z-10">
           <div className="content-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="max-w-3xl mx-auto text-center p-10 md:p-14 rounded-xl border border-primary/20 group transition-all duration-500 relative overflow-hidden"
+              className="max-w-3xl mx-auto text-center p-8 md:p-12 rounded-xl border border-primary/20 group transition-all duration-500 relative overflow-hidden"
               style={{
                 backgroundColor: 'rgba(10, 20, 60, 0.5)',
                 boxShadow: '0 0 30px rgba(48, 79, 254, 0.1)',
@@ -849,7 +921,7 @@ export default function SoftwareTraining() {
                 }}
               />
               
-              <h2 className="text-3xl md:text-4xl font-bold mb-10 relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 relative z-10">
                 {t('cta.headline')}
               </h2>
               

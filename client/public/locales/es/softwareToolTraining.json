@@ -139,6 +139,7 @@
   },
   "examples": {
     "title": "Ejemplos del mundo real",
+    "expand": "Expandir",
     "labelA": "Ejemplo A",
     "labelB": "Ejemplo B",
     "placeholder": "Insertar los números de precios de la diapositiva aquí",
@@ -146,12 +147,14 @@
       "title": "Lanzamiento de paquete de capacitación en ventas",
       "without": {
         "title": "Sin Tutor de IA",
+        "helper": "Entrega estándar sin soporte de tutoría en tiempo real.",
         "learnerSeats": "Asientos de estudiante",
         "teacherSeat": "Asiento de profesor",
         "packages": "Precio único de paquetes"
       },
       "with": {
         "title": "Con Tutor de IA",
+        "helper": "Incluye soporte del Tutor de IA integrado durante el aprendizaje.",
         "learnerSeats": "Asientos de estudiante",
         "teacherSeat": "Asiento de profesor",
         "packages": "Precio único de paquetes"
@@ -161,12 +164,14 @@
       "title": "Lanzamiento de paquete de incorporación de herramientas",
       "without": {
         "title": "Sin Tutor de IA",
+        "helper": "Entrega estándar sin soporte de tutoría en tiempo real.",
         "learnerSeats": "Asientos de estudiante",
         "teacherSeat": "Asiento de profesor",
         "packages": "Precio único de paquetes"
       },
       "with": {
         "title": "Con Tutor de IA",
+        "helper": "Incluye soporte del Tutor de IA integrado durante el aprendizaje.",
         "learnerSeats": "Asientos de estudiante",
         "teacherSeat": "Asiento de profesor",
         "packages": "Precio único de paquetes"
@@ -175,6 +180,7 @@
   },
   "faqs": {
     "title": "Preguntas frecuentes",
+    "lastUpdated": "Última actualización: Diciembre 2025",
     "items": {
       "speed": {
         "question": "¿Qué tan rápido podemos convertir documentación de herramientas en un curso?",
