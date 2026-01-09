@@ -4,23 +4,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-
-function generateStars(count: number) {
-  return Array.from({ length: count }, (_, i) => ({
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 12}s`,
-    duration: `${5 + Math.random() * 7}s`,
-    size: Math.random() > 0.7 ? 2 : Math.random() > 0.4 ? 1.5 : 1,
-  }));
-}
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { PageBackground } from '@/components/ui/page-background';
+import { ScrollFade } from '@/components/ui/scroll-fade';
+import { UnifiedFAQ } from '@/components/ui/unified-faq';
 
 export default function SoftwareTraining() {
   const { t, i18n } = useTranslation('softwareToolTraining');
-  const stars = useMemo(() => generateStars(60), []);
   const [activeNode, setActiveNode] = useState<'upload' | 'generate' | 'practice'>('upload');
   const [activeDeployment, setActiveDeployment] = useState<'url' | 'iframe' | 'scorm'>('url');
   const [activeStep, setActiveStep] = useState(0);
@@ -30,7 +21,6 @@ export default function SoftwareTraining() {
   const [exampleAHovered, setExampleAHovered] = useState(false);
   const [exampleBHovered, setExampleBHovered] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [autoCyclePaused, setAutoCyclePaused] = useState(false);
   
   const stepperRef = useRef<HTMLDivElement>(null);
@@ -143,83 +133,24 @@ export default function SoftwareTraining() {
       <Header />
 
       <main className="hero-animated-bg relative overflow-hidden">
-        {/* Starfield background */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          {stars.map((star, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-primary"
-              style={{
-                left: star.left,
-                top: star.top,
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                animation: `starTwinkleUnified ${star.duration} ease-in-out ${star.delay} infinite`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Blue glow - top right */}
-        <div 
-          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.08) 0%, transparent 70%)',
-            filter: 'blur(100px)',
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Blue glow - mid-page left */}
-        <div 
-          className="absolute top-[30%] left-[-10%] w-[700px] h-[700px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(200 80% 60% / 0.07) 0%, transparent 60%)',
-            filter: 'blur(120px)',
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Blue glow - mid-page right */}
-        <div 
-          className="absolute top-[55%] right-[-5%] w-[600px] h-[600px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.06) 0%, transparent 60%)',
-            filter: 'blur(100px)',
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Blue glow - bottom area */}
-        <div 
-          className="absolute bottom-[10%] left-[20%] w-[600px] h-[600px] pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, hsl(207 100% 50% / 0.07) 0%, transparent 60%)',
-            filter: 'blur(120px)',
-          }}
-          aria-hidden="true"
-        />
+        <PageBackground starCount={50} />
 
         {/* SECTION 1: Hero - Compact 2-column layout */}
-        <section className="pt-16 pb-12 md:pt-20 md:pb-16 relative z-10">
+        <section className="section-hero relative z-10">
           <div className="content-container">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               {/* Left column - Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
+              <ScrollFade>
                 <h1 
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4"
+                  className="heading-hero mb-4"
                   data-testid="heading-hero"
                 >
                   {t('hero.title')}
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground mb-3 leading-relaxed max-w-xl">
+                <p className="body-lg mb-3 max-w-xl">
                   {t('hero.subtitle')}
                 </p>
-                <p className="text-base text-muted-foreground/80 mb-6 max-w-lg">
+                <p className="body-md mb-6 max-w-lg">
                   {t('hero.supporting')}
                 </p>
 
@@ -241,15 +172,10 @@ export default function SoftwareTraining() {
                     {t('hero.ctaStart')}
                   </Button>
                 </div>
-              </motion.div>
+              </ScrollFade>
 
               {/* Right column - Auto-cycling 3-node diagram */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
-              >
+              <ScrollFade delay={0.2} className="relative">
                 {/* Three nodes with connecting line */}
                 <div className="flex items-center justify-center gap-3 md:gap-5 mb-6">
                   {nodes.map((node, index) => (
@@ -306,27 +232,21 @@ export default function SoftwareTraining() {
                     </p>
                   </motion.div>
                 </AnimatePresence>
-              </motion.div>
+              </ScrollFade>
             </div>
           </div>
         </section>
 
         {/* SECTION 2: Metrics Strip - Clean 3-column container */}
-        <section className="py-8 md:py-10 relative z-10">
+        <section className="section-tight relative z-10">
           <div className="content-container">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto rounded-xl border border-border/40 bg-card/20 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/30"
-              style={{
-                boxShadow: '0 0 20px rgba(56, 189, 248, 0.05)'
-              }}
-              whileHover={{
-                boxShadow: '0 0 35px rgba(56, 189, 248, 0.1)'
-              }}
-            >
+            <ScrollFade>
+              <div
+                className="max-w-4xl mx-auto rounded-xl border border-border/40 bg-card/20 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/30"
+                style={{
+                  boxShadow: '0 0 20px rgba(56, 189, 248, 0.05)'
+                }}
+              >
               <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/30">
                 {['cost', 'completion', 'engagement'].map((metric) => (
                   <div key={metric} className="px-6 py-5 text-center">
@@ -336,109 +256,96 @@ export default function SoftwareTraining() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+              </div>
+            </ScrollFade>
           </div>
         </section>
 
         {/* SECTION 3: Definition Box */}
-        <section className="py-10 md:py-14 relative z-10">
+        <section className="section-tight relative z-10">
           <div className="content-container">
-            <motion.div 
-              className="rounded-xl p-7 md:p-9 max-w-4xl mx-auto border border-primary/15 transition-all duration-300 hover:border-primary/25"
-              style={{
-                backgroundColor: 'rgba(10, 17, 37, 0.8)',
-                boxShadow: '0 0 40px rgba(48, 79, 254, 0.1)',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              whileHover={{
-                boxShadow: '0 0 60px rgba(56, 189, 248, 0.15)'
-              }}
-            >
-              <span className="text-xs font-medium tracking-wider text-primary mb-4 block uppercase">
-                {t('definition.label')}
-              </span>
-              <p className="text-base md:text-lg text-foreground/85 leading-relaxed mb-3">
-                {t('definition.line1')}
-              </p>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                {t('definition.line2')}
-              </p>
-            </motion.div>
+            <ScrollFade>
+              <div 
+                className="rounded-xl p-7 md:p-9 max-w-4xl mx-auto border border-primary/15 transition-all duration-300 hover:border-primary/25"
+                style={{
+                  backgroundColor: 'rgba(10, 17, 37, 0.8)',
+                  boxShadow: '0 0 40px rgba(48, 79, 254, 0.1)',
+                }}
+              >
+                <span className="label-sm mb-4 block">
+                  {t('definition.label')}
+                </span>
+                <p className="body-lg mb-3 text-foreground/85">
+                  {t('definition.line1')}
+                </p>
+                <p className="body-lg">
+                  {t('definition.line2')}
+                </p>
+              </div>
+            </ScrollFade>
           </div>
         </section>
 
         {/* SECTION 4: Where tool training breaks */}
-        <section className="py-16 md:py-24 relative z-10">
+        <section className="section-standard relative z-10">
           <div className="content-container">
-            <motion.h2 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-5 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              data-testid="heading-problems"
-            >
-              {t('problems.title')}
-            </motion.h2>
-            <p className="text-center text-base md:text-lg text-muted-foreground mb-12 md:mb-14 max-w-2xl mx-auto">
-              {t('problems.intro')}
-            </p>
+            <ScrollFade>
+              <h2 
+                className="heading-section mb-5 text-center"
+                data-testid="heading-problems"
+              >
+                {t('problems.title')}
+              </h2>
+              <p className="body-lg text-center mb-12 md:mb-14 max-w-2xl mx-auto">
+                {t('problems.intro')}
+              </p>
+            </ScrollFade>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
               {['cost', 'slow', 'completion', 'visibility'].map((key, index) => (
-                <motion.div 
-                  key={key}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-5 md:p-7 rounded-xl border border-primary/20 relative overflow-visible transition-all duration-300 hover:border-primary/35"
-                  style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.5)',
-                    backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.04) 0%, transparent 100%)',
-                    boxShadow: '0 0 12px rgba(59, 130, 246, 0.12), 0 0 40px rgba(48, 79, 254, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-                  }}
-                  whileHover={{
-                    boxShadow: '0 0 25px rgba(59, 130, 246, 0.2), 0 0 50px rgba(48, 79, 254, 0.1)'
-                  }}
-                  data-testid={`problem-${key}`}
-                >
-                  <h3 className="font-semibold text-foreground mb-2 text-lg md:text-xl">
-                    {t(`problems.items.${key}.title`)}
-                  </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                    {t(`problems.items.${key}.text`)}
-                  </p>
-                </motion.div>
+                <ScrollFade key={key} delay={index * 0.1}>
+                  <div 
+                    className="p-5 md:p-7 rounded-xl border border-primary/20 relative overflow-visible transition-all duration-300 hover:border-primary/35 h-full"
+                    style={{
+                      backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                      backgroundImage: 'linear-gradient(180deg, rgba(59, 130, 246, 0.04) 0%, transparent 100%)',
+                      boxShadow: '0 0 12px rgba(59, 130, 246, 0.12), 0 0 40px rgba(48, 79, 254, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                    }}
+                    data-testid={`problem-${key}`}
+                  >
+                    <h3 className="heading-sub mb-2">
+                      {t(`problems.items.${key}.title`)}
+                    </h3>
+                    <p className="body-md">
+                      {t(`problems.items.${key}.text`)}
+                    </p>
+                  </div>
+                </ScrollFade>
               ))}
             </div>
           </div>
         </section>
 
         {/* SECTION 5: Stepper - Compact content-driven module with auto-advance */}
-        <section className="py-16 md:py-24 relative z-10" ref={stepperRef}>
+        <section className="section-standard relative z-10" ref={stepperRef}>
           <div className="content-container">
-            <motion.h2 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10 md:mb-12 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              data-testid="heading-stepper"
-            >
-              {t('stepper.title')}
-            </motion.h2>
+            <ScrollFade>
+              <h2 
+                className="heading-section mb-10 md:mb-12 text-center"
+                data-testid="heading-stepper"
+              >
+                {t('stepper.title')}
+              </h2>
+            </ScrollFade>
 
-            <div 
-              className="max-w-4xl mx-auto rounded-xl border border-primary/15"
-              style={{
-                backgroundColor: 'rgba(10, 17, 37, 0.5)',
-                boxShadow: '0 0 25px rgba(48, 79, 254, 0.08)',
-              }}
-            >
+            <ScrollFade delay={0.1}>
+              <div 
+                className="max-w-4xl mx-auto rounded-xl border border-primary/15"
+                style={{
+                  backgroundColor: 'rgba(10, 17, 37, 0.5)',
+                  boxShadow: '0 0 25px rgba(48, 79, 254, 0.08)',
+                }}
+              >
               <div className="flex flex-col lg:flex-row">
                 {/* Left side - Step list */}
                 <div className="p-5 md:p-6 lg:w-[45%] lg:border-r border-border/20 relative">
@@ -542,193 +449,174 @@ export default function SoftwareTraining() {
                   </AnimatePresence>
                 </div>
               </div>
-            </div>
+              </div>
+            </ScrollFade>
           </div>
         </section>
 
         {/* SECTION 6: Trainers and Learners - Side by side on desktop */}
-        <section className="py-16 md:py-24 relative z-10">
+        <section className="section-standard relative z-10">
           <div className="content-container">
-            <motion.h2 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 md:mb-14 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              data-testid="heading-split"
-            >
-              {t('split.title')}
-            </motion.h2>
+            <ScrollFade>
+              <h2 
+                className="heading-section mb-12 md:mb-14 text-center"
+                data-testid="heading-split"
+              >
+                {t('split.title')}
+              </h2>
+            </ScrollFade>
 
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-0 max-w-5xl mx-auto">
               {/* Left: What trainers get */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="p-6 md:p-8 rounded-xl lg:rounded-r-none border border-primary/15 lg:border-r-0"
-                style={{
-                  backgroundColor: 'rgba(10, 17, 37, 0.4)',
-                }}
-              >
-                <h3 className="text-lg md:text-xl font-semibold mb-6">{t('split.trainers.title')}</h3>
-                <ul className="space-y-3">
-                  {trainerItems.map((item, index) => (
-                    <motion.li 
-                      key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: index * 0.04 }}
-                      className="flex items-start gap-3 text-sm md:text-base text-foreground/80"
-                    >
-                      <span className="w-5 h-5 rounded-full bg-primary/15 text-primary text-xs font-semibold flex-shrink-0 flex items-center justify-center mt-0.5">
-                        ✓
-                      </span>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
+              <ScrollFade>
+                <div
+                  className="p-6 md:p-8 rounded-xl lg:rounded-r-none border border-primary/15 lg:border-r-0 h-full"
+                  style={{
+                    backgroundColor: 'rgba(10, 17, 37, 0.4)',
+                  }}
+                >
+                  <h3 className="heading-sub mb-6">{t('split.trainers.title')}</h3>
+                  <ul className="space-y-3">
+                    {trainerItems.map((item, index) => (
+                      <li 
+                        key={index}
+                        className="flex items-start gap-3 body-md"
+                      >
+                        <span className="w-5 h-5 rounded-full bg-primary/15 text-primary text-xs font-semibold flex-shrink-0 flex items-center justify-center mt-0.5">
+                          ✓
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollFade>
 
               {/* Right: What learners get - Bigger chat mock, vertically centered */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="p-6 md:p-8 rounded-xl lg:rounded-l-none border border-primary/15 flex flex-col justify-center"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.04) 0%, rgba(10, 17, 37, 0.4) 60%)',
-                }}
-              >
-                <h3 className="text-lg md:text-xl font-semibold mb-6">{t('split.learners.title')}</h3>
-                
-                {/* Larger chat-like UI mock */}
-                <div className="space-y-4 mb-6">
-                  {learnerBubbles.map((bubble, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                      className={`p-4 md:p-5 rounded-xl text-sm md:text-base transition-all duration-300 hover:scale-[1.01] ${
-                        index === 0 ? 'max-w-[95%] bg-primary/12 border border-primary/25 ml-auto' :
-                        index === 1 ? 'max-w-[90%] bg-card/60 border border-border/50' :
-                        'max-w-[85%] bg-primary/8 border border-primary/20 ml-auto'
-                      }`}
-                      style={{
-                        boxShadow: index % 2 === 0 ? '0 0 18px rgba(56, 189, 248, 0.1)' : 'none'
-                      }}
-                    >
-                      {bubble}
-                    </motion.div>
-                  ))}
-                </div>
+              <ScrollFade delay={0.1}>
+                <div
+                  className="p-6 md:p-8 rounded-xl lg:rounded-l-none border border-primary/15 flex flex-col justify-center h-full"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.04) 0%, rgba(10, 17, 37, 0.4) 60%)',
+                  }}
+                >
+                  <h3 className="heading-sub mb-6">{t('split.learners.title')}</h3>
+                  
+                  <div className="space-y-4 mb-6">
+                    {learnerBubbles.map((bubble, index) => (
+                      <div
+                        key={index}
+                        className={`p-4 md:p-5 rounded-xl body-md transition-all duration-300 hover:scale-[1.01] ${
+                          index === 0 ? 'max-w-[95%] bg-primary/12 border border-primary/25 ml-auto' :
+                          index === 1 ? 'max-w-[90%] bg-card/60 border border-border/50' :
+                          'max-w-[85%] bg-primary/8 border border-primary/20 ml-auto'
+                        }`}
+                        style={{
+                          boxShadow: index % 2 === 0 ? '0 0 18px rgba(56, 189, 248, 0.1)' : 'none'
+                        }}
+                      >
+                        {bubble}
+                      </div>
+                    ))}
+                  </div>
 
-                <p className="text-sm md:text-base text-primary/80 font-medium">
-                  {t('split.learners.supporting')}
-                </p>
-              </motion.div>
+                  <p className="label-md text-primary/80 font-medium">
+                    {t('split.learners.supporting')}
+                  </p>
+                </div>
+              </ScrollFade>
             </div>
           </div>
         </section>
 
         {/* SECTION 7: Deployment options */}
-        <section className="py-16 md:py-24 relative z-10">
+        <section className="section-standard relative z-10">
           <div className="content-container">
-            <motion.h2 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              data-testid="heading-deployment"
-            >
-              {t('deployment.title')}
-            </motion.h2>
-            <p className="text-center text-muted-foreground mb-10 text-base md:text-lg">
-              {t('deployment.microcopy')}
-            </p>
+            <ScrollFade>
+              <h2 
+                className="heading-section mb-4 text-center"
+                data-testid="heading-deployment"
+              >
+                {t('deployment.title')}
+              </h2>
+              <p className="body-lg text-center mb-10">
+                {t('deployment.microcopy')}
+              </p>
+            </ScrollFade>
 
-            <div className="max-w-2xl mx-auto">
-              {/* Segmented controls */}
-              <div className="flex justify-center mb-8">
-                <div className="inline-flex p-1.5 rounded-full border border-border/40 bg-card/30 backdrop-blur-sm">
-                  {(['url', 'iframe', 'scorm'] as const).map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => setActiveDeployment(option)}
-                      className={`relative px-5 py-2.5 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
-                        activeDeployment === option
-                          ? 'text-primary'
-                          : 'text-muted-foreground hover:text-foreground'
-                      }`}
-                      data-testid={`chip-deployment-${option}`}
-                    >
-                      {activeDeployment === option && (
-                        <motion.div
-                          layoutId="activeDeployment"
-                          className="absolute inset-0 rounded-full bg-primary/15 border border-primary/30"
-                          style={{
-                            boxShadow: '0 0 15px rgba(56, 189, 248, 0.2)'
-                          }}
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        />
-                      )}
-                      <span className="relative z-10">{t(`deployment.options.${option}.label`)}</span>
-                    </button>
-                  ))}
+            <ScrollFade delay={0.1}>
+              <div className="max-w-2xl mx-auto">
+                {/* Segmented controls */}
+                <div className="flex justify-center mb-8">
+                  <div className="inline-flex p-1.5 rounded-full border border-border/40 bg-card/30 backdrop-blur-sm">
+                    {(['url', 'iframe', 'scorm'] as const).map((option) => (
+                      <button
+                        key={option}
+                        onClick={() => setActiveDeployment(option)}
+                        className={`relative px-5 py-2.5 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
+                          activeDeployment === option
+                            ? 'text-primary'
+                            : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                        data-testid={`chip-deployment-${option}`}
+                      >
+                        {activeDeployment === option && (
+                          <motion.div
+                            layoutId="activeDeployment"
+                            className="absolute inset-0 rounded-full bg-primary/15 border border-primary/30"
+                            style={{
+                              boxShadow: '0 0 15px rgba(56, 189, 248, 0.2)'
+                            }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          />
+                        )}
+                        <span className="relative z-10">{t(`deployment.options.${option}.label`)}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Detail panel */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeDeployment}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.25 }}
-                  className="text-center p-6 md:p-8 rounded-xl border border-primary/15"
-                  style={{
-                    backgroundColor: 'rgba(10, 17, 37, 0.6)',
-                    boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
-                  }}
-                >
-                  <p className="text-base md:text-lg text-foreground/85">
-                    {t(`deployment.options.${activeDeployment}.detail`)}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                {/* Detail panel */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeDeployment}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-center p-6 md:p-8 rounded-xl border border-primary/15"
+                    style={{
+                      backgroundColor: 'rgba(10, 17, 37, 0.6)',
+                      boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
+                    }}
+                  >
+                    <p className="body-lg text-foreground/85">
+                      {t(`deployment.options.${activeDeployment}.detail`)}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </ScrollFade>
           </div>
         </section>
 
         {/* SECTION 8: Examples - Hover-to-expand on desktop, click on mobile */}
-        <section className="py-16 md:py-24 relative z-10">
+        <section className="section-standard relative z-10">
           <div className="content-container">
-            <motion.h2 
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 md:mb-14 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              data-testid="heading-examples"
-            >
-              {t('examples.title')}
-            </motion.h2>
+            <ScrollFade>
+              <h2 
+                className="heading-section mb-12 md:mb-14 text-center"
+                data-testid="heading-examples"
+              >
+                {t('examples.title')}
+              </h2>
+            </ScrollFade>
 
             <div className="max-w-4xl mx-auto space-y-5">
               {/* Example A */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
+              <ScrollFade>
+                <div
+                  className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
                 style={{
                   backgroundColor: 'rgba(10, 20, 60, 0.4)',
                   boxShadow: (exampleAHovered || exampleAOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
@@ -798,29 +686,27 @@ export default function SoftwareTraining() {
                     </div>
                   </div>
                 </motion.div>
-              </motion.div>
+                </div>
+              </ScrollFade>
 
               {/* Example B */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
-                style={{
-                  backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  boxShadow: (exampleBHovered || exampleBOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
-                  transform: exampleBHovered ? 'translateY(-3px)' : 'translateY(0)',
-                }}
-                onMouseEnter={() => {
-                  setExampleBHovered(true);
-                  if (!isTouchDevice) setExampleBOpen(true);
-                }}
-                onMouseLeave={() => {
-                  setExampleBHovered(false);
-                  if (!isTouchDevice) setExampleBOpen(false);
-                }}
-              >
+              <ScrollFade delay={0.1}>
+                <div
+                  className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
+                  style={{
+                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
+                    boxShadow: (exampleBHovered || exampleBOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
+                    transform: exampleBHovered ? 'translateY(-3px)' : 'translateY(0)',
+                  }}
+                  onMouseEnter={() => {
+                    setExampleBHovered(true);
+                    if (!isTouchDevice) setExampleBOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    setExampleBHovered(false);
+                    if (!isTouchDevice) setExampleBOpen(false);
+                  }}
+                >
                 <div
                   onClick={() => isTouchDevice && setExampleBOpen(!exampleBOpen)}
                   className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer"
@@ -876,130 +762,64 @@ export default function SoftwareTraining() {
                     </div>
                   </div>
                 </motion.div>
-              </motion.div>
+                </div>
+              </ScrollFade>
             </div>
           </div>
         </section>
 
-        {/* SECTION 9: FAQs - Matching reference design */}
-        <section className="py-16 md:py-24 relative z-10">
-          <div className="content-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-10 md:mb-12"
-            >
-              <h2 
-                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2"
-                data-testid="heading-faqs"
-              >
-                {t('faqs.title')}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {t('faqs.lastUpdated')}
-              </p>
-            </motion.div>
-
-            {/* Single container for all FAQs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="max-w-3xl mx-auto rounded-xl border border-primary/15 overflow-hidden"
-              style={{
-                backgroundColor: 'rgba(10, 17, 37, 0.5)',
-                boxShadow: '0 0 30px rgba(48, 79, 254, 0.08)',
-              }}
-            >
-              {['speed', 'tutor', 'deploy'].map((key, index) => (
-                <div
-                  key={key}
-                  className={index < 2 ? 'border-b border-border/20' : ''}
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-card/20 transition-colors"
-                    data-testid={`button-faq-${key}`}
-                  >
-                    <span className="font-semibold text-base md:text-lg pr-4">{t(`faqs.items.${key}.question`)}</span>
-                    <motion.div
-                      animate={{ rotate: openFaq === index ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex-shrink-0 text-primary"
-                    >
-                      <ChevronDown className="w-5 h-5" />
-                    </motion.div>
-                  </button>
-                  
-                  <motion.div
-                    initial={false}
-                    animate={{ 
-                      height: openFaq === index ? 'auto' : 0,
-                      opacity: openFaq === index ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="px-5 md:px-6 pb-5 md:pb-6 text-sm md:text-base text-muted-foreground leading-relaxed">
-                      {t(`faqs.items.${key}.answer`)}
-                    </p>
-                  </motion.div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+        {/* SECTION 9: FAQs - Using UnifiedFAQ component */}
+        <UnifiedFAQ
+          title={t('faqs.title')}
+          lastUpdated={t('faqs.lastUpdated')}
+          items={[
+            { id: 'speed', question: t('faqs.items.speed.question'), answer: t('faqs.items.speed.answer') },
+            { id: 'tutor', question: t('faqs.items.tutor.question'), answer: t('faqs.items.tutor.answer') },
+            { id: 'deploy', question: t('faqs.items.deploy.question'), answer: t('faqs.items.deploy.answer') },
+          ]}
+        />
 
         {/* SECTION 10: Final CTA */}
-        <section className="py-16 md:py-24 relative z-10">
+        <section className="section-standard relative z-10">
           <div className="content-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="max-w-3xl mx-auto text-center p-8 md:p-12 rounded-xl border border-primary/20 group transition-all duration-500 relative overflow-hidden"
-              style={{
-                backgroundColor: 'rgba(10, 20, 60, 0.5)',
-                boxShadow: '0 0 30px rgba(48, 79, 254, 0.1)',
-              }}
-              whileHover={{
-                boxShadow: '0 0 60px rgba(56, 189, 248, 0.2)'
-              }}
-            >
-              {/* Hover glow sweep */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            <ScrollFade>
+              <div
+                className="max-w-3xl mx-auto text-center p-8 md:p-12 rounded-xl border border-primary/20 group transition-all duration-500 relative overflow-hidden"
                 style={{
-                  background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(56, 189, 248, 0.12) 0%, transparent 70%)'
+                  backgroundColor: 'rgba(10, 20, 60, 0.5)',
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.1)',
                 }}
-              />
-              
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 relative z-10">
-                {t('cta.headline')}
-              </h2>
-              
-              <div className="flex flex-wrap justify-center gap-4 relative z-10">
-                <Button 
-                  size="lg" 
-                  onClick={handleDemoClick}
-                  data-testid="button-cta-demo"
-                >
-                  {t('cta.ctaDemo')}
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  onClick={handleStartClick}
-                  data-testid="button-cta-start"
-                >
-                  {t('cta.ctaStart')}
-                </Button>
+              >
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(56, 189, 248, 0.12) 0%, transparent 70%)'
+                  }}
+                />
+                
+                <h2 className="heading-section mb-8 relative z-10">
+                  {t('cta.headline')}
+                </h2>
+                
+                <div className="flex flex-wrap justify-center gap-4 relative z-10">
+                  <Button 
+                    size="lg" 
+                    onClick={handleDemoClick}
+                    data-testid="button-cta-demo"
+                  >
+                    {t('cta.ctaDemo')}
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    onClick={handleStartClick}
+                    data-testid="button-cta-start"
+                  >
+                    {t('cta.ctaStart')}
+                  </Button>
+                </div>
               </div>
-            </motion.div>
+            </ScrollFade>
           </div>
         </section>
       </main>
