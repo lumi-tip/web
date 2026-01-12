@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "Role-Based Development | LearnPack",
+    "description": "Create one course, then automatically adapt it for Sales, Ops, Support, Managers, or any job function, without rebuilding content.",
+    "keywords": "role-based training, personalized learning, adaptive training, job-specific training, AI tutor, employee development"
+  },
+  "hero": {
+    "title": "Role-based training that feels built for each person.",
+    "subtitle": "Create one course, then automatically adapt it for Sales, Ops, Support, Managers, or any job function, without rebuilding content.",
+    "metrics": {
+      "cost": "Up to 80% lower content cost",
+      "launch": "10× faster launch",
+      "completion": "2× higher completion"
+    },
+    "ctaDemo": "Book a Demo",
+    "ctaStart": "Start for Free"
+  },
+  "definition": {
+    "label": "What is LearnPack",
+    "line1": "LearnPack is the AI platform that turns any document, video, or idea into interactive training in minutes, then adapts it by role with measurable learning analytics.",
+    "line2": "One source of truth. Multiple role paths. Real insight into who learned versus who clicked."
+  },
+  "problem": {
+    "title": "One course cannot train five job realities.",
+    "body": "Most training is written for 'everyone' so it lands as 'no one.' Teams click through, managers cannot tell who is learning, and updates become expensive."
+  },
+  "roleSwitcher": {
+    "title": "One course. Multiple role paths.",
+    "subtitle": "Switch the role and watch the same module transform: examples, exercises, quizzes, and feedback."
+  },
+  "howItWorks": {
+    "title": "How role-based development happens in minutes.",
+    "steps": {
+      "generate": {
+        "title": "Generate the baseline course",
+        "desc": "Upload file or describe goal, AI generates lessons, quizzes, challenges."
+      },
+      "define": {
+        "title": "Define roles and outcomes",
+        "desc": "Specify job functions and what success looks like for each."
+      },
+      "refine": {
+        "title": "Refine with the Editing Agent",
+        "desc": "Chat to customize examples, quizzes, and language by role."
+      }
+    },
+    "examples": {
+      "label": "Chat with the Editing Agent:",
+      "items": {
+        "support": "Make this example for Support.",
+        "quiz": "Add a role-specific quiz.",
+        "translate": "Translate for LATAM."
+      }
+    }
+  },
+  "matrix": {
+    "title": "What changes by role."
+  },
+  "outcomes": {
+    "title": "Role-based personalization drives completion.",
+    "metrics": {
+      "completion": {
+        "value": "2×",
+        "label": "higher completion"
+      },
+      "cost": {
+        "value": "1",
+        "label": "source of truth, lower update cost"
+      },
+      "visibility": {
+        "value": "100%",
+        "label": "visibility into who learned vs clicked"
+      }
+    }
+  },
+  "faqs": {
+    "items": {
+      "separate": {
+        "question": "Is role-based training separate courses?",
+        "answer": "No. You maintain one baseline course and define role-specific adaptations. The AI Tutor and content automatically adjust based on the learner's role, while you keep a single source of truth for updates."
+      },
+      "tutor": {
+        "question": "Does the AI Tutor change by role too?",
+        "answer": "Yes. The AI Tutor (Rigobot) provides role-contextualized guidance. A Sales rep gets objection-handling hints while a Support agent gets diagnostic suggestions, all from the same underlying course."
+      },
+      "export": {
+        "question": "Can we export role-based training to our LMS?",
+        "answer": "Absolutely. Export as SCORM packages, embed via iFrame, or share unique URLs. Role assignments can be passed via launch parameters so your LMS controls who sees which adaptation."
+      }
+    }
+  },
+  "cta": {
+    "headline": "Make training feel job-ready.",
+    "ctaDemo": "Book a Demo",
+    "ctaStart": "Start for Free"
+  }
+}
