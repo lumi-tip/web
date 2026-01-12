@@ -4,62 +4,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { analytics } from '@/lib/analytics';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageBackground } from '@/components/ui/page-background';
 import { ScrollFade } from '@/components/ui/scroll-fade';
 import { UnifiedFAQ } from '@/components/ui/unified-faq';
 
 type RoleType = 'sales' | 'support' | 'operations' | 'manager' | 'newHire';
-
-const roleContent: Record<RoleType, { scenario: string; practice: string; quiz: string }> = {
-  sales: {
-    scenario: "Handle pricing objections for a new product line",
-    practice: "Write a 4-step discovery script",
-    quiz: "Which question best reveals budget constraints?"
-  },
-  support: {
-    scenario: "Troubleshoot a 'login loop' incident",
-    practice: "Build a decision tree from the knowledge base",
-    quiz: "What is the safest first diagnostic step?"
-  },
-  operations: {
-    scenario: "Standardize a handoff process across locations",
-    practice: "Map the workflow and flag failure points",
-    quiz: "Which step reduces rework the most?"
-  },
-  manager: {
-    scenario: "Coach performance after training",
-    practice: "Use a rubric to evaluate applied skills",
-    quiz: "Which metric signals real learning vs clicking?"
-  },
-  newHire: {
-    scenario: "First-week onboarding walkthrough",
-    practice: "Complete a guided checklist with milestones",
-    quiz: "What should you do if you get stuck mid-task?"
-  }
-};
-
-const roleLabels: Record<RoleType, string> = {
-  sales: 'Sales',
-  support: 'Support',
-  operations: 'Operations',
-  manager: 'Manager',
-  newHire: 'New Hire'
-};
-
-const matrixData = {
-  rows: ['Examples', 'Exercises', 'Difficulty', 'Language', 'Compliance notes', 'Analytics signals'],
-  columns: ['Baseline', 'Sales', 'Support', 'Operations', 'Manager'],
-  data: [
-    ['Generic scenarios', 'Objection handling', 'Ticket resolution', 'Process handoffs', 'Performance coaching'],
-    ['Standard quizzes', 'Discovery scripts', 'Decision trees', 'Workflow mapping', 'Rubric evaluations'],
-    ['Moderate', 'High', 'Moderate', 'Moderate', 'High'],
-    ['English', 'EN + ES', 'EN + ES', 'EN', 'EN'],
-    ['Standard policy', 'Pricing rules', 'Privacy protocol', 'SLA compliance', 'HR guidelines'],
-    ['Completion', 'Script adoption', 'Resolution time', 'Handoff errors', 'Skill application']
-  ]
-};
 
 export default function RoleBased() {
   const { t, i18n } = useTranslation('roleBased');
@@ -69,6 +20,13 @@ export default function RoleBased() {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
 
   const roles: RoleType[] = ['sales', 'support', 'operations', 'manager', 'newHire'];
+
+  const matrixRows = t('matrix.rows', { returnObjects: true }) as string[];
+  const matrixColumns = t('matrix.columns', { returnObjects: true }) as string[];
+  const matrixDataRows = useMemo(() => {
+    const keys = ['examples', 'exercises', 'difficulty', 'language', 'compliance', 'analytics'];
+    return keys.map(key => t(`matrix.data.${key}`, { returnObjects: true }) as string[]);
+  }, [t]);
 
   const handleRoleClick = useCallback((role: RoleType) => {
     setActiveRole(role);
@@ -101,6 +59,8 @@ export default function RoleBased() {
     window.location.href = `${platformUrl}/signup`;
   };
 
+  const featureList = t('meta.featureList', { returnObjects: true }) as string[];
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -113,13 +73,7 @@ export default function RoleBased() {
       "priceCurrency": "USD"
     },
     "description": t('meta.description'),
-    "featureList": [
-      "Role-Based Training Adaptation",
-      "AI-Powered Content Personalization",
-      "Built-in AI Tutor",
-      "Real-Time Analytics",
-      "SCORM Export"
-    ]
+    "featureList": featureList
   };
 
   return (
@@ -207,7 +161,7 @@ export default function RoleBased() {
                       transition={{ duration: 0.3 }}
                       data-testid={`tab-role-${role}`}
                     >
-                      {roleLabels[role]}
+                      {t(`roles.${role}.label`)}
                     </motion.button>
                   ))}
                 </div>
@@ -227,16 +181,16 @@ export default function RoleBased() {
                   >
                     <div className="space-y-4">
                       <div>
-                        <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">Scenario</span>
-                        <p className="text-foreground/90 mt-1">{roleContent[activeRole].scenario}</p>
+                        <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">{t('roleSwitcher.labels.scenario')}</span>
+                        <p className="text-foreground/90 mt-1">{t(`roles.${activeRole}.scenario`)}</p>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">Practice</span>
-                        <p className="text-foreground/90 mt-1">{roleContent[activeRole].practice}</p>
+                        <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">{t('roleSwitcher.labels.practice')}</span>
+                        <p className="text-foreground/90 mt-1">{t(`roles.${activeRole}.practice`)}</p>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">Quiz</span>
-                        <p className="text-foreground/90 mt-1">{roleContent[activeRole].quiz}</p>
+                        <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">{t('roleSwitcher.labels.quiz')}</span>
+                        <p className="text-foreground/90 mt-1">{t(`roles.${activeRole}.quiz`)}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -303,7 +257,7 @@ export default function RoleBased() {
                         className="w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 border-primary/40 bg-primary/10 flex items-center justify-center mb-2"
                         style={{ boxShadow: '0 0 20px rgba(56, 189, 248, 0.15)' }}
                       >
-                        <span className="text-sm font-medium text-primary">1 Course</span>
+                        <span className="text-sm font-medium text-primary">{t('diagram.source')}</span>
                       </div>
                     </div>
 
@@ -316,16 +270,16 @@ export default function RoleBased() {
 
                     {/* Role variants */}
                     <div className="flex flex-col gap-2">
-                      {['Sales', 'Support', 'Ops', 'Manager', 'New Hire'].map((label, i) => (
+                      {roles.map((role) => (
                         <motion.div
-                          key={label}
+                          key={role}
                           className="px-3 py-1.5 rounded-lg border border-border/50 bg-card/30 text-xs md:text-sm text-foreground/80 transition-all duration-200 hover:border-primary/40 hover:bg-primary/10 cursor-default"
                           whileHover={{ 
                             scale: 1.05,
                             boxShadow: '0 0 12px rgba(56, 189, 248, 0.2)'
                           }}
                         >
-                          {label}
+                          {t(`roles.${role}.label`)}
                         </motion.div>
                       ))}
                     </div>
@@ -377,7 +331,7 @@ export default function RoleBased() {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                           />
                         )}
-                        <span className="relative z-10">{roleLabels[role]}</span>
+                        <span className="relative z-10">{t(`roles.${role}.label`)}</span>
                       </button>
                     ))}
                   </div>
@@ -399,16 +353,16 @@ export default function RoleBased() {
                   >
                     <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/30">
                       <div className="p-5 md:p-6">
-                        <span className="label-sm text-primary block mb-3">Scenario</span>
-                        <p className="body-md text-foreground/90">{roleContent[activeRole].scenario}</p>
+                        <span className="label-sm text-primary block mb-3">{t('roleSwitcher.labels.scenario')}</span>
+                        <p className="body-md text-foreground/90">{t(`roles.${activeRole}.scenario`)}</p>
                       </div>
                       <div className="p-5 md:p-6">
-                        <span className="label-sm text-primary block mb-3">Practice</span>
-                        <p className="body-md text-foreground/90">{roleContent[activeRole].practice}</p>
+                        <span className="label-sm text-primary block mb-3">{t('roleSwitcher.labels.practice')}</span>
+                        <p className="body-md text-foreground/90">{t(`roles.${activeRole}.practice`)}</p>
                       </div>
                       <div className="p-5 md:p-6">
-                        <span className="label-sm text-primary block mb-3">Quiz</span>
-                        <p className="body-md text-foreground/90">{roleContent[activeRole].quiz}</p>
+                        <span className="label-sm text-primary block mb-3">{t('roleSwitcher.labels.quiz')}</span>
+                        <p className="body-md text-foreground/90">{t(`roles.${activeRole}.quiz`)}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -483,7 +437,7 @@ export default function RoleBased() {
                         key={i}
                         className="px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/5 text-sm text-foreground/80"
                       >
-                        "{example}"
+                        {example}
                       </span>
                     ))}
                   </div>
@@ -512,7 +466,7 @@ export default function RoleBased() {
                   <thead>
                     <tr>
                       <th className="p-4 text-left text-sm font-semibold text-muted-foreground border-b border-border/30"></th>
-                      {matrixData.columns.map((col, i) => (
+                      {matrixColumns.map((col, i) => (
                         <th 
                           key={col}
                           className={`p-4 text-center text-sm font-semibold border-b border-border/30 transition-colors duration-200 ${
@@ -527,13 +481,13 @@ export default function RoleBased() {
                     </tr>
                   </thead>
                   <tbody>
-                    {matrixData.rows.map((row, rowIndex) => (
+                    {matrixRows.map((row, rowIndex) => (
                       <tr 
                         key={row}
                         className="transition-colors duration-200 hover:bg-primary/5"
                       >
                         <td className="p-4 text-sm font-medium text-foreground/80 border-b border-border/20">{row}</td>
-                        {matrixData.data[rowIndex].map((cell, colIndex) => (
+                        {matrixDataRows[rowIndex]?.map((cell, colIndex) => (
                           <td 
                             key={colIndex}
                             className={`p-4 text-sm text-center border-b border-border/20 transition-colors duration-200 ${
@@ -553,17 +507,17 @@ export default function RoleBased() {
 
               {/* Mobile stacked view */}
               <div className="md:hidden space-y-6">
-                {matrixData.columns.slice(1).map((role, roleIndex) => (
+                {matrixColumns.slice(1).map((role, roleIndex) => (
                   <div 
                     key={role}
                     className="p-5 rounded-xl border border-border/40 bg-card/20"
                   >
                     <h4 className="font-semibold text-primary mb-4">{role}</h4>
                     <div className="space-y-3">
-                      {matrixData.rows.map((row, rowIndex) => (
+                      {matrixRows.map((row, rowIndex) => (
                         <div key={row} className="flex justify-between items-start gap-4">
                           <span className="text-sm text-muted-foreground flex-shrink-0">{row}</span>
-                          <span className="text-sm text-right">{matrixData.data[rowIndex][roleIndex + 1]}</span>
+                          <span className="text-sm text-right">{matrixDataRows[rowIndex]?.[roleIndex + 1]}</span>
                         </div>
                       ))}
                     </div>
@@ -619,8 +573,8 @@ export default function RoleBased() {
 
         {/* SECTION 8: FAQ */}
         <UnifiedFAQ
-          title="FAQs"
-          lastUpdated="Last updated: January 2026"
+          title={t('faqs.title')}
+          lastUpdated={t('faqs.lastUpdated')}
           items={[
             { id: 'separate', question: t('faqs.items.separate.question'), answer: t('faqs.items.separate.answer') },
             { id: 'tutor', question: t('faqs.items.tutor.question'), answer: t('faqs.items.tutor.answer') },

@@ -2,7 +2,14 @@
   "meta": {
     "title": "Role-Based Development | LearnPack",
     "description": "Create one course, then automatically adapt it for Sales, Ops, Support, Managers, or any job function, without rebuilding content.",
-    "keywords": "role-based training, personalized learning, adaptive training, job-specific training, AI tutor, employee development"
+    "keywords": "role-based training, personalized learning, adaptive training, job-specific training, AI tutor, employee development",
+    "featureList": [
+      "Role-Based Training Adaptation",
+      "AI-Powered Content Personalization",
+      "Built-in AI Tutor",
+      "Real-Time Analytics",
+      "SCORM Export"
+    ]
   },
   "hero": {
     "title": "Role-based training that feels built for each person.",
@@ -26,7 +33,44 @@
   },
   "roleSwitcher": {
     "title": "One course. Multiple role paths.",
-    "subtitle": "Switch the role and watch the same module transform: examples, exercises, quizzes, and feedback."
+    "subtitle": "Switch the role and watch the same module transform: examples, exercises, quizzes, and feedback.",
+    "labels": {
+      "scenario": "Scenario",
+      "practice": "Practice",
+      "quiz": "Quiz"
+    }
+  },
+  "roles": {
+    "sales": {
+      "label": "Sales",
+      "scenario": "Handle pricing objections for a new product line",
+      "practice": "Write a 4-step discovery script",
+      "quiz": "Which question best reveals budget constraints?"
+    },
+    "support": {
+      "label": "Support",
+      "scenario": "Troubleshoot a 'login loop' incident",
+      "practice": "Build a decision tree from the knowledge base",
+      "quiz": "What is the safest first diagnostic step?"
+    },
+    "operations": {
+      "label": "Operations",
+      "scenario": "Standardize a handoff process across locations",
+      "practice": "Map the workflow and flag failure points",
+      "quiz": "Which step reduces rework the most?"
+    },
+    "manager": {
+      "label": "Manager",
+      "scenario": "Coach performance after training",
+      "practice": "Use a rubric to evaluate applied skills",
+      "quiz": "Which metric signals real learning vs clicking?"
+    },
+    "newHire": {
+      "label": "New Hire",
+      "scenario": "First-week onboarding walkthrough",
+      "practice": "Complete a guided checklist with milestones",
+      "quiz": "What should you do if you get stuck mid-task?"
+    }
   },
   "howItWorks": {
     "title": "How role-based development happens in minutes.",
@@ -47,14 +91,24 @@
     "examples": {
       "label": "Chat with the Editing Agent:",
       "items": {
-        "support": "Make this example for Support.",
-        "quiz": "Add a role-specific quiz.",
-        "translate": "Translate for LATAM."
+        "support": "\"Make this example for Support.\"",
+        "quiz": "\"Add a role-specific quiz.\"",
+        "translate": "\"Translate for LATAM.\""
       }
     }
   },
   "matrix": {
-    "title": "What changes by role."
+    "title": "What changes by role.",
+    "rows": ["Examples", "Exercises", "Difficulty", "Language", "Compliance notes", "Analytics signals"],
+    "columns": ["Baseline", "Sales", "Support", "Operations", "Manager"],
+    "data": {
+      "examples": ["Generic scenarios", "Objection handling", "Ticket resolution", "Process handoffs", "Performance coaching"],
+      "exercises": ["Standard quizzes", "Discovery scripts", "Decision trees", "Workflow mapping", "Rubric evaluations"],
+      "difficulty": ["Moderate", "High", "Moderate", "Moderate", "High"],
+      "language": ["English", "EN + ES", "EN + ES", "EN", "EN"],
+      "compliance": ["Standard policy", "Pricing rules", "Privacy protocol", "SLA compliance", "HR guidelines"],
+      "analytics": ["Completion", "Script adoption", "Resolution time", "Handoff errors", "Skill application"]
+    }
   },
   "outcomes": {
     "title": "Role-based personalization drives completion.",
@@ -74,6 +128,8 @@
     }
   },
   "faqs": {
+    "title": "FAQs",
+    "lastUpdated": "Last updated: January 2026",
     "items": {
       "separate": {
         "question": "Is role-based training separate courses?",
@@ -88,6 +144,9 @@
         "answer": "Absolutely. Export as SCORM packages, embed via iFrame, or share unique URLs. Role assignments can be passed via launch parameters so your LMS controls who sees which adaptation."
       }
     }
+  },
+  "diagram": {
+    "source": "1 Course"
   },
   "cta": {
     "headline": "Make training feel job-ready.",
