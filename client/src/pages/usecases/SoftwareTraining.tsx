@@ -768,10 +768,9 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 9: FAQs - Using UnifiedFAQ component */}
         <UnifiedFAQ
-          title={t('faqs.title')}
-          lastUpdated={t('faqs.lastUpdated')}
+          title="FAQs"
+          lastUpdated="Last updated: December 2025"
           items={[
             { id: 'speed', question: t('faqs.items.speed.question'), answer: t('faqs.items.speed.answer') },
             { id: 'tutor', question: t('faqs.items.tutor.question'), answer: t('faqs.items.tutor.answer') },

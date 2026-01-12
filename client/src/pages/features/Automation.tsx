@@ -600,11 +600,10 @@ export default function Automation() {
           </div>
         </section>
 
-        {/* FAQ Section - Using UnifiedFAQ component */}
         <UnifiedFAQ
-          title={t('faq.title')}
+          title="FAQs"
+          lastUpdated="Last updated: December 2025"
           items={faqItems}
-          data-testid="section-faq"
         />
 
         {/* Final CTA Section */}

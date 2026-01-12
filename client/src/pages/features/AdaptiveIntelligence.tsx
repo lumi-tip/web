@@ -886,9 +886,9 @@ export default function AdaptiveIntelligence() {
         </section>
 
         <UnifiedFAQ
-          title={t('faq.title')}
+          title="FAQs"
+          lastUpdated="Last updated: December 2025"
           items={faqItems}
-          data-testid="section-faq"
         />
 
         <section 

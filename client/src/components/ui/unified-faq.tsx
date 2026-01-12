@@ -12,17 +12,15 @@ interface FAQItem {
 }
 
 interface UnifiedFAQProps {
-  title: string;
-  subtitle?: string;
+  title?: string;
   lastUpdated?: string;
   items: FAQItem[];
   className?: string;
 }
 
 export function UnifiedFAQ({ 
-  title, 
-  subtitle, 
-  lastUpdated,
+  title = 'FAQs',
+  lastUpdated = 'Last updated: December 2025',
   items, 
   className = '' 
 }: UnifiedFAQProps) {
@@ -42,7 +40,7 @@ export function UnifiedFAQ({
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(59, 130, 246, 0.04) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 70% 50% at 50% 30%, hsl(var(--primary) / 0.04) 0%, transparent 60%)',
         }}
         aria-hidden="true"
       />
@@ -50,41 +48,34 @@ export function UnifiedFAQ({
       <div className="content-container relative z-10">
         <ScrollFade>
           <div className="text-center mb-12 md:mb-16">
-            <h2 id="faq-title" className="heading-section mb-4">
+            <h2 id="faq-title" className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               {title}
             </h2>
-            {subtitle && (
-              <p className="body-lg max-w-2xl mx-auto">
-                {subtitle}
-              </p>
-            )}
-            {lastUpdated && (
-              <p className="label-md mt-3">
-                Last updated: {lastUpdated}
-              </p>
-            )}
+            <p className="text-muted-foreground text-base">
+              {lastUpdated}
+            </p>
           </div>
         </ScrollFade>
 
         <ScrollFade delay={0.1}>
-          <div className="max-w-3xl mx-auto faq-container">
+          <div className="max-w-3xl mx-auto rounded-xl overflow-hidden" style={{ background: 'hsl(220 13% 12% / 0.8)' }}>
             {items.map((item, index) => (
               <div 
                 key={item.id} 
-                className={`faq-item ${index === 0 ? 'rounded-t-xl' : ''} ${index === items.length - 1 ? 'rounded-b-xl' : ''}`}
+                className={`border-b border-white/5 last:border-b-0`}
               >
                 <h3 className="m-0">
                   <button
                     onClick={() => toggleItem(item.id)}
-                    className="faq-trigger group"
+                    className="w-full flex items-center justify-between px-6 py-5 text-left text-foreground font-medium hover:bg-white/[0.02] transition-colors"
                     aria-expanded={openItem === item.id}
                     aria-controls={`faq-content-${item.id}`}
                   >
-                    <span className="pr-4">{item.question}</span>
+                    <span className="pr-4 text-base">{item.question}</span>
                     <motion.span
                       animate={{ rotate: openItem === item.id ? 180 : 0 }}
                       transition={{ duration: 0.25, ease: 'easeInOut' }}
-                      className="flex-shrink-0 text-muted-foreground group-hover:text-foreground transition-colors"
+                      className="flex-shrink-0 text-muted-foreground"
                     >
                       <ChevronDown className="w-5 h-5" />
                     </motion.span>
@@ -103,11 +94,11 @@ export function UnifiedFAQ({
                     >
                       {item.hasHtml ? (
                         <div 
-                          className="faq-content prose prose-invert prose-sm max-w-none"
+                          className="px-6 pb-5 text-muted-foreground text-base leading-relaxed prose prose-invert prose-sm max-w-none"
                           dangerouslySetInnerHTML={{ __html: item.answer }}
                         />
                       ) : (
-                        <p className="faq-content">{item.answer}</p>
+                        <p className="px-6 pb-5 text-muted-foreground text-base leading-relaxed m-0">{item.answer}</p>
                       )}
                     </motion.div>
                   )}

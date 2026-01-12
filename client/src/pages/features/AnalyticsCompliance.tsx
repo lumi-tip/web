@@ -624,10 +624,9 @@ export default function AnalyticsCompliance() {
         </section>
 
         <UnifiedFAQ
-          title={t('faq.title')}
-          lastUpdated={t('faq.lastUpdated')}
+          title="FAQs"
+          lastUpdated="Last updated: December 2025"
           items={faqItems}
-          data-testid="section-faq"
         />
 
         <section 

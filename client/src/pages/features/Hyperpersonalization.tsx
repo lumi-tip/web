@@ -846,8 +846,8 @@ export default function Hyperpersonalization() {
         </section>
 
         <UnifiedFAQ
-          title={t('faq.title')}
-          lastUpdated={t('faq.lastUpdated')}
+          title="FAQs"
+          lastUpdated="Last updated: December 2025"
           items={faqItems}
         />
 
