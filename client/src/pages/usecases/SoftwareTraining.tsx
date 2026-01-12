@@ -600,215 +600,78 @@ export default function SoftwareTraining() {
           </div>
         </section>
 
-        {/* SECTION 8: Examples - Hover-to-expand on desktop, click on mobile */}
+        {/* SECTION 8: The AI Tutor Difference - Always visible comparison */}
         <section className="section-standard relative z-10">
           <div className="content-container">
             <ScrollFade>
               <h2 
                 className="heading-section mb-12 md:mb-14 text-center"
-                data-testid="heading-examples"
+                data-testid="heading-impact"
               >
-                {t('examples.title')}
+                The AI Tutor Difference
               </h2>
             </ScrollFade>
-
-            <div className="max-w-4xl mx-auto space-y-5">
-              {/* Example A */}
-              <ScrollFade>
-                <div
-                  className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
+            <ScrollFade delay={0.1}>
+              <div
+                className="max-w-4xl mx-auto rounded-xl border border-primary/20 p-6 md:p-8"
                 style={{
                   backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                  boxShadow: (exampleAHovered || exampleAOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
-                  transform: exampleAHovered ? 'translateY(-3px)' : 'translateY(0)',
-                }}
-                onMouseEnter={() => {
-                  setExampleAHovered(true);
-                  if (!isTouchDevice) setExampleAOpen(true);
-                }}
-                onMouseLeave={() => {
-                  setExampleAHovered(false);
-                  if (!isTouchDevice) setExampleAOpen(false);
+                  boxShadow: '0 0 30px rgba(48, 79, 254, 0.12)',
                 }}
               >
-                <div
-                  onClick={() => isTouchDevice && setExampleAOpen(!exampleAOpen)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer"
-                  data-testid="button-example-a-toggle"
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && setExampleAOpen(!exampleAOpen)}
-                >
-                  <div>
-                    <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
-                      Sales training package rollout
-                    </span>
-                    <span className="font-semibold text-lg md:text-xl">{t('examples.exampleA.title')}</span>
-                  </div>
-                </div>
-
-                <motion.div
-                  initial={false}
-                  animate={{ 
-                    height: exampleAOpen ? 'auto' : 0,
-                    opacity: exampleAOpen ? 1 : 0
-                  }}
-                  transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="p-5 md:p-6 pt-0 md:pt-0">
-                    <div className="grid md:grid-cols-2 gap-5 mb-4">
-                      {/* Without AI Tutor */}
-                      <div className="p-5 rounded-xl border border-border/40 bg-card/20">
-                        <h4 className="font-semibold mb-4 text-base md:text-lg">Without AI Tutor</h4>
-                        
-                        <div className="mb-4">
-                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">During learning</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Learners follow static content.”</li>
-                            <li>“Help depends on external support.”</li>
-                            <li>“Confusion often leads to drop off.”</li>
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">What gets tracked</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Mostly clicks and progress.”</li>
-                            <li>“Little visibility into frustration.”</li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* With AI Tutor */}
-                      <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
-                        <h4 className="font-semibold mb-4 text-base md:text-lg text-primary">With AI Tutor</h4>
-                        
-                        <div className="mb-4">
-                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">During learning</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Learners get contextual support.”</li>
-                            <li>“Guidance is proactive and available 24/7.”</li>
-                            <li>“Socratic questions reduce disengagement.”</li>
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">What gets tracked</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Engagement beyond clicking through.”</li>
-                            <li>“Signals of learner frustration.”</li>
-                          </ul>
-                        </div>
-                      </div>
+                <div className="grid md:grid-cols-2 gap-5 mb-4">
+                  {/* Without AI Tutor */}
+                  <div className="p-5 rounded-xl border border-border/40 bg-card/20">
+                    <h4 className="font-semibold mb-4 text-base md:text-lg">Without AI Tutor</h4>
+                    
+                    <div className="mb-4">
+                      <p className="text-xs font-bold text-muted-foreground uppercase mb-2">During learning</p>
+                      <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                        <li>"Learners follow static content."</li>
+                        <li>"Help depends on external support."</li>
+                        <li>"Confusion often leads to drop off."</li>
+                      </ul>
                     </div>
-                    <p className="text-[10px] md:text-xs text-muted-foreground/50 italic text-center">
-                      Publishing: unique URL, iFrame embed, SCORM export.
-                    </p>
-                  </div>
-                </motion.div>
-                </div>
-              </ScrollFade>
-
-              {/* Example B */}
-              <ScrollFade delay={0.1}>
-                <div
-                  className="rounded-xl border border-primary/20 transition-all duration-300 ease-out"
-                  style={{
-                    backgroundColor: 'rgba(10, 20, 60, 0.4)',
-                    boxShadow: (exampleBHovered || exampleBOpen) ? '0 4px 30px rgba(48, 79, 254, 0.18)' : '0 0 20px rgba(48, 79, 254, 0.08)',
-                    transform: exampleBHovered ? 'translateY(-3px)' : 'translateY(0)',
-                  }}
-                  onMouseEnter={() => {
-                    setExampleBHovered(true);
-                    if (!isTouchDevice) setExampleBOpen(true);
-                  }}
-                  onMouseLeave={() => {
-                    setExampleBHovered(false);
-                    if (!isTouchDevice) setExampleBOpen(false);
-                  }}
-                >
-                <div
-                  onClick={() => isTouchDevice && setExampleBOpen(!exampleBOpen)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer"
-                  data-testid="button-example-b-toggle"
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && setExampleBOpen(!exampleBOpen)}
-                >
-                  <div>
-                    <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
-                      Tool onboarding package rollout
-                    </span>
-                    <span className="font-semibold text-lg md:text-xl">{t('examples.exampleB.title')}</span>
-                  </div>
-                </div>
-
-                <motion.div
-                  initial={false}
-                  animate={{ 
-                    height: exampleBOpen ? 'auto' : 0,
-                    opacity: exampleBOpen ? 1 : 0
-                  }}
-                  transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="p-5 md:p-6 pt-0 md:pt-0">
-                    <div className="grid md:grid-cols-2 gap-5 mb-4">
-                      {/* Without AI Tutor */}
-                      <div className="p-5 rounded-xl border border-border/40 bg-card/20">
-                        <h4 className="font-semibold mb-4 text-base md:text-lg">Without AI Tutor</h4>
-                        
-                        <div className="mb-4">
-                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">During learning</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Learners follow static content.”</li>
-                            <li>“Help depends on external support.”</li>
-                            <li>“Confusion often leads to drop off.”</li>
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">What gets tracked</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Mostly clicks and progress.”</li>
-                            <li>“Little visibility into frustration.”</li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* With AI Tutor */}
-                      <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
-                        <h4 className="font-semibold mb-4 text-base md:text-lg text-primary">With AI Tutor</h4>
-                        
-                        <div className="mb-4">
-                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">During learning</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Learners get contextual support.”</li>
-                            <li>“Guidance is proactive and available 24/7.”</li>
-                            <li>“Socratic questions reduce disengagement.”</li>
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">What gets tracked</p>
-                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
-                            <li>“Engagement beyond clicking through.”</li>
-                            <li>“Signals of learner frustration.”</li>
-                          </ul>
-                        </div>
-                      </div>
+                    
+                    <div>
+                      <p className="text-xs font-bold text-muted-foreground uppercase mb-2">What gets tracked</p>
+                      <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                        <li>"Mostly clicks and progress."</li>
+                        <li>"Little visibility into frustration."</li>
+                      </ul>
                     </div>
-                    <p className="text-[10px] md:text-xs text-muted-foreground/50 italic text-center">
-                      Publishing: unique URL, iFrame embed, SCORM export.
-                    </p>
                   </div>
-                </motion.div>
+
+                  {/* With AI Tutor */}
+                  <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
+                    <h4 className="font-semibold mb-4 text-base md:text-lg text-primary">With AI Tutor</h4>
+                    
+                    <div className="mb-4">
+                      <p className="text-xs font-bold text-primary/60 uppercase mb-2">During learning</p>
+                      <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                        <li>"Learners get contextual support."</li>
+                        <li>"Guidance is proactive and available 24/7."</li>
+                        <li>"Socratic questions reduce disengagement."</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <p className="text-xs font-bold text-primary/60 uppercase mb-2">What gets tracked</p>
+                      <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                        <li>"Engagement beyond clicking through."</li>
+                        <li>"Signals of learner frustration."</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </ScrollFade>
-            </div>
+                <p className="text-[10px] md:text-xs text-muted-foreground/50 italic text-center">
+                  Publishing: unique URL, iFrame embed, SCORM export.
+                </p>
+              </div>
+            </ScrollFade>
           </div>
         </section>
+
 
         <UnifiedFAQ
           title="FAQs"
