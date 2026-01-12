@@ -273,13 +273,13 @@ export default function SoftwareTraining() {
                 }}
               >
                 <span className="label-sm mb-4 block">
-                  {t('definition.label')}
+                  What is LearnPack
                 </span>
                 <p className="body-lg mb-3 text-foreground/85">
-                  {t('definition.line1')}
+                  LearnPack turns any idea or documentation into interactive training packages.
                 </p>
                 <p className="body-lg">
-                  {t('definition.line2')}
+                  It generates production ready courses and includes a built in AI Tutor plus real time insight into engagement and frustration.
                 </p>
               </div>
             </ScrollFade>
@@ -641,16 +641,10 @@ export default function SoftwareTraining() {
                 >
                   <div>
                     <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
-                      {t('examples.labelA')}
+                      Sales training package rollout
                     </span>
                     <span className="font-semibold text-lg md:text-xl">{t('examples.exampleA.title')}</span>
                   </div>
-                  <span 
-                    className="text-xs text-primary/70 font-medium transition-opacity duration-200"
-                    style={{ opacity: exampleAHovered && !exampleAOpen ? 1 : 0 }}
-                  >
-                    {t('examples.hoverHint')}
-                  </span>
                 </div>
 
                 <motion.div
@@ -662,28 +656,55 @@ export default function SoftwareTraining() {
                   transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="grid md:grid-cols-2 gap-5 p-5 md:p-6 pt-0 md:pt-0">
-                    {/* Without AI Tutor */}
-                    <div className="p-5 rounded-xl border border-border/40 bg-card/20">
-                      <h4 className="font-semibold mb-2 text-base md:text-lg">{t('examples.exampleA.without.title')}</h4>
-                      <p className="text-xs md:text-sm text-muted-foreground/70 mb-4 italic">{t('examples.exampleA.without.helper')}</p>
-                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleA.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
-                        <li>{t('examples.exampleA.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
-                        <li>{t('examples.exampleA.without.packages')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
-                      </ul>
-                    </div>
+                  <div className="p-5 md:p-6 pt-0 md:pt-0">
+                    <div className="grid md:grid-cols-2 gap-5 mb-4">
+                      {/* Without AI Tutor */}
+                      <div className="p-5 rounded-xl border border-border/40 bg-card/20">
+                        <h4 className="font-semibold mb-4 text-base md:text-lg">Without AI Tutor</h4>
+                        
+                        <div className="mb-4">
+                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">During learning</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Learners follow static content.”</li>
+                            <li>“Help depends on external support.”</li>
+                            <li>“Confusion often leads to drop off.”</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">What gets tracked</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Mostly clicks and progress.”</li>
+                            <li>“Little visibility into frustration.”</li>
+                          </ul>
+                        </div>
+                      </div>
 
-                    {/* With AI Tutor */}
-                    <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
-                      <h4 className="font-semibold mb-2 text-base md:text-lg text-primary">{t('examples.exampleA.with.title')}</h4>
-                      <p className="text-xs md:text-sm text-primary/60 mb-4 italic">{t('examples.exampleA.with.helper')}</p>
-                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleA.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
-                        <li>{t('examples.exampleA.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
-                        <li>{t('examples.exampleA.with.packages')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
-                      </ul>
+                      {/* With AI Tutor */}
+                      <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
+                        <h4 className="font-semibold mb-4 text-base md:text-lg text-primary">With AI Tutor</h4>
+                        
+                        <div className="mb-4">
+                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">During learning</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Learners get contextual support.”</li>
+                            <li>“Guidance is proactive and available 24/7.”</li>
+                            <li>“Socratic questions reduce disengagement.”</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">What gets tracked</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Engagement beyond clicking through.”</li>
+                            <li>“Signals of learner frustration.”</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
+                    <p className="text-[10px] md:text-xs text-muted-foreground/50 italic text-center">
+                      Publishing: unique URL, iFrame embed, SCORM export.
+                    </p>
                   </div>
                 </motion.div>
                 </div>
@@ -717,16 +738,10 @@ export default function SoftwareTraining() {
                 >
                   <div>
                     <span className="text-xs font-medium tracking-wider text-primary uppercase block mb-1.5">
-                      {t('examples.labelB')}
+                      Tool onboarding package rollout
                     </span>
                     <span className="font-semibold text-lg md:text-xl">{t('examples.exampleB.title')}</span>
                   </div>
-                  <span 
-                    className="text-xs text-primary/70 font-medium transition-opacity duration-200"
-                    style={{ opacity: exampleBHovered && !exampleBOpen ? 1 : 0 }}
-                  >
-                    {t('examples.hoverHint')}
-                  </span>
                 </div>
 
                 <motion.div
@@ -738,28 +753,55 @@ export default function SoftwareTraining() {
                   transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="grid md:grid-cols-2 gap-5 p-5 md:p-6 pt-0 md:pt-0">
-                    {/* Without AI Tutor */}
-                    <div className="p-5 rounded-xl border border-border/40 bg-card/20">
-                      <h4 className="font-semibold mb-2 text-base md:text-lg">{t('examples.exampleB.without.title')}</h4>
-                      <p className="text-xs md:text-sm text-muted-foreground/70 mb-4 italic">{t('examples.exampleB.without.helper')}</p>
-                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleB.without.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
-                        <li>{t('examples.exampleB.without.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
-                        <li>{t('examples.exampleB.without.packages')}: <span className="text-foreground">{t('examples.placeholderWithout')}</span></li>
-                      </ul>
-                    </div>
+                  <div className="p-5 md:p-6 pt-0 md:pt-0">
+                    <div className="grid md:grid-cols-2 gap-5 mb-4">
+                      {/* Without AI Tutor */}
+                      <div className="p-5 rounded-xl border border-border/40 bg-card/20">
+                        <h4 className="font-semibold mb-4 text-base md:text-lg">Without AI Tutor</h4>
+                        
+                        <div className="mb-4">
+                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">During learning</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Learners follow static content.”</li>
+                            <li>“Help depends on external support.”</li>
+                            <li>“Confusion often leads to drop off.”</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <p className="text-xs font-bold text-muted-foreground uppercase mb-2">What gets tracked</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Mostly clicks and progress.”</li>
+                            <li>“Little visibility into frustration.”</li>
+                          </ul>
+                        </div>
+                      </div>
 
-                    {/* With AI Tutor */}
-                    <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
-                      <h4 className="font-semibold mb-2 text-base md:text-lg text-primary">{t('examples.exampleB.with.title')}</h4>
-                      <p className="text-xs md:text-sm text-primary/60 mb-4 italic">{t('examples.exampleB.with.helper')}</p>
-                      <ul className="space-y-2 text-sm md:text-base text-muted-foreground">
-                        <li>{t('examples.exampleB.with.learnerSeats')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
-                        <li>{t('examples.exampleB.with.teacherSeat')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
-                        <li>{t('examples.exampleB.with.packages')}: <span className="text-foreground">{t('examples.placeholderWith')}</span></li>
-                      </ul>
+                      {/* With AI Tutor */}
+                      <div className="p-5 rounded-xl border border-primary/30 bg-primary/5">
+                        <h4 className="font-semibold mb-4 text-base md:text-lg text-primary">With AI Tutor</h4>
+                        
+                        <div className="mb-4">
+                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">During learning</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Learners get contextual support.”</li>
+                            <li>“Guidance is proactive and available 24/7.”</li>
+                            <li>“Socratic questions reduce disengagement.”</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <p className="text-xs font-bold text-primary/60 uppercase mb-2">What gets tracked</p>
+                          <ul className="space-y-1.5 text-sm md:text-base text-muted-foreground">
+                            <li>“Engagement beyond clicking through.”</li>
+                            <li>“Signals of learner frustration.”</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
+                    <p className="text-[10px] md:text-xs text-muted-foreground/50 italic text-center">
+                      Publishing: unique URL, iFrame embed, SCORM export.
+                    </p>
                   </div>
                 </motion.div>
                 </div>
