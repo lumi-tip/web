@@ -353,16 +353,16 @@ export default function RoleBased() {
                   >
                     <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/30">
                       <div className="p-5 md:p-6">
-                        <span className="label-sm text-primary block mb-3">{t('roleSwitcher.labels.scenario')}</span>
-                        <p className="body-md text-foreground/90">{t(`roles.${activeRole}.scenario`)}</p>
+                        <span className="label-sm text-primary block mb-3 uppercase">{t('roleSwitcher.labels.challenge')}</span>
+                        <p className="body-md text-foreground/90 whitespace-pre-line">{t(`roles.${activeRole}.challenge`)}</p>
                       </div>
                       <div className="p-5 md:p-6">
-                        <span className="label-sm text-primary block mb-3">{t('roleSwitcher.labels.practice')}</span>
-                        <p className="body-md text-foreground/90">{t(`roles.${activeRole}.practice`)}</p>
+                        <span className="label-sm text-primary block mb-3 uppercase">{t('roleSwitcher.labels.adaptation')}</span>
+                        <p className="body-md text-foreground/90 whitespace-pre-line">{t(`roles.${activeRole}.adaptation`)}</p>
                       </div>
                       <div className="p-5 md:p-6">
-                        <span className="label-sm text-primary block mb-3">{t('roleSwitcher.labels.quiz')}</span>
-                        <p className="body-md text-foreground/90">{t(`roles.${activeRole}.quiz`)}</p>
+                        <span className="label-sm text-primary block mb-3 uppercase">{t('roleSwitcher.labels.outcome')}</span>
+                        <p className="body-md text-foreground/90 whitespace-pre-line">{t(`roles.${activeRole}.outcome`)}</p>
                       </div>
                     </div>
                   </motion.div>
