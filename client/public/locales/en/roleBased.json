@@ -37,7 +37,10 @@
     "labels": {
       "challenge": "Common training challenge",
       "adaptation": "How LearnPack adapts the course",
-      "outcome": "Expected outcome"
+      "outcome": "Expected outcome",
+      "scenario": "SCENARIO",
+      "practice": "PRACTICE",
+      "quiz": "QUIZ"
     }
   },
   "roles": {
@@ -45,31 +48,46 @@
       "label": "Sales",
       "challenge": "Sales teams struggle to apply product knowledge in real conversations. Training is often theoretical, outdated, or disconnected from real objections and deal scenarios.",
       "adaptation": "The same product training course is reframed around sales conversations:\n- Real objection-handling scenarios\n- Discovery and qualification frameworks\n- Practice focused on decision-making, not memorization",
-      "outcome": "Reps gain confidence faster, apply knowledge in live calls, and shorten ramp-up time without adding extra training programs."
+      "outcome": "Reps gain confidence faster, apply knowledge in live calls, and shorten ramp-up time without adding extra training programs.",
+      "scenario": "Handle pricing objections for a new product line",
+      "practice": "Write a 4-step discovery script",
+      "quiz": "Which question best reveals budget constraints?"
     },
     "support": {
       "label": "Support",
       "challenge": "Support teams receive large amounts of documentation but lack structured guidance on how to troubleshoot issues under pressure.",
       "adaptation": "LearnPack restructures the course around problem resolution:\n- Incident-based learning paths\n- Step-by-step diagnostic thinking\n- Reinforcement of safe-first actions and escalation criteria",
-      "outcome": "Faster issue resolution, fewer escalations, and more consistent support quality across the team."
+      "outcome": "Faster issue resolution, fewer escalations, and more consistent support quality across the team.",
+      "scenario": "Troubleshoot a 'login loop' incident",
+      "practice": "Build a decision tree from the knowledge base",
+      "quiz": "What is the safest first diagnostic step?"
     },
     "operations": {
       "label": "Operations",
       "challenge": "Operational teams need consistency. Training often explains processes but fails to show how small deviations create bottlenecks and rework.",
       "adaptation": "The course is adapted to focus on workflows and execution:\n- Visual process breakdowns\n- Identification of failure points\n- Decision-making at handoff moments",
-      "outcome": "More predictable execution, reduced operational errors, and smoother cross-team collaboration."
+      "outcome": "More predictable execution, reduced operational errors, and smoother cross-team collaboration.",
+      "scenario": "Standardize a handoff process across locations",
+      "practice": "Map the workflow and flag failure points",
+      "quiz": "Which step reduces rework the most?"
     },
     "manager": {
       "label": "Manager",
       "challenge": "Managers are expected to reinforce training outcomes but are rarely trained on how to evaluate real learning versus completion.",
       "adaptation": "The course shifts from execution to evaluation:\n- Coaching frameworks\n- Skill assessment rubrics\n- Signals that indicate applied learning, not just progress",
-      "outcome": "Managers can coach more effectively, identify gaps early, and ensure training translates into performance."
+      "outcome": "Managers can coach more effectively, identify gaps early, and ensure training translates into performance.",
+      "scenario": "Coach performance after training",
+      "practice": "Use a rubric to evaluate applied skills",
+      "quiz": "Which metric signals real learning vs clicking?"
     },
     "newHire": {
       "label": "New Hire",
       "challenge": "New hires are overwhelmed by information and often lack clarity on priorities during their first weeks.",
       "adaptation": "The onboarding course is structured around guidance and progression:\n- Clear first-week paths\n- Guided checklists with milestones\n- Context-aware support when learners get stuck",
-      "outcome": "Faster onboarding, higher confidence, and earlier autonomy without increasing training workload"
+      "outcome": "Faster onboarding, higher confidence, and earlier autonomy without increasing training workload",
+      "scenario": "First-week onboarding walkthrough",
+      "practice": "Complete a guided checklist with milestones",
+      "quiz": "What should you do if you get stuck mid-task?"
     }
   },
   "howItWorks": {
