@@ -528,49 +528,6 @@ export default function RoleBased() {
           </div>
         </section>
 
-        {/* SECTION 7: Outcomes */}
-        <section className="section-standard relative z-10">
-          <div className="content-container">
-            <ScrollFade>
-              <h2 
-                className="heading-section mb-10 text-center"
-                data-testid="heading-outcomes"
-              >
-                {t('outcomes.title')}
-              </h2>
-            </ScrollFade>
-
-            <ScrollFade delay={0.1}>
-              <div
-                className="max-w-4xl mx-auto rounded-xl border border-border/40 bg-card/20 backdrop-blur-sm overflow-hidden"
-                style={{
-                  boxShadow: '0 0 20px rgba(56, 189, 248, 0.05)'
-                }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/30">
-                  {['completion', 'cost', 'visibility'].map((metric, index) => (
-                    <motion.div 
-                      key={metric}
-                      className="p-6 md:p-8 text-center"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <span className="text-2xl md:text-3xl font-bold text-primary block mb-2">
-                        {t(`outcomes.metrics.${metric}.value`)}
-                      </span>
-                      <span className="text-sm text-muted-foreground">
-                        {t(`outcomes.metrics.${metric}.label`)}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </ScrollFade>
-          </div>
-        </section>
-
         {/* SECTION 8: FAQ */}
         <UnifiedFAQ
           title={t('faqs.title')}
