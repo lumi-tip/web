@@ -139,7 +139,7 @@ function Router() {
           <SoftwareTraining />
         </Suspense>
       </Route>
-      <Route path="/use-cases/role-based">
+      <Route path="/usecases/role-based">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <RoleBased />
         </Suspense>
