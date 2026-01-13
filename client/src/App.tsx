@@ -134,7 +134,7 @@ function Router() {
       </Route>
 
       {/* Use Case Pages */}
-      <Route path="/use-cases/software-training">
+      <Route path="/usecases/software-training">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <SoftwareTraining />
         </Suspense>
@@ -144,7 +144,7 @@ function Router() {
           <RoleBased />
         </Suspense>
       </Route>
-      <Route path="/use-cases/compliance">
+      <Route path="/usecases/compliance">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <ComplianceUseCase />
         </Suspense>
