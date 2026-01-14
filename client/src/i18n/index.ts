@@ -11,7 +11,7 @@ i18n
     fallbackLng: 'en',
     debug: false,
     defaultNS: 'common',
-    ns: ['common', 'home', 'pricing', 'mission', 'legal', 'automation', 'hyperpersonalization'],
+    ns: ['common', 'home', 'pricing', 'mission', 'legal', 'automation', 'hyperpersonalization', 'compliance', 'roleBased', 'softwareTraining'],
     
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
