@@ -179,17 +179,16 @@ export default function Compliance() {
                   className="p-6 md:p-8 rounded-xl border border-primary/20 relative"
                   style={{ 
                     boxShadow: '0 0 30px rgba(56, 189, 248, 0.08)',
-                    backgroundColor: 'rgba(10, 17, 37, 0.95)'
+                    backgroundColor: '#0a1125'
                   }}
                 >
-                  {/* Connecting line - perfectly centered vertically and fully masked by nodes */}
+                  {/* Connecting line - positioned at exact circle center: padding (32px) + half circle height (28px) = 60px */}
                   <div 
                     className="absolute left-8 right-8 h-0.5 hidden sm:block" 
                     style={{ 
-                      top: 'calc(50% - 10px)', // Precise centering: parent has flex items with icon (h-14) + text. Center of h-14 is 28px from top of flex item.
+                      top: '60px',
                       background: 'linear-gradient(to right, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.3), rgba(56, 189, 248, 0.15))',
-                      zIndex: 0,
-                      marginTop: '-1px' // Fine-tuning for h-0.5 thickness
+                      zIndex: 0
                     }} 
                   />
                   
