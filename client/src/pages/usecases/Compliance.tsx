@@ -182,13 +182,14 @@ export default function Compliance() {
                     backgroundColor: 'rgba(10, 17, 37, 0.95)'
                   }}
                 >
-                  {/* Connecting line - positioned behind circles */}
+                  {/* Connecting line - perfectly centered vertically and fully masked by nodes */}
                   <div 
                     className="absolute left-8 right-8 h-0.5 hidden sm:block" 
                     style={{ 
-                      top: 'calc(50% - 12px)',
+                      top: 'calc(50% - 10px)', // Precise centering: parent has flex items with icon (h-14) + text. Center of h-14 is 28px from top of flex item.
                       background: 'linear-gradient(to right, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.3), rgba(56, 189, 248, 0.15))',
-                      zIndex: 0
+                      zIndex: 0,
+                      marginTop: '-1px' // Fine-tuning for h-0.5 thickness
                     }} 
                   />
                   
@@ -208,7 +209,7 @@ export default function Compliance() {
                             }}
                             transition={{ duration: 0.4 }}
                           >
-                            {/* Solid background circle that cuts the line */}
+                            {/* Solid background circle - fully opaque to mask the line */}
                             <motion.div 
                               className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 flex items-center justify-center mb-2 transition-all duration-500 ${
                                 isActive 
@@ -218,11 +219,7 @@ export default function Compliance() {
                                     : 'border-border/50'
                               }`}
                               style={{
-                                backgroundColor: isActive 
-                                  ? 'rgba(10, 20, 45, 1)' 
-                                  : isPast 
-                                    ? 'rgba(10, 18, 40, 1)' 
-                                    : 'rgba(10, 17, 37, 1)',
+                                backgroundColor: '#0a1125', // Using hex for absolute opacity
                                 zIndex: 10
                               }}
                               animate={isActive ? {
