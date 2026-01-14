@@ -176,11 +176,21 @@ export default function Compliance() {
               {/* Animated Horizontal Workflow Strip */}
               <ScrollFade delay={0.2} className="relative">
                 <div 
-                  className="p-6 md:p-8 rounded-xl border border-primary/20 bg-card/40 backdrop-blur-sm"
-                  style={{ boxShadow: '0 0 30px rgba(56, 189, 248, 0.08)' }}
+                  className="p-6 md:p-8 rounded-xl border border-primary/20 relative"
+                  style={{ 
+                    boxShadow: '0 0 30px rgba(56, 189, 248, 0.08)',
+                    backgroundColor: 'rgba(10, 17, 37, 0.95)'
+                  }}
                 >
-                  {/* Connecting line */}
-                  <div className="absolute top-1/2 left-8 right-8 h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 hidden sm:block" style={{ transform: 'translateY(-12px)' }} />
+                  {/* Connecting line - positioned behind circles */}
+                  <div 
+                    className="absolute left-8 right-8 h-0.5 hidden sm:block" 
+                    style={{ 
+                      top: 'calc(50% - 12px)',
+                      background: 'linear-gradient(to right, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.3), rgba(56, 189, 248, 0.15))',
+                      zIndex: 0
+                    }} 
+                  />
                   
                   <div className="flex items-center justify-between gap-1 sm:gap-2 relative">
                     {heroSteps.map((step, index) => {
@@ -198,14 +208,23 @@ export default function Compliance() {
                             }}
                             transition={{ duration: 0.4 }}
                           >
+                            {/* Solid background circle that cuts the line */}
                             <motion.div 
                               className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 flex items-center justify-center mb-2 transition-all duration-500 ${
                                 isActive 
-                                  ? 'border-primary bg-primary/20' 
+                                  ? 'border-primary' 
                                   : isPast 
-                                    ? 'border-primary/50 bg-primary/10' 
-                                    : 'border-border/50 bg-card/50'
+                                    ? 'border-primary/50' 
+                                    : 'border-border/50'
                               }`}
+                              style={{
+                                backgroundColor: isActive 
+                                  ? 'rgba(10, 20, 45, 1)' 
+                                  : isPast 
+                                    ? 'rgba(10, 18, 40, 1)' 
+                                    : 'rgba(10, 17, 37, 1)',
+                                zIndex: 10
+                              }}
                               animate={isActive ? {
                                 boxShadow: ['0 0 20px rgba(56, 189, 248, 0.3)', '0 0 35px rgba(56, 189, 248, 0.5)', '0 0 20px rgba(56, 189, 248, 0.3)']
                               } : {
@@ -229,6 +248,7 @@ export default function Compliance() {
                           
                           {index < 4 && (
                             <motion.div
+                              className="relative z-10"
                               animate={{ 
                                 opacity: isPast || isActive ? 1 : 0.3,
                                 scale: isActive ? 1.2 : 1
@@ -413,16 +433,28 @@ export default function Compliance() {
               <div className="max-w-5xl mx-auto">
                 {/* Desktop view - auto-animated */}
                 <div className="hidden md:block relative">
-                  {/* Background connecting line */}
-                  <div className="absolute top-8 left-0 right-0 h-0.5 bg-border/30" />
+                  {/* Background connecting line - positioned behind circles with z-index */}
+                  <div 
+                    className="absolute left-0 right-0 h-0.5" 
+                    style={{ 
+                      top: '32px',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      zIndex: 0
+                    }} 
+                  />
                   
-                  {/* Animated progress line */}
+                  {/* Animated progress line - also behind circles */}
                   <motion.div 
-                    className="absolute top-8 left-0 h-0.5 bg-gradient-to-r from-primary to-primary/50"
+                    className="absolute left-0 h-0.5"
+                    style={{ 
+                      top: '32px',
+                      background: 'linear-gradient(to right, rgba(56, 189, 248, 0.8), rgba(56, 189, 248, 0.4))',
+                      boxShadow: '0 0 10px rgba(56, 189, 248, 0.5)',
+                      zIndex: 1
+                    }}
                     initial={{ width: '0%' }}
                     animate={{ width: `${(activeTimelineStep / 4) * 100}%` }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
-                    style={{ boxShadow: '0 0 10px rgba(56, 189, 248, 0.5)' }}
                   />
                   
                   <div className="flex justify-between relative">
@@ -433,20 +465,30 @@ export default function Compliance() {
                       return (
                         <motion.div
                           key={step.key}
-                          className="flex flex-col items-center text-center relative z-10"
+                          className="flex flex-col items-center text-center relative"
+                          style={{ zIndex: 10 }}
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
+                          {/* Solid background circle that cuts the line */}
                           <motion.div
                             className={`w-16 h-16 rounded-full border-2 flex items-center justify-center mb-4 transition-all duration-500 ${
                               isActive
-                                ? 'border-primary bg-primary/20'
+                                ? 'border-primary'
                                 : isPast
-                                  ? 'border-primary/60 bg-primary/10'
-                                  : 'border-border/50 bg-card/50'
+                                  ? 'border-primary/60'
+                                  : 'border-border/50'
                             }`}
+                            style={{
+                              backgroundColor: isActive 
+                                ? 'rgba(10, 20, 45, 1)' 
+                                : isPast 
+                                  ? 'rgba(10, 18, 40, 1)' 
+                                  : 'rgba(8, 15, 35, 1)',
+                              zIndex: 10
+                            }}
                             animate={isActive ? {
                               boxShadow: ['0 0 15px rgba(56, 189, 248, 0.3)', '0 0 30px rgba(56, 189, 248, 0.5)', '0 0 15px rgba(56, 189, 248, 0.3)'],
                               scale: [1, 1.08, 1]
