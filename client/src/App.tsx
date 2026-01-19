@@ -21,7 +21,6 @@ const ThumbnailPage = lazy(() => import("@/pages/ThumbnailPage"));
 
 // Product pages
 const PlatformOverview = lazy(() => import("@/pages/PlatformOverview"));
-const AIContentAssistant = lazy(() => import("@/pages/AIContentAssistant"));
 const TrainingCenters = lazy(() => import("@/pages/TrainingCenters"));
 const Results = lazy(() => import("@/pages/Results"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -88,7 +87,7 @@ function Router() {
       </Route>
       <Route path="/ai-content-assistant">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
-          <AIContentAssistant />
+          <InstructionalDesigner />
         </Suspense>
       </Route>
       <Route path="/training-centers">
@@ -106,12 +105,7 @@ function Router() {
           <Contact />
         </Suspense>
       </Route>
-      <Route path="/instructional-designer">
-        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
-          <InstructionalDesigner />
-        </Suspense>
-      </Route>
-
+      
       {/* Feature Pages */}
       <Route path="/features/automation">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>

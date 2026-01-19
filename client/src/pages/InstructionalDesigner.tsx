@@ -127,7 +127,7 @@ export default function InstructionalDesigner() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={t('meta.ogTitle')} />
         <meta name="twitter:description" content={t('meta.ogDescription')} />
-        <link rel="canonical" href="https://learnpack.co/instructional-designer" />
+        <link rel="canonical" href="https://learnpack.co/ai-content-assistant" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
