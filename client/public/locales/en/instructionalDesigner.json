@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Instructional Designer AI | LearnPack",
+    "description": "Turn any document, deck, or SME input into a complete interactive course in minutes. Regenerate instead of patching outdated training with LearnPack's AI-powered Instructional Designer.",
+    "keywords": "instructional design AI, course generation, training content automation, AI course creator, rapid course development",
+    "ogTitle": "Instructional Designer AI - Design Training Faster Than Content Changes",
+    "ogDescription": "Generate complete training courses from source material. Regenerate courses faster and cheaper than maintaining them."
+  },
+  "hero": {
+    "title": "Design training faster than content changes.",
+    "subtitle": "Turn any updated document, deck, or SME input into a brand new interactive course in minutes. Regenerate instead of patching outdated training.",
+    "ctaTry": "Try LearnPack Free",
+    "ctaDemo": "Book a Demo"
+  },
+  "definition": {
+    "en": "The LearnPack Instructional Designer is an AI-powered assistant that generates complete training courses from source material, making regeneration faster and more cost effective than manual updates.",
+    "es": "El Instructional Designer de LearnPack es una IA que genera cursos completos a partir de material fuente, haciendo que recrearlos sea más rápido y rentable que mantenerlos."
+  },
+  "problems": {
+    "title": "Why instructional design breaks at scale",
+    "items": {
+      "updating": {
+        "title": "Updating is slower than rebuilding",
+        "description": "Editing old courses takes more effort than generating new ones from updated source."
+      },
+      "contentChanges": {
+        "title": "Content changes faster than review cycles",
+        "description": "By the time a course is reviewed, the source material has already moved on."
+      },
+      "versionDebt": {
+        "title": "Maintenance creates version debt",
+        "description": "Patching courses accumulates inconsistencies that compound over time."
+      },
+      "patchingDesign": {
+        "title": "Designers patch instead of redesigning",
+        "description": "Teams default to edits when regeneration would deliver cleaner results."
+      },
+      "legacyCourses": {
+        "title": "Legacy courses block speed",
+        "description": "Old course structures limit how fast new content can be deployed."
+      }
+    }
+  },
+  "workflow": {
+    "title": "From source to course, every time",
+    "steps": {
+      "upload": {
+        "title": "Upload new source material",
+        "description": "Drop in documents, slides, or any content that needs to become training."
+      },
+      "generate": {
+        "title": "AI generates a full structured course",
+        "description": "Complete course with lessons, assessments, and interactions built automatically."
+      },
+      "review": {
+        "title": "Review and adjust the draft",
+        "description": "Fine-tune content with Notion-style editing before publishing."
+      },
+      "publish": {
+        "title": "Publish new version, archive the old",
+        "description": "Deploy the updated course and retire the previous version cleanly."
+      }
+    }
+  },
+  "beforeAfter": {
+    "title": "Stop patching. Start regenerating.",
+    "before": {
+      "title": "Before",
+      "items": [
+        "Patch slides",
+        "Edit legacy courses",
+        "Maintain versions",
+        "Long QA cycles"
+      ],
+      "hoverText": "Traditional workflows trap teams in endless revision loops that never fully catch up."
+    },
+    "after": {
+      "title": "After",
+      "items": [
+        "Drop the old version",
+        "Regenerate from updated source",
+        "Review and publish",
+        "Move on"
+      ],
+      "hoverText": "Regeneration delivers clean, current training in a fraction of the time."
+    }
+  },
+  "capabilities": {
+    "title": "Core capabilities",
+    "spotlight": {
+      "title": "Instant course regeneration from updated material",
+      "description": "When your content changes, generate a new course in minutes instead of spending days on updates."
+    },
+    "items": {
+      "structure": {
+        "title": "AI-generated structure and assessments",
+        "description": "Automatic lesson sequencing, quiz generation, and knowledge checks."
+      },
+      "editing": {
+        "title": "Notion-style editing for fast review",
+        "description": "Block-based editing lets you refine AI output quickly and intuitively."
+      },
+      "localization": {
+        "title": "Automatic localization per generation",
+        "description": "Generate courses in multiple languages without separate workflows."
+      },
+      "publishing": {
+        "title": "LMS-ready publishing",
+        "description": "Export as SCORM, embed directly, or integrate with your existing systems."
+      }
+    }
+  },
+  "quality": {
+    "title": "AI speeds up creation. You keep instructional control.",
+    "items": {
+      "structure": {
+        "title": "Clean structure on every new version",
+        "description": "Each generation starts fresh with consistent instructional patterns."
+      },
+      "reviews": {
+        "title": "Faster reviews without legacy baggage",
+        "description": "Review new content without navigating layers of previous edits."
+      },
+      "consistency": {
+        "title": "Consistent instructional quality per generation",
+        "description": "AI applies proven instructional design principles every time."
+      }
+    }
+  },
+  "useCases": {
+    "title": "Where this works best",
+    "items": {
+      "onboarding": "Onboarding",
+      "productTraining": "Product training",
+      "salesEnablement": "Sales enablement",
+      "compliance": "Compliance",
+      "internalTools": "Internal tools training",
+      "upskilling": "Rapid upskilling"
+    }
+  },
+  "outcomes": {
+    "title": "Outcomes",
+    "metrics": {
+      "cost": {
+        "value": "80%",
+        "label": "Lower production cost"
+      },
+      "speed": {
+        "value": "Minutes",
+        "label": "To publish new courses"
+      },
+      "reaction": {
+        "value": "Faster",
+        "label": "Reaction to change"
+      },
+      "completion": {
+        "value": "Higher",
+        "label": "Completion with AI Tutor support"
+      }
+    },
+    "link": "See Results"
+  },
+  "testimonial": {
+    "quote": "LearnPack cut our course creation time from weeks to hours without losing quality.",
+    "attribution": "Learning and Development Lead",
+    "outcomes": [
+      "Faster launches",
+      "Cleaner iterations",
+      "Better learner completion"
+    ],
+    "cta": "Explore case studies"
+  },
+  "faq": {
+    "title": "FAQs",
+    "items": {
+      "control": {
+        "question": "Will I lose instructional control if courses are AI generated?",
+        "answer": "No. The AI generates a complete draft, but you have full control to review, edit, and refine before publishing. The Notion-style editor makes adjustments fast and intuitive."
+      },
+      "changes": {
+        "question": "How do teams handle frequent content changes?",
+        "answer": "Instead of patching existing courses, teams upload the updated source material and regenerate a new version. This is faster than editing and produces cleaner results."
+      },
+      "lms": {
+        "question": "Does LearnPack work with our LMS?",
+        "answer": "Yes. LearnPack exports SCORM packages compatible with all major learning management systems. You can also embed courses directly or integrate via API."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "Build your next course in minutes.",
+    "ctaStart": "Start for Free",
+    "ctaDemo": "Book a Demo"
+  }
+}

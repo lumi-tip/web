@@ -25,6 +25,7 @@ const AIContentAssistant = lazy(() => import("@/pages/AIContentAssistant"));
 const TrainingCenters = lazy(() => import("@/pages/TrainingCenters"));
 const Results = lazy(() => import("@/pages/Results"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const InstructionalDesigner = lazy(() => import("@/pages/InstructionalDesigner"));
 
 // Feature pages
 const Automation = lazy(() => import("@/pages/features/Automation"));
@@ -103,6 +104,11 @@ function Router() {
       <Route path="/contact">
         <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
           <Contact />
+        </Suspense>
+      </Route>
+      <Route path="/instructional-designer">
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div></div>}>
+          <InstructionalDesigner />
         </Suspense>
       </Route>
 
