@@ -13,8 +13,7 @@
     "ctaDemo": "Book a Demo"
   },
   "definition": {
-    "en": "The LearnPack Instructional Designer is an AI-powered assistant that generates complete training courses from source material, making regeneration faster and more cost effective than manual updates.",
-    "es": "El Instructional Designer de LearnPack es una IA que genera cursos completos a partir de material fuente, haciendo que recrearlos sea más rápido y rentable que mantenerlos."
+    "en": "The LearnPack Instructional Designer is an AI-powered assistant that generates complete training courses from source material, making regeneration faster and more cost effective than manual updates."
   },
   "problems": {
     "title": "Why instructional design breaks at scale",
@@ -43,6 +42,7 @@
   },
   "workflow": {
     "title": "From source to course, every time",
+    "subtitle": "A simple four-step process that turns any material into production-ready training.",
     "steps": {
       "upload": {
         "title": "Upload new source material",
@@ -86,56 +86,58 @@
     }
   },
   "capabilities": {
-    "title": "Core capabilities",
-    "spotlight": {
-      "title": "Instant course regeneration from updated material",
-      "description": "When your content changes, generate a new course in minutes instead of spending days on updates."
-    },
+    "title": "The LearnPack Solution",
+    "headline": "Generate complete courses from any source material.",
+    "body": "LearnPack's AI analyzes your documents, slides, and content to create structured training automatically. When content changes, regenerate the entire course in minutes instead of spending days on manual updates.",
     "items": {
+      "regeneration": {
+        "title": "Instant course regeneration",
+        "description": "When your content changes, generate a new course in minutes instead of spending days on updates. Drop the old version and move on."
+      },
       "structure": {
         "title": "AI-generated structure and assessments",
-        "description": "Automatic lesson sequencing, quiz generation, and knowledge checks."
+        "description": "Automatic lesson sequencing, quiz generation, and knowledge checks. The AI applies proven instructional design principles every time."
       },
       "editing": {
         "title": "Notion-style editing for fast review",
-        "description": "Block-based editing lets you refine AI output quickly and intuitively."
+        "description": "Block-based editing lets you refine AI output quickly and intuitively. Make adjustments without navigating complex course builders."
       },
       "localization": {
         "title": "Automatic localization per generation",
-        "description": "Generate courses in multiple languages without separate workflows."
+        "description": "Generate courses in multiple languages without separate workflows. Each regeneration can target a new language or region."
       },
       "publishing": {
         "title": "LMS-ready publishing",
-        "description": "Export as SCORM, embed directly, or integrate with your existing systems."
+        "description": "Export as SCORM, embed directly, or integrate with your existing systems. Deploy to any learning management system with one click."
       }
     }
   },
-  "quality": {
-    "title": "AI speeds up creation. You keep instructional control.",
+  "examples": {
+    "title": "Real examples. From source to course in minutes.",
+    "subtitle": "See how teams transform their existing materials into interactive training.",
+    "source": "Source",
+    "result": "Result",
     "items": {
-      "structure": {
-        "title": "Clean structure on every new version",
-        "description": "Each generation starts fresh with consistent instructional patterns."
+      "onboarding": {
+        "title": "Onboarding",
+        "source": "PDF handbook + org chart",
+        "result": "8-module onboarding program"
       },
-      "reviews": {
-        "title": "Faster reviews without legacy baggage",
-        "description": "Review new content without navigating layers of previous edits."
+      "product": {
+        "title": "Product Training",
+        "source": "Product docs + release notes",
+        "result": "Interactive product training"
       },
-      "consistency": {
-        "title": "Consistent instructional quality per generation",
-        "description": "AI applies proven instructional design principles every time."
+      "compliance": {
+        "title": "Compliance",
+        "source": "Policy documents",
+        "result": "Compliance course with assessments"
+      },
+      "internalTools": {
+        "title": "Internal Tools",
+        "source": "Tool documentation + screenshots",
+        "result": "Step-by-step tool training"
       }
-    }
-  },
-  "useCases": {
-    "title": "Where this works best",
-    "items": {
-      "onboarding": "Onboarding",
-      "productTraining": "Product training",
-      "salesEnablement": "Sales enablement",
-      "compliance": "Compliance",
-      "internalTools": "Internal tools training",
-      "upskilling": "Rapid upskilling"
     }
   },
   "outcomes": {

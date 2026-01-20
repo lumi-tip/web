@@ -13,8 +13,7 @@
     "ctaDemo": "Agenda una Demo"
   },
   "definition": {
-    "en": "The LearnPack Instructional Designer is an AI-powered assistant that generates complete training courses from source material, making regeneration faster and more cost effective than manual updates.",
-    "es": "El Instructional Designer de LearnPack es una IA que genera cursos completos a partir de material fuente, haciendo que recrearlos sea más rápido y rentable que mantenerlos."
+    "en": "El Diseñador Instruccional de LearnPack es un asistente impulsado por IA que genera cursos de capacitación completos desde material fuente, haciendo que la regeneración sea más rápida y rentable que las actualizaciones manuales."
   },
   "problems": {
     "title": "Por qué el diseño instruccional colapsa a escala",
@@ -43,6 +42,7 @@
   },
   "workflow": {
     "title": "De fuente a curso, cada vez",
+    "subtitle": "Un proceso simple de cuatro pasos que convierte cualquier material en capacitación lista para producción.",
     "steps": {
       "upload": {
         "title": "Sube material fuente nuevo",
@@ -86,56 +86,58 @@
     }
   },
   "capabilities": {
-    "title": "Capacidades principales",
-    "spotlight": {
-      "title": "Regeneración instantánea de cursos desde material actualizado",
-      "description": "Cuando tu contenido cambia, genera un nuevo curso en minutos en lugar de pasar días en actualizaciones."
-    },
+    "title": "La Solución LearnPack",
+    "headline": "Genera cursos completos desde cualquier material fuente.",
+    "body": "La IA de LearnPack analiza tus documentos, diapositivas y contenido para crear capacitación estructurada automáticamente. Cuando el contenido cambia, regenera el curso completo en minutos en lugar de pasar días en actualizaciones manuales.",
     "items": {
+      "regeneration": {
+        "title": "Regeneración instantánea de cursos",
+        "description": "Cuando tu contenido cambia, genera un nuevo curso en minutos en lugar de pasar días en actualizaciones. Descarta la versión anterior y sigue adelante."
+      },
       "structure": {
         "title": "Estructura y evaluaciones generadas por IA",
-        "description": "Secuenciación automática de lecciones, generación de cuestionarios y verificaciones de conocimiento."
+        "description": "Secuenciación automática de lecciones, generación de cuestionarios y verificaciones de conocimiento. La IA aplica principios de diseño instruccional probados cada vez."
       },
       "editing": {
         "title": "Edición estilo Notion para revisión rápida",
-        "description": "La edición por bloques te permite refinar el output de IA rápida e intuitivamente."
+        "description": "La edición por bloques te permite refinar el output de IA rápida e intuitivamente. Haz ajustes sin navegar constructores de cursos complejos."
       },
       "localization": {
         "title": "Localización automática por generación",
-        "description": "Genera cursos en múltiples idiomas sin flujos de trabajo separados."
+        "description": "Genera cursos en múltiples idiomas sin flujos de trabajo separados. Cada regeneración puede apuntar a un nuevo idioma o región."
       },
       "publishing": {
         "title": "Publicación lista para LMS",
-        "description": "Exporta como SCORM, incrusta directamente o integra con tus sistemas existentes."
+        "description": "Exporta como SCORM, incrusta directamente o integra con tus sistemas existentes. Despliega a cualquier sistema de gestión de aprendizaje con un clic."
       }
     }
   },
-  "quality": {
-    "title": "La IA acelera la creación. Tú mantienes el control instruccional.",
+  "examples": {
+    "title": "Ejemplos reales. De fuente a curso en minutos.",
+    "subtitle": "Mira cómo los equipos transforman sus materiales existentes en capacitación interactiva.",
+    "source": "Fuente",
+    "result": "Resultado",
     "items": {
-      "structure": {
-        "title": "Estructura limpia en cada nueva versión",
-        "description": "Cada generación comienza fresca con patrones instruccionales consistentes."
+      "onboarding": {
+        "title": "Onboarding",
+        "source": "Manual PDF + organigrama",
+        "result": "Programa de onboarding de 8 módulos"
       },
-      "reviews": {
-        "title": "Revisiones más rápidas sin lastre legacy",
-        "description": "Revisa contenido nuevo sin navegar capas de ediciones anteriores."
+      "product": {
+        "title": "Capacitación de Producto",
+        "source": "Docs de producto + notas de versión",
+        "result": "Capacitación interactiva de producto"
       },
-      "consistency": {
-        "title": "Calidad instruccional consistente por generación",
-        "description": "La IA aplica principios de diseño instruccional probados cada vez."
+      "compliance": {
+        "title": "Cumplimiento",
+        "source": "Documentos de políticas",
+        "result": "Curso de cumplimiento con evaluaciones"
+      },
+      "internalTools": {
+        "title": "Herramientas Internas",
+        "source": "Documentación de herramientas + capturas",
+        "result": "Capacitación paso a paso de herramientas"
       }
-    }
-  },
-  "useCases": {
-    "title": "Dónde funciona mejor",
-    "items": {
-      "onboarding": "Onboarding",
-      "productTraining": "Capacitación de producto",
-      "salesEnablement": "Habilitación de ventas",
-      "compliance": "Cumplimiento",
-      "internalTools": "Capacitación de herramientas internas",
-      "upskilling": "Upskilling rápido"
     }
   },
   "outcomes": {
