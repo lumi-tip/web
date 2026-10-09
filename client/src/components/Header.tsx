@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, BookOpen, Mail, Building2 } from 'lucide-react';
+import { ChevronDown, Settings, Brain, BarChart3, FileCheck2, Laptop, Users, CheckSquare, TrendingUp, Mail, Building2 } from 'lucide-react';
 import { analytics } from '@/lib/analytics';
 import learnpackLogoDark from '@assets/logo-small-learnpack-dark_1759003192973.png';
 import learnpackLogoLight from '@assets/logo-small-learnpack-light_1759003192973.png';
@@ -279,15 +279,6 @@ export default function Header() {
               Instructional Designer
             </Link>
 
-            {/* Training Centers */}
-            <Link 
-              href="/training-centers" 
-              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
-              data-testid="link-training-centers"
-            >
-              Training Centers
-            </Link>
-
             {/* Pricing */}
             <Link 
               href="/pricing" 
@@ -295,15 +286,6 @@ export default function Header() {
               data-testid="link-pricing"
             >
               Pricing
-            </Link>
-
-            {/* Results */}
-            <Link 
-              href="/results" 
-              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover-elevate"
-              data-testid="link-results"
-            >
-              Results
             </Link>
 
             {/* Docs */}
@@ -341,20 +323,6 @@ export default function Header() {
                   
                   <div className="absolute top-full right-0 mt-2 w-[280px] bg-card border border-border rounded-lg shadow-lg overflow-visible">
                     <div className="p-3 space-y-0.5">
-                      {/* Blog / Insights */}
-                      <Link 
-                        href="/blog"
-                        className="flex gap-2.5 p-2.5 rounded-md hover-elevate cursor-pointer"
-                        data-testid="link-blog"
-                        onClick={closeDropdown}
-                      >
-                        <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-foreground text-sm">Blog / Insights</div>
-                          <div className="text-xs text-muted-foreground mt-0.5">Latest updates & resources</div>
-                        </div>
-                      </Link>
-
                       {/* Contact */}
                       <Link 
                         href="/contact"
